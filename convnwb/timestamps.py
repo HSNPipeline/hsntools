@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 ###################################################################################################
 ###################################################################################################
 
-def align_times(sync_nsp, sync_behavioral, score_thresh=0.9999, return_model=False, verbose=False):
+def align_times(sync_behavioral, sync_neural, score_thresh=0.9999, return_model=False, verbose=False):
     """Align times across different recording systems.
 
     Parameters
