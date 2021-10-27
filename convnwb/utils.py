@@ -33,7 +33,7 @@ def clean_strings(lst):
 
     Returns
     -------
-    lst
+    list of str
         Cleaned list.
 
     Notes
@@ -48,11 +48,11 @@ def clean_strings(lst):
 
 
 def get_event_time(event_times, start, end):
-    """Select an event based on time range, returning NaN if not found.
+    """Select a (single) event based on time range, returning NaN if not found.
 
     Parameters
     ----------
-    events : 1d array
+    event_times : 1d array
         Event times.
     start, end : float
         Start and end times to select between.
