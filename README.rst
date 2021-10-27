@@ -3,22 +3,20 @@ convnwb
 
 |ProjectStatus|_ |BuildStatus|_
 
-.. |ProjectStatus| image:: http://www.repostatus.org/badges/latest/wip.svg
-.. _ProjectStatus: https://www.repostatus.org/#wip
+.. |ProjectStatus| image:: http://www.repostatus.org/badges/latest/active.svg
+.. _ProjectStatus: https://www.repostatus.org/#active
 
 .. |BuildStatus| image:: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml/badge.svg
 .. _BuildStatus: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml
 
-`convnwb` is a small collection of helper code for converting data to the NWB format.
-
-WARNING: This module is in early development, and may change at any time.
+``convnwb`` is a small collection of helper code for converting data to the NWB format.
 
 Overview
 --------
 
 This mini-module provides helper for converting data to NWB format.
 
-This module contains utilities that are task agnostic, and is expected to be used with in the context of the
+This module contains general, task agnostic, utilities, and is expected to be used with the
 `ConvertTEMPLATE <https://github.com/JacobsSU/ConvertTEMPLATE>`_.
 
 Dependencies
@@ -40,7 +38,6 @@ Installation
 ------------
 
 This module should be installed from Github:
-This module is currently in development, with no stable release version yet.
 
 **Install from a clone**
 
