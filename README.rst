@@ -26,9 +26,10 @@ Dependencies
 
 It has the following required dependencies:
 
-- `pyyaml <https://github.com/yaml/pyyaml>`_
 - `numpy <https://github.com/numpy/numpy>`_
 - `scikit-learn <https://github.com/scikit-learn/scikit-learn>`_
+- `pyyaml <https://github.com/yaml/pyyaml>`_
+- `pynwb <https://github.com/NeurodataWithoutBorders/pynwb>`_
 
 There are also optional dependencies, that offer extra functionality:
 
