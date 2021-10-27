@@ -49,19 +49,56 @@ def check_folder(file_name, folder):
 
 
 def drop_hidden_files(files):
-    """Clean hidden files from a list of files."""
+    """Clean hidden files from a list of files.
+
+    Parameters
+    ----------
+    files : list of str
+        File list.
+
+    Returns
+    -------
+    list of str
+        File list with hidden files dropped.
+    """
 
     return [file for file in files if file[0] != '.']
 
 
 def ignore_files(files, ignore):
-    """Select files based on a search term of interest."""
+    """Ignore files based on a search term of interest.
+
+    Parameters
+    ----------
+    files : list of str
+        File list.
+    ignore : str
+        String to use to drop files from list.
+
+    Returns
+    -------
+    list of str
+        File list with ignored files dropped.
+    """
 
     return [file for file in files if ignore not in file]
 
 
 def select_files(files, search):
-    """Select files based on a search term of interest."""
+    """Select files based on a search term of interest.
+
+    Parameters
+    ----------
+    files : list of str
+        File list.
+    search : str
+        String to use to keep files.
+
+    Returns
+    -------
+    list of str
+        File list with selected files kept.
+    """
 
     return [file for file in files if search in file]
 
@@ -69,7 +106,24 @@ def select_files(files, search):
 ### GENERAL FILE I/O
 
 def get_files(folder, select=None, ignore=None, drop_hidden=True):
-    """Get a list of files from a directory."""
+    """Get a list of files from a directory.
+
+    Parameters
+    ----------
+    folder : str or Path
+        Name of the folder to get the list of files from.
+    select : str, optional
+        A search string to use to select files.
+    ignore : str, optional
+        A search string to use to drop files.
+    drop_hidden : bool, optional, default: True
+        Whether to drop hidden files from the list.
+
+    Returns
+    -------
+    list of str
+        A list of files from the folder.
+    """
 
     files = os.listdir(folder)
 
@@ -90,7 +144,18 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True):
 #### DATA FILES
 
 def make_file_list(files):
-    """Make a list of subject files."""
+    """Make a list of subject files.
+
+    Parameters
+    ----------
+    files : dict
+        Collection of files per subject.
+
+    Returns
+    -------
+    file_lst : list of str
+        List of all subject files.
+    """
 
     file_list = []
     for subj, sessions in files.items():
@@ -101,8 +166,38 @@ def make_file_list(files):
 
 #### CONFIG FILES
 
+def save_config(cdict, file_name, folder=None):
+    """Save out a config file.
+
+    Parameters
+    ----------
+    cdict : dict
+        Dictionary of information to save to the config file.
+    file_name : str
+        File name for the saved out file.
+    folder : str or Path, optional
+        Folder to save the config file to.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.yaml'), 'w') as file:
+        yaml.dump(cdict, file)
+
+
 def load_config(file_name, folder=None):
-    """Load an individual config file."""
+    """Load an individual config file.
+
+    Parameters
+    ----------
+    file_name : str
+        Name of the config file to load.
+    folder : str or Path, optional
+        Folder to load the config file from.
+
+    Returns
+    -------
+    data : dict
+        Information from the loaded config file.
+    """
 
     with open(check_ext(check_folder(file_name, folder), '.yaml'), 'r') as fobj:
         data = yaml.safe_load(fobj)
@@ -111,7 +206,20 @@ def load_config(file_name, folder=None):
 
 
 def load_configs(files, folder=None):
-    """Load all configs together."""
+    """Load all configs together.
+
+    Parameters
+    ----------
+    files : list of str
+        Names of all the config files to load.
+    folder : str or Path, optional
+        Folder to load the config files from.
+
+    Returns
+    -------
+    configs : dict
+        Information from the config files.
+    """
 
     configs = {}
     for file in files:
@@ -119,13 +227,6 @@ def load_configs(files, folder=None):
         configs[label] = load_config(file, folder=folder)
 
     return configs
-
-
-def save_config(cdict, file_name, folder=None):
-    """Save out a config file."""
-
-    with open(check_ext(check_folder(file_name, folder), '.yaml'), 'w') as file:
-        yaml.dump(cdict, file)
 
 
 ### TASK OBJECTS
