@@ -2,9 +2,10 @@
 
 import os
 import shutil
+
 import pytest
 
-from spiketools.tests.tsettings import TEST_FILE_PATH
+from convnwb.tests.tsettings import TEST_FILE_PATH
 
 ###################################################################################################
 ###################################################################################################
