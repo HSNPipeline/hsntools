@@ -27,7 +27,10 @@ Dependencies
 ``convnwb`` is written in Python, and requires Python >= 3.6 to run.
 
 It has the following required dependencies:
+
 - `pyyaml <https://github.com/yaml/pyyaml>`_
+- `numpy <https://github.com/numpy/numpy>`_
+- `scikit-learn <https://github.com/scikit-learn/scikit-learn>`_
 
 There are also optional dependencies, that offer extra functionality:
 
