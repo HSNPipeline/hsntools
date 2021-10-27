@@ -1,5 +1,8 @@
 """Tests for convnwb.io"""
 
+import os
+
+from convnwb.tests.tobjects import TestTask
 from convnwb.tests.tsettings import TEST_FILE_PATH
 
 from convnwb.io import *
@@ -63,16 +66,41 @@ def test_make_file_list():
         assert el in out
 
 def test_save_config():
-    pass
+
+    cdict1 = {'d1' : 1, 'd2' : 'name', 'd3' : ['a', 'b', 'c']}
+    f_name1 = 'test_config1'
+    save_config(cdict1, f_name1, TEST_FILE_PATH)
+
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name1 + '.yaml'))
+
+    cdict2 = {'d1' : 'words', 'd2' : None, 'd3' : ['list', 'of', 'terms']}
+    f_name2 = 'test_config2'
+    save_config(cdict2, f_name2, TEST_FILE_PATH)
+
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name2 + '.yaml'))
 
 def test_load_config():
-    pass
+
+    f_name1 = 'test_config1'
+    config = load_config(f_name1, TEST_FILE_PATH)
+    assert isinstance(config, dict)
 
 def test_load_configs():
-    pass
+
+    f_names = ['test_config1', 'test_config2']
+    configs = load_configs(f_names, TEST_FILE_PATH)
+    assert isinstance(configs, dict)
 
 def test_save_task_object():
-    pass
+
+    task = TestTask()
+    f_name = 'task_obj'
+    save_task_object(task, f_name, TEST_FILE_PATH)
+
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name + '.p'))
 
 def test_load_task_object():
-    pass
+
+    f_name = 'task_obj'
+    task = load_task_object(f_name, TEST_FILE_PATH)
+    assert task
