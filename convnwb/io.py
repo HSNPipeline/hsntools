@@ -1,6 +1,7 @@
 """Utility functions for managing files."""
 
 import os
+import json
 import pickle
 
 import yaml
@@ -141,6 +142,7 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True):
 
     return files
 
+
 #### DATA FILES
 
 def make_file_list(files):
@@ -163,6 +165,7 @@ def make_file_list(files):
             file_list.append(subj + '_' + session)
 
     return file_list
+
 
 #### CONFIG FILES
 
@@ -258,7 +261,7 @@ def load_task_object(file_name, folder=None):
     Parameters
     ----------
     file_name : str
-        File name of the object to be loaded.
+        File name of the file to load.
     folder : str or Path, optional
         Folder to load from.
 
@@ -276,3 +279,44 @@ def load_task_object(file_name, folder=None):
         task = pickle.load(load_obj)
 
     return task
+
+
+## OTHER FILE I/O
+
+def save_json(data, file_name, folder=None):
+    """Save out a dictionary of data to a JSON file.
+
+    Parameters
+    ----------
+    data : dict
+        Data to save out to a JSON file.
+    file_name : str
+        File name to label the saved out file.
+    folder : str or Path, optional
+        Folder to save out to.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.json'), 'w') as json_file:
+        json.dump(data, json_file)
+
+
+def load_json(file_name, folder=None):
+    """Load from a JSON file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the file to load.
+    folder : str or Path, optional
+        Folder to load from.
+
+    Returns
+    -------
+    data : dict
+        Loaded data from the JSON file.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.json')) as json_file:
+        data = json.load(json_file)
+
+    return data

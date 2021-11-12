@@ -104,3 +104,17 @@ def test_load_task_object():
     f_name = 'task_obj'
     task = load_task_object(f_name, TEST_FILE_PATH)
     assert task
+
+def test_save_json():
+
+    data = {'a' : 12, 'b' : 21}
+    f_name = 'test_json'
+
+    save_json(data, f_name, TEST_FILE_PATH)
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name + '.json'))
+
+def test_load_json():
+
+    f_name = 'test_json'
+    data = load_json(f_name, TEST_FILE_PATH)
+    assert data
