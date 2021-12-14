@@ -69,3 +69,38 @@ def get_event_time(event_times, start, end):
         event = np.nan
 
     return event
+
+
+def str_to_bool(string):
+    """Convert a string to a boolean.
+
+    Parameters
+    ----------
+    string : {'True', 'False'}
+        String to convert to boolean.
+
+    Returns
+    -------
+    bool
+        Boolean represetation of the string.
+    """
+
+    assert string.lower() in ['true', 'false']
+    return string.lower() == 'true'
+
+
+def list_str_to_bool(lst):
+    """Convert a list of strings to a list of boolean.
+
+    Parameters
+    ----------
+    lst : list of str
+        List of strings to convert to boolean.
+
+    Returns
+    -------
+    lst of bool
+        List with elements converted to boolean.
+    """
+
+    return [str_to_bool(el) for el in lst]
