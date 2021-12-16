@@ -104,9 +104,26 @@ def select_files(files, search):
     return [file for file in files if search in file]
 
 
+def sort_files(files):
+    """Sort a list of file names.
+
+    Parameters
+    ----------
+    files : list of str
+        List of file names, to sort.
+
+    Returns
+    -------
+    list of str
+        Sorted list of files.
+    """
+
+    return sorted(files)
+
+
 ### GENERAL FILE I/O
 
-def get_files(folder, select=None, ignore=None, drop_hidden=True):
+def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True):
     """Get a list of files from a directory.
 
     Parameters
@@ -119,6 +136,8 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True):
         A search string to use to drop files.
     drop_hidden : bool, optional, default: True
         Whether to drop hidden files from the list.
+    sort : bool, optional, default: True
+        Whether to sort the list of file names.
 
     Returns
     -------
@@ -139,6 +158,10 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True):
     # If requested, filter files to ignore any containing given search terms
     if ignore:
         files = ignore_files(files, ignore)
+
+    # If requestied, sort the list of files
+    if sort:
+        files = sort_files(files)
 
     return files
 

@@ -51,6 +51,12 @@ def test_select_files():
     out = select_files(files, 'data')
     assert out == ['data_1.txt', 'data_2.txt']
 
+def test_sort_files():
+
+    files = ['data_1.txt', 'other.txt', 'data_2.txt', 'temp.txt']
+    out = sort_files(files)
+    assert out == ['data_1.txt', 'data_2.txt', 'other.txt', 'temp.txt']
+
 def test_get_files():
 
     out = get_files('.')
