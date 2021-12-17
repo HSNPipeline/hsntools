@@ -38,6 +38,12 @@ def test_drop_hidden_files():
     out = drop_hidden_files(files)
     assert out == ['file_a', 'file_b']
 
+def test_drop_file_extensions():
+
+    files = ['file_a.txt', 'file_b.json']
+    out = drop_file_extensions(files)
+    assert out == ['file_a', 'file_b']
+
 def test_ignore_files():
 
     files = ['data_1.txt', 'other.txt', 'data_2.txt', 'temp.txt']

@@ -66,6 +66,23 @@ def drop_hidden_files(files):
     return [file for file in files if file[0] != '.']
 
 
+def drop_file_extensions(files):
+    """Drop the file extensions from a list of file names.
+
+    Parameters
+    ----------
+    files : list of str
+        File list.
+
+    Returns
+    -------
+    list of str
+        File list with extensions dropped.
+    """
+
+    return [file.split('.')[0] for file in files]
+
+
 def ignore_files(files, ignore):
     """Ignore files based on a search term of interest.
 
@@ -123,7 +140,7 @@ def sort_files(files):
 
 ### GENERAL FILE I/O
 
-def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True):
+def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, drop_extensions=False):
     """Get a list of files from a directory.
 
     Parameters
@@ -138,6 +155,8 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True):
         Whether to drop hidden files from the list.
     sort : bool, optional, default: True
         Whether to sort the list of file names.
+    drop_extensions : bool, optional, default: False
+        Whether the drop the file extensions from the returned file list.
 
     Returns
     -------
@@ -162,6 +181,9 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True):
     # If requestied, sort the list of files
     if sort:
         files = sort_files(files)
+
+    if drop_extensions:
+        files = drop_file_extensions(files)
 
     return files
 
