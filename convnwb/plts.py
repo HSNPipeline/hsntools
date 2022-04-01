@@ -19,12 +19,12 @@ def plot_alignment(sync1, sync2, n_pulses=None):
         Restrict the visualization to a restricted number of pulses.
     """
 
-    fig, ax = plt.subplots(figsize=(20, 4))
+    _, ax = plt.subplots(figsize=(20, 4))
     ax.eventplot([sync1, sync2], linelengths=[0.9, 0.9], colors=['g', 'b'])
+    ax.set_xlabel('Time (ms)')
     ax.set_yticks([0, 1])
     ax.set_yticklabels(['Sync Neural', 'Sync Behavioral'])
-    ax.set_xlabel('Time (ms)')
-    plt.title('Synchronization pulses')
+    ax.set_title('Synchronization pulses')
 
     if n_pulses:
         ax.set_xlim(sync1[0], sync1[n_pulses])

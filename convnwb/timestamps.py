@@ -1,7 +1,5 @@
 """Functions and utilities for working  with timestamps."""
 
-import numpy as np
-
 from convnwb.modutils import safe_import, check_dependency
 
 sklearn = safe_import('sklearn')
@@ -63,7 +61,7 @@ def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
     if score < score_thresh:
         raise ValueError('This session has bad synchronization between brain and behavior')
 
-    if verbose == True:
+    if verbose:
         print('coef', model.coef_, '\n intercept', model.intercept_)
         print('score', score)
 
@@ -89,12 +87,12 @@ def predict_times_model(model, times):
         Predicted times, after applying time alignment.
     """
 
-    aligned_times = model.predict(times.reshape(-1, 1))
+    predicted_times = model.predict(times.reshape(-1, 1))
 
     return predicted_times
 
 
-def predict_times_coef(offset, coef, times):
+def predict_times_coef(intercept, coef, times):
     """Predict times alignment from learned model coefficients.
 
     Parameters
