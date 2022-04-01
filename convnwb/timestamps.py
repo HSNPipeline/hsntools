@@ -9,7 +9,7 @@ sklearn = safe_import('sklearn')
 
 @check_dependency(sklearn, 'sklearn')
 def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
-                return_model=False, verbose=False):
+                ignore_poor_alignment=False, return_model=False, verbose=False):
     """Align times across different recording systems.
 
     Parameters
@@ -20,6 +20,8 @@ def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
         Sync pulse times from neural computer.
     score_thresh : float, optional, default: 0.9999
         R^2 threshold value to check that the fit model is better than.
+    ignore_poor_alignment : bool, optional, default: False
+        Whether to ignore a bad alignment score.
     return_model : bool, optional, default: False
         Whether to return the model object. If False, returns
     verbose : bool, optional, default: False
@@ -58,8 +60,12 @@ def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
     y_pred = model.predict(x_test)
 
     score = r2_score(y_test, y_pred)
+    bad_score_msg = 'This session has bad synchronization between brain and behavior'
     if score < score_thresh:
-        raise ValueError('This session has bad synchronization between brain and behavior')
+        if not ignore_poor_alignment:
+            raise ValueError(bad_score_msg)
+        else:
+            print(bad_score_msg)
 
     if verbose:
         print('coef', model.coef_, '\n intercept', model.intercept_)
