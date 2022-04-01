@@ -109,7 +109,7 @@ def test_save_task_object():
     f_name = 'task_obj'
     save_task_object(task, f_name, TEST_FILE_PATH)
 
-    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name + '.p'))
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name + '.task'))
 
 def test_load_task_object():
 

@@ -296,7 +296,7 @@ def save_task_object(task, file_name, folder=None):
     Task objects are saved and loaded as pickle files.
     """
 
-    with open(check_ext(check_folder(file_name, folder), '.p'), 'wb') as fobj:
+    with open(check_ext(check_folder(file_name, folder), '.task'), 'wb') as fobj:
         pickle.dump(task, fobj)
 
 
@@ -320,7 +320,7 @@ def load_task_object(file_name, folder=None):
     Task objects are saved and loaded as pickle files.
     """
 
-    with open(check_ext(check_folder(file_name, folder), '.p'), 'rb') as load_obj:
+    with open(check_ext(check_folder(file_name, folder), '.task'), 'rb') as load_obj:
         task = pickle.load(load_obj)
 
     return task
