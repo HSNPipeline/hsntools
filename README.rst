@@ -27,12 +27,13 @@ Dependencies
 It has the following required dependencies:
 
 - `numpy <https://github.com/numpy/numpy>`_
-- `scikit-learn <https://github.com/scikit-learn/scikit-learn>`_
 - `pyyaml <https://github.com/yaml/pyyaml>`_
-- `pynwb <https://github.com/NeurodataWithoutBorders/pynwb>`_
 
 There are also optional dependencies, that offer extra functionality:
 
+- `pynwb <https://github.com/NeurodataWithoutBorders/pynwb>`_ is needed for validating NWB files
+- `matplotlib <https://github.com/matplotlib/>`_ is needed for making plots to check conversions
+- `scikit-learn <https://github.com/scikit-learn/scikit-learn>`_ is needed to aligning sync pulses
 - `pytest <https://github.com/pytest-dev/pytest>`_ is needed to run the test suite locally
 
 Installation
