@@ -1,12 +1,14 @@
 """Helper utilities for validating NWB files."""
 
-from io import check_ext, check_folder
+from convnwb.io import check_ext, check_folder
+from convnwb.modutils import safe_import, check_dependency
 
-import pynwb
+pynwb = safe_import('pynwb')
 
 ###################################################################################################
 ###################################################################################################
 
+@check_dependency(pynwb, 'pynwb')
 def validate_nwb(file_name, folder=None, raise_error=True, verbose=False):
     """Validate a NWB file.
 

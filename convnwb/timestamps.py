@@ -1,14 +1,17 @@
 """Functions and utilities for working  with timestamps."""
 
 import numpy as np
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-from sklearn.model_selection import train_test_split
+
+from convnwb.modutils import safe_import, check_dependency
+
+sklearn = safe_import('sklearn')
 
 ###################################################################################################
 ###################################################################################################
 
-def align_times(sync_behavioral, sync_neural, score_thresh=0.9999, return_model=False, verbose=False):
+@check_dependency(sklearn, 'sklearn')
+def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
+                return_model=False, verbose=False):
     """Align times across different recording systems.
 
     Parameters
@@ -38,13 +41,19 @@ def align_times(sync_behavioral, sync_neural, score_thresh=0.9999, return_model=
         R^2 score of the model, indicating how good a fit there is between sync pulses.
     """
 
+    # sklearn imports are weird, so re-import here
+    #   the sub-modules here aren't available from the global namespace
+    from sklearn.metrics import r2_score
+    from sklearn.linear_model import LinearRegression
+    from sklearn.model_selection import train_test_split
+
     # Reshape to column arrays for scikit-learn
     sync_behavioral = sync_behavioral.reshape(-1, 1)
     sync_neural = sync_neural.reshape(-1, 1)
 
     # Linear model to predict alignment between time traces
-    x_train, x_test, y_train, y_test = train_test_split(sync_behavioral, sync_neural,
-                                                        test_size=0.50, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(\
+        sync_behavioral, sync_neural, test_size=0.50, random_state=42)
 
     model = LinearRegression()
     model.fit(x_train, y_train)

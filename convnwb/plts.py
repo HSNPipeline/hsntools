@@ -1,10 +1,13 @@
 """Visualizations for checking conversions."""
 
-import matplotlib.pyplot as plt
+from convnwb.modutils import safe_import, check_dependency
+
+plt = safe_import('.pyplot', 'matplotlib')
 
 ###################################################################################################
 ###################################################################################################
 
+@check_dependency(plt, 'matplotlib')
 def plot_alignment(sync1, sync2, n_pulses=None):
     """Plot the alignment between synchronization pulses.
 
