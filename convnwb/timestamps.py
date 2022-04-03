@@ -1,5 +1,7 @@
 """Functions and utilities for working  with timestamps."""
 
+import numpy as np
+
 from convnwb.modutils import safe_import, check_dependency
 
 sklearn = safe_import('sklearn')
@@ -68,54 +70,50 @@ def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
             print(bad_score_msg)
 
     if verbose:
-        print('coef', model.coef_, '\n intercept', model.intercept_)
+        print('coef', model.coef_[0], '\n intercept', model.intercept_[0])
         print('score', score)
 
     if return_model:
         return model, score
     else:
-        return model.intercept_, model.coef_, score
+        return model.intercept_[0], model.coef_[0][0], score
 
 
-def predict_times_model(model, times):
-    """Predict times alignment from a model object.
+def predict_times(times, intercept, coef):
+    """Predict times alignment from model coefficients.
 
     Parameters
     ----------
-    model : LinearRegression
-        A model object, with a fit model predicting timestamp alignment.
     times : 1d array
         Timestamps to align.
-
-    Returns
-    -------
-    predicted_times : 1d array
-        Predicted times, after applying time alignment.
-    """
-
-    predicted_times = model.predict(times.reshape(-1, 1))
-
-    return predicted_times
-
-
-def predict_times_coef(intercept, coef, times):
-    """Predict times alignment from learned model coefficients.
-
-    Parameters
-    ----------
     intercept : float
         Learned intercept of the model predicting differences between sync pulses.
     coef : float
         Learned coefficient of the model predicting  differences between sync pulses.
-    times : 1d array
-        Timestamps to align.
 
     Returns
     -------
-    predicted_times : 1d array
+    1d array
         Predicted times, after applying time alignment.
     """
 
-    predicted_times = coef * times + intercept
+    return coef * np.array(times).astype(float) + intercept
 
-    return predicted_times
+
+def predict_times_model(times, model):
+    """Predict times alignment from a model object.
+
+    Parameters
+    ----------
+    times : 1d array
+        Timestamps to align.
+    model : LinearRegression
+        A model object, with a fit model predicting timestamp alignment.
+
+    Returns
+    -------
+    1d array
+        Predicted times, after applying time alignment.
+    """
+
+    return model.predict(times.reshape(-1, 1))
