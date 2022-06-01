@@ -328,6 +328,45 @@ def load_task_object(file_name, folder=None):
 
 ## OTHER FILE I/O
 
+def save_txt(text, file_name, folder=None):
+    """Save out a string of information to a txt file.
+
+    Parameters
+    ----------
+    text : str
+        Text to save out to a txt file.
+    file_name : str
+        File name to label the saved out file.
+    folder : str or Path, optional
+        Folder to save out to.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.txt'), 'w') as txt_file:
+        txt_file.write(text)
+
+
+def load_txt(file_name, folder=None):
+    """Load from a JSON file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the file to load.
+    folder : str or Path, optional
+        Folder to load from.
+
+    Returns
+    -------
+    text : dict
+        Loaded text from the txt file.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.txt')) as txt_file:
+        text = txt_file.readlines()
+
+    return text
+
+
 def save_json(data, file_name, folder=None):
     """Save out a dictionary of data to a JSON file.
 

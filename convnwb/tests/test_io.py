@@ -117,6 +117,20 @@ def test_load_task_object():
     task = load_task_object(f_name, TEST_FILE_PATH)
     assert task
 
+def test_save_txt():
+
+    text = "Words, words, words."
+    f_name = 'test_txt'
+
+    save_txt(text, f_name, TEST_FILE_PATH)
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name + '.txt'))
+
+def test_load_txt():
+
+    f_name = 'test_txt'
+    text = load_txt(f_name, TEST_FILE_PATH)
+    assert text
+
 def test_save_json():
 
     data = {'a' : 12, 'b' : 21}
