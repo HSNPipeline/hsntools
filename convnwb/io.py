@@ -55,12 +55,12 @@ def drop_hidden_files(files):
     Parameters
     ----------
     files : list of str
-        File list.
+        List of file names.
 
     Returns
     -------
     list of str
-        File list with hidden files dropped.
+        List of file names with hidden files dropped.
     """
 
     return [file for file in files if file[0] != '.']
@@ -72,12 +72,12 @@ def drop_file_extensions(files):
     Parameters
     ----------
     files : list of str
-        File list.
+        List of file names.
 
     Returns
     -------
     list of str
-        File list with extensions dropped.
+        List of file names with extensions dropped.
     """
 
     return [file.split('.')[0] for file in files]
@@ -89,14 +89,14 @@ def ignore_files(files, ignore):
     Parameters
     ----------
     files : list of str
-        File list.
+        List of file names.
     ignore : str
         String to use to drop files from list.
 
     Returns
     -------
     list of str
-        File list with ignored files dropped.
+        List of file names with ignored files dropped.
     """
 
     return [file for file in files if ignore not in file]
@@ -108,14 +108,14 @@ def select_files(files, search):
     Parameters
     ----------
     files : list of str
-        File list.
+        List of file names.
     search : str
         String to use to keep files.
 
     Returns
     -------
     list of str
-        File list with selected files kept.
+        List of file names with selected files kept.
     """
 
     return [file for file in files if search in file]
@@ -127,12 +127,12 @@ def sort_files(files):
     Parameters
     ----------
     files : list of str
-        List of file names, to sort.
+        List of file names.
 
     Returns
     -------
     list of str
-        Sorted list of files.
+        Sorted list of file names.
     """
 
     return sorted(files)
@@ -222,7 +222,7 @@ def save_config(cdict, file_name, folder=None):
     cdict : dict
         Dictionary of information to save to the config file.
     file_name : str
-        File name for the saved out file.
+        File name to give the saved out config file.
     folder : str or Path, optional
         Folder to save the config file to.
     """
@@ -287,7 +287,7 @@ def save_task_object(task, file_name, folder=None):
     task : Task
         Task object to save out.
     file_name : str
-        Name for the file to be saved out.
+        File name to give the saved out task file.
     folder : str or Path, optional
         Folder to save out to.
 
@@ -328,6 +328,45 @@ def load_task_object(file_name, folder=None):
 
 ## OTHER FILE I/O
 
+def save_txt(text, file_name, folder=None):
+    """Save out text to a txt file.
+
+    Parameters
+    ----------
+    text : str
+        Text to save out to a txt file.
+    file_name : str
+        File name to give the saved out txt file.
+    folder : str or Path, optional
+        Folder to save out to.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.txt'), 'w') as txt_file:
+        txt_file.write(text)
+
+
+def load_txt(file_name, folder=None):
+    """Load text from a txt file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the file to load.
+    folder : str or Path, optional
+        Folder to load from.
+
+    Returns
+    -------
+    text : str
+        Loaded text from the txt file.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.txt')) as txt_file:
+        text = txt_file.readlines()
+
+    return text
+
+
 def save_json(data, file_name, folder=None):
     """Save out a dictionary of data to a JSON file.
 
@@ -336,7 +375,7 @@ def save_json(data, file_name, folder=None):
     data : dict
         Data to save out to a JSON file.
     file_name : str
-        File name to label the saved out file.
+        File name to give the saved out json file.
     folder : str or Path, optional
         Folder to save out to.
     """
