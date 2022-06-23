@@ -12,6 +12,6 @@ def test_plot_alignment():
 
     plot_alignment(arr1, arr2)
 
-    # Check that the plot was
+    # Check that the plot was created
     ax = plt.gca()
     assert ax.has_data()

@@ -2,6 +2,10 @@
 
 import os
 import shutil
+from datetime import datetime
+from dateutil.tz import tzlocal
+
+from pynwb import NWBFile
 
 import pytest
 
@@ -22,3 +26,10 @@ def check_dir():
 
     # Remake (empty) directories
     os.mkdir(TEST_FILE_PATH)
+
+
+@pytest.fixture(scope='session')
+def tnwbfile():
+    """Create a test NWBfile."""
+
+    yield NWBFile('session_desc', 'session_id', datetime.now(tzlocal()))

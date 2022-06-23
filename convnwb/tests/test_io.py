@@ -68,6 +68,14 @@ def test_get_files():
     out = get_files('.')
     assert isinstance(out, list)
 
+def test_make_nwbfile_name():
+
+    name1 = make_nwbfile_name('SUBJ', 0)
+    assert name1 == 'SUBJ_session_0.nwb'
+
+    name2 = make_nwbfile_name('SUBJ', 0, 'TASK')
+    assert name2 == 'TASK_SUBJ_session_0.nwb'
+
 def test_make_file_list():
 
     files = {'sub1' : ['session1', 'session2'], 'sub2' : ['session1']}
@@ -76,6 +84,18 @@ def test_make_file_list():
     assert len(out) == 3
     for el in ['sub1_session1', 'sub1_session2', 'sub2_session1']:
         assert el in out
+
+def test_save_nwbfile(tnwbfile):
+
+    test_fname = 'test_nwbfile'
+    save_nwbfile(tnwbfile, test_fname, TEST_FILE_PATH)
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, test_fname + '.nwb'))
+
+def test_load_nwbfile():
+
+    test_fname = 'test_nwbfile'
+    tnwbfile = load_nwbfile(test_fname, TEST_FILE_PATH)
+    assert tnwbfile
 
 def test_save_config():
 
