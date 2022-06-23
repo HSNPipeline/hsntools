@@ -6,6 +6,10 @@ import pickle
 
 import yaml
 
+from convnwb.modutils import safe_import, check_dependency
+
+pynwb = safe_import('pynwb')
+
 ###################################################################################################
 ###################################################################################################
 
@@ -138,8 +142,6 @@ def sort_files(files):
     return sorted(files)
 
 
-### GENERAL FILE I/O
-
 def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, drop_extensions=False):
     """Get a list of files from a directory.
 
@@ -178,7 +180,7 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, dro
     if ignore:
         files = ignore_files(files, ignore)
 
-    # If requestied, sort the list of files
+    # If requested, sort the list of files
     if sort:
         files = sort_files(files)
 
@@ -187,8 +189,40 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, dro
 
     return files
 
+### FILE I/O
 
-#### DATA FILES
+#### NWB FILES
+
+def make_nwbfile_name(subject, session, task=None):
+    """Create a NWB file name.
+
+    Parameters
+    ----------
+    subject : str
+        The subject label.
+    session : int
+        The session number.
+    task : str, optional
+        A task label.
+
+    Returns
+    -------
+    file_name : str
+        The name of the NWB file.
+
+    Notes
+    -----
+    The standard NWB file name is structured as: 'SUBJECT_session_#.nwb'
+    Optionally, a task name can be prefixed, as: 'TASK_SUBJECT_session_#.nwb'
+    """
+
+    file_name = '_'.join([subject, 'session_' + str(session)]) + '.nwb'
+
+    if task:
+        file_name = '_'.join([task, file_name])
+
+    return file_name
+
 
 def make_file_list(files):
     """Make a list of subject files.
@@ -211,6 +245,60 @@ def make_file_list(files):
 
     return file_list
 
+
+@check_dependency(pynwb, 'pynwb')
+def save_nwbfile(nwbfile, file_name, folder=None):
+    """Save out an NWB file.
+
+    Parameters
+    ----------
+    file_name : str or dict
+        The file name to load.
+        If dict, is passed into `make_nwbfile_name` to create the file name.
+    folder : str
+        The folder to load the file from.
+    """
+
+    if isinstance(file_name, dict):
+        file_name = make_nwbfile_name(**file_name)
+
+    with pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'w') as io:
+        io.write(nwbfile)
+
+
+@check_dependency(pynwb, 'pynwb')
+def load_nwbfile(file_name, folder=None, return_io=False):
+    """Load an NWB file.
+
+    Parameters
+    ----------
+    file_name : str or dict
+        The file name to load.
+        If dict, is passed into `make_nwbfile_name` to create the file name.
+    folder : str
+        The folder to load the file from.
+    return_io : bool, optional, default: False
+        Whether to return the pynwb IO object.
+
+    Returns
+    -------
+    nwbfile : pynwb.file.NWBFile
+        The NWB file object.
+    io : pynwb.NWBHDF5IO
+        The IO object for managing the file status.
+        Only returned if `return_io` is True.
+    """
+
+    if isinstance(file_name, dict):
+        file_name = make_nwbfile_name(**file_name)
+
+    io = pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'r')
+    nwbfile = io.read()
+
+    if return_io:
+        return nwbfile, io
+    else:
+        return nwbfile
 
 #### CONFIG FILES
 
