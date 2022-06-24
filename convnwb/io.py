@@ -191,10 +191,8 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, dro
 
 ### FILE I/O
 
-#### NWB FILES
-
-def make_nwbfile_name(subject, session, task=None, add_ext=False):
-    """Create a NWB file name.
+def make_session_name(subject, session, task=None):
+    """Create a standardized session name.
 
     Parameters
     ----------
@@ -210,25 +208,22 @@ def make_nwbfile_name(subject, session, task=None, add_ext=False):
 
     Returns
     -------
-    file_name : str
-        The name of the NWB file.
+    session_name : str
+        The session name.
 
     Notes
     -----
-    The standard NWB file name is structured as: 'SUBJECT_session_#.nwb'
-    Optionally, a task name can be prefixed, as: 'TASK_SUBJECT_session_#.nwb'
+    The standard session name is structured as: 'SUBJECT_session_#'
+    Optionally, a task name can be prefixed, as: 'TASK_SUBJECT_session_#'
     """
 
     session = 'session_' + str(session) if 'session' not in str(session) else session
-    file_name = '_'.join([subject, session])
+    session_name = '_'.join([subject, session])
 
     if task:
-        file_name = '_'.join([task, file_name])
+        session_name = '_'.join([task, session_name])
 
-    if add_ext:
-        file_name += '.nwb'
-
-    return file_name
+    return session_name
 
 
 def make_file_list(files):
@@ -252,6 +247,7 @@ def make_file_list(files):
 
     return file_list
 
+#### NWB FILES
 
 @check_dependency(pynwb, 'pynwb')
 def save_nwbfile(nwbfile, file_name, folder=None):
@@ -261,13 +257,13 @@ def save_nwbfile(nwbfile, file_name, folder=None):
     ----------
     file_name : str or dict
         The file name to load.
-        If dict, is passed into `make_nwbfile_name` to create the file name.
+        If dict, is passed into `make_session_name` to create the file name.
     folder : str
         The folder to load the file from.
     """
 
     if isinstance(file_name, dict):
-        file_name = make_nwbfile_name(**file_name)
+        file_name = make_session_name(**file_name)
 
     with pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'w') as io:
         io.write(nwbfile)
@@ -281,7 +277,7 @@ def load_nwbfile(file_name, folder=None, return_io=False):
     ----------
     file_name : str or dict
         The file name to load.
-        If dict, is passed into `make_nwbfile_name` to create the file name.
+        If dict, is passed into `make_session_name` to create the file name.
     folder : str
         The folder to load the file from.
     return_io : bool, optional, default: False
@@ -297,7 +293,7 @@ def load_nwbfile(file_name, folder=None, return_io=False):
     """
 
     if isinstance(file_name, dict):
-        file_name = make_nwbfile_name(**file_name)
+        file_name = make_session_name(**file_name)
 
     io = pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'r')
     nwbfile = io.read()
