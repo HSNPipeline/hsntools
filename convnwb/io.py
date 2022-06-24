@@ -200,8 +200,9 @@ def make_nwbfile_name(subject, session, task=None):
     ----------
     subject : str
         The subject label.
-    session : int
+    session : str or int
         The session number.
+        Can be an integer index, or a string, for example `session_0`.
     task : str, optional
         A task label.
 
@@ -216,7 +217,8 @@ def make_nwbfile_name(subject, session, task=None):
     Optionally, a task name can be prefixed, as: 'TASK_SUBJECT_session_#.nwb'
     """
 
-    file_name = '_'.join([subject, 'session_' + str(session)]) + '.nwb'
+    session = 'session_' + str(session) if 'session' not in str(session) else session
+    file_name = '_'.join([subject, session]) + '.nwb'
 
     if task:
         file_name = '_'.join([task, file_name])

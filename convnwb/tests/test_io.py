@@ -76,6 +76,9 @@ def test_make_nwbfile_name():
     name2 = make_nwbfile_name('SUBJ', 0, 'TASK')
     assert name2 == 'TASK_SUBJ_session_0.nwb'
 
+    name3 = make_nwbfile_name('SUBJ', 'session_0')
+    assert name3 == 'SUBJ_session_0.nwb'
+
 def test_make_file_list():
 
     files = {'sub1' : ['session1', 'session2'], 'sub2' : ['session1']}
