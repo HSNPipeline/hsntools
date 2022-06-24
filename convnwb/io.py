@@ -193,7 +193,7 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, dro
 
 #### NWB FILES
 
-def make_nwbfile_name(subject, session, task=None):
+def make_nwbfile_name(subject, session, task=None, add_ext=False):
     """Create a NWB file name.
 
     Parameters
@@ -205,6 +205,8 @@ def make_nwbfile_name(subject, session, task=None):
         Can be an integer index, or a string, for example `session_0`.
     task : str, optional
         A task label.
+    add_ext : bool, optional, default: False
+        Whether to add the NWB extension to the file name.
 
     Returns
     -------
@@ -218,10 +220,13 @@ def make_nwbfile_name(subject, session, task=None):
     """
 
     session = 'session_' + str(session) if 'session' not in str(session) else session
-    file_name = '_'.join([subject, session]) + '.nwb'
+    file_name = '_'.join([subject, session])
 
     if task:
         file_name = '_'.join([task, file_name])
+
+    if add_ext:
+        file_name += '.nwb'
 
     return file_name
 

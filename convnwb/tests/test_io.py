@@ -71,13 +71,16 @@ def test_get_files():
 def test_make_nwbfile_name():
 
     name1 = make_nwbfile_name('SUBJ', 0)
-    assert name1 == 'SUBJ_session_0.nwb'
+    assert name1 == 'SUBJ_session_0'
 
     name2 = make_nwbfile_name('SUBJ', 0, 'TASK')
-    assert name2 == 'TASK_SUBJ_session_0.nwb'
+    assert name2 == 'TASK_SUBJ_session_0'
 
     name3 = make_nwbfile_name('SUBJ', 'session_0')
-    assert name3 == 'SUBJ_session_0.nwb'
+    assert name3 == 'SUBJ_session_0'
+
+    name4 = make_nwbfile_name('SUBJ', 'session_0', 'TASK', add_ext=True)
+    assert name4 == 'TASK_SUBJ_session_0.nwb'
 
 def test_make_file_list():
 
