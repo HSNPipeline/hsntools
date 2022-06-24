@@ -31,7 +31,7 @@ def validate_nwb(file_name, folder=None, raise_error=True, verbose=False):
     Raises
     ------
     ValueError
-        If there is an error in the NWB file, and id `raise_error` is True.
+        If there is an error in the NWB file. Only raised if `raise_error` is True.
     """
 
     file_name = check_folder(check_ext(file_name, '.nwb'), folder)
