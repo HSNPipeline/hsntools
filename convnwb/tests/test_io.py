@@ -21,6 +21,17 @@ def test_check_ext():
     out2 = check_ext(f_name + '.txt', ext)
     assert out2 == 'test.txt'
 
+def test_drop_ext():
+
+    f_name = 'test'
+    ext = '.txt'
+
+    out1 = drop_ext(f_name + ext)
+    assert out1 == 'test'
+
+    out2 = drop_ext(f_name)
+    assert out2 == 'test'
+
 def test_check_folder():
 
     folder = 'folder'

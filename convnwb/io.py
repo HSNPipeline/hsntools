@@ -34,6 +34,23 @@ def check_ext(file_name, ext):
     return file_name + ext if not file_name.endswith(ext) else file_name
 
 
+def drop_ext(file_name):
+    """Drop the extension from a file name.
+
+    Parameters
+    ----------
+    file_name : str
+        File name, potentially including a file extension.
+
+    Returns
+    -------
+    file_name : str
+        File name, without the file extension.
+    """
+
+    return file_name.split('.')[0]
+
+
 def check_folder(file_name, folder):
     """Check a file name, adding folder path if needed.
 
@@ -84,7 +101,7 @@ def drop_file_extensions(files):
         List of file names with extensions dropped.
     """
 
-    return [file.split('.')[0] for file in files]
+    return [drop_ext(file) for file in files]
 
 
 def ignore_files(files, ignore):
