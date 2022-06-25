@@ -74,11 +74,6 @@ def test_sort_files():
     out = sort_files(files)
     assert out == ['data_1.txt', 'data_2.txt', 'other.txt', 'temp.txt']
 
-def test_get_files():
-
-    out = get_files('.')
-    assert isinstance(out, list)
-
 def test_make_session_name():
 
     name1 = make_session_name('SUBJ', 0)
@@ -98,6 +93,20 @@ def test_make_file_list():
     assert len(out) == 3
     for el in ['sub1_session1', 'sub1_session2', 'sub2_session1']:
         assert el in out
+
+def test_file_in_list():
+
+    file_name = 'test.txt'
+    file_list1 = ['abc.txt', 'def.txt']
+    file_list2 = ['test.txt', 'other_test.txt']
+
+    assert file_in_list(file_name, file_list1) is False
+    assert file_in_list(file_name, file_list2) is True
+
+def test_get_files():
+
+    out = get_files('.')
+    assert isinstance(out, list)
 
 def test_save_nwbfile(tnwbfile):
 

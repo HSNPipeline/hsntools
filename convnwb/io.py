@@ -159,55 +159,6 @@ def sort_files(files):
     return sorted(files)
 
 
-def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, drop_extensions=False):
-    """Get a list of files from a directory.
-
-    Parameters
-    ----------
-    folder : str or Path
-        Name of the folder to get the list of files from.
-    select : str, optional
-        A search string to use to select files.
-    ignore : str, optional
-        A search string to use to drop files.
-    drop_hidden : bool, optional, default: True
-        Whether to drop hidden files from the list.
-    sort : bool, optional, default: True
-        Whether to sort the list of file names.
-    drop_extensions : bool, optional, default: False
-        Whether the drop the file extensions from the returned file list.
-
-    Returns
-    -------
-    list of str
-        A list of files from the folder.
-    """
-
-    files = os.listdir(folder)
-
-    # If requested, drop any hidden files (leading .'s)
-    if drop_hidden:
-        files = drop_hidden_files(files)
-
-    # If requested, filter files to those that containing given search terms
-    if select:
-        files = select_files(files, select)
-
-    # If requested, filter files to ignore any containing given search terms
-    if ignore:
-        files = ignore_files(files, ignore)
-
-    # If requested, sort the list of files
-    if sort:
-        files = sort_files(files)
-
-    if drop_extensions:
-        files = drop_file_extensions(files)
-
-    return files
-
-### FILE I/O
-
 def make_session_name(subject, session, task=None):
     """Create a standardized session name.
 
@@ -263,6 +214,85 @@ def make_file_list(files):
             file_list.append(subj + '_' + session)
 
     return file_list
+
+
+def file_in_list(file_name, file_list, drop_extensions=True):
+    """Check whether a given file name is in a list of file names.
+
+    Parameters
+    ----------
+    file_name : str
+        File name.
+    file_list : list of str
+        List of file names.
+    drop_extensions : bool, optional, default: True
+        Whether to drop any extensions before doing the comparison.
+
+    Returns
+    -------
+    bool
+        Indicator of whether the file name is in the list of file names.
+    """
+
+    if drop_extensions:
+        file_name = drop_ext(file_name)
+        file_list = drop_file_extensions(file_list)
+
+    output = False
+    if file_name in file_list:
+        output = True
+
+    return output
+
+### FILE I/O
+
+def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, drop_extensions=False):
+    """Get a list of files from a directory.
+
+    Parameters
+    ----------
+    folder : str or Path
+        Name of the folder to get the list of files from.
+    select : str, optional
+        A search string to use to select files.
+    ignore : str, optional
+        A search string to use to drop files.
+    drop_hidden : bool, optional, default: True
+        Whether to drop hidden files from the list.
+    sort : bool, optional, default: True
+        Whether to sort the list of file names.
+    drop_extensions : bool, optional, default: False
+        Whether the drop the file extensions from the returned file list.
+
+    Returns
+    -------
+    list of str
+        A list of files from the folder.
+    """
+
+    files = os.listdir(folder)
+
+    # If requested, drop any hidden files (leading .'s)
+    if drop_hidden:
+        files = drop_hidden_files(files)
+
+    # If requested, filter files to those that containing given search terms
+    if select:
+        files = select_files(files, select)
+
+    # If requested, filter files to ignore any containing given search terms
+    if ignore:
+        files = ignore_files(files, ignore)
+
+    # If requested, sort the list of files
+    if sort:
+        files = sort_files(files)
+
+    if drop_extensions:
+        files = drop_file_extensions(files)
+
+    return files
+
 
 #### NWB FILES
 
