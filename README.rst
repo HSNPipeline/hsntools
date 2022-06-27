@@ -34,6 +34,7 @@ There are also optional dependencies, that offer extra functionality:
 - `pynwb <https://github.com/NeurodataWithoutBorders/pynwb>`_ is needed for validating NWB files
 - `matplotlib <https://github.com/matplotlib/>`_ is needed for making plots to check conversions
 - `scikit-learn <https://github.com/scikit-learn/scikit-learn>`_ is needed to aligning sync pulses
+- `pandas <https://github.com/pandas-dev/pandas>`_ is needed for utilities that load dataframes
 - `pytest <https://github.com/pytest-dev/pytest>`_ is needed to run the test suite locally
 
 Installation

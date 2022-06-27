@@ -2,6 +2,8 @@
 
 import os
 
+import pandas as pd
+
 from convnwb.tests.tobjects import TestTask
 from convnwb.tests.tsettings import TEST_FILE_PATH
 
@@ -187,3 +189,14 @@ def test_load_json():
     f_name = 'test_json'
     data = load_json(f_name, TEST_FILE_PATH)
     assert data
+
+def test_load_jsons_to_df():
+
+    files = ['test_json', 'test_json']
+    out = load_jsons_to_df(files, TEST_FILE_PATH)
+    assert isinstance(out, pd.DataFrame)
+    assert len(out) == len(files)
+
+    # Test giving a file location
+    out = load_jsons_to_df(TEST_FILE_PATH)
+    assert isinstance(out, pd.DataFrame)

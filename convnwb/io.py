@@ -3,12 +3,14 @@
 import os
 import json
 import pickle
+import pathlib
 
 import yaml
 
 from convnwb.modutils import safe_import, check_dependency
 
 pynwb = safe_import('pynwb')
+pd = safe_import('pandas')
 
 ###################################################################################################
 ###################################################################################################
@@ -542,3 +544,34 @@ def load_json(file_name, folder=None):
         data = json.load(json_file)
 
     return data
+
+## LOAD COLLECTIONS OF FILES TOGETHER
+
+@check_dependency(pd, 'pandas')
+def load_jsons_to_df(files, folder=None):
+    """Load a collection of JSON files into a dataframe.
+
+    Parameters
+    ----------
+    files : list of str or str or Path
+        If list, should be a list of file names to load.
+        If str or Path, should be a folder name, from which all JSON files will be loaded.
+    folder : str or Path, optional
+        Folder location to load the files from.
+        Only used if `files` is a list of str.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        A dataframe containing the data from the JSON files.
+    """
+
+    if isinstance(files, (str, pathlib.PosixPath)):
+        files = get_files(folder, select='json')
+
+    df = pd.DataFrame()
+    for file in files:
+        temp = load_json(file, folder=folder)
+        df = df.append(temp, ignore_index=True)
+
+    return df
