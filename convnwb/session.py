@@ -21,6 +21,8 @@ def make_session_directory(subj, session, base_path, folders=SESSION_FOLDERS, ve
         The number of the session to create the folder structure for.
     base_path str or Path
         The base path to the where to create the subject & session.
+    folders : list of str, optional
+        Folder names to defien as part of the session folder.
     verbose : bool, optional, default: True
         Whether to print out information.
     """
@@ -33,15 +35,18 @@ def make_session_directory(subj, session, base_path, folders=SESSION_FOLDERS, ve
         print('Path: {}'.format(base_path / subj / session))
 
     if not os.path.exists(base_path / subj):
-        print('Creating subject path: {}'.format(base_path / subj))
+        if verbose:
+            print('Creating subject path: {}'.format(base_path / subj))
         os.mkdir(base_path / subj)
 
     if not os.path.exists(base_path / subj / session):
-        print('Creating session path: {}'.format(base_path / subj / session))
+        if verbose:
+            print('Creating session path: {}'.format(base_path / subj / session))
         os.mkdir(base_path / subj / session)
 
-    for folder in folders:
+    if verbose:
         print('Creating session sub-folders.')
+    for folder in folders:
         if not os.path.exists(base_path / subj / session / folder):
             os.mkdir(base_path / subj / session / folder)
 
@@ -59,16 +64,13 @@ class SDB():
         for folder in folders:
             setattr(self, folder, self.base_path / self.subj / self.session / folder)
 
-
     @property
     def subj_folder(self):
         return self.base_path / self.subj
 
-
     @property
     def session_folder(self):
         return self.base_path / self.subj / self.session
-
 
     def get_files(self, folder, **kwargs):
         """Get a list of files available in a specified sub-folder."""
