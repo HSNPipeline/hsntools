@@ -21,6 +21,18 @@ def test_electrodes_add_bundle():
     assert bundle_name in electrodes.bundles
     assert bundle_location in electrodes.locations
 
+def test_electrodes_add_bundle():
+
+    names = ['n1', 'n2']
+    locations = ['l1', 'l2']
+
+    electrodes = Electrodes()
+    electrodes.add_bundles(names, locations)
+
+    for name, location in zip(electrodes.bundles, electrodes.locations):
+        assert name in electrodes.bundles
+        assert location in electrodes.locations
+
 def test_electrodes_n_bundles():
 
     electrodes = Electrodes()

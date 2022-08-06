@@ -20,7 +20,7 @@ class Electrodes(object):
         """Iterate across bundles in the object."""
 
         for ind in range(self.n_bundles):
-            yield self.bundles[ind], self.location[ind]
+            yield self.bundles[ind], self.locations[ind]
 
     @property
     def n_bundles(self):
@@ -33,6 +33,12 @@ class Electrodes(object):
 
         self.bundles.append(name)
         self.locations.append(location)
+
+    def add_bundles(self, names, locations):
+        """Add multiple bundles to the object."""
+
+        for name, location in zip(names, locations):
+            self.add_bundle(name, location)
 
     def copy(self):
         """Return a deepcopy of this object."""
