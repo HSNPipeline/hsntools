@@ -569,9 +569,8 @@ def load_jsons_to_df(files, folder=None):
     if isinstance(files, (str, pathlib.PosixPath)):
         files = get_files(folder, select='json')
 
-    df = pd.DataFrame()
-    for file in files:
-        temp = load_json(file, folder=folder)
-        df = df.append(temp, ignore_index=True)
+    file_data = [load_json(file, folder=folder) for file in files]
+
+    df = pd.DataFrame(file_data)
 
     return df
