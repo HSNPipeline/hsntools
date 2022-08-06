@@ -8,4 +8,4 @@ from convnwb.task import *
 def test_task_base():
 
     task = TaskBase()
-    assert TaskBase
+    assert task
