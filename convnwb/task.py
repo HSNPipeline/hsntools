@@ -15,29 +15,42 @@ class TaskBase(object):
         self.time_reset = False
         self.time_offset = None
 
-        # METADATA - subject / session information
+        # Metadata - subject / session information
         self.meta = {
             'task' : None,
             'subject' : None,
             'session' : None
         }
 
-        # EXPERIMENT INFORMATION
+        # Experiment information
         self.experiment = {
             'version' : {'label' : None, 'number' : None},
             'language' : None,
         }
 
-        # SESSION INFORMATION
+        # Environment information
+        self.environment = {}
+
+        # Session information
         self.session = {
             'start' : None,
             'end' : None
         }
 
-        ## SYNCHRONIZATION
-        self.sync = {}
+        # Synchronization information
+        self.sync = {
+            # Synchronization pulses
+            'neural' : {},
+            'behavioral' : {},
+            # Synchronization alignment
+            'alignment' : {
+                'intercept' : None,
+                'coef' : None,
+                'score' : None
+            }
+        }
 
-        ## POSITION
+        # Position related information
         self.position = {
             'time' : [],
             'x' : [],
@@ -46,8 +59,20 @@ class TaskBase(object):
             'speed' : []
         }
 
-        ## TRIAL INFORMATION
+        # Head direction information
+        self.head_direction = {
+            'time' : [],
+            'degrees' : [],
+        }
+
+        # Stimulus information
+        self.stimuli = {}
+
+        # Trial information
         self.trial = {}
+
+        # Response information
+        self.responses = {}
 
 
     def copy(self):
