@@ -9,3 +9,7 @@ _lint.txt
 
 # Ignore test files
 */tests/test_files/*
+
+# Ignore module build files
+build/*
+convnwb.egg-info/*
