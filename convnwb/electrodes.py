@@ -11,10 +11,16 @@ class Electrodes(object):
     n_electrodes_per_bundle = 8
 
     def __init__(self):
-        """Initialize ElectrodesBase object."""
+        """Initialize Electrodes object."""
 
         self.bundles = []
         self.locations = []
+
+    def __iter__(self):
+        """Iterate across bundles in the object."""
+
+        for ind in range(self.n_bundles):
+            yield self.bundles[ind], self.location[ind]
 
     @property
     def n_bundles(self):
