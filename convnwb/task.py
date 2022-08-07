@@ -98,7 +98,9 @@ class TaskBase(object):
 
         trial_info = dict()
         for key in trial_data.keys():
-            trial_info[key] = trial_data[key][index]
+            # Collect trial info, skipping dictionaries, which are subevents
+            if not isinstance(trial_data[key], dict):
+                trial_info[key] = trial_data[key][index]
 
         return trial_info
 
