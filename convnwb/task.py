@@ -81,20 +81,24 @@ class TaskBase(object):
         return deepcopy(self)
 
 
-    def get_trial(self, index, field='trial'):
+    def get_trial(self, index, field=None):
         """Get the information for a specified trial.
 
         Parameters
         ----------
         index : int
             The index of the trial to access.
-        field : str
+        field : str, optional, default: None
             Which trial data to access.
         """
 
+        trial_data = getattr(self, 'trial')
+        if field:
+            trial_data = trial_data[field]
+
         trial_info = dict()
-        for key in getattr(self, field).keys():
-            trial_info[key] = getattr(self, field)[key][index]
+        for key in trial_data.keys():
+            trial_info[key] = trial_data[key][index]
 
         return trial_info
 
