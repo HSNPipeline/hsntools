@@ -9,6 +9,17 @@ from convnwb.utils import *
 ###################################################################################################
 ###################################################################################################
 
+def test_is_empty():
+
+    assert is_empty('')
+    assert is_empty(0)
+    assert is_empty([])
+    assert is_empty(np.array([]))
+    assert not is_empty('abc')
+    assert not is_empty(12)
+    assert not is_empty([1, 2])
+    assert not is_empty(np.array([1, 2]))
+
 def test_incrementer():
 
     # Test basic usage

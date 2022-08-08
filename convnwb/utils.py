@@ -5,6 +5,32 @@ import numpy as np
 ###################################################################################################
 ###################################################################################################
 
+def is_empty(var):
+    """Check if a variable is empty, across possible types.
+
+    Parameters
+    ----------
+    var
+        Variable to test for whether it's empty.
+
+    Returns
+    -------
+    empty : bool
+        Indicates whether the given variable is empty.
+    """
+
+    if isinstance(var, (int, float, str)):
+        out = not bool(var)
+    elif isinstance(var, (list, tuple)):
+        out = not bool(len(var))
+    elif isinstance(var, np.ndarray):
+        out = not var.any()
+    else:
+        raise NotImplementedError('Empty check for given type not implemented.')
+
+    return out
+
+
 def incrementer(start=0, end=999):
     """Generator that returns an incrementing index value.
 
