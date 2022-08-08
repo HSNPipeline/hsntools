@@ -11,6 +11,7 @@ from convnwb.utils import *
 
 def test_is_empty():
 
+    assert is_empty(None)
     assert is_empty('')
     assert is_empty(0)
     assert is_empty([])

@@ -19,14 +19,17 @@ def is_empty(var):
         Indicates whether the given variable is empty.
     """
 
-    if isinstance(var, (int, float, str)):
+    if var is None:
+        out = True
+    elif isinstance(var, (int, float, str)):
         out = not bool(var)
     elif isinstance(var, (list, tuple)):
         out = not bool(len(var))
     elif isinstance(var, np.ndarray):
         out = not var.any()
     else:
-        raise NotImplementedError('Empty check for given type not implemented.')
+        msg = 'Empty check for given type {} not implemented.'.format(str(type(var)))
+        raise NotImplementedError(msg)
 
     return out
 
