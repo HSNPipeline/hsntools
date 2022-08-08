@@ -1,5 +1,7 @@
 """Tests for convnwb.task"""
 
+import numpy as np
+
 from convnwb.task import *
 
 ###################################################################################################
@@ -38,3 +40,47 @@ def test_task_get_trial():
     task.trial = trial_data
     assert task.get_trial(0, 'field') == {'a' : 1, 'b' : True}
     assert task.get_trial(1, 'field') == {'a' : 2, 'b' : False}
+
+def test_task_update_time_offset():
+
+    task = TaskBase()
+    task.trial['sub1'] = {}
+    task.trial['sub2'] = {}
+    task.custom = {}
+
+    task.session['start_time'] = 10
+    task.session['end_time'] = 40
+    task.position['time'] = np.array([15, 25, 35])
+    task.trial['sub1']['happen_time'] = np.array([11, 21, 31])
+    task.trial['sub2']['response_time'] = np.array([19, 29, 39])
+    task.custom['time'] = np.array([12, 22, 32])
+
+    task.update_time('offset', offset=10)
+    assert task.session['start_time'] == 0
+    assert task.session['end_time'] == 30
+    assert np.array_equal(task.position['time'], np.array([5, 15, 25]))
+    assert np.array_equal(task.trial['sub1']['happen_time'], np.array([1, 11, 21]))
+    assert np.array_equal(task.trial['sub2']['response_time'], np.array([9, 19, 29]))
+    assert np.array_equal(task.custom['time'], np.array([2, 12, 22]))
+
+def test_task_update_time_change_units():
+
+    task = TaskBase()
+    task.trial['sub1'] = {}
+    task.trial['sub2'] = {}
+    task.custom = {}
+
+    task.session['start_time'] = 0
+    task.session['end_time'] = 3000
+    task.position['time'] = np.array([500, 1500, 2500])
+    task.trial['sub1']['happen_time'] = np.array([100, 1100, 2100])
+    task.trial['sub2']['response_time'] = np.array([900, 1900, 2900])
+    task.custom['time'] = np.array([200, 1200, 2200])
+
+    task.update_time('change_units', value=100, operation='divide')
+    assert task.session['start_time'] == 0
+    assert task.session['end_time'] == 30
+    assert np.array_equal(task.position['time'], np.array([5, 15, 25]))
+    assert np.array_equal(task.trial['sub1']['happen_time'], np.array([1, 11, 21]))
+    assert np.array_equal(task.trial['sub2']['response_time'], np.array([9, 19, 29]))
+    assert np.array_equal(task.custom['time'], np.array([2, 12, 22]))

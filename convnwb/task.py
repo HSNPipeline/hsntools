@@ -2,8 +2,17 @@
 
 from copy import deepcopy
 
+import numpy as np
+
+from convnwb.utils import offset_time, change_time_units
+
 ###################################################################################################
 ###################################################################################################
+
+TIME_UPDATES = {
+        'offset' : offset_time,
+        'change_units' : change_time_units
+    }
 
 class TaskBase(object):
     """Base object for collecting task information."""
@@ -132,3 +141,34 @@ class TaskBase(object):
 
         # should be implemented in subclass
         raise NotImplementedError
+
+
+    def update_time(self, update, **kwargs):
+        """Offset all timestamps within the task object.
+
+        Parameters
+        ----------
+        update : {'offset', 'change_units'}
+            Label for what kind of update to do to the timestamps.
+        kwargs
+            Additional arguments to pass to the update function.
+        """
+
+        # Select update function to use
+        func = TIME_UPDATES[update]
+
+        for field in self.data_keys():
+            data = getattr(self, field)
+            for key in data.keys():
+                if isinstance(data[key], dict):
+                    for subkey in data[key].keys():
+                        if 'time' in subkey and np.any(data[key][subkey]):
+                            data[key][subkey] = func(data[key][subkey], **kwargs)
+                else:
+                    if 'time' in key and np.any(data[key]):
+                        data[key] = func(data[key], **kwargs)
+
+        # Update status information about the reset
+        if update == 'offset':
+            self.status['time_reset'] = True
+            self.status['time_offset'] = kwargs['offset']
