@@ -22,6 +22,7 @@ class TaskBase(object):
 
         # Define information about the status of the task object
         self.status = {
+            'time_aligned' : False,
             'time_reset' : False,
             'time_offset' : None,
         }
@@ -95,15 +96,30 @@ class TaskBase(object):
         return deepcopy(self)
 
 
-    def data_keys(self):
-        """Get a list of data keys defined in the task object."""
+    def data_keys(self, skip=None):
+        """Get a list of data keys defined in the task object.
 
-        attributes = list(vars(self).keys())
+        Parameters
+        ----------
+        skip : str or list of str
+            Name(s) of any data attributes to skip.
+
+        Returns
+        -------
+        data_keys : list of str
+            List of data attributes available in the object.
+        """
+
+        data_keys = list(vars(self).keys())
 
         # Drop the 'status' attribute, which doesn't store data
-        attributes.remove('status')
+        data_keys.remove('status')
 
-        return attributes
+        if skip:
+            for skip_item in [skip] if isinstance(skip, str) else skip:
+                data_keys.remove(skip_item)
+
+        return data_keys
 
 
     def get_trial(self, index, field=None):
@@ -143,21 +159,30 @@ class TaskBase(object):
         raise NotImplementedError
 
 
-    def update_time(self, update, **kwargs):
+    def update_time(self, update, skip=None, **kwargs):
         """Offset all timestamps within the task object.
 
         Parameters
         ----------
-        update : {'offset', 'change_units'}
-            Label for what kind of update to do to the timestamps.
+        update : {'offset', 'change_units'} or callable
+            What kind of update to do to the timestamps.
         kwargs
             Additional arguments to pass to the update function.
+        skip : str or list of str, optional
+            Any data fields to
         """
 
         # Select update function to use
-        func = TIME_UPDATES[update]
+        if isinstance(update, str):
+            assert update in ['offset', 'change_units'], \
+                "Update approach doesn't match whats available: offset', 'change_units"
+            func = TIME_UPDATES[update]
+        else:
+            func = update
 
-        for field in self.data_keys():
+        # Update any fields with 'time' in their name
+        #   Note: this update goes down up to two levels of embedded dictionaries
+        for field in self.data_keys(skip):
             data = getattr(self, field)
             for key in data.keys():
                 if isinstance(data[key], dict):

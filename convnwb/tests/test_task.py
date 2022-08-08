@@ -84,3 +84,28 @@ def test_task_update_time_change_units():
     assert np.array_equal(task.trial['sub1']['happen_time'], np.array([1, 11, 21]))
     assert np.array_equal(task.trial['sub2']['response_time'], np.array([9, 19, 29]))
     assert np.array_equal(task.custom['time'], np.array([2, 12, 22]))
+
+def test_task_update_time_custom():
+
+    def custom_func(data, mult):
+        return data * mult
+
+    task = TaskBase()
+    task.trial['sub1'] = {}
+    task.trial['sub2'] = {}
+    task.custom = {}
+
+    task.session['start_time'] = 0
+    task.session['end_time'] = 30
+    task.position['time'] = np.array([5, 15, 25])
+    task.trial['sub1']['happen_time'] = np.array([1, 11, 21])
+    task.trial['sub2']['response_time'] = np.array([9, 19, 29])
+    task.custom['time'] = np.array([2, 12, 22])
+
+    task.update_time(custom_func, mult=2)
+    assert task.session['start_time'] == 0
+    assert task.session['end_time'] == 60
+    assert np.array_equal(task.position['time'], np.array([10, 30, 50]))
+    assert np.array_equal(task.trial['sub1']['happen_time'], np.array([2, 22, 42]))
+    assert np.array_equal(task.trial['sub2']['response_time'], np.array([18, 38, 58]))
+    assert np.array_equal(task.custom['time'], np.array([4, 24, 44]))
