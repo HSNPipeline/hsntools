@@ -65,6 +65,9 @@ class TaskBase(object):
             'degrees' : [],
         }
 
+        # Information about timing of task phases
+        self.phase_times = {}
+
         # Stimulus information
         self.stimuli = {}
 
