@@ -2,6 +2,8 @@
 
 from copy import deepcopy
 
+import numpy as np
+
 from convnwb.utils import is_empty, offset_time, change_time_units
 
 ###################################################################################################
@@ -118,6 +120,29 @@ class TaskBase(object):
                 data_keys.remove(skip_item)
 
         return data_keys
+
+
+    def convert_to_array(self, field, keys, dtype):
+        """Convert data fields to numpy arrays.
+
+        Parameters
+        ----------
+        field : str
+            Which field to access data to convert from.
+        keys : list of str
+            Which key(s) of the field to convert to array.
+        dtype : type
+            The data type to give the converted array.
+        """
+
+        data = getattr(self, field)
+        for key in [keys] if isinstance(keys, (str, dict)) else keys:
+            if isinstance(key, str):
+                data[key] = np.array(data[key]).astype(dtype)
+            else:
+                for okey, ikeys in key.items():
+                    for ikey in [ikeys] if isinstance(ikeys, str) else ikeys:
+                        data[okey][ikey] = np.array(data[okey][ikey]).astype(dtype)
 
 
     def get_trial(self, index, field=None):

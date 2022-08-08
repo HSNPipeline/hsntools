@@ -24,6 +24,26 @@ def test_task_data_keys():
     task.custom = None
     assert 'custom' in task.data_keys()
 
+def test_task_convert_to_array():
+
+    task = TaskBase()
+    task.trial['stuff'] = [1, 2, 3]
+    task.convert_to_array('trial', 'stuff', int)
+    assert isinstance(task.trial['stuff'], np.ndarray)
+    assert task.trial['stuff'].dtype == 'int64'
+    assert np.array_equal(task.trial['stuff'], np.array([1, 2, 3]))
+
+    task = TaskBase()
+    task.trial['outer'] = {}
+    task.trial['outer']['inner1'] = [1.5, 2.5, 3.5]
+    task.trial['outer']['inner2'] = [2.5, 3.5, 4.5]
+    task.convert_to_array('trial', {'outer' : ['inner1', 'inner2']}, float)
+    for label in ['inner1', 'inner2']:
+        assert isinstance(task.trial['outer'][label], np.ndarray)
+        assert task.trial['outer'][label].dtype == 'float64'
+    assert np.array_equal(task.trial['outer']['inner1'], np.array([1.5, 2.5, 3.5]))
+    assert np.array_equal(task.trial['outer']['inner2'], np.array([2.5, 3.5, 4.5]))
+
 def test_task_get_trial():
 
     # Check without using subfield
