@@ -2,9 +2,7 @@
 
 from copy import deepcopy
 
-import numpy as np
-
-from convnwb.utils import offset_time, change_time_units
+from convnwb.utils import is_empty, offset_time, change_time_units
 
 ###################################################################################################
 ###################################################################################################
@@ -187,10 +185,10 @@ class TaskBase(object):
             for key in data.keys():
                 if isinstance(data[key], dict):
                     for subkey in data[key].keys():
-                        if 'time' in subkey and np.any(data[key][subkey]):
+                        if 'time' in subkey and not is_empty(data[key][subkey]):
                             data[key][subkey] = func(data[key][subkey], **kwargs)
                 else:
-                    if 'time' in key and np.any(data[key]):
+                    if 'time' in key and not is_empty(data[key]):
                         data[key] = func(data[key], **kwargs)
 
         # Update status information about the reset
