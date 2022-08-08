@@ -13,8 +13,8 @@ class TaskBase(object):
 
         # Define information about the status of the task object
         self.status = {
-            'time_reset' = False,
-            'time_offset' = None,
+            'time_reset' : False,
+            'time_offset' : None,
         }
 
         # Metadata - subject / session information
@@ -84,6 +84,17 @@ class TaskBase(object):
         """Return a deepcopy of this object."""
 
         return deepcopy(self)
+
+
+    def data_keys(self):
+        """Get a list of data keys defined in the task object."""
+
+        attributes = list(vars(self).keys())
+
+        # Drop the 'status' attribute, which doesn't store data
+        attributes.remove('status')
+
+        return attributes
 
 
     def get_trial(self, index, field=None):

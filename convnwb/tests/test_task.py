@@ -10,6 +10,18 @@ def test_task_base():
     task = TaskBase()
     assert task
 
+def test_task_data_keys():
+
+    task = TaskBase()
+    keys = task.data_keys()
+    assert 'status' not in keys
+    for attribute in ['trial', 'responses', 'sync', 'session']:
+        assert attribute in keys
+
+    # Test adding custom attribute
+    task.custom = None
+    assert 'custom' in task.data_keys()
+
 def test_task_get_trial():
 
     # Check without using subfield
