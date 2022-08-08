@@ -11,9 +11,11 @@ class TaskBase(object):
     def __init__(self):
         """Initialize TaskBase object."""
 
-        # Set some information for tracking the task object
-        self.time_reset = False
-        self.time_offset = None
+        # Define information about the status of the task object
+        self.status = {
+            'time_reset' = False,
+            'time_offset' = None,
+        }
 
         # Metadata - subject / session information
         self.meta = {
@@ -33,8 +35,8 @@ class TaskBase(object):
 
         # Session information
         self.session = {
-            'start' : None,
-            'end' : None
+            'start_time' : None,
+            'end_time' : None
         }
 
         # Synchronization information
