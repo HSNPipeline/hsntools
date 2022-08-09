@@ -12,8 +12,8 @@ BASE_FOLDERS = ['nwb']
 REPO_FOLDERS = ['metadata', 'temp']
 SESSION_FOLDERS = ['raw_data', 'behav', 'micro_lfp', 'neural',  'sorting', 'split_files']
 
-def make_session_directory(subj, session, base_path, session_folders=SESSION_FOLDERS,
-                           verbose=True):
+def create_session_directory(subj, session, base_path, session_folders=SESSION_FOLDERS,
+                             verbose=True):
     """Create the folder structure for a session of data.
 
     Parameters
@@ -51,8 +51,8 @@ def make_session_directory(subj, session, base_path, session_folders=SESSION_FOL
             os.mkdir(base_path / subj / session / folder)
 
 
-class SDB():
-    """Paths object for a session of data."""
+class SUPaths():
+    """Paths object for a session of single-unit data."""
 
     def __init__(self, subj=None, session=None, base_path=None, repo_path=None,
                  session_folders=SESSION_FOLDERS, base_folders=BASE_FOLDERS,

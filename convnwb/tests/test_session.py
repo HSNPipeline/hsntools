@@ -9,31 +9,31 @@ from convnwb.session import *
 ###################################################################################################
 ###################################################################################################
 
-def test_make_session_directory():
+def test_create_session_directory():
 
     subj = 'test_subj'
     session = 'session_0'
-    make_session_directory(subj=subj, session=session, base_path=TEST_FILE_PATH)
+    create_session_directory(subj=subj, session=session, base_path=TEST_FILE_PATH)
 
     assert os.path.exists(TEST_FILE_PATH / subj)
     assert os.path.exists(TEST_FILE_PATH / subj / session)
     for folder in SESSION_FOLDERS:
         assert os.path.exists(TEST_FILE_PATH / subj / session / folder)
 
-def test_sdb():
+def test_supaths():
 
     subj = 'test_subj'
     session = 'session_0'
-    db = SDB(subj, session, base_path=TEST_FILE_PATH)
+    db = SUPaths(subj, session, base_path=TEST_FILE_PATH)
 
     for folder in SESSION_FOLDERS:
         assert getattr(db, folder)
 
-def test_sdb_get_files():
+def test_supaths_get_files():
 
     subj = 'test_subj'
     session = 'session_0'
-    db = SDB(subj, session, base_path=TEST_FILE_PATH)
+    db = SUPaths(subj, session, base_path=TEST_FILE_PATH)
     for folder in SESSION_FOLDERS:
         files = db.get_files(folder)
         assert isinstance(files, list)
