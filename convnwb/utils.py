@@ -1,9 +1,24 @@
 """Utility & helper functions for doing data conversion."""
 
+from datetime import datetime
+from dateutil.tz import tzlocal
+
 import numpy as np
 
 ###################################################################################################
 ###################################################################################################
+
+def get_current_date():
+    """Get the current datetime.
+
+    Returns
+    -------
+    datetime.datetime
+        The current date information.
+    """
+
+    return datetime.now(tzlocal())
+
 
 def is_empty(var):
     """Check if a variable is empty, across possible types.
