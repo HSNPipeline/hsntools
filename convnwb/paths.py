@@ -12,18 +12,21 @@ BASE_FOLDERS = ['nwb']
 REPO_FOLDERS = ['metadata', 'temp']
 SESSION_FOLDERS = ['raw_data', 'behav', 'micro_lfp', 'neural',  'sorting', 'split_files']
 
-def create_session_directory(subj, session, base_path, session_folders=SESSION_FOLDERS,
+def create_session_directory(task, subj, session, base_path,
+                             session_folders=SESSION_FOLDERS,
                              verbose=True):
     """Create the folder structure for a session of data.
 
     Parameters
     ----------
+    task : str
+        The task name.
     subj : str
         The subject code.
     session : str
         The session label to create the folder structure for.
     base_path str or Path
-        The base path to the where to create the subject & session.
+        The base path to the where to create directories.
     session_folders : list of str, optional
         Folder names to define as part of the session folder.
     verbose : bool, optional, default: True
@@ -31,31 +34,38 @@ def create_session_directory(subj, session, base_path, session_folders=SESSION_F
     """
 
     if verbose:
-        print('Creating session directory for: {} / {}'.format(subj, session))
-        print('Path: {}'.format(base_path / subj / session))
+        print('Creating session directory for: {} / {} / {}'.format(task, subj, session))
+        print('Path: {}'.format(base_path / task / subj / session))
 
-    if not os.path.exists(base_path / subj):
+    if not os.path.exists(base_path / task):
         if verbose:
-            print('Creating subject path: {}'.format(base_path / subj))
-        os.mkdir(base_path / subj)
+            print('Creating task path: {}'.format(base_path / task))
+        os.mkdir(base_path / task)
 
-    if not os.path.exists(base_path / subj / session):
+    if not os.path.exists(base_path / task / subj):
         if verbose:
-            print('Creating session path: {}'.format(base_path / subj / session))
-        os.mkdir(base_path / subj / session)
+            print('Creating subject path: {}'.format(base_path / task / subj))
+        os.mkdir(base_path / task / subj)
+
+    if not os.path.exists(base_path / task / subj / session):
+        if verbose:
+            print('Creating session path: {}'.format(base_path / task / subj / session))
+        os.mkdir(base_path / task / subj / session)
 
     if verbose:
         print('Creating session sub-folders.')
     for folder in session_folders:
-        if not os.path.exists(base_path / subj / session / folder):
-            os.mkdir(base_path / subj / session / folder)
+        if not os.path.exists(base_path / task / subj / session / folder):
+            os.mkdir(base_path / task / subj / session / folder)
 
 
 class SUPaths():
     """Paths object for a session of single-unit data."""
 
-    def __init__(self, subj=None, session=None, base_path=None, repo_path=None,
-                 session_folders=SESSION_FOLDERS, base_folders=BASE_FOLDERS,
+    def __init__(self, task=None, subj=None, session=None,
+                 base_path=None, repo_path=None,
+                 session_folders=SESSION_FOLDERS,
+                 base_folders=BASE_FOLDERS,
                  repo_folders=REPO_FOLDERS):
         """Initialize a session DB object.
 
@@ -73,6 +83,7 @@ class SUPaths():
             The list of folder names for the session, repo, and data directories.
         """
 
+        self._task = task
         self._subj = subj
         self._session = session
 
@@ -85,8 +96,12 @@ class SUPaths():
             self._reset_repo_folders(repo_folders)
 
     @property
+    def data(self):
+        return self.base_path / self._task
+
+    @property
     def subj(self):
-        return self.base_path / self._subj
+        return self.data / self._subj
 
     @property
     def session(self):
