@@ -54,8 +54,8 @@ class TaskBase():
         # Synchronization information
         self.sync = {
             # Synchronization pulses
-            'neural' : {},
-            'behavioral' : {},
+            'neural' : [],
+            'behavioral' : [],
             # Synchronization alignment
             'alignment' : {
                 'intercept' : None,
