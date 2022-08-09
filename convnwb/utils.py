@@ -20,6 +20,18 @@ def get_current_date():
     return datetime.now(tzlocal())
 
 
+def convert_time_to_date(timestamp, tz=None):
+    """Convert a time value to a datetime date.
+
+    Returns
+    -------
+    datetime.datetime
+        Date corresponding to the given timestamp.
+    """
+
+    return datetime.fromtimestamp(timestamp, tz=tz)
+
+
 def is_empty(var):
     """Check if a variable is empty, across possible types.
 

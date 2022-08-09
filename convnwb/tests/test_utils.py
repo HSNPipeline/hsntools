@@ -1,6 +1,7 @@
 """Tests for convnwb.utils"""
 
 import inspect
+from datetime import datetime
 
 import numpy as np
 
@@ -12,7 +13,12 @@ from convnwb.utils import *
 def test_get_current_date():
 
     date = get_current_date()
-    assert date
+    assert isinstance(date, datetime)
+
+def test_convert_time_to_date():
+
+    date = convert_time_to_date(1234567891)
+    assert isinstance(date, datetime)
 
 def test_is_empty():
 
