@@ -131,8 +131,10 @@ class TaskBase():
         ----------
         field : str
             Which field to access data to convert from.
-        keys : list of str
+        keys : list of str or dict
             Which key(s) of the field to convert to array.
+            If list, should be a list of keys available in `field`.
+            If dict, keys should be subfields, each with corresponding labels to typecast.
         dtype : type
             The data type to give the converted array.
         """
