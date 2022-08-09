@@ -4,17 +4,19 @@ from copy import deepcopy
 
 import numpy as np
 
+from convnwb.timestamps import predict_times
 from convnwb.utils import is_empty, offset_time, change_time_units
 
 ###################################################################################################
 ###################################################################################################
 
 TIME_UPDATES = {
-        'offset' : offset_time,
-        'change_units' : change_time_units
-    }
+    'offset' : offset_time,
+    'change_units' : change_time_units,
+    'predict_times' : predict_times,
+}
 
-class TaskBase(object):
+class TaskBase():
     """Base object for collecting task information."""
 
     def __init__(self):

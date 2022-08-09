@@ -5,8 +5,8 @@ from copy import deepcopy
 ###################################################################################################
 ###################################################################################################
 
-class Electrodes(object):
-    """Base object for collecting electrode information."""
+class Electrodes():
+    """Object for collecting electrode information."""
 
     n_electrodes_per_bundle = 8
 
