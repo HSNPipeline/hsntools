@@ -4,8 +4,8 @@ from copy import deepcopy
 
 import numpy as np
 
-from convnwb.timestamps import predict_times
-from convnwb.utils import is_empty, offset_time, change_time_units
+from convnwb.timestamps import predict_times, offset_time, change_time_units
+from convnwb.utils import is_empty
 
 ###################################################################################################
 ###################################################################################################
