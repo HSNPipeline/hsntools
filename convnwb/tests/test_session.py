@@ -12,19 +12,18 @@ from convnwb.session import *
 def test_make_session_directory():
 
     subj = 'test_subj'
-    session = 0
-    session_str = 'session_' + str(session)
+    session = 'session_0'
     make_session_directory(subj=subj, session=session, base_path=TEST_FILE_PATH)
 
     assert os.path.exists(TEST_FILE_PATH / subj)
-    assert os.path.exists(TEST_FILE_PATH / subj / session_str)
+    assert os.path.exists(TEST_FILE_PATH / subj / session)
     for folder in SESSION_FOLDERS:
-        assert os.path.exists(TEST_FILE_PATH / subj / session_str / folder)
+        assert os.path.exists(TEST_FILE_PATH / subj / session / folder)
 
 def test_sdb():
 
     subj = 'test_subj'
-    session = 0
+    session = 'session_0'
     db = SDB(subj, session, base_path=TEST_FILE_PATH)
 
     for folder in SESSION_FOLDERS:
@@ -33,7 +32,7 @@ def test_sdb():
 def test_sdb_get_files():
 
     subj = 'test_subj'
-    session = 0
+    session = 'session_0'
     db = SDB(subj, session, base_path=TEST_FILE_PATH)
     for folder in SESSION_FOLDERS:
         files = db.get_files(folder)

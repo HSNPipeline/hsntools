@@ -8,27 +8,27 @@ from convnwb.io import get_files
 ###################################################################################################
 ###################################################################################################
 
-SESSION_FOLDERS = ['behav', 'micro_lfp', 'raw_data', 'split_files', 'sorting', 'nwb']
+BASE_FOLDERS = ['nwb']
+REPO_FOLDERS = ['metadata', 'temp']
+SESSION_FOLDERS = ['raw_data', 'behav', 'micro_lfp', 'neural',  'sorting', 'split_files']
 
-def make_session_directory(subj, session, base_path, folders=SESSION_FOLDERS, verbose=True):
+def make_session_directory(subj, session, base_path, session_folders=SESSION_FOLDERS,
+                           verbose=True):
     """Create the folder structure for a session of data.
 
     Parameters
     ----------
     subj : str
         The subject code.
-    session : int
-        The number of the session to create the folder structure for.
+    session : str
+        The session label to create the folder structure for.
     base_path str or Path
         The base path to the where to create the subject & session.
-    folders : list of str, optional
-        Folder names to defien as part of the session folder.
+    session_folders : list of str, optional
+        Folder names to define as part of the session folder.
     verbose : bool, optional, default: True
         Whether to print out information.
     """
-
-    base_path = Path(base_path)
-    session = 'session_' + str(session)
 
     if verbose:
         print('Creating session directory for: {} / {}'.format(subj, session))
@@ -46,31 +46,66 @@ def make_session_directory(subj, session, base_path, folders=SESSION_FOLDERS, ve
 
     if verbose:
         print('Creating session sub-folders.')
-    for folder in folders:
+    for folder in session_folders:
         if not os.path.exists(base_path / subj / session / folder):
             os.mkdir(base_path / subj / session / folder)
 
 
 class SDB():
-    """Database object for a session of data."""
+    """Paths object for a session of data."""
 
-    def __init__(self, subj=None, session=None, base_path=None, folders=SESSION_FOLDERS):
-        """Initialize a session DB object."""
+    def __init__(self, subj=None, session=None, base_path=None, repo_path=None,
+                 session_folders=SESSION_FOLDERS, base_folders=BASE_FOLDERS,
+                 repo_folders=REPO_FOLDERS):
+        """Initialize a session DB object.
 
-        self.subj = subj
-        self.session = 'session_' + str(session)
+        Parameters
+        ----------
+        subj : str
+            Subject label.
+        session : str
+            Session label.
+        data_path : str
+            Base path to the data.
+        repo_path : str
+            Base path to the repository.
+        session_folders, repo_folders, data_folders : list of str, optional
+            The list of folder names for the session, repo, and data directories.
+        """
+
+        self._subj = subj
+        self._session = session
+
         self.base_path = Path(base_path)
+        self._reset_session_folders(session_folders)
+        self._reset_base_folders(base_folders)
 
-        for folder in folders:
-            setattr(self, folder, self.base_path / self.subj / self.session / folder)
+        if repo_path:
+            self.repo_path = Path(repo_path)
+            self._reset_repo_folders(repo_folders)
 
     @property
-    def subj_folder(self):
-        return self.base_path / self.subj
+    def subj(self):
+        return self.base_path / self._subj
 
     @property
-    def session_folder(self):
-        return self.base_path / self.subj / self.session
+    def session(self):
+        return self.subj / self._session
+
+    def _reset_session_folders(self, session_folders):
+
+        for folder in session_folders:
+            setattr(self, folder, self.session / folder)
+
+    def _reset_base_folders(self, data_folders):
+
+        for folder in data_folders:
+            setattr(self, folder, self.base_path / folder)
+
+    def _reset_repo_folders(self, repo_folders):
+
+        for folder in repo_folders:
+            setattr(self, folder, self.repo_path / folder)
 
     def get_files(self, folder, **kwargs):
         """Get a list of files available in a specified sub-folder."""
