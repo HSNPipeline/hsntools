@@ -77,6 +77,13 @@ def test_lst_str_to_bool():
     lst = ['False', 'True', 'False']
     assert list_str_to_bool(lst) == [False, True, False]
 
+def test_convert_type():
+
+    var = '12'
+    out = convert_type(var, int)
+    assert out == 12
+    assert isinstance(out, int)
+
 def test_convert_to_array():
 
     data = ['1', '2', '3']

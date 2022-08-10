@@ -42,6 +42,14 @@ def test_task_apply_func_to_fields():
     assert np.array_equal(task.trial['outer']['inner1'], np.array([3.5, 4.5, 5.5]))
     assert np.array_equal(task.trial['outer']['inner2'], np.array([4.5, 5.5, 6.5]))
 
+def test_task_convert_type():
+
+    task = TaskBase()
+    task.trial['stuff'] = '1'
+    task.convert_type('trial', 'stuff', int)
+    assert isinstance(task.trial['stuff'], int)
+    assert task.trial['stuff'] == 1
+
 def test_task_convert_to_array():
 
     task = TaskBase()

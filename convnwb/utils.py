@@ -184,6 +184,27 @@ def list_str_to_bool(lst):
     return [str_to_bool(el) for el in lst]
 
 
+def convert_type(variable, dtype):
+    """Convert type of a given variable.
+
+    Parameters
+    ----------
+    variable
+        Variable to type cast.
+    dtype : type
+        Type to cast to.
+
+    Returns
+    -------
+    out
+        Typecast `value`, with type `dtype`.
+    """
+
+    out = dtype(variable)
+
+    return out
+
+
 def convert_to_array(data, dtype):
     """Convert to an array of specified data type.
 

@@ -5,7 +5,7 @@ from copy import deepcopy
 import numpy as np
 
 from convnwb.timestamps import predict_times, offset_time, change_time_units
-from convnwb.utils import is_empty, convert_to_array
+from convnwb.utils import is_empty, convert_type, convert_to_array
 
 ###################################################################################################
 ###################################################################################################
@@ -151,8 +151,26 @@ class TaskBase():
                         data[okey][ikey] = func(data[okey][ikey], **kwargs)
 
 
+    def convert_type(self, field, keys, dtype):
+        """Convert the type of specified data fields.
+
+        Parameters
+        ----------
+        field : str
+            Which field to access data to convert from.
+        keys : list of str or dict
+            Which key(s) of the field to convert to array.
+            If list, should be a list of keys available in `field`.
+            If dict, keys should be subfields, each with corresponding labels to typecast.
+        dtype : type
+            The data type to cast the variables to.
+        """
+
+        self.apply_func(field, keys, convert_type, dtype=dtype)
+
+
     def convert_to_array(self, field, keys, dtype):
-        """Convert data fields to numpy arrays.
+        """Convert specified data fields to numpy arrays.
 
         Parameters
         ----------
