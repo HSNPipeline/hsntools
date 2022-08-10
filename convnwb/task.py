@@ -166,14 +166,7 @@ class TaskBase():
             The data type to give the converted array.
         """
 
-        data = getattr(self, field)
-        for key in [keys] if isinstance(keys, (str, dict)) else keys:
-            if isinstance(key, str):
-                data[key] = convert_to_array(data[key], dtype)
-            else:
-                for okey, ikeys in key.items():
-                    for ikey in [ikeys] if isinstance(ikeys, str) else ikeys:
-                        data[okey][ikey] = convert_to_array(data[okey][ikey], dtype)
+        self.apply_func(field, keys, convert_to_array, dtype=dtype)
 
 
     def get_trial(self, index, field=None):
