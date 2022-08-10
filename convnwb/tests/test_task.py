@@ -24,6 +24,24 @@ def test_task_data_keys():
     task.custom = None
     assert 'custom' in task.data_keys()
 
+def test_task_apply_func_to_fields():
+
+    def plus_func(data, plus):
+        return [el + plus for el in data]
+
+    task = TaskBase()
+    task.trial['stuff'] = [1, 2, 3]
+    task.apply_func('trial', 'stuff', plus_func, plus=1)
+    assert task.trial['stuff'] == [2, 3, 4]
+
+    task = TaskBase()
+    task.trial['outer'] = {}
+    task.trial['outer']['inner1'] = [1.5, 2.5, 3.5]
+    task.trial['outer']['inner2'] = [2.5, 3.5, 4.5]
+    task.apply_func('trial', {'outer' : ['inner1', 'inner2']}, plus_func, plus=2)
+    assert np.array_equal(task.trial['outer']['inner1'], np.array([3.5, 4.5, 5.5]))
+    assert np.array_equal(task.trial['outer']['inner2'], np.array([4.5, 5.5, 6.5]))
+
 def test_task_convert_to_array():
 
     task = TaskBase()

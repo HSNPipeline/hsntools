@@ -124,6 +124,33 @@ class TaskBase():
         return data_keys
 
 
+    def apply_func(self, field, keys, func, **kwargs):
+        """Apply a given function across a set of specified fields.
+
+        Parameters
+        ----------
+        field : str
+            Which field to access data to convert from.
+        keys : list of str or dict
+            Which key(s) of the field to convert to array.
+            If list, should be a list of keys available in `field`.
+            If dict, keys should be subfields, each with corresponding labels to typecast.
+        func : callable
+            Function to apply to the selected fields.
+        **kwargs
+            Keyword arguments to pass into `func`.
+        """
+
+        data = getattr(self, field)
+        for key in [keys] if isinstance(keys, (str, dict)) else keys:
+            if isinstance(key, str):
+                data[key] = func(data[key], **kwargs)
+            else:
+                for okey, ikeys in key.items():
+                    for ikey in [ikeys] if isinstance(ikeys, str) else ikeys:
+                        data[okey][ikey] = func(data[okey][ikey], **kwargs)
+
+
     def convert_to_array(self, field, keys, dtype):
         """Convert data fields to numpy arrays.
 
