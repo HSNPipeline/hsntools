@@ -182,3 +182,24 @@ def list_str_to_bool(lst):
     """
 
     return [str_to_bool(el) for el in lst]
+
+
+def convert_to_array(data, dtype):
+    """Convert to an array of specified data type.
+
+    Parameters
+    ----------
+    data : array_like
+        Data to cast to an array.
+    dtype : str
+        Data type to cast the array.
+
+    Returns
+    -------
+    array : np.ndarray
+        Data, converted to array.
+    """
+
+    array = np.array(data).astype(dtype)
+
+    return array
