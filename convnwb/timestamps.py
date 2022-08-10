@@ -11,13 +11,13 @@ stats = safe_import('.stats', 'scipy')
 ###################################################################################################
 
 @check_dependency(sklearn, 'sklearn')
-def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
-                ignore_poor_alignment=False, return_model=False, verbose=False):
-    """Align times across different recording systems.
+def fit_sync_alignment(sync_behav, sync_neural, score_thresh=0.9999,
+                       ignore_poor_alignment=False, return_model=False, verbose=False):
+    """Fit a model to align synchronization pulses from different recording systems.
 
     Parameters
     ----------
-    sync_behavioral : 1d array
+    sync_behav : 1d array
         Sync pulse times from behavioral computer.
     sync_neural : 1d array
         Sync pulse times from neural computer.
@@ -51,12 +51,12 @@ def align_times(sync_behavioral, sync_neural, score_thresh=0.9999,
     from sklearn.model_selection import train_test_split
 
     # Reshape to column arrays for scikit-learn
-    sync_behavioral = sync_behavioral.reshape(-1, 1)
+    sync_behav = sync_behav.reshape(-1, 1)
     sync_neural = sync_neural.reshape(-1, 1)
 
     # Linear model to predict alignment between time traces
     x_train, x_test, y_train, y_test = train_test_split(\
-        sync_behavioral, sync_neural, test_size=0.50, random_state=42)
+        sync_behav, sync_neural, test_size=0.50, random_state=42)
 
     model = LinearRegression()
     model.fit(x_train, y_train)
