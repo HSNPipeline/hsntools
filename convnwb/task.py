@@ -5,7 +5,7 @@ from copy import deepcopy
 import numpy as np
 
 from convnwb.timestamps import predict_times, offset_time, change_time_units
-from convnwb.utils import is_empty
+from convnwb.utils import is_empty, convert_to_array
 
 ###################################################################################################
 ###################################################################################################
@@ -142,11 +142,11 @@ class TaskBase():
         data = getattr(self, field)
         for key in [keys] if isinstance(keys, (str, dict)) else keys:
             if isinstance(key, str):
-                data[key] = np.array(data[key]).astype(dtype)
+                data[key] = convert_to_array(data[key], dtype)
             else:
                 for okey, ikeys in key.items():
                     for ikey in [ikeys] if isinstance(ikeys, str) else ikeys:
-                        data[okey][ikey] = np.array(data[okey][ikey]).astype(dtype)
+                        data[okey][ikey] = convert_to_array(data[okey][ikey], dtype)
 
 
     def get_trial(self, index, field=None):
