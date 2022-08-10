@@ -5,6 +5,7 @@ import numpy as np
 from convnwb.modutils import safe_import, check_dependency
 
 sklearn = safe_import('sklearn')
+stats = safe_import('.stats', 'scipy')
 
 ###################################################################################################
 ###################################################################################################
@@ -117,6 +118,66 @@ def predict_times_model(times, model):
     """
 
     return model.predict(times.reshape(-1, 1))
+
+
+@check_dependency(stats, 'scipy')
+def match_pulses(sync_behav, sync_neural, n_pulses, start_offset=None):
+    """Match pulses to each other based on ISIs.
+
+    Parameters
+    ----------
+    sync_behav, sync_neural : 1d array
+        Synchronization pulses from the behavioral and neural computers.
+    n_pulses : int
+        The number of pulses to match by.
+    start_offset : int, optional
+        Number of pulses to shift away from the start of the task recording.
+
+    Returns
+    -------
+    sync_behav_out, sync_neural_out : 1d array
+        Matched synchronization pulses from the behavioral and neural computers.
+
+    Notes
+    -----
+    Using a `start_offset` can be useful if there are bad synchronization
+    results due to recording pause at the start.
+    """
+
+    isi_sb = np.diff(sync_behav)
+    isi_sn = np.diff(sync_neural)
+
+    ixis = []
+    # Iterate through neural sync pulses, and collect index offsets for matching ISIs
+    for ixn, isi in enumerate(isi_sn):
+
+        # Find matching ISI, and get first match in behavioral
+        if isi in isi_sb:
+            ixb = np.where(isi_sb == isi)
+            ixb = ixb[0][0]
+
+            # Break if end of ISI list reached
+            if ixb + 1 >= len(isi_sb) or ixn + 1 >= len(isi_sn):
+                break
+
+            # Check if next ISI matches - if so, record the index difference
+            elif isi_sn[ixn + 1] == isi_sb[ixb + 1]:
+                ixis += [ixb - ixn]
+
+    # Find mode of index offsets
+    ixis_mode = stats.mode(ixis)[0][0]
+
+    # Select sync vectors
+    if start_offset is not None:
+        # Choose sync vector starting at chosen index rather than the beginning
+        sync_behav_out = sync_behav[ixis_mode + start_offset : ixis_mode + start_offset + n_pulses]
+        sync_neural_out = sync_neural[start_offset : start_offset + n_pulses]
+    else:
+        # (STANDARD) Sync vector from beginning with offset accounted for
+        sync_behav_out = sync_behav[ixis_mode : ixis_mode + n_pulses]
+        sync_neural_out = sync_neural[0 : n_pulses]
+
+    return sync_behav_out, sync_neural_out
 
 
 def offset_time(times, offset):

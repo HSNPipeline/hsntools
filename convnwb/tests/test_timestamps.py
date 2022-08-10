@@ -41,6 +41,23 @@ def test_predict_times_model():
     out = predict_times_model(t1, model)
     assert np.all(out)
 
+def test_match_pulses():
+
+    # Create data as monotonically increasing random, offset copy, missing some values
+    t_diff = 0.5
+    sync1 = np.add.accumulate(np.abs(np.random.randn(100)))
+    sync2 = sync1[15:] + t_diff
+    n_pulses = 50
+
+    sync1_out, sync2_out = match_pulses(sync1, sync2, n_pulses)
+    assert isinstance(sync1_out, np.ndarray)
+    assert isinstance(sync2_out, np.ndarray)
+    assert len(sync1_out) == len(sync2_out) == n_pulses
+
+    # Check that after alignment can reconstruct the time difference
+    diffs = sync2_out - sync1_out
+    assert np.all(np.isclose(diffs, np.ones(len(diffs)) * t_diff))
+
 def test_offset_time():
 
     times = np.array([1., 2., 3.])
