@@ -101,15 +101,29 @@ def is_empty(var):
 
 
 def is_type(var, var_type):
-    """   """
+    """Check is a variable is of the given type(s).
+
+    Parameters
+    ----------
+    var
+        Variable to test for type match.
+    var_type : type or None
+        Type to test against.
+        If None, then returns True (no type check).
+
+    Returns
+    -------
+    type_match : bool
+        Indicates whether the given variable is matches the given type.
+    """
 
     # If type not provided, return True, otherwise return whether is selected type
     if not var_type:
-        out = True
+        type_match = True
     else:
-        out = isinstance(var, apply_type)
+        type_match = isinstance(var, apply_type)
 
-    return out
+    return type_match
 
 
 def incrementer(start=0, end=999):
