@@ -268,3 +268,5 @@ class TaskBase():
         if update == 'offset':
             self.status['time_reset'] = True
             self.status['time_offset'] = kwargs['offset']
+        if update == 'predict_times':
+            self.status['time_aligned'] = True
