@@ -100,6 +100,18 @@ def is_empty(var):
     return out
 
 
+def is_type(var, var_type):
+    """   """
+
+    # If type not provided, return True, otherwise return whether is selected type
+    if not var_type:
+        out = True
+    else:
+        out = isinstance(var, apply_type)
+
+    return out
+
+
 def incrementer(start=0, end=999):
     """Generator that returns an incrementing index value.
 
