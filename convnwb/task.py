@@ -239,8 +239,9 @@ class TaskBase():
 
         # Select update function to use
         if isinstance(update, str):
-            assert update in ['offset', 'change_units'], \
-                "Update approach doesn't match whats available: offset', 'change_units"
+            available = ['offset', 'change_units', 'predict_times']
+            assert update in available, \
+                "Update approach doesn't match whats available: ".format(available)
             func = TIME_UPDATES[update]
         else:
             func = update
