@@ -5,7 +5,7 @@ from copy import deepcopy
 import numpy as np
 
 from convnwb.timestamps import predict_times, offset_time, change_time_units
-from convnwb.utils import is_empty, convert_type, convert_to_array
+from convnwb.utils import is_empty, is_type, convert_type, convert_to_array
 
 ###################################################################################################
 ###################################################################################################
@@ -224,13 +224,17 @@ class TaskBase():
         raise NotImplementedError
 
 
-    def update_time(self, update, skip=None, **kwargs):
+    def update_time(self, update, skip=None, apply_type=None, **kwargs):
         """Offset all timestamps within the task object.
 
         Parameters
         ----------
-        update : {'offset', 'change_units'} or callable
+        update : {'offset', 'change_units', 'predict_time'} or callable
             What kind of update to do to the timestamps.
+        skip : str, optional
+            Fields set to skip.
+        apply_type : type, optional
+            If given, only apply update to specific type.
         kwargs
             Additional arguments to pass to the update function.
         skip : str or list of str, optional
@@ -253,10 +257,11 @@ class TaskBase():
             for key in data.keys():
                 if isinstance(data[key], dict):
                     for subkey in data[key].keys():
-                        if 'time' in subkey and not is_empty(data[key][subkey]):
+                        if 'time' in subkey and not is_empty(data[key][subkey]) \
+                            and is_type(data[key][subkey], apply_type):
                             data[key][subkey] = func(data[key][subkey], **kwargs)
                 else:
-                    if 'time' in key and not is_empty(data[key]):
+                    if 'time' in key and not is_empty(data[key]) and is_type(data[key], apply_type):
                         data[key] = func(data[key], **kwargs)
 
         # Update status information about the reset

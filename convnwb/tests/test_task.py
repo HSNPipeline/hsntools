@@ -2,6 +2,8 @@
 
 import numpy as np
 
+from convnwb.utils import convert_to_array
+
 from convnwb.task import *
 
 ###################################################################################################
@@ -155,3 +157,15 @@ def test_task_update_time_custom():
     assert np.array_equal(task.trial['sub1']['happen_time'], np.array([2, 22, 42]))
     assert np.array_equal(task.trial['sub2']['response_time'], np.array([18, 38, 58]))
     assert np.array_equal(task.custom['time'], np.array([4, 24, 44]))
+
+def test_task_update_time_apply_type():
+
+    task = TaskBase()
+    task.session['start_time'] = 10.
+    task.position['time'] = [15, 25, 35]
+
+    task.update_time(convert_to_array, apply_type=list, dtype=float)
+    assert isinstance(task.session['start_time'], float)
+    assert task.session['start_time'] == 10.
+    assert isinstance(task.position['time'], np.ndarray)
+    assert np.array_equal(task.position['time'], np.array([15, 25, 35]))
