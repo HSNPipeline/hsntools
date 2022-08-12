@@ -37,8 +37,7 @@ def test_is_empty():
     assert not is_empty([1, 2])
     assert not is_empty(np.array([1, 2]))
 
-
-def is_type():
+def test_is_type():
 
     assert is_type(10, None)
     assert is_type(10, int)

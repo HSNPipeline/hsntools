@@ -121,7 +121,7 @@ def is_type(var, var_type):
     if not var_type:
         type_match = True
     else:
-        type_match = isinstance(var, apply_type)
+        type_match = isinstance(var, var_type)
 
     return type_match
 
