@@ -296,6 +296,6 @@ def get_trial_value(trials, data, trial, dtype=None):
         out = np.nan
 
     if dtype:
-        convert_type(out, dtype)
+        out = convert_type(out, dtype)
 
     return out
