@@ -269,7 +269,7 @@ def convert_to_array(data, dtype):
     return array
 
 
-def get_trial_value(trials, data, trial):
+def get_trial_value(trials, data, trial, dtype=None):
     """Extract a value for a specified trial.
 
     Parameters
@@ -280,6 +280,8 @@ def get_trial_value(trials, data, trial):
         Data corresponding to each trial number in `trials`.
     trial : int
         The trial number to extract.
+    dtype : type, optional
+        If provided, provides a type to cast output value to.
 
     Returns
     -------
@@ -292,4 +294,8 @@ def get_trial_value(trials, data, trial):
         out = data[trials == trial][0]
     else:
         out = np.nan
+
+    if dtype:
+        convert_type(out, dtype)
+
     return out
