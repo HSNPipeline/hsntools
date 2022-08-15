@@ -316,7 +316,7 @@ class TaskBase():
 
         # Update status information about the reset
         if update == 'offset':
-            self.status['time_reset'] = True
-            self.status['time_offset'] = kwargs['offset']
+            self.set_status('time_reset', True)
+            self.set_info('time_offset', kwargs['offset'])
         if update == 'predict_times':
-            self.status['time_aligned'] = True
+            self.set_status('time_aligned', True)
