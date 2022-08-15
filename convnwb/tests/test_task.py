@@ -14,6 +14,24 @@ def test_task_base():
     task = TaskBase()
     assert task
 
+def test_task_add_metadata():
+
+    task = TaskBase()
+    task.add_metadata('task', 'subject', 'session')
+    assert task.meta['task'] == 'task'
+    assert task.meta['subject'] == 'subject'
+    assert task.meta['session'] == 'session'
+
+def test_task_set_status():
+
+    task = TaskBase()
+    task.set_status('time_aligned', True)
+
+def test_task_set_info():
+
+    task = TaskBase()
+    task.set_info('time_offset', 10)
+
 def test_task_data_keys():
 
     task = TaskBase()

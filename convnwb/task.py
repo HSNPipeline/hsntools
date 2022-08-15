@@ -22,10 +22,12 @@ class TaskBase():
     def __init__(self):
         """Initialize TaskBase object."""
 
-        # Define information about the status of the task object
+        # Define information about the status and info attached to the task object
         self.status = {
             'time_aligned' : False,
             'time_reset' : False,
+        }
+        self.info = {
             'time_offset' : None,
         }
 
@@ -90,6 +92,54 @@ class TaskBase():
 
         # Response information
         self.responses = {}
+
+
+    def add_metadata(self, task, subject, session):
+        """Add metadata information to task object.
+
+        Parameters
+        ----------
+        task : str
+            Name of the task.
+        subject : str
+            Subject label.
+        session : str
+            Session label.
+        """
+
+        self.meta['task'] = task
+        self.meta['subject'] = subject
+        self.meta['session'] = session
+
+
+    def set_status(self, label, status):
+        """Set a status marker.
+
+        Parameters
+        ----------
+        label : str
+            The label of which status marker to update.
+        status : bool
+            The status to update to.
+        """
+
+        assert label in self.status.keys(), 'Status label not understood.'
+        self.status[label] = status
+
+
+    def set_info(self, label, info):
+        """Set an info marker.
+
+        Parameters
+        ----------
+        label : str
+            The label of which status marker to update.
+        info
+            The info to update.
+        """
+
+        assert label in self.info.keys(), 'Info label not understood.'
+        self.info[label] = info
 
 
     def copy(self):
