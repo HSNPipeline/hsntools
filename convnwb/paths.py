@@ -53,6 +53,30 @@ def make_folder(path):
         os.mkdir(path)
 
 
+def create_project_directory(project, base_path, project_folders=PROJECT_FOLDERS, verbose=True):
+    """Create the folder structure for a project.
+
+    Parameters
+    ----------
+    project : str
+        The project code.
+    base_path : str or Path
+        The path to the folder where to put the project.
+    subject_folders : list, optional
+        List of sub-folders to initialize in the project folder.
+    verbose : bool, optional, default: True
+        Whether to print out information.
+    """
+
+    base_path = Path(base_path)
+    print_status(verbose, 'Creating project directory...', 0)
+    print_status(verbose, 'Path: {}'.format(base_path / project), 1)
+
+    make_folder(base_path / project)
+    for subfolder in project_folders:
+        make_folder(base_path / project / subfolder)
+
+
 def create_subject_directory(subject, project_path, recordings_subdir='recordings',
                              task_list=None, subject_folders=SUBJECT_FOLDERS, verbose=True):
     """Create the folder structure for a subject.
@@ -116,11 +140,10 @@ def create_session_directory(subject, task, session, project_path,
     print_status(verbose, 'Creating session directory...', 0)
     print_status(verbose, 'Path: {}'.format(recordings_path / subject / task / session), 1)
 
-    make_folder(recordings_path)
-    make_folder(recordings_path / subject)
-    make_folder(recordings_path / subject / task)
-    make_folder(recordings_path / subject / task / session)
+    create_subject_directory(subject, project_path, recordings_subdir,
+                             task_list=[task], verbose=False)
 
+    make_folder(recordings_path / subject / task / session)
     for subdir, subfolders in session_folders.items():
         make_folder(recordings_path / subject / task / session / subdir)
         for subfolder in subfolders:

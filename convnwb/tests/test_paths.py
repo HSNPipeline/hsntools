@@ -15,6 +15,15 @@ def test_make_folder():
     assert os.path.exists(TEST_FILE_PATH / 'test_folder')
     make_folder(TEST_FILE_PATH / 'test_folder')
 
+def test_create_project_directory():
+
+    project = 'test_project'
+    project_path = TEST_PROJECT_PATH.parent
+    create_project_directory(project, project_path)
+    assert os.path.exists(project_path / project)
+    for subdir in PROJECT_FOLDERS:
+        assert os.path.exists(project_path / project / subdir)
+
 def test_create_subject_directory():
 
     subject = 'test_subject'
