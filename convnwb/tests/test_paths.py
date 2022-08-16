@@ -9,6 +9,19 @@ from convnwb.paths import *
 ###################################################################################################
 ###################################################################################################
 
+def test_create_subject_directory():
+
+    subject = 'test_subject'
+    recordings_subdir = 'test_recordings'
+
+    create_subject_directory(subject, TEST_PROJECT_PATH, recordings_subdir)
+
+    test_path = TEST_PROJECT_PATH / recordings_subdir
+
+    assert os.path.exists(test_path / subject)
+    for subdir in SUBJECT_FOLDERS:
+        assert os.path.exists(test_path / subject / subdir)
+
 def test_create_session_directory():
 
     subject = 'test_subject'

@@ -17,10 +17,10 @@ PROJECT_FOLDERS = [
     'recordings',
 ]
 
-# REPO_FOLDERS = [
-#     'metadata',
-#     'temp',
-# ]
+SUBJECT_FOLDERS = [
+    'anat',
+    'info',
+]
 
 SESSION_FOLDERS = {
     '01_raw' : [
@@ -38,6 +38,44 @@ SESSION_FOLDERS = {
         'micro_lfp',
     ],
 }
+
+
+def create_subject_directory(subject, project_path, recordings_subdir='recordings',
+                             task_list=None, subject_folders=SUBJECT_FOLDERS, verbose=True):
+    """Create the folder structure for a subject.
+
+    Parameters
+    ----------
+    subject : str
+        The subject code.
+    project_path : str or Path
+        The path to the project folder.
+    recordings_subdir : str
+        The name of the subfolder (within `project_path`) to store recordings.
+    task_list : list, optional
+        List of task names to initialize in the subject folder.
+    subject_folders : list, optional
+        List of sub-folders to initialize in the subject folder.
+    verbose : bool, optional, default: True
+        Whether to print out information.
+    """
+
+    recordings_path = Path(project_path / recordings_subdir)
+
+    print_status(verbose, 'Creating subject directory...', 0)
+    print_status(verbose, 'Path: {}'.format(recordings_path / subject), 1)
+
+    if not os.path.exists(recordings_path):
+        os.mkdir(recordings_path)
+
+    if not os.path.exists(recordings_path / subject):
+        os.mkdir(recordings_path / subject)
+
+    all_subject_folders = subject_folders + [] if not task_list else task_list
+    for subfolder in all_subject_folders:
+        if not os.path.exists(recordings_path / subject / subfolder):
+            os.mkdir(recordings_path / subject / subfolder)
+
 
 def create_session_directory(subject, task, session, project_path,
                              recordings_subdir='recordings', session_folders=SESSION_FOLDERS,
