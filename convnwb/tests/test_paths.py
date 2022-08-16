@@ -2,12 +2,18 @@
 
 import os
 
-from convnwb.tests.tsettings import TEST_PROJECT_PATH
+from convnwb.tests.tsettings import TEST_FILE_PATH, TEST_PROJECT_PATH
 
 from convnwb.paths import *
 
 ###################################################################################################
 ###################################################################################################
+
+def test_make_folder():
+
+    make_folder(TEST_FILE_PATH / 'test_folder')
+    assert os.path.exists(TEST_FILE_PATH / 'test_folder')
+    make_folder(TEST_FILE_PATH / 'test_folder')
 
 def test_create_subject_directory():
 

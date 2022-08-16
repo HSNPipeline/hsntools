@@ -40,6 +40,19 @@ SESSION_FOLDERS = {
 }
 
 
+def make_folder(path):
+    """Make a folder, if it does not already exist.
+
+    Parameters
+    ----------
+    path : str of Path
+        Path to the folder to make.
+    """
+
+    if not os.path.exists(path):
+        os.mkdir(path)
+
+
 def create_subject_directory(subject, project_path, recordings_subdir='recordings',
                              task_list=None, subject_folders=SUBJECT_FOLDERS, verbose=True):
     """Create the folder structure for a subject.
@@ -65,16 +78,12 @@ def create_subject_directory(subject, project_path, recordings_subdir='recording
     print_status(verbose, 'Creating subject directory...', 0)
     print_status(verbose, 'Path: {}'.format(recordings_path / subject), 1)
 
-    if not os.path.exists(recordings_path):
-        os.mkdir(recordings_path)
-
-    if not os.path.exists(recordings_path / subject):
-        os.mkdir(recordings_path / subject)
+    make_folder(recordings_path)
+    make_folder(recordings_path / subject)
 
     all_subject_folders = subject_folders + [] if not task_list else task_list
     for subfolder in all_subject_folders:
-        if not os.path.exists(recordings_path / subject / subfolder):
-            os.mkdir(recordings_path / subject / subfolder)
+        make_folder(recordings_path / subject / subfolder)
 
 
 def create_session_directory(subject, task, session, project_path,
@@ -107,24 +116,15 @@ def create_session_directory(subject, task, session, project_path,
     print_status(verbose, 'Creating session directory...', 0)
     print_status(verbose, 'Path: {}'.format(recordings_path / subject / task / session), 1)
 
-    if not os.path.exists(recordings_path):
-        os.mkdir(recordings_path)
-
-    if not os.path.exists(recordings_path / subject):
-        os.mkdir(recordings_path / subject)
-
-    if not os.path.exists(recordings_path / subject / task):
-        os.mkdir(recordings_path / subject / task)
-
-    if not os.path.exists(recordings_path / subject / task / session):
-        os.mkdir(recordings_path / subject / task / session)
+    make_folder(recordings_path)
+    make_folder(recordings_path / subject)
+    make_folder(recordings_path / subject / task)
+    make_folder(recordings_path / subject / task / session)
 
     for subdir, subfolders in session_folders.items():
-        if not os.path.exists(recordings_path / subject / task / session / subdir):
-            os.mkdir(recordings_path / subject / task / session / subdir)
+        make_folder(recordings_path / subject / task / session / subdir)
         for subfolder in subfolders:
-            if not os.path.exists(recordings_path / subject / task / session / subdir / subfolder):
-                os.mkdir(recordings_path / subject / task / session / subdir / subfolder)
+            make_folder(recordings_path / subject / task / session / subdir / subfolder)
 
 
 class Paths():
