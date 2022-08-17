@@ -161,18 +161,18 @@ def sort_files(files):
     return sorted(files)
 
 
-def make_session_name(subject, session, task=None):
+def make_session_name(experiment, subject, session):
     """Create a standardized session name.
 
     Parameters
     ----------
     subject : str
         The subject label.
+    experiment : str, optional
+        Name of the experiment.
     session : str or int
         The session number.
         Can be an integer index, or a string, for example `session_0`.
-    task : str, optional
-        A task label.
     add_ext : bool, optional, default: False
         Whether to add the NWB extension to the file name.
 
@@ -183,26 +183,27 @@ def make_session_name(subject, session, task=None):
 
     Notes
     -----
-    The standard session name is structured as: 'SUBJECT_session_#'
-    Optionally, a task name can be prefixed, as: 'TASK_SUBJECT_session_#'
+    The standard session name is structured as: 'EXPERIMENT_SUBJECT_session_#'
+    Note that this is a flip of the experiment / subject order in the path layout.
     """
 
     session = 'session_' + str(session) if 'session' not in str(session) else session
-    session_name = '_'.join([subject, session])
-
-    if task:
-        session_name = '_'.join([task, session_name])
+    session_name = '_'.join([experiment, subject, session])
 
     return session_name
 
 
-def make_file_list(files):
+def make_file_list(experiment, files, ext=None):
     """Make a list of subject files.
 
     Parameters
     ----------
+    experiment : str
+        Name of the experiment.
     files : dict
         Collection of files per subject.
+    ext : str, optional
+        Extension name to add to the file list.
 
     Returns
     -------
@@ -211,9 +212,11 @@ def make_file_list(files):
     """
 
     file_list = []
-    for subj, sessions in files.items():
+    for subject, sessions in files.items():
         for session in sessions:
-            file_list.append(subj + '_' + session)
+            file_name = '_'.join([experiment, subject, session])
+            file_name = check_ext(file_name, ext) if ext else file_name
+            file_list.append(file_name)
 
     return file_list
 
@@ -245,6 +248,25 @@ def file_in_list(file_name, file_list, drop_extensions=True):
         output = True
 
     return output
+
+
+def missing_files(file_list, compare):
+    """Check for missing files - those that are in a given list but not in a comparison list.
+
+    Parameters
+    ----------
+    file_list : list of str
+        List of files to check.
+    compare : list of str
+        List of files to compare to.
+
+    Returns
+    -------
+    list of str
+        Any files from `file_list` that are not in `compare`.
+    """
+
+    return list(set(file_list) - set(compare))
 
 ### FILE I/O
 

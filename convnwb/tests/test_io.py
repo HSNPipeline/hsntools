@@ -78,23 +78,22 @@ def test_sort_files():
 
 def test_make_session_name():
 
-    name1 = make_session_name('SUBJ', 0)
-    assert name1 == 'SUBJ_session_0'
+    name1 = make_session_name('experiment', 'subject', 0)
+    assert name1 == 'experiment_subject_session_0'
 
-    name2 = make_session_name('SUBJ', 0, 'TASK')
-    assert name2 == 'TASK_SUBJ_session_0'
-
-    name3 = make_session_name('SUBJ', 'session_0')
-    assert name3 == 'SUBJ_session_0'
+    name2 = make_session_name('experiment', 'subject', 'session_0')
+    assert name2 == 'experiment_subject_session_0'
 
 def test_make_file_list():
 
     files = {'sub1' : ['session1', 'session2'], 'sub2' : ['session1']}
-    out = make_file_list(files)
+    out = make_file_list('exp', files)
     assert isinstance(out, list)
     assert len(out) == 3
-    for el in ['sub1_session1', 'sub1_session2', 'sub2_session1']:
+    for el in ['exp_sub1_session1', 'exp_sub1_session2', 'exp_sub2_session1']:
         assert el in out
+
+    out2 = make_file_list('exp', files, ext='.nwb')
 
 def test_file_in_list():
 
@@ -104,6 +103,14 @@ def test_file_in_list():
 
     assert file_in_list(file_name, file_list1) is False
     assert file_in_list(file_name, file_list2) is True
+
+def test_missing_files():
+
+    files = ['session1.nwb', 'session2.nwb', 'session3.nwb']
+    compare = ['session1.nwb', 'session2.nwb']
+
+    out = missing_files(files, compare)
+    assert out == ['session3.nwb']
 
 def test_get_files():
 

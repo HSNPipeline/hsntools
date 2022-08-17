@@ -33,7 +33,7 @@ class TaskBase():
 
         # Metadata - subject / session information
         self.meta = {
-            'task' : None,
+            'experiment' : None,
             'subject' : None,
             'session' : None
         }
@@ -94,21 +94,21 @@ class TaskBase():
         self.responses = {}
 
 
-    def add_metadata(self, task, subject, session):
+    def add_metadata(self, subject, experiment, session):
         """Add metadata information to task object.
 
         Parameters
         ----------
-        task : str
-            Name of the task.
         subject : str
             Subject label.
+        experiment : str
+            Name of the experiment.
         session : str
             Session label.
         """
 
-        self.meta['task'] = task
         self.meta['subject'] = subject
+        self.meta['experiment'] = experiment
         self.meta['session'] = session
 
 

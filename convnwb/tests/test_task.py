@@ -17,9 +17,9 @@ def test_task_base():
 def test_task_add_metadata():
 
     task = TaskBase()
-    task.add_metadata('task', 'subject', 'session')
-    assert task.meta['task'] == 'task'
+    task.add_metadata('subject', 'experiment', 'session')
     assert task.meta['subject'] == 'subject'
+    assert task.meta['experiment'] == 'experiment'
     assert task.meta['session'] == 'session'
 
 def test_task_set_status():
