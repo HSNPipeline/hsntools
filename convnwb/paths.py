@@ -155,7 +155,8 @@ class Paths():
     """Paths object for a session of single-unit data."""
 
     def __init__(self, project_path, subject=None, task=None, session=None,
-                 recordings_subdir='recordings', session_folders=SESSION_FOLDERS):
+                 recordings_subdir='recordings', session_folders=SESSION_FOLDERS,
+                 subject_folders=SUBJECT_FOLDERS, project_folders=PROJECT_FOLDERS):
         """Defines a paths object for a human single unit data.
 
         Parameters
@@ -182,6 +183,8 @@ class Paths():
 
         self._recordings_subdir = recordings_subdir
         self._session_folders = deepcopy(session_folders)
+        self._subject_folders = deepcopy(subject_folders)
+        self._project_folders = deepcopy(project_folders)
 
         self.project = Path(project_path)
 
@@ -194,6 +197,12 @@ class Paths():
                 return self.session / subdir
             elif folder in subfolders:
                 return self.session / subdir / folder
+        for subdir in self._subject_folders:
+            if folder in subdir:
+                return self.subject / subdir
+        for subdir in self._project_folders:
+            if folder in subdir:
+                return self.project / subdir
         raise ValueError('Requested path not found.')
 
 
