@@ -12,14 +12,15 @@ from convnwb.utils import print_status
 
 PROJECT_FOLDERS = [
     'docs',
-    'metadata',
+    'info',
     'nwb',
     'recordings',
 ]
 
 SUBJECT_FOLDERS = [
     'anat',
-    'info',
+    'electrodes',
+    'notes',
 ]
 
 SESSION_FOLDERS = {
@@ -53,15 +54,15 @@ def make_folder(path):
         os.mkdir(path)
 
 
-def create_project_directory(project, base_path, project_folders=PROJECT_FOLDERS, verbose=True):
+def create_project_directory(base_path, project, project_folders=PROJECT_FOLDERS, verbose=True):
     """Create the folder structure for a project.
 
     Parameters
     ----------
-    project : str
-        The project code.
     base_path : str or Path
         The path to the folder where to put the project.
+    project : str
+        The project code.
     subject_folders : list, optional
         List of sub-folders to initialize in the project folder.
     verbose : bool, optional, default: True
@@ -77,7 +78,7 @@ def create_project_directory(project, base_path, project_folders=PROJECT_FOLDERS
         make_folder(base_path / project / subfolder)
 
 
-def create_subject_directory(subject, project_path, recordings_subdir='recordings',
+def create_subject_directory(project_path, subject, recordings_subdir='recordings',
                              task_list=None, subject_folders=SUBJECT_FOLDERS, verbose=True):
     """Create the folder structure for a subject.
 
@@ -97,7 +98,7 @@ def create_subject_directory(subject, project_path, recordings_subdir='recording
         Whether to print out information.
     """
 
-    recordings_path = Path(project_path / recordings_subdir)
+    recordings_path = Path(project_path) / recordings_subdir
 
     print_status(verbose, 'Creating subject directory...', 0)
     print_status(verbose, 'Path: {}'.format(recordings_path / subject), 1)
@@ -110,21 +111,21 @@ def create_subject_directory(subject, project_path, recordings_subdir='recording
         make_folder(recordings_path / subject / subfolder)
 
 
-def create_session_directory(subject, task, session, project_path,
+def create_session_directory(project_path, subject, task, session,
                              recordings_subdir='recordings', session_folders=SESSION_FOLDERS,
                              verbose=True):
     """Create the folder structure for a session of data.
 
     Parameters
     ----------
+    project_path : str or Path
+        The path to the project folder.
     subject : str
         The subject code.
     task : str
         The task name.
     session : str
         The session label to create the folder structure for.
-    project_path : str or Path
-        The path to the project folder.
     recordings_subdir : str
         The name of the subfolder (within `project_path`) to store recordings.
     session_folders : dict, optional
@@ -135,12 +136,12 @@ def create_session_directory(subject, task, session, project_path,
         Whether to print out information.
     """
 
-    recordings_path = Path(project_path / recordings_subdir)
+    recordings_path = Path(project_path) / recordings_subdir
 
     print_status(verbose, 'Creating session directory...', 0)
     print_status(verbose, 'Path: {}'.format(recordings_path / subject / task / session), 1)
 
-    create_subject_directory(subject, project_path, recordings_subdir,
+    create_subject_directory(project_path, subject, recordings_subdir,
                              task_list=[task], verbose=False)
 
     make_folder(recordings_path / subject / task / session)
@@ -153,7 +154,7 @@ def create_session_directory(subject, task, session, project_path,
 class Paths():
     """Paths object for a session of single-unit data."""
 
-    def __init__(self, subject, task, session, project_path,
+    def __init__(self, project_path, subject=None, task=None, session=None,
                  recordings_subdir='recordings', session_folders=SESSION_FOLDERS):
         """Defines a paths object for a human single unit data.
 
@@ -202,8 +203,18 @@ class Paths():
 
 
     @property
+    def subject(self):
+        return self.recordings / self._subject
+
+
+    @property
+    def task(self):
+        return self.subject / self._task
+
+
+    @property
     def session(self):
-        return self.recordings / self._subject / self._task / self._session
+        return self.task / self._session
 
 
     def get_files(self, folder, **kwargs):

@@ -19,7 +19,7 @@ def test_create_project_directory():
 
     project = 'test_project'
     project_path = TEST_PROJECT_PATH.parent
-    create_project_directory(project, project_path)
+    create_project_directory(project_path, project)
     assert os.path.exists(project_path / project)
     for subdir in PROJECT_FOLDERS:
         assert os.path.exists(project_path / project / subdir)
@@ -29,7 +29,7 @@ def test_create_subject_directory():
     subject = 'test_subject'
     recordings_subdir = 'test_recordings'
 
-    create_subject_directory(subject, TEST_PROJECT_PATH, recordings_subdir)
+    create_subject_directory(TEST_PROJECT_PATH, subject, recordings_subdir)
 
     test_path = TEST_PROJECT_PATH / recordings_subdir
 
@@ -44,7 +44,7 @@ def test_create_session_directory():
     session = 'session_0'
     recordings_subdir = 'test_recordings'
 
-    create_session_directory(subject, task, session, TEST_PROJECT_PATH, recordings_subdir)
+    create_session_directory(TEST_PROJECT_PATH, subject, task, session, recordings_subdir)
 
     test_path = TEST_PROJECT_PATH / recordings_subdir
 
@@ -64,7 +64,7 @@ def test_paths():
     session = 'session_0'
     recordings_subdir = 'test_recordings'
 
-    paths = Paths(subject, task, session, TEST_PROJECT_PATH, recordings_subdir)
+    paths = Paths(TEST_PROJECT_PATH, subject, task, session, recordings_subdir)
     assert paths
 
     for subdir, subfolders in SESSION_FOLDERS.items():
@@ -79,7 +79,7 @@ def test_paths_get_files():
     session = 'session_0'
     recordings_subdir = 'test_recordings'
 
-    paths = Paths(subject, task, session, TEST_PROJECT_PATH, recordings_subdir)
+    paths = Paths(TEST_PROJECT_PATH, subject, task, session, recordings_subdir)
 
     for subdir, subfolders in SESSION_FOLDERS.items():
         files = paths.get_files(subdir.split('_')[1])
