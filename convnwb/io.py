@@ -161,7 +161,7 @@ def sort_files(files):
     return sorted(files)
 
 
-def make_session_name(experiment, subject, session):
+def make_session_name(subject, experiment, session):
     """Create a standardized session name.
 
     Parameters

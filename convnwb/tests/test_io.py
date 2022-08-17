@@ -78,10 +78,10 @@ def test_sort_files():
 
 def test_make_session_name():
 
-    name1 = make_session_name('experiment', 'subject', 0)
+    name1 = make_session_name('subject', 'experiment', 0)
     assert name1 == 'experiment_subject_session_0'
 
-    name2 = make_session_name('experiment', 'subject', 'session_0')
+    name2 = make_session_name('subject', 'experiment', 'session_0')
     assert name2 == 'experiment_subject_session_0'
 
 def test_make_file_list():
