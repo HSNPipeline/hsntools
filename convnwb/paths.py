@@ -18,7 +18,7 @@ PROJECT_FOLDERS = [
 ]
 
 SUBJECT_FOLDERS = [
-    'anat',
+    'anatomy',
     'electrodes',
     'notes',
 ]
@@ -62,8 +62,8 @@ def create_project_directory(base_path, project, project_folders=PROJECT_FOLDERS
     base_path : str or Path
         The path to the folder where to put the project.
     project : str
-        The project code.
-    subject_folders : list, optional
+        The project name.
+    project_folders : list, optional
         List of sub-folders to initialize in the project folder.
     verbose : bool, optional, default: True
         Whether to print out information.
@@ -78,27 +78,28 @@ def create_project_directory(base_path, project, project_folders=PROJECT_FOLDERS
         make_folder(base_path / project / subfolder)
 
 
-def create_subject_directory(project_path, subject, recordings_subdir='recordings',
-                             task_list=None, subject_folders=SUBJECT_FOLDERS, verbose=True):
+def create_subject_directory(project_path, subject, experiment_list=None,
+                             subject_folders=SUBJECT_FOLDERS, recordings_name='recordings',
+                             verbose=True):
     """Create the folder structure for a subject.
 
     Parameters
     ----------
-    subject : str
-        The subject code.
     project_path : str or Path
         The path to the project folder.
-    recordings_subdir : str
-        The name of the subfolder (within `project_path`) to store recordings.
-    task_list : list, optional
-        List of task names to initialize in the subject folder.
+    subject : str
+        The subject code.
+    experiment_list : list, optional
+        List of experiment names to initialize in the subject folder.
     subject_folders : list, optional
         List of sub-folders to initialize in the subject folder.
+    recordings_name : str, optional
+        The name of the subfolder (within `project_path`) to store recordings.
     verbose : bool, optional, default: True
         Whether to print out information.
     """
 
-    recordings_path = Path(project_path) / recordings_subdir
+    recordings_path = Path(project_path) / recordings_name
 
     print_status(verbose, 'Creating subject directory...', 0)
     print_status(verbose, 'Path: {}'.format(recordings_path / subject), 1)
@@ -106,13 +107,13 @@ def create_subject_directory(project_path, subject, recordings_subdir='recording
     make_folder(recordings_path)
     make_folder(recordings_path / subject)
 
-    all_subject_folders = subject_folders + [] if not task_list else task_list
+    all_subject_folders = subject_folders + [] if not experiment_list else experiment_list
     for subfolder in all_subject_folders:
         make_folder(recordings_path / subject / subfolder)
 
 
-def create_session_directory(project_path, subject, task, session,
-                             recordings_subdir='recordings', session_folders=SESSION_FOLDERS,
+def create_session_directory(project_path, subject, experiment, session,
+                             recordings_name='recordings', session_folders=SESSION_FOLDERS,
                              verbose=True):
     """Create the folder structure for a session of data.
 
@@ -122,66 +123,70 @@ def create_session_directory(project_path, subject, task, session,
         The path to the project folder.
     subject : str
         The subject code.
-    task : str
-        The task name.
+    experiment : str
+        Experiment name.
     session : str
         The session label to create the folder structure for.
-    recordings_subdir : str
+    recordings_name : str, optional
         The name of the subfolder (within `project_path`) to store recordings.
     session_folders : dict, optional
-        Defines the folder names to define as part of the session folder.
+        Defines the folder names to initialize as part of the session folder.
         Each key defines a sub-directory within the `session` folder.
-        Each set of values if a list of folder names for within each sub-directory.
+        Each set of values is a list of folder names for within each sub-directory.
     verbose : bool, optional, default: True
         Whether to print out information.
     """
 
-    recordings_path = Path(project_path) / recordings_subdir
+    recordings_path = Path(project_path) / recordings_name
 
     print_status(verbose, 'Creating session directory...', 0)
-    print_status(verbose, 'Path: {}'.format(recordings_path / subject / task / session), 1)
+    print_status(verbose, 'Path: {}'.format(recordings_path / subject / experiment / session), 1)
 
-    create_subject_directory(project_path, subject, recordings_subdir,
-                             task_list=[task], verbose=False)
+    create_subject_directory(project_path, subject, experiment_list=[experiment],
+                             recordings_name=recordings_name, verbose=False)
 
-    make_folder(recordings_path / subject / task / session)
+    make_folder(recordings_path / subject / experiment / session)
     for subdir, subfolders in session_folders.items():
-        make_folder(recordings_path / subject / task / session / subdir)
+        make_folder(recordings_path / subject / experiment / session / subdir)
         for subfolder in subfolders:
-            make_folder(recordings_path / subject / task / session / subdir / subfolder)
+            make_folder(recordings_path / subject / experiment / session / subdir / subfolder)
 
 
 class Paths():
     """Paths object for a session of single-unit data."""
 
-    def __init__(self, project_path, subject=None, task=None, session=None,
-                 recordings_subdir='recordings', session_folders=SESSION_FOLDERS,
-                 subject_folders=SUBJECT_FOLDERS, project_folders=PROJECT_FOLDERS):
-        """Defines a paths object for a human single unit data.
+    def __init__(self, project_path, subject=None, experiment=None, session=None,
+                 project_folders=PROJECT_FOLDERS, recordings_name='recordings',
+                 subject_folders=SUBJECT_FOLDERS, session_folders=SESSION_FOLDERS):
+        """Defines a paths object for a project.
 
         Parameters
         ----------
-        subject : str
-            Subject label.
-        task : str
-            Task name.
-        session : str
-            Session label.
         project_path : str or Path
             The path to the project folder.
-        recordings_subdir : str
+        subject : str, optional
+            Subject label.
+        experiment : str, optional
+            Experiment name.
+        session : str, optional
+            Session label.
+        project_folders : list, optional
+            Defines the sub-folders that are part of the subject folder.
+        recordings_name : str, optional
             The name of the subfolder (within `project_path`) to store recordings.
+        subject_folders : list, optional
+            Defines the sub-folders that are part of the project folder.
         session_folders : dict, optional
-            Defines the folder names to define as part of the session folder.
+            Defines the folder names to that are part of the session folder.
             Each key defines a sub-directory within the `session` folder.
-            Each set of values if a list of folder names for within each sub-directory.
+            Each set of values is a list of folder names within each sub-directory.
         """
 
         self._subject = subject
-        self._task = task
+        self._experiment = experiment
         self._session = session
 
-        self._recordings_subdir = recordings_subdir
+        self._recordings_name = recordings_name
         self._session_folders = deepcopy(session_folders)
         self._subject_folders = deepcopy(subject_folders)
         self._project_folders = deepcopy(project_folders)
@@ -208,7 +213,7 @@ class Paths():
 
     @property
     def recordings(self):
-        return self.project / self._recordings_subdir
+        return self.project / self._recordings_name
 
 
     @property
@@ -217,13 +222,13 @@ class Paths():
 
 
     @property
-    def task(self):
-        return self.subject / self._task
+    def experiment(self):
+        return self.subject / self._experiment
 
 
     @property
     def session(self):
-        return self.task / self._session
+        return self.experiment / self._session
 
 
     def get_files(self, folder, **kwargs):

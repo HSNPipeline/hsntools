@@ -27,11 +27,12 @@ def test_create_project_directory():
 def test_create_subject_directory():
 
     subject = 'test_subject'
-    recordings_subdir = 'test_recordings'
+    recordings_name = 'test_recordings'
 
-    create_subject_directory(TEST_PROJECT_PATH, subject, recordings_subdir)
+    create_subject_directory(TEST_PROJECT_PATH, subject,
+                             recordings_name=recordings_name)
 
-    test_path = TEST_PROJECT_PATH / recordings_subdir
+    test_path = TEST_PROJECT_PATH / recordings_name
 
     assert os.path.exists(test_path / subject)
     for subdir in SUBJECT_FOLDERS:
@@ -42,11 +43,12 @@ def test_create_session_directory():
     subject = 'test_subject'
     task = 'test_task'
     session = 'session_0'
-    recordings_subdir = 'test_recordings'
+    recordings_name = 'test_recordings'
 
-    create_session_directory(TEST_PROJECT_PATH, subject, task, session, recordings_subdir)
+    create_session_directory(TEST_PROJECT_PATH, subject, task, session,
+                             recordings_name=recordings_name)
 
-    test_path = TEST_PROJECT_PATH / recordings_subdir
+    test_path = TEST_PROJECT_PATH / recordings_name
 
     assert os.path.exists(test_path / subject)
     assert os.path.exists(test_path / subject / task)
@@ -62,9 +64,15 @@ def test_paths():
     subject = 'test_subject'
     task = 'test_task'
     session = 'session_0'
-    recordings_subdir = 'test_recordings'
+    recordings_name = 'test_recordings'
 
-    paths = Paths(TEST_PROJECT_PATH, subject, task, session, recordings_subdir)
+    # Test with minimal info
+    paths = Paths(TEST_PROJECT_PATH)
+    assert paths
+
+    # Test with all info
+    paths = Paths(TEST_PROJECT_PATH, subject, task, session,
+                  recordings_name=recordings_name)
     assert paths
 
     for subdir, subfolders in SESSION_FOLDERS.items():
@@ -81,9 +89,10 @@ def test_paths_get_files():
     subject = 'test_subject'
     task = 'test_task'
     session = 'session_0'
-    recordings_subdir = 'test_recordings'
+    recordings_name = 'test_recordings'
 
-    paths = Paths(TEST_PROJECT_PATH, subject, task, session, recordings_subdir)
+    paths = Paths(TEST_PROJECT_PATH, subject, task, session,
+                  recordings_name=recordings_name)
 
     for subdir, subfolders in SESSION_FOLDERS.items():
         files = paths.get_files(subdir.split('_')[1])
