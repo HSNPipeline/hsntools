@@ -30,6 +30,7 @@ SESSION_FOLDERS = {
         'sync',
     ],
     '02_processing' : [
+        'alignment',
         'metadata',
         'sorting',
         'task',
