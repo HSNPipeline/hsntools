@@ -79,7 +79,7 @@ def create_project_directory(base_path, project, project_folders=PROJECT_FOLDERS
         make_folder(base_path / project / subfolder)
 
 
-def create_subject_directory(project_path, subject, experiment_list=None,
+def create_subject_directory(project_path, subject, experiments=None,
                              subject_folders=SUBJECT_FOLDERS, recordings_name='recordings',
                              verbose=True):
     """Create the folder structure for a subject.
@@ -90,8 +90,8 @@ def create_subject_directory(project_path, subject, experiment_list=None,
         The path to the project folder.
     subject : str
         The subject code.
-    experiment_list : list, optional
-        List of experiment names to initialize in the subject folder.
+    experiments : str or list, optional
+        Experiment name(s) to initialize in the subject folder.
     subject_folders : list, optional
         List of sub-folders to initialize in the subject folder.
     recordings_name : str, optional
@@ -108,7 +108,10 @@ def create_subject_directory(project_path, subject, experiment_list=None,
     make_folder(recordings_path)
     make_folder(recordings_path / subject)
 
-    all_subject_folders = subject_folders + [] if not experiment_list else experiment_list
+    all_subject_folders = deepcopy(subject_folders)
+    if experiments:
+        experiments = [experiments] if isinstance(experiments, str) else experiments
+        all_subject_folders = all_subject_folders + experiments
     for subfolder in all_subject_folders:
         make_folder(recordings_path / subject / subfolder)
 
@@ -126,8 +129,9 @@ def create_session_directory(project_path, subject, experiment, session,
         The subject code.
     experiment : str
         Experiment name.
-    session : str
+    session : str or int
         The session label to create the folder structure for.
+        Can be an integer index, or a string, for example `session_0`.
     recordings_name : str, optional
         The name of the subfolder (within `project_path`) to store recordings.
     session_folders : dict, optional
@@ -140,10 +144,12 @@ def create_session_directory(project_path, subject, experiment, session,
 
     recordings_path = Path(project_path) / recordings_name
 
+    session = 'session_' + str(session) if 'session' not in str(session) else session
+
     print_status(verbose, 'Creating session directory...', 0)
     print_status(verbose, 'Path: {}'.format(recordings_path / subject / experiment / session), 1)
 
-    create_subject_directory(project_path, subject, experiment_list=[experiment],
+    create_subject_directory(project_path, subject, experiments=[experiment],
                              recordings_name=recordings_name, verbose=False)
 
     make_folder(recordings_path / subject / experiment / session)
