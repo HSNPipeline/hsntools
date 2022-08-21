@@ -175,8 +175,8 @@ class Paths():
             Subject label.
         experiment : str, optional
             Experiment name.
-        session : str, optional
-            Session label.
+        session : str or int, optional
+            The session label. Can be an integer index, or a string, for example `session_0`.
         project_folders : list, optional
             Defines the sub-folders that are part of the subject folder.
         recordings_name : str, optional
@@ -191,6 +191,7 @@ class Paths():
 
         self._subject = subject
         self._experiment = experiment
+        session = 'session_' + str(session) if 'session' not in str(session) else session
         self._session = session
 
         self._recordings_name = recordings_name

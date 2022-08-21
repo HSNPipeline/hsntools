@@ -197,6 +197,23 @@ def test_load_json():
     data = load_json(f_name, TEST_FILE_PATH)
     assert data
 
+def test_save_jsonlines():
+
+    data = [{'A1' : {'a' : 12, 'b' : 21}},
+            {'A2' : {'a' : 21, 'b' : 12}}]
+    f_name = 'test_jsonlines'
+
+    save_jsonlines(data, f_name, TEST_FILE_PATH)
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, f_name + '.json'))
+
+def test_load_jsonlines():
+
+    f_name = 'test_jsonlines'
+    data = load_jsonlines(f_name, TEST_FILE_PATH)
+    assert data
+    assert isinstance(data, dict)
+    assert isinstance(data[list(data.keys())[0]], dict)
+
 def test_load_jsons_to_df():
 
     files = ['test_json', 'test_json']

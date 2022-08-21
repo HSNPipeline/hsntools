@@ -567,6 +567,52 @@ def load_json(file_name, folder=None):
 
     return data
 
+
+def save_jsonlines(data, file_name, folder=None):
+    """Save out data to a JSONlines file.
+
+    Parameters
+    ----------
+    data : list of dict
+        Data to save out to a JSONlines file.
+    file_name : str
+        File name to give the saved out json file.
+    folder : str or Path, optional
+        Folder to save out to.
+    """
+
+    with open(check_ext(check_folder(file_name, folder), '.json'), 'a') as jsonlines_file:
+        for cur_data in data:
+            json.dump(cur_data, jsonlines_file)
+            jsonlines_file.write('\n')
+
+
+def load_jsonlines(file_name, folder=None):
+    """Load from a JSON lines file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the file to load.
+    folder : str or Path, optional
+        Folder to load from.
+
+    Returns
+    -------
+    data : dict
+        Loaded data from the JSONlines file.
+    """
+
+    all_data = {}
+    with open(check_ext(check_folder(file_name, folder), '.json'), 'r') as jsonlines_file:
+        for line in jsonlines_file:
+            line_data = json.loads(line)
+            key = list(line_data.keys())[0]
+            all_data[key] = line_data[key]
+
+    return all_data
+
+
 ## LOAD COLLECTIONS OF FILES TOGETHER
 
 @check_dependency(pd, 'pandas')
