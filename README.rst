@@ -35,6 +35,7 @@ There are also optional dependencies, that offer extra functionality:
 - `matplotlib <https://github.com/matplotlib/>`_ is needed for making plots to check conversions
 - `scikit-learn <https://github.com/scikit-learn/scikit-learn>`_ is needed to aligning sync pulses
 - `pandas <https://github.com/pandas-dev/pandas>`_ is needed for utilities that load dataframes
+- `scipy <https://github.com/scipy/scipy>`_ is needed for some load and timestamp related functions
 - `pytest <https://github.com/pytest-dev/pytest>`_ is needed to run the test suite locally
 
 Installation
@@ -62,5 +63,5 @@ This project welcomes and encourages contributions from the community!
 To file bug reports and/or ask questions about this project, please use the
 `Github issue tracker <https://github.com/JacobsSU/convnwb/issues>`_.
 
-When interacting with this project, please follow the 
+When interacting with this project, please follow the
 `code of conduct <https://github.com/JacobsSU/convnwb/blob/main/CODE_OF_CONDUCT.md>`_.
