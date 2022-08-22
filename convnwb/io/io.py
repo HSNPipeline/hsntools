@@ -9,6 +9,7 @@ import yaml
 from convnwb.io.utils import get_files, check_ext, check_folder, make_session_name
 from convnwb.modutils.dependencies import safe_import, check_dependency
 
+sio = safe_import('.io', 'scipy')
 pynwb = safe_import('pynwb')
 pd = safe_import('pandas')
 
@@ -309,6 +310,31 @@ def load_jsonlines(file_name, folder=None):
 
     return all_data
 
+
+def load_matfile(file_name, folder=None, **kwargs):
+    """Load a .mat file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the file to load.
+    folder : str or Path, optional
+        Folder to load from.
+    **kwargs
+        Additional keywork arguments to pass into `scipy.io.loadmat`.
+
+    Returns
+    -------
+    dict
+        Loaded data from the matfile.
+
+    Notes
+    -----
+    This function is a wrapper of `scipy.io.loadmat` and accepts
+    any additional keyword arguments that `loadmat` accepts.
+    """
+
+    return sio.loadmat(check_ext(check_folder(file_name, folder), '.mat'), **kwargs)
 
 ## LOAD COLLECTIONS OF FILES TOGETHER
 
