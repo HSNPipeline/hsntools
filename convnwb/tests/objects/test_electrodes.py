@@ -1,6 +1,6 @@
-"""Tests for convnwb.electrodes"""
+"""Tests for convnwb.objects.electrodes"""
 
-from convnwb.electrodes import *
+from convnwb.objects.electrodes import *
 
 ###################################################################################################
 ###################################################################################################

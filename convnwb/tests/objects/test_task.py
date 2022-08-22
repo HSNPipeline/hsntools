@@ -1,10 +1,10 @@
-"""Tests for convnwb.task"""
+"""Tests for convnwb.objects.task"""
 
 import numpy as np
 
-from convnwb.utils import convert_to_array
+from convnwb.utils.convert import convert_to_array
 
-from convnwb.task import *
+from convnwb.objects.task import *
 
 ###################################################################################################
 ###################################################################################################
