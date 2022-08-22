@@ -16,6 +16,15 @@ Overview
 
 This module contains general, task agnostic, utilities, for converting data to NWB format.
 
+Available sub-modules in `convnwb` include:
+
+- ``io``: includes save and load functions and utilities for working with files through the conversion process
+- ``objects``: includes objects for storing relevant data, for example electrode or task related information
+- ``paths``: includes a `Paths` object and utilities for defining and using a consistent path structure
+- ``plts``: includes plot functions for examining data through the conversion process
+- ``timestamps``: includes utilities for managing timestamps and aligning data streams
+- ``utils``: includes general utilities for working with data through the conversion process
+
 For converting data, `convnwb` can be used together with the
 `ConvertTEMPLATE <https://github.com/JacobsSU/ConvertTEMPLATE>`_.
 
