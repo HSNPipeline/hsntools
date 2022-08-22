@@ -1,6 +1,6 @@
-"""Visualizations for checking conversions."""
+"""Visualizations for checking timestamp alignment."""
 
-from convnwb.modutils import safe_import, check_dependency
+from convnwb.modutils.dependencies import safe_import, check_dependency
 
 plt = safe_import('.pyplot', 'matplotlib')
 

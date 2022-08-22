@@ -78,15 +78,15 @@ def test_get_event_time():
     out2 = get_event_time(times, 4, 5)
     assert np.isnan(out2)
 
-def test_str_to_bool():
+def test_convert_str_to_bool():
 
-    assert str_to_bool('True')
-    assert not str_to_bool('False')
+    assert convert_str_to_bool('True')
+    assert not convert_str_to_bool('False')
 
-def test_lst_str_to_bool():
+def test_convert_strlist_to_bool():
 
     lst = ['False', 'True', 'False']
-    assert list_str_to_bool(lst) == [False, True, False]
+    assert convert_strlist_to_bool(lst) == [False, True, False]
 
 def test_convert_type():
 

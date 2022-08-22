@@ -2,10 +2,10 @@
 
 from copy import deepcopy
 
-import numpy as np
-
-from convnwb.timestamps import predict_times, offset_time, change_time_units
-from convnwb.utils import is_empty, is_type, convert_type, convert_to_array
+from convnwb.timestamps.align import predict_times
+from convnwb.timestamps.update import offset_time, change_time_units
+from convnwb.utils.checks import is_empty, is_type
+from convnwb.utils.convert import convert_type, convert_to_array
 
 ###################################################################################################
 ###################################################################################################

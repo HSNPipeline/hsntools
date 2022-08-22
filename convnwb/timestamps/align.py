@@ -1,8 +1,8 @@
-"""Functions and utilities for working  with timestamps."""
+"""Functions for working aligning timestamps."""
 
 import numpy as np
 
-from convnwb.modutils import safe_import, check_dependency
+from convnwb.modutils.dependencies import safe_import, check_dependency
 
 sklearn = safe_import('sklearn')
 stats = safe_import('.stats', 'scipy')
@@ -178,34 +178,3 @@ def match_pulses(sync_behav, sync_neural, n_pulses, start_offset=None):
         sync_neural_out = sync_neural[0 : n_pulses]
 
     return sync_behav_out, sync_neural_out
-
-
-def offset_time(times, offset):
-    """Apply an offset to timestamps.
-
-    Parameters
-    ----------
-    times : 1d array
-        Vector of timestamps to update.
-    offset : float
-        The time value to subtract from each logged time value.
-    """
-
-    return times - offset
-
-
-def change_time_units(times, value, operation='divide'):
-    """Change the units of timestamps.
-
-    Parameters
-    ----------
-    times : 1d array
-        Vector of timestamps to update.
-    value : float
-        Value to divide / multiply by.
-    operation : {'divide', 'multiply'}
-        Operation to apply.
-    """
-
-    func = {'divide' : np.divide, 'multiply' : np.multiply}[operation]
-    return func(times, value)
