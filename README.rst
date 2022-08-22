@@ -9,14 +9,14 @@ convnwb
 .. |BuildStatus| image:: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml/badge.svg
 .. _BuildStatus: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml
 
-``convnwb`` is a small collection of helper code for converting data to the NWB format.
+``convnwb`` is a module of code to help with converting data to the NWB format.
 
 Overview
 --------
 
-This mini-module provides helper for converting data to NWB format.
+This module contains general, task agnostic, utilities, for converting data to NWB format.
 
-This module contains general, task agnostic, utilities, and is expected to be used with the
+For converting data, `convnwb` can be used together with the
 `ConvertTEMPLATE <https://github.com/JacobsSU/ConvertTEMPLATE>`_.
 
 Dependencies
@@ -40,6 +40,8 @@ There are also optional dependencies, that offer extra functionality:
 Installation
 ------------
 
+The current version is the 0.1.X series.
+
 This module should be installed from Github:
 
 **Install from a clone**
@@ -51,3 +53,14 @@ First clone this repository, then move into the cloned repository, and install:
     $ git clone https://github.com/JacobsSU/convnwb
     $ cd convnwb
     $ pip install .
+
+Contribute
+----------
+
+This project welcomes and encourages contributions from the community!
+
+To file bug reports and/or ask questions about this project, please use the
+`Github issue tracker <https://github.com/JacobsSU/convnwb/issues>`_.
+
+When interacting with this project, please follow the 
+`code of conduct <https://github.com/JacobsSU/convnwb/blob/main/CODE_OF_CONDUCT.md>`_.
