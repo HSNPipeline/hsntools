@@ -1,4 +1,4 @@
-"""Functions for working aligning timestamps."""
+"""Functions for aligning timestamps."""
 
 import numpy as np
 

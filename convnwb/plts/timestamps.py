@@ -1,4 +1,4 @@
-"""Visualizations for checking timestamp alignment."""
+"""Visualizations for checking timestamps."""
 
 from convnwb.modutils.dependencies import safe_import, check_dependency
 

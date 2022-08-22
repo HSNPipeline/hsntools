@@ -1,6 +1,6 @@
-"""Tests for convnwb.plts.align"""
+"""Tests for convnwb.plts.timestamps"""
 
-from convnwb.plts.align import *
+from convnwb.plts.timestamps import *
 
 ###################################################################################################
 ###################################################################################################
