@@ -3,6 +3,7 @@
 import json
 import pickle
 import pathlib
+from contextlib import contextmanager
 
 import yaml
 
@@ -12,6 +13,7 @@ from convnwb.modutils.dependencies import safe_import, check_dependency
 sio = safe_import('.io', 'scipy')
 pynwb = safe_import('pynwb')
 pd = safe_import('pandas')
+h5py = safe_import('h5py')
 
 ###################################################################################################
 ###################################################################################################
@@ -311,6 +313,7 @@ def load_jsonlines(file_name, folder=None):
     return all_data
 
 
+@check_dependency(sio, 'scipy')
 def load_matfile(file_name, folder=None, **kwargs):
     """Load a .mat file.
 
@@ -365,3 +368,37 @@ def load_jsons_to_df(files, folder=None):
     df = pd.DataFrame(file_data)
 
     return df
+
+## CONTEXT MANAGERS FOR OPENING FILES
+
+@contextmanager
+@check_dependency(h5py, 'h5py')
+def open_h5file(file_name, folder=None, ext='.h5', **kwargs):
+    """Open a hdf5 file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the h5file to open.
+    folder : str or Path, optional
+        Folder to open the file from.
+    ext : str, optional default: '.h5'
+        The extension to check and use for the file.
+    **kwargs
+        Additional keyword arguments to pass into h5py.File.
+
+    Yields
+    ------
+    h5file
+        Open h5file object.
+
+    Notes
+    -----
+    This function is a wrapper for `h5py.File`.
+    """
+
+    try:
+        h5file = h5py.File(check_ext(check_folder(file_name, folder), ext), 'r', **kwargs)
+        yield h5file
+    finally:
+        h5file.close()

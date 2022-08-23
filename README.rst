@@ -36,6 +36,7 @@ There are also optional dependencies, that offer extra functionality:
 - `scikit-learn <https://github.com/scikit-learn/scikit-learn>`_ is needed to aligning sync pulses
 - `pandas <https://github.com/pandas-dev/pandas>`_ is needed for utilities that load dataframes
 - `scipy <https://github.com/scipy/scipy>`_ is needed for some load and timestamp related functions
+- `h5py` <https://github.com/h5py/h5py>`_ is needed for utilities that open HDF5 files
 - `pytest <https://github.com/pytest-dev/pytest>`_ is needed to run the test suite locally
 
 Installation
