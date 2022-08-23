@@ -9,7 +9,8 @@ from pynwb import NWBFile
 
 import pytest
 
-from convnwb.tests.tsettings import TEST_FILE_PATH, TEST_PROJECT_PATH
+from convnwb.tests.tsettings import (BASE_TEST_OUTPUTS_PATH, TEST_FILE_PATH,
+                                     TEST_PROJECT_PATH, TEST_PLOTS_PATH)
 
 ###################################################################################################
 ###################################################################################################
@@ -20,14 +21,14 @@ from convnwb.tests.tsettings import TEST_FILE_PATH, TEST_PROJECT_PATH
 def check_dir():
     """Once, prior to session, this will clear and re-initialize the test file directories."""
 
-    # Clear and re-initialize test directories
-    for TEST_PATH in [TEST_FILE_PATH, TEST_PROJECT_PATH]:
-        if os.path.exists(TEST_PATH):
-            shutil.rmtree(TEST_PATH)
+    # If the directories already exist, clear them
+    if os.path.exists(BASE_TEST_OUTPUTS_PATH):
+        shutil.rmtree(BASE_TEST_OUTPUTS_PATH)
 
-        # Remake (empty) directories
+    # Remake base test outputs path, and then each sub-directory
+    os.mkdir(BASE_TEST_OUTPUTS_PATH)
+    for TEST_PATH in [TEST_FILE_PATH, TEST_PROJECT_PATH, TEST_PLOTS_PATH]:
         os.mkdir(TEST_PATH)
-
 
 @pytest.fixture(scope='session')
 def tnwbfile():

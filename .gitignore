@@ -8,7 +8,7 @@
 _lint.txt
 
 # Ignore test files
-*/tests/test_files/*
+*/tests/test_outputs/*
 
 # Ignore module build files
 build/*
