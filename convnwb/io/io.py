@@ -402,3 +402,31 @@ def open_h5file(file_name, folder=None, ext='.h5', **kwargs):
         yield h5file
     finally:
         h5file.close()
+
+
+@check_dependency(h5py, 'h5py')
+def load_from_h5file(field, file_name, folder=None, ext='.h5', **kwargs):
+    """Load a specified field from a HDF5 file.
+
+    Parameters
+    ----------
+    field : str
+        Name of the field to load from the HDF5 file.
+
+
+    Returns
+    -------
+    data
+        Loaded data field from the file.
+
+    Notes
+    -----
+    This function uses `open_h5file` which itself wraps `h5py.File`.
+    This function is useful for extracting a single data field.
+    For working with files with multiple files, it should be opened with `open_h5file`.
+    """
+
+    with open_h5file(file_name, folder, ext=ext, **kwargs) as h5file:
+        output = h5file[field][:]
+
+    return output
