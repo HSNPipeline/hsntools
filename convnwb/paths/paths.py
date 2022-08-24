@@ -3,7 +3,7 @@
 from copy import deepcopy
 from pathlib import Path
 
-from convnwb.io.utils import get_files
+from convnwb.io.utils import get_files, make_session_name
 
 from convnwb.paths.defaults import PROJECT_FOLDERS, SUBJECT_FOLDERS, SESSION_FOLDERS
 
@@ -68,6 +68,11 @@ class Paths():
             if folder in subdir:
                 return self.project / subdir
         raise ValueError('Requested path not found.')
+
+
+    @property
+    def session_name(self):
+        return make_session_name(self._subject, self._experiment, self._session)
 
 
     @property

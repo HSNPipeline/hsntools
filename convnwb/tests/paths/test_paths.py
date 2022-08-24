@@ -23,6 +23,11 @@ def test_paths():
                   recordings_name=recordings_name)
     assert paths
 
+    # Test session name
+    name = paths.session_name
+    assert isinstance(name, str)
+
+    # Test all the sub-folders that should be defined
     for subdir, subfolders in SESSION_FOLDERS.items():
         assert getattr(paths, subdir)
         for subfolder in subfolders:
