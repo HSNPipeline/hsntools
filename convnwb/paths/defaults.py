@@ -19,7 +19,8 @@ SUBJECT_FOLDERS = [
 SESSION_FOLDERS = {
     '01_raw' : [
         'behavior',
-        'neural',
+        'micro',
+        'macro',
         'sync',
     ],
     '02_processing' : [
@@ -30,6 +31,6 @@ SESSION_FOLDERS = {
     ],
     '03_extracted' : [
         'spikes',
-        'micro_lfp',
+        'lfp',
     ],
 }
