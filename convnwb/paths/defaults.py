@@ -19,8 +19,7 @@ SUBJECT_FOLDERS = [
 SESSION_FOLDERS = {
     '01_raw' : [
         'behavior',
-        'micro',
-        'macro',
+        'neural',
         'sync',
     ],
     '02_processing' : [
