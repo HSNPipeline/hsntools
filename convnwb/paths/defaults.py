@@ -20,7 +20,6 @@ SESSION_FOLDERS = {
     '01_raw' : [
         'behavior',
         'neural',
-        'sync',
     ],
     '02_processing' : [
         'alignment',
