@@ -165,7 +165,7 @@ def match_pulses(sync_behav, sync_neural, n_pulses, start_offset=None):
                 ixis += [ixb - ixn]
 
     # Find mode of index offsets
-    ixis_mode = stats.mode(ixis)[0][0]
+    ixis_mode = stats.mode(ixis, keepdims=True)[0][0]
 
     # Select sync vectors
     if start_offset is not None:
