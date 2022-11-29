@@ -1,13 +1,16 @@
 convnwb
 =======
 
-|ProjectStatus|_ |BuildStatus|_
+|ProjectStatus|_ |BuildStatus|_ |Coverage|_
 
 .. |ProjectStatus| image:: http://www.repostatus.org/badges/latest/active.svg
 .. _ProjectStatus: https://www.repostatus.org/#active
 
 .. |BuildStatus| image:: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml/badge.svg
 .. _BuildStatus: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml
+
+.. |Coverage| image:: https://codecov.io/gh/HSUpipeline/convnwb/branch/main/graph/badge.svg
+.. _Coverage: https://codecov.io/gh/HSUpipeline/convnwb
 
 ``convnwb`` is a module of code to help with converting data to the NWB format.
 
