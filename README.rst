@@ -17,7 +17,8 @@ convnwb
 Overview
 --------
 
-This module contains general, task agnostic, utilities, for converting data to NWB format.
+This module contains general, task agnostic, utilities, for converting data to the
+`NWB <https://www.nwb.org/>`_ format.
 
 Available sub-modules in `convnwb` include:
 
