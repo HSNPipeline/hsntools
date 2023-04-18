@@ -1,6 +1,9 @@
 """Tests for convnwb.objects.task"""
 
 import numpy as np
+import pandas as pd
+
+from pytest import raises
 
 from convnwb.utils.convert import convert_to_array
 
@@ -13,6 +16,14 @@ def test_task_base():
 
     task = TaskBase()
     assert task
+
+def test_task_check_field():
+
+    task = TaskBase()
+    task._check_field('trial')
+
+    with raises(AssertionError):
+        task._check_field('not_a_thing')
 
 def test_task_add_metadata():
 
@@ -187,3 +198,22 @@ def test_task_update_time_apply_type():
     assert task.session['start_time'] == 10.
     assert isinstance(task.position['time'], np.ndarray)
     assert np.array_equal(task.position['time'], np.array([15, 25, 35]))
+
+def test_task_to_dict():
+
+    task = TaskBase()
+    task.trial['field1'] = ['a', 'b', 'c']
+    task.trial['field2'] = [1, 2, 3]
+
+    odict = task.to_dict()
+    assert isinstance(odict, dict)
+
+def test_task_to_dataframe():
+
+    task = TaskBase()
+
+    task.trial['field1'] = ['a', 'b', 'c']
+    task.trial['field2'] = [1, 2, 3]
+
+    df = task.to_dataframe('trial')
+    assert isinstance(df, pd.DataFrame)

@@ -6,6 +6,9 @@ from convnwb.timestamps.align import predict_times
 from convnwb.timestamps.update import offset_time, change_time_units
 from convnwb.utils.checks import is_empty, is_type
 from convnwb.utils.convert import convert_type, convert_to_array
+from convnwb.modutils.dependencies import safe_import, check_dependency
+
+pd = safe_import('pandas')
 
 ###################################################################################################
 ###################################################################################################
@@ -92,6 +95,23 @@ class TaskBase():
 
         # Response information
         self.responses = {}
+
+
+    def _check_field(self, field):
+        """Check that a requested field is defined in the object.
+
+        Parameters
+        ----------
+        field : str
+            Which field to check.
+
+        Raises
+        ------
+        AssertionError
+            If the requested field is not part of the object.
+        """
+
+        assert field in self.data_keys(), 'Requested field not found.'
 
 
     def add_metadata(self, subject, experiment, session):
@@ -191,6 +211,7 @@ class TaskBase():
             Keyword arguments to pass into `func`.
         """
 
+        self._check_field(field)
         data = getattr(self, field)
         for key in [keys] if isinstance(keys, (str, dict)) else keys:
             if isinstance(key, str):
@@ -288,7 +309,7 @@ class TaskBase():
         kwargs
             Additional arguments to pass to the update function.
         skip : str or list of str, optional
-            Any data fields to
+            Any data fields to skip during the updating.
         """
 
         # Select update function to use
@@ -320,3 +341,32 @@ class TaskBase():
             self.set_info('time_offset', kwargs['offset'])
         if update == 'predict_times':
             self.set_status('time_aligned', True)
+
+
+    def to_dict(self):
+        """Convert object data to a dictionary."""
+
+        out_dict = {}
+        for key in self.data_keys():
+            out_dict[key] = getattr(self, key)
+
+        return out_dict
+
+
+    @check_dependency(pd, 'pandas')
+    def to_dataframe(self, field):
+        """Return a specified field as a dataframe.
+
+        Parameters
+        ----------
+        field : str
+            Which field to access to return as a dataframe.
+
+        Returns
+        -------
+        pd.DataFrame
+            Dataframe representation of the requested field.
+        """
+
+        self._check_field(field)
+        return pd.DataFrame(getattr(self, field))
