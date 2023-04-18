@@ -1,5 +1,7 @@
 """Tests for convnwb.objects.electrodes"""
 
+import pandas as pd
+
 from convnwb.objects.electrodes import *
 
 ###################################################################################################
@@ -50,3 +52,17 @@ def test_electrodes_iter():
         assert name in names
         assert loc in locations
     assert ind == len(names) - 1
+
+def test_electrodes_to_dict():
+
+    electrodes = Electrodes()
+    electrodes.add_bundles(['n1', 'n2'], ['l1', 'l2'])
+    odict = electrodes.to_dict()
+    assert isinstance(odict, dict)
+
+def test_electrodes_to_dataframe():
+
+    electrodes = Electrodes()
+    electrodes.add_bundles(['n1', 'n2'], ['l1', 'l2'])
+    df = electrodes.to_dataframe()
+    assert isinstance(df, pd.DataFrame)
