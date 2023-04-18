@@ -211,6 +211,7 @@ class TaskBase():
             Keyword arguments to pass into `func`.
         """
 
+        self._check_field(field)
         data = getattr(self, field)
         for key in [keys] if isinstance(keys, (str, dict)) else keys:
             if isinstance(key, str):
@@ -308,7 +309,7 @@ class TaskBase():
         kwargs
             Additional arguments to pass to the update function.
         skip : str or list of str, optional
-            Any data fields to
+            Any data fields to skip during the updating.
         """
 
         # Select update function to use
@@ -357,4 +358,5 @@ class TaskBase():
             Dataframe representation of the requested field.
         """
 
+        self._check_field(field)
         return pd.DataFrame(getattr(self, field))
