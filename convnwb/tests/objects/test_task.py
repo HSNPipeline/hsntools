@@ -1,6 +1,7 @@
 """Tests for convnwb.objects.task"""
 
 import numpy as np
+import pandas as pd
 
 from convnwb.utils.convert import convert_to_array
 
@@ -187,3 +188,13 @@ def test_task_update_time_apply_type():
     assert task.session['start_time'] == 10.
     assert isinstance(task.position['time'], np.ndarray)
     assert np.array_equal(task.position['time'], np.array([15, 25, 35]))
+
+def test_task_to_dataframe():
+
+    task = TaskBase()
+
+    task.trial['field1'] = ['a', 'b', 'c']
+    task.trial['field2'] = [1, 2, 3]
+
+    df = task.to_dataframe('trial')
+    assert isinstance(df, pd.DataFrame)

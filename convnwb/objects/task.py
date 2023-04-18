@@ -6,6 +6,9 @@ from convnwb.timestamps.align import predict_times
 from convnwb.timestamps.update import offset_time, change_time_units
 from convnwb.utils.checks import is_empty, is_type
 from convnwb.utils.convert import convert_type, convert_to_array
+from convnwb.modutils.dependencies import safe_import, check_dependency
+
+pd = safe_import('pandas')
 
 ###################################################################################################
 ###################################################################################################
@@ -320,3 +323,21 @@ class TaskBase():
             self.set_info('time_offset', kwargs['offset'])
         if update == 'predict_times':
             self.set_status('time_aligned', True)
+
+
+    @check_dependency(pd, 'pandas')
+    def to_dataframe(self, field):
+        """Return a specified field as a dataframe.
+
+        Parameters
+        ----------
+        field : str
+            Which field to access to return as a dataframe.
+
+        Returns
+        -------
+        pd.DataFrame
+            Dataframe representation of the requested field.
+        """
+
+        return pd.DataFrame(getattr(self, field))
