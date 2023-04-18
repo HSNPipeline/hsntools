@@ -199,6 +199,15 @@ def test_task_update_time_apply_type():
     assert isinstance(task.position['time'], np.ndarray)
     assert np.array_equal(task.position['time'], np.array([15, 25, 35]))
 
+def test_task_to_dict():
+
+    task = TaskBase()
+    task.trial['field1'] = ['a', 'b', 'c']
+    task.trial['field2'] = [1, 2, 3]
+
+    odict = task.to_dict()
+    assert isinstance(odict, dict)
+
 def test_task_to_dataframe():
 
     task = TaskBase()

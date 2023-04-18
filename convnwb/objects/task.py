@@ -343,6 +343,16 @@ class TaskBase():
             self.set_status('time_aligned', True)
 
 
+    def to_dict(self):
+        """Convert object data to a dictionary."""
+
+        out_dict = {}
+        for key in self.data_keys():
+            out_dict[key] = getattr(self, key)
+
+        return out_dict
+
+
     @check_dependency(pd, 'pandas')
     def to_dataframe(self, field):
         """Return a specified field as a dataframe.
