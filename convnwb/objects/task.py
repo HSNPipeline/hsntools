@@ -97,6 +97,23 @@ class TaskBase():
         self.responses = {}
 
 
+    def _check_field(self, field):
+        """Check that a requested field is defined in the object.
+
+        Parameters
+        ----------
+        field : str
+            Which field to check.
+
+        Raises
+        ------
+        AssertionError
+            If the requested field is not part of the object.
+        """
+
+        assert field in self.data_keys(), 'Requested field not found.'
+
+
     def add_metadata(self, subject, experiment, session):
         """Add metadata information to task object.
 

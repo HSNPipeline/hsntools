@@ -3,6 +3,8 @@
 import numpy as np
 import pandas as pd
 
+from pytest import raises
+
 from convnwb.utils.convert import convert_to_array
 
 from convnwb.objects.task import *
@@ -14,6 +16,14 @@ def test_task_base():
 
     task = TaskBase()
     assert task
+
+def test_task_check_field():
+
+    task = TaskBase()
+    task._check_field('trial')
+
+    with raises(AssertionError):
+        task._check_field('not_a_thing')
 
 def test_task_add_metadata():
 
