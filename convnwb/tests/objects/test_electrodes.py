@@ -12,6 +12,15 @@ def test_electrodes():
     electrodes = Electrodes()
     assert electrodes
 
+def test_electrodes_set_placeholder():
+
+    electrodes = Electrodes()
+    electrodes.set_placeholder()
+    assert electrodes
+    assert electrodes.n_electrodes_per_bundle == 1
+    assert electrodes.bundles == ['BF electrode']
+    assert electrodes.locations == ['implanted']
+
 def test_electrodes_add_bundle():
 
     bundle_name = 'name'

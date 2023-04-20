@@ -58,6 +58,13 @@ class Electrodes():
         return data_keys
 
 
+    def set_placeholder(self):
+        """Set object information as a placeholder."""
+
+        self.n_electrodes_per_bundle = 1
+        self.add_bundle('BF electrode', 'implanted')
+
+
     def add_bundle(self, name, location):
         """Add a bundle to the object."""
 
