@@ -22,3 +22,8 @@ def test_incrementer():
     for value in inc:
         assert isinstance(value, int)
         assert value < end
+
+def test_get_current_date():
+
+    date = get_current_date()
+    assert isinstance(date, datetime)
