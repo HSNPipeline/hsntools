@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 from copy import deepcopy
 
-from convnwb.utils.log import print_status
+from convnwb.run.log import print_status
 from convnwb.paths.defaults import PROJECT_FOLDERS, SUBJECT_FOLDERS, SESSION_FOLDERS
 
 ###################################################################################################
