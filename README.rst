@@ -6,11 +6,11 @@ convnwb
 .. |ProjectStatus| image:: http://www.repostatus.org/badges/latest/active.svg
 .. _ProjectStatus: https://www.repostatus.org/#active
 
-.. |BuildStatus| image:: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml/badge.svg
-.. _BuildStatus: https://github.com/JacobsSU/convnwb/actions/workflows/build.yml
+.. |BuildStatus| image:: https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml/badge.svg
+.. _BuildStatus: https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml
 
-.. |Coverage| image:: https://codecov.io/gh/HSUpipeline/convnwb/branch/main/graph/badge.svg
-.. _Coverage: https://codecov.io/gh/HSUpipeline/convnwb
+.. |Coverage| image:: https://codecov.io/gh/HSUPipeline/convnwb/branch/main/graph/badge.svg
+.. _Coverage: https://codecov.io/gh/HSUPipeline/convnwb
 
 ``convnwb`` is a module of code to help with converting data to the NWB format.
 
@@ -31,7 +31,7 @@ Available sub-modules in `convnwb` include:
 - ``utils``: includes general utilities for working with data through the conversion process
 
 For converting data, `convnwb` can be used together with the
-`ConvertTEMPLATE <https://github.com/JacobsSU/ConvertTEMPLATE>`_.
+`ConvertTEMPLATE <https://github.com/HSUPipeline/ConvertTEMPLATE>`_.
 
 Dependencies
 ------------
@@ -66,7 +66,7 @@ First clone this repository, then move into the cloned repository, and install:
 
 .. code-block:: shell
 
-    $ git clone https://github.com/JacobsSU/convnwb
+    $ git clone https://github.com/HSUPipeline/convnwb
     $ cd convnwb
     $ pip install .
 
@@ -76,7 +76,7 @@ Contribute
 This project welcomes and encourages contributions from the community!
 
 To file bug reports and/or ask questions about this project, please use the
-`Github issue tracker <https://github.com/JacobsSU/convnwb/issues>`_.
+`Github issue tracker <https://github.com/HSUPipeline/convnwb/issues>`_.
 
 When interacting with this project, please follow the
-`code of conduct <https://github.com/JacobsSU/convnwb/blob/main/CODE_OF_CONDUCT.md>`_.
+`code of conduct <https://github.com/HSUPipeline/convnwb/blob/main/CODE_OF_CONDUCT.md>`_.
