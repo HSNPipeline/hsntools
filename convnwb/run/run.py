@@ -9,7 +9,7 @@ from convnwb.run.log import print_status
 ###################################################################################################
 
 def catch_error(proceed, name, path, verbose=True, message=None, print_level=0):
-    """Catch an error raised during a procedure, with the option to save an error log and proceed.
+    """Catch a raised error, with the option to save an error log and proceed.
 
     Parameters
     ----------
@@ -26,8 +26,7 @@ def catch_error(proceed, name, path, verbose=True, message=None, print_level=0):
     message : str, optional
         Message to print out.
     print_level : {0, 1, 2}
-        Print level for the printed message.
-        Only used if `verbose` is True.
+        Print level for the printed message. Only used if `verbose` is True.
 
     Raises
     ------
