@@ -9,8 +9,7 @@ from pynwb import NWBFile
 
 import pytest
 
-from convnwb.tests.tsettings import (BASE_TEST_OUTPUTS_PATH, TEST_FILE_PATH,
-                                     TEST_PROJECT_PATH, TEST_PLOTS_PATH)
+from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS
 
 ###################################################################################################
 ###################################################################################################
@@ -27,7 +26,7 @@ def check_dir():
 
     # Remake base test outputs path, and then each sub-directory
     os.mkdir(BASE_TEST_OUTPUTS_PATH)
-    for TEST_PATH in [TEST_FILE_PATH, TEST_PROJECT_PATH, TEST_PLOTS_PATH]:
+    for name, TEST_PATH in TEST_PATHS.items():
         os.mkdir(TEST_PATH)
 
 @pytest.fixture(scope='session')

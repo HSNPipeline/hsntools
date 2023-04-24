@@ -13,3 +13,12 @@ BASE_TEST_OUTPUTS_PATH = Path(pkg.resource_filename(__name__, 'test_outputs'))
 TEST_FILE_PATH = BASE_TEST_OUTPUTS_PATH / 'test_files'
 TEST_PLOTS_PATH = BASE_TEST_OUTPUTS_PATH / 'test_plots'
 TEST_PROJECT_PATH = BASE_TEST_OUTPUTS_PATH / 'test_project'
+TEST_ERRORS_PATH = BASE_TEST_OUTPUTS_PATH / 'test_errors'
+
+# Collect test paths together
+TEST_PATHS = {
+    'file' : TEST_FILE_PATH,
+    'plots' : TEST_PLOTS_PATH,
+    'project' : TEST_PROJECT_PATH,
+    'errors' : TEST_ERRORS_PATH,
+}
