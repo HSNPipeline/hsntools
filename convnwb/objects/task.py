@@ -300,7 +300,7 @@ class TaskBase():
 
         Parameters
         ----------
-        update : {'offset', 'change_units', 'predict_time'} or callable
+        update : {'offset', 'change_units', 'predict_times'} or callable
             What kind of update to do to the timestamps.
         skip : str, optional
             Fields set to skip.
