@@ -18,6 +18,9 @@ File I/O
 
 Functions for file I/O.
 
+NWB & Custom file I/O
+~~~~~~~~~~~~~~~~~~~~~
+
 .. currentmodule:: convnwb.io.io
 .. autosummary::
    :toctree: generated/
@@ -29,6 +32,14 @@ Functions for file I/O.
    load_configs
    save_task_object
    load_task_object
+
+General file I/O
+~~~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.io.io
+.. autosummary::
+   :toctree: generated/
+
    save_txt
    load_txt
    save_json
@@ -38,3 +49,179 @@ Functions for file I/O.
    load_jsons_to_df
    open_h5file
    load_from_h5file
+
+Objects
+-------
+
+Custom objects.
+
+Electrodes
+~~~~~~~~~~
+
+.. currentmodule:: convnwb.objects.electrodes
+.. autosummary::
+   :toctree: generated/
+
+   Electrodes
+
+TaskBase
+~~~~~~~~
+
+.. currentmodule:: convnwb.objects.task
+.. autosummary::
+   :toctree: generated/
+
+   TaskBase
+
+Paths
+-----
+
+Path management.
+
+Paths Object
+~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.paths.paths
+.. autosummary::
+   :toctree: generated/
+
+   Paths
+
+Directory Creators
+~~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.paths.create
+.. autosummary::
+   :toctree: generated/
+
+   make_folder
+   create_project_directory
+   create_subject_directory
+   create_session_directory
+
+Plots
+-----
+
+Plotting functions and utilities.
+
+Timestamps
+~~~~~~~~~~
+
+.. currentmodule:: convnwb.plts.timestamps
+.. autosummary::
+   :toctree: generated/
+
+   plot_alignment
+   plot_peaks
+
+Timestamps
+----------
+
+Functions and helpers for managing timestamps and temporal alignment.
+
+Alignment
+~~~~~~~~~
+
+.. currentmodule:: convnwb.timestamps.align
+.. autosummary::
+   :toctree: generated/
+
+   fit_sync_alignment
+   predict_times
+   predict_times_model
+   match_pulses
+
+Peaks
+~~~~~
+
+.. currentmodule:: convnwb.timestamps.peaks
+.. autosummary::
+   :toctree: generated/
+
+   detect_peaks
+
+Update
+~~~~~~
+
+.. currentmodule:: convnwb.timestamps.update
+.. autosummary::
+   :toctree: generated/
+
+   offset_time
+   change_time_units
+
+Utils
+-----
+
+Utilities & helper functions.
+
+Check Functions
+~~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.utils.checks
+.. autosummary::
+   :toctree: generated/
+
+   is_empty
+   is_type
+   clean_strings
+
+Convert Functions
+~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.utils.convert
+.. autosummary::
+   :toctree: generated/
+
+   convert_str_to_bool
+   convert_strlist_to_bool
+   convert_type
+   convert_to_array
+   convert_time_to_date
+
+Extract Functions
+~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.utils.extract
+.. autosummary::
+   :toctree: generated/
+
+   get_event_time
+   get_trial_value
+
+Log Functions
+~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.utils.log
+.. autosummary::
+   :toctree: generated/
+
+   print_status
+
+Run Functions
+~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.utils.run
+.. autosummary::
+   :toctree: generated/
+
+   catch_error
+
+Tool Functions
+~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.utils.tools
+.. autosummary::
+   :toctree: generated/
+
+   incrementer
+   get_current_date
+
+Validate Functions
+~~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.utils.validate
+.. autosummary::
+   :toctree: generated/
+
+   validate_nwb
