@@ -1,6 +1,0 @@
-pynwb
-matplotlib
-scikit-learn
-pandas
-scipy
-h5py
