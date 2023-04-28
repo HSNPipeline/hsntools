@@ -3,7 +3,7 @@
 import traceback
 
 from convnwb.io import save_txt
-from convnwb.run.log import print_status
+from convnwb.utils.log import print_status
 
 ###################################################################################################
 ###################################################################################################

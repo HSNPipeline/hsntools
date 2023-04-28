@@ -1,4 +1,4 @@
-"""Tests for convnwb.run.run"""
+"""Tests for convnwb.utils.run"""
 
 import os
 
@@ -6,7 +6,7 @@ from pytest import raises
 
 from convnwb.tests.tsettings import TEST_ERRORS_PATH
 
-from convnwb.run.run import *
+from convnwb.utils.run import *
 
 ###################################################################################################
 ###################################################################################################

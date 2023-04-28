@@ -26,7 +26,6 @@ Available sub-modules in `convnwb` include:
 - ``objects``: includes objects for storing relevant data, for example electrode or task related information
 - ``paths``: includes a `Paths` object and utilities for defining and using a consistent path structure
 - ``plts``: includes plot functions for examining data through the conversion process
-- ``run``: includes helper functions for running procedures across files
 - ``timestamps``: includes utilities for managing timestamps and aligning data streams
 - ``utils``: includes general utilities for working with data through the conversion process
 
