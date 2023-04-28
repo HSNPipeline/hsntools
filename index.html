@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>convnwb &#8212; convnwb 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          convnwb</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="api.html">API</a></li>
+                <li><a href="https://github.com/HSUPipeline/convnwb">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="convnwb">
+<h1>convnwb<a class="headerlink" href="#convnwb" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="ProjectStatus" src="http://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml"><img alt="BuildStatus" src="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/HSUPipeline/convnwb"><img alt="Coverage" src="https://codecov.io/gh/HSUPipeline/convnwb/branch/main/graph/badge.svg" /></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">convnwb</span></code> is a module of code to help with converting data to the NWB format.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>This module contains general, task agnostic, utilities, for converting data to the
+<a class="reference external" href="https://www.nwb.org/">NWB</a> format.</p>
+<p>Available sub-modules in <cite>convnwb</cite> include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">io</span></code>: includes save and load functions and utilities for working with files through the conversion process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objects</span></code>: includes objects for storing relevant data, for example electrode or task related information</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paths</span></code>: includes a <cite>Paths</cite> object and utilities for defining and using a consistent path structure</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plts</span></code>: includes plot functions for examining data through the conversion process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamps</span></code>: includes utilities for managing timestamps and aligning data streams</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utils</span></code>: includes general utilities for working with data through the conversion process</p></li>
+</ul>
+<p>For converting data, <cite>convnwb</cite> can be used together with the
+<a class="reference external" href="https://github.com/HSUPipeline/ConvertTEMPLATE">ConvertTEMPLATE</a>.</p>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">convnwb</span></code> is written in Python, and requires Python &gt;= 3.6 to run.</p>
+<p>It has the following required dependencies:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/numpy/numpy">numpy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/yaml/pyyaml">pyyaml</a></p></li>
+</ul>
+<p>There are also optional dependencies, that offer extra functionality:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/NeurodataWithoutBorders/pynwb">pynwb</a> is needed for validating NWB files</p></li>
+<li><p><a class="reference external" href="https://github.com/matplotlib/">matplotlib</a> is needed for making plots to check conversions</p></li>
+<li><p><a class="reference external" href="https://github.com/scikit-learn/scikit-learn">scikit-learn</a> is needed to aligning sync pulses</p></li>
+<li><p><a class="reference external" href="https://github.com/pandas-dev/pandas">pandas</a> is needed for utilities that load dataframes</p></li>
+<li><p><a class="reference external" href="https://github.com/scipy/scipy">scipy</a> is needed for some load and timestamp related functions</p></li>
+<li><p><a class="reference external" href="https://github.com/h5py/h5py">h5py</a> is needed for utilities that open HDF5 files</p></li>
+<li><p><a class="reference external" href="https://github.com/pytest-dev/pytest">pytest</a> is needed to run the test suite locally</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<p>The current release version is the 0.2.X series.</p>
+<p>Check the
+<a class="reference external" href="https://github.com/HSUPipeline/convnwb/blob/main/CHANGELOG.md">changelog</a>
+for notes on updates and changes across versions.</p>
+<p>This module should be installed from Github:</p>
+<p><strong>Install from a clone</strong></p>
+<p>First clone this repository, then move into the cloned repository, and install:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/HSUPipeline/convnwb
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>convnwb
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this heading">¶</a></h2>
+<p>This project welcomes and encourages contributions from the community!</p>
+<p>To file bug reports and/or ask questions about this project, please use the
+<a class="reference external" href="https://github.com/HSUPipeline/convnwb/issues">Github issue tracker</a>.</p>
+<p>When interacting with this project, please follow the
+<a class="reference external" href="https://github.com/HSUPipeline/convnwb/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021-2023, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
