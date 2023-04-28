@@ -10,6 +10,12 @@ _lint.txt
 # Ignore test files
 */tests/test_outputs/*
 
+# Ignore files generated for the documentation
+doc/_build/
+doc/auto_examples/
+doc/auto_tutorials/
+doc/generated/
+
 # Ignore module build files
 build/*
 convnwb.egg-info/*
