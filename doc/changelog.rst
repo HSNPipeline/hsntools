@@ -6,6 +6,13 @@ This page contains the changelog for the `convnwb` module and any notes on updat
 This page primarily notes changes for major version updates. For notes on the specific updates
 for minor releases, see the `release page <https://github.com/spiketools/spiketools/releases>`_.
 
+0.3.X
+-----
+
+The `0.3.X` series, starting with `0.3.0` tagged release is a minor organizational
+update of the module, with the key change being to re-organize the `run` sub-module
+into the `utils` sub-module.
+
 0.2.X
 -----
 

@@ -55,7 +55,7 @@ There are also optional dependencies, that offer extra functionality:
 Installation
 ------------
 
-The current release version is the 0.2.X series.
+The current release version is the 0.3.X series.
 
 Check the
 `changelog <https://github.com/HSUPipeline/convnwb/blob/main/CHANGELOG.md>`_
