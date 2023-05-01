@@ -60,6 +60,33 @@ def is_type(var, var_type):
     return type_match
 
 
+def check_str_contents(str_to_check, contents):
+    """Check whether a given string has specified contents.
+
+    Parameters
+    ----------
+    str_to_check : str
+        String to check contents.
+    contents : str or list of str
+        String(s) to check whether they are contained in `str_to_check`.
+
+    Returns
+    -------
+    has_contents : bool
+        Indicates whether the given string contains the provided content(s).
+    """
+
+    contents = [contents] if isinstance(contents, str) else contents
+
+    has_contents = False
+    for content in contents:
+        if content in str_to_check:
+            has_contents = True
+            break
+
+    return has_contents
+
+
 def clean_strings(lst):
     """Helper function to clean a list of string values for adding to NWB.
 

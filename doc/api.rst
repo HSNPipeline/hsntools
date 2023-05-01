@@ -164,6 +164,7 @@ Check Functions
 
    is_empty
    is_type
+   check_str_contents
    clean_strings
 
 Convert Functions
