@@ -38,12 +38,15 @@ class TaskBase():
         self.meta = {
             'experiment' : None,
             'subject' : None,
-            'session' : None
+            'session' : None,
         }
 
         # Experiment information
         self.experiment = {
-            'version' : {'label' : None, 'number' : None},
+            'version' : {
+                'label' : None,
+                'number' : None,
+                },
             'language' : None,
         }
 
@@ -65,7 +68,7 @@ class TaskBase():
             'alignment' : {
                 'intercept' : None,
                 'coef' : None,
-                'score' : None
+                'score' : None,
             }
         }
 
@@ -75,7 +78,7 @@ class TaskBase():
             'x' : [],
             'y' : [],
             'z' : [],
-            'speed' : []
+            'speed' : [],
         }
 
         # Head direction information
@@ -200,9 +203,9 @@ class TaskBase():
         Parameters
         ----------
         field : str
-            Which field to access data to convert from.
+            Which field to access data to apply function to.
         keys : list of str or dict
-            Which key(s) of the field to convert to array.
+            Which key(s) of the field to apply function to.
             If list, should be a list of keys available in `field`.
             If dict, keys should be subfields, each with corresponding labels to typecast.
         func : callable
@@ -228,9 +231,9 @@ class TaskBase():
         Parameters
         ----------
         field : str
-            Which field to access data to convert from.
+            Which field to access data to convert type.
         keys : list of str or dict
-            Which key(s) of the field to convert to array.
+            Which key(s) of the field to convert type.
             If list, should be a list of keys available in `field`.
             If dict, keys should be subfields, each with corresponding labels to typecast.
         dtype : type
@@ -246,7 +249,7 @@ class TaskBase():
         Parameters
         ----------
         field : str
-            Which field to access data to convert from.
+            Which field to access data to convert to array.
         keys : list of str or dict
             Which key(s) of the field to convert to array.
             If list, should be a list of keys available in `field`.
