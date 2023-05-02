@@ -197,6 +197,21 @@ class TaskBase():
         return data_keys
 
 
+    def drop_fields(self, fields):
+        """Drop field(s) from the task object.
+
+        Parameters
+        ----------
+        fields : str or list of str
+            Field(s) to drop.
+        """
+
+        fields = [fields] if isinstance(fields, str) else fields
+        for field in fields:
+            self._check_field(field)
+            delattr(self, field)
+
+
     def apply_func(self, field, keys, func, **kwargs):
         """Apply a given function across a set of specified fields.
 

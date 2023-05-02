@@ -55,6 +55,25 @@ def test_task_data_keys():
     task.custom = None
     assert 'custom' in task.data_keys()
 
+def test_task_drop_fields():
+
+    task = TaskBase()
+
+    drop_field = 'session'
+    assert getattr(task, drop_field)
+    task.drop_fields(drop_field)
+    with raises(AttributeError):
+        getattr(task, drop_field)
+
+    drop_fields = ['position', 'head_direction']
+    for field in drop_fields:
+        assert getattr(task, field)
+
+    task.drop_fields(drop_fields)
+    for field in drop_fields:
+        with raises(AttributeError):
+            getattr(task, field)
+
 def test_task_apply_func_to_fields():
 
     def plus_func(data, plus):
