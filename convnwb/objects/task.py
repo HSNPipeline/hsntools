@@ -212,6 +212,25 @@ class TaskBase():
             delattr(self, field)
 
 
+    def drop_keys(self, field, keys):
+        """Drop key(s) from a specified field of the task object.
+
+        Parameters
+        ----------
+        field : str
+            Which field to access and remove keys from.
+        keys : list of str or dict
+            Which key(s) of the field to remove.
+        """
+
+        self._check_field(field)
+        keys = [keys] if isinstance(keys, str) else keys
+
+        data = getattr(self, field)
+        for key in keys:
+            data.pop(key)
+
+
     def apply_func(self, field, keys, func, **kwargs):
         """Apply a given function across a set of specified fields.
 

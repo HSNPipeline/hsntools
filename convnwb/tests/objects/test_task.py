@@ -74,6 +74,24 @@ def test_task_drop_fields():
         with raises(AttributeError):
             getattr(task, field)
 
+def test_task_drop_keys():
+
+    task = TaskBase()
+
+    field = 'experiment'
+    drop_key = 'language'
+    assert drop_key in getattr(task, field)
+    task.drop_keys(field, drop_key)
+    assert drop_key not in getattr(task, field)
+
+    field ='position'
+    drop_keys = ['y', 'z']
+    for key in drop_keys:
+        assert key in getattr(task, field)
+    task.drop_keys(field, drop_keys)
+    for key in drop_keys:
+        assert key not in getattr(task, field)
+
 def test_task_apply_func_to_fields():
 
     def plus_func(data, plus):
