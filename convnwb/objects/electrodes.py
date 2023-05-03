@@ -10,7 +10,15 @@ pd = safe_import('pandas')
 ###################################################################################################
 
 class Electrodes():
-    """Object for collecting electrode information."""
+    """Object for collecting electrode information.
+
+    Attributes
+    ----------
+    bundles : list of str
+        Names of the bundles.
+    locations : list of str
+        Locations of the bundles.
+    """
 
     n_electrodes_per_bundle = 8
 
@@ -66,14 +74,30 @@ class Electrodes():
 
 
     def add_bundle(self, name, location):
-        """Add a bundle to the object."""
+        """Add a bundle to the object.
+
+        Parameters
+        ----------
+        name : str
+            Name of the bundle.
+        location : str
+            Location of the bundle.
+        """
 
         self.bundles.append(name)
         self.locations.append(location)
 
 
     def add_bundles(self, names, locations):
-        """Add multiple bundles to the object."""
+        """Add multiple bundles to the object.
+
+        Parameters
+        ----------
+        names : list of str
+            Names of the bundles.
+        locations : list of str
+            Locations of the bundles.
+        """
 
         for name, location in zip(names, locations):
             self.add_bundle(name, location)

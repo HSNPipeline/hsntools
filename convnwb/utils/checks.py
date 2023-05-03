@@ -103,6 +103,7 @@ def clean_strings(lst):
     Notes
     -----
     Each element is checked:
+
     - str types and made lower case and kept
     - any other type is replaced with 'none' (as a string)
     - the goal is to replace Python nan or None types for empty cells

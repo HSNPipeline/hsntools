@@ -36,7 +36,7 @@ def convert_strlist_to_bool(lst):
 
     Returns
     -------
-    lst of bool
+    list of bool
         List with elements converted to boolean.
     """
 

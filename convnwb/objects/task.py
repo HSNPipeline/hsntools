@@ -319,13 +319,13 @@ class TaskBase():
         return trial_info
 
 
-    def plot_sync_allignment(self, n_pulses=100):
-        """Plots alignment of the synchronization pulses.
+    def plot_sync_allignment(self, n_pulses=None):
+        """Plot alignment of the synchronization pulses.
 
         Parameters
         ----------
-        n_pulses : int, optional, default: 100
-            Number of pulses to plot for zoomed plot.
+        n_pulses : int, optional
+            Number of pulses to plot.
         """
 
         # should be implemented in subclass

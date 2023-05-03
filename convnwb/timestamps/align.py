@@ -63,7 +63,7 @@ def fit_sync_alignment(sync_behav, sync_neural, score_thresh=0.9999,
     y_pred = model.predict(x_test)
 
     score = r2_score(y_test, y_pred)
-    bad_score_msg = 'This session has bad synchronization between brain and behavior'
+    bad_score_msg = 'This session has bad synchronization between.'
     if score < score_thresh:
         if not ignore_poor_alignment:
             raise ValueError(bad_score_msg)
@@ -90,7 +90,7 @@ def predict_times(times, intercept, coef):
     intercept : float
         Learned intercept of the model predicting differences between sync pulses.
     coef : float
-        Learned coefficient of the model predicting  differences between sync pulses.
+        Learned coefficient of the model predicting differences between sync pulses.
 
     Returns
     -------
@@ -173,7 +173,7 @@ def match_pulses(sync_behav, sync_neural, n_pulses, start_offset=None):
         sync_behav_out = sync_behav[ixis_mode + start_offset : ixis_mode + start_offset + n_pulses]
         sync_neural_out = sync_neural[start_offset : start_offset + n_pulses]
     else:
-        # (STANDARD) Sync vector from beginning with offset accounted for
+        # Otherwise, sync vector from beginning with offset accounted for
         sync_behav_out = sync_behav[ixis_mode : ixis_mode + n_pulses]
         sync_neural_out = sync_neural[0 : n_pulses]
 

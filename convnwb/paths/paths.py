@@ -72,26 +72,31 @@ class Paths():
 
     @property
     def session_name(self):
+        """Name of the session this object reflects."""
         return make_session_name(self._subject, self._experiment, self._session)
 
 
     @property
     def recordings(self):
+        """"Path of the recordings folder."""
         return self.project / self._recordings_name
 
 
     @property
     def subject(self):
+        """Path of the subject folder."""
         return self.recordings / self._subject
 
 
     @property
     def experiment(self):
+        """"Path of the experiment folder."""
         return self.subject / self._experiment
 
 
     @property
     def session(self):
+        """Path of the session folder."""
         return self.experiment / self._session
 
 
