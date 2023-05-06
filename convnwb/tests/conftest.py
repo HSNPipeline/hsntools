@@ -5,6 +5,7 @@ import shutil
 from datetime import datetime
 from dateutil.tz import tzlocal
 
+import h5py
 from pynwb import NWBFile
 
 import pytest
@@ -34,3 +35,10 @@ def tnwbfile():
     """Create a test NWBfile."""
 
     yield NWBFile('session_desc', 'session_id', datetime.now(tzlocal()))
+
+@pytest.fixture(scope='session', autouse=True)
+def th5file():
+    """Save out a test HDF5 file."""
+
+    with h5py.File(TEST_PATHS['file'] / "test_hdf5.h5", "w") as h5file:
+        dset = h5file.create_dataset("dataset", (100,), dtype='i')

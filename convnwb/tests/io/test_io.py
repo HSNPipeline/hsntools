@@ -119,3 +119,22 @@ def test_load_jsons_to_df():
     # Test giving a file location
     out = load_jsons_to_df(TEST_FILE_PATH)
     assert isinstance(out, pd.DataFrame)
+
+def test_read_h5file():
+
+    f_name = 'test_hdf5'
+    h5file = read_h5file(f_name, TEST_FILE_PATH)
+    assert h5file
+    h5file.close()
+
+def test_open_h5file():
+
+    f_name = 'test_hdf5'
+    with open_h5file(f_name, TEST_FILE_PATH) as h5file:
+        assert h5file
+
+def test_load_from_h5file():
+
+    f_name = 'test_hdf5'
+    dataset = load_from_h5file('dataset', f_name, TEST_FILE_PATH)
+    assert dataset is not None
