@@ -427,8 +427,9 @@ def open_h5file(file_name, folder=None, ext='.h5', **kwargs):
     This function is a wrapper for `h5py.File`, creating a context manager.
     """
 
+    h5file = read_h5file(file_name, folder, ext, **kwargs)
+
     try:
-        h5file = read_h5file(file_name, folder, ext, **kwargs)
         yield h5file
     finally:
         h5file.close()
