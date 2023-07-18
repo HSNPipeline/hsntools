@@ -20,6 +20,7 @@ setup(
     version = __version__,
     description = 'Helper code for converting data to NWB.',
     long_description = long_description,
+    long_description_content_type = 'text/x-rst',
     python_requires = '>=3.6',
     packages = find_packages(),
     license = 'MIT License',
@@ -41,9 +42,19 @@ setup(
         'Programming Language :: Python :: 3.11',
     ],
     platforms = 'any',
-    project_urls = {},
-    download_url = 'https://github.com/JacobsSU/convnwb/releases',
+    project_urls = {
+        'Documentation' : 'https://hsupipeline.github.io/convnwb/',
+        'Bug Reports' : 'https://github.com/HSUPipeline/convnwb/issues',
+        'Source' : 'https://github.com/HSUPipeline/convnwb',
+    },
+    download_url = 'https://github.com/HSUPipeline/convnwb/releases',
     keywords = ['neuroscience', 'single units', 'data management', 'neurodata without borders'],
     install_requires = install_requires,
     tests_require = ['pytest'],
+    extras_require = {
+        'compute' : ['scipy', 'scikit-learn'],
+        'data' : ['pandas', 'h5py', 'pynwb'],
+        'plot' : ['matplotlib'],
+        'all' : ['scipy', 'scikit-learn', 'pandas', 'h5py', 'pynwb', 'matplotlib'],
+    }
 )

@@ -1,13 +1,14 @@
 """Settings for tests."""
 
+import os
 from pathlib import Path
-import pkg_resources as pkg
 
 ###################################################################################################
 ###################################################################################################
 
 # Set base test files path
-BASE_TEST_OUTPUTS_PATH = Path(pkg.resource_filename(__name__, 'test_outputs'))
+TESTS_PATH = Path(os.path.abspath(os.path.dirname(__file__)))
+BASE_TEST_OUTPUTS_PATH = TESTS_PATH / 'test_outputs'
 
 # Set paths for test files, separated by type
 TEST_FILE_PATH = BASE_TEST_OUTPUTS_PATH / 'test_files'

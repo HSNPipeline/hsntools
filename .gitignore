@@ -18,4 +18,4 @@ doc/generated/
 
 # Ignore module build files
 build/*
-convnwb.egg-info/*
+*.egg-info/*
