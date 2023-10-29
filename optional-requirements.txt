@@ -2,5 +2,5 @@ pynwb
 matplotlib
 scikit-learn
 pandas
-scipy <= 1.10
+scipy
 h5py
