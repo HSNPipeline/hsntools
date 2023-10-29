@@ -144,6 +144,8 @@ def match_pulses(sync_behav, sync_neural, n_pulses, start_offset=None):
     results due to recording pause at the start.
     """
 
+    from scipy import __version__ as scipy_version
+
     isi_sb = np.diff(sync_behav)
     isi_sn = np.diff(sync_neural)
 
@@ -164,8 +166,13 @@ def match_pulses(sync_behav, sync_neural, n_pulses, start_offset=None):
             elif isi_sn[ixn + 1] == isi_sb[ixb + 1]:
                 ixis += [ixb - ixn]
 
-    # Find mode of index offsets
-    ixis_mode = stats.mode(ixis)[0][0]
+    # Find mode of index offsets - with a special check for scipy version
+    version_vals = scipy_version.split('.')
+    # Old version - prior to `keep_dims` being adding in 1.9
+    if int(version_vals[0]) == 1 and int(version_vals[1]) < 9:
+        ixis_mode = stats.mode(ixis)[0][0]
+    else:
+        ixis_mode = stats.mode(ixis, keepdims=True).mode[0]
 
     # Select sync vectors
     if start_offset is not None:
