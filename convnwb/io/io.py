@@ -372,7 +372,7 @@ def load_jsons_to_df(files, folder=None):
 ## HDF5 FILE SUPPORT, INCLUDING CONTEXT MANAGERS
 
 @check_dependency(h5py, 'h5py')
-def access_h5file(file_name, folder=None, ext='.h5', mode='r', **kwargs):
+def access_h5file(file_name, folder=None, mode='r', ext='.h5', **kwargs):
     """Access a HDF5 file.
 
     Parameters
@@ -381,10 +381,10 @@ def access_h5file(file_name, folder=None, ext='.h5', mode='r', **kwargs):
         File name of the h5file to open.
     folder : str or Path, optional
         Folder to open the file from.
-    ext : str, optional default: '.h5'
-        The extension to check and use for the file.
     mode : {'r', 'r+', 'w', 'w-', 'x', 'a'}
         Mode to access file. See h5py.File for details.
+    ext : str, optional default: '.h5'
+        The extension to check and use for the file.
     **kwargs
         Additional keyword arguments to pass into h5py.File.
 
@@ -429,12 +429,37 @@ def open_h5file(file_name, folder=None, mode='r', ext='.h5', **kwargs):
     This function is a wrapper for `h5py.File`, creating a context manager.
     """
 
-    h5file = access_h5file(file_name, folder, ext, **kwargs)
+    h5file = access_h5file(file_name, folder, mode, ext, **kwargs)
 
     try:
         yield h5file
     finally:
         h5file.close()
+
+
+@check_dependency(h5py, 'h5py')
+def save_to_h5file(data, file_name, folder=None, ext='.h5', **kwargs):
+    """Save data to a HDF5 file.
+
+    Parameters
+    ----------
+    data : dict
+        Dictionary of data to save to the HDF5 file.
+        Each key will be used as the HDF5 dataset label.
+        Each set of values will be saved as the HDF5 dataset data.
+    file_name : str
+        File name of the h5file to save to.
+    folder : str or Path, optional
+        Folder to save the file to.
+    ext : str, optional default: '.h5'
+        The extension to check and use for the file.
+    **kwargs
+        Additional keyword arguments to pass into h5py.File.
+    """
+
+    with open_h5file(file_name, folder, mode='w', ext=ext, **kwargs) as h5file:
+        for label, values in data.items():
+            h5file.create_dataset(label, data=values)
 
 
 @check_dependency(h5py, 'h5py')
@@ -459,18 +484,12 @@ def load_from_h5file(fields, file_name, folder=None, ext='.h5', **kwargs):
     data : dict
         Loaded data field from the file.
         Each key is the field label, each set of values the loaded data.
-
-    Notes
-    -----
-    This function uses `open_h5file` which itself wraps `h5py.File`.
-    This function is useful for extracting a single data field.
-    Files with multiple fields should be opened and accessed with `open_h5file`.
     """
 
     fields = [fields] if isinstance(fields, str) else fields
 
     outputs = {}
-    with open_h5file(file_name, folder, ext=ext, **kwargs) as h5file:
+    with open_h5file(file_name, folder, mode='r', ext=ext, **kwargs) as h5file:
         for field in fields:
             outputs[field] = h5file[field][:]
 

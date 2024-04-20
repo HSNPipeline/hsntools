@@ -2,6 +2,7 @@
 
 import os
 
+import numpy as np
 import pandas as pd
 
 from convnwb.tests.tobjects import TestTask
@@ -132,6 +133,18 @@ def test_open_h5file():
     f_name = 'test_hdf5'
     with open_h5file(f_name, TEST_FILE_PATH) as h5file:
         assert h5file
+
+def test_save_to_h5file():
+
+    tdata = {
+        'data1' : np.array([1, 2, 3, 4]),
+        'data2' : np.array([1.5, 2.5, 3.5, 4.5]),
+    }
+
+    test_fname = 'test_hdf52'
+
+    save_to_h5file(tdata, test_fname, TEST_FILE_PATH)
+    assert os.path.exists(os.path.join(TEST_FILE_PATH, test_fname + '.h5'))
 
 def test_load_from_h5file():
 
