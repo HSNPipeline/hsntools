@@ -41,4 +41,5 @@ def th5file():
     """Save out a test HDF5 file."""
 
     with h5py.File(TEST_PATHS['file'] / "test_hdf5.h5", "w") as h5file:
-        dset = h5file.create_dataset("dataset", (100,), dtype='i')
+        dset1 = h5file.create_dataset("data", (50,), dtype='i')
+        dset2 = h5file.create_dataset("data2", (50,), dtype='f')

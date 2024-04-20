@@ -372,8 +372,8 @@ def load_jsons_to_df(files, folder=None):
 ## HDF5 FILE SUPPORT, INCLUDING CONTEXT MANAGERS
 
 @check_dependency(h5py, 'h5py')
-def read_h5file(file_name, folder=None, ext='.h5', **kwargs):
-    """Read a hdf5 file.
+def access_h5file(file_name, folder=None, ext='.h5', mode='r', **kwargs):
+    """Access a HDF5 file.
 
     Parameters
     ----------
@@ -383,6 +383,8 @@ def read_h5file(file_name, folder=None, ext='.h5', **kwargs):
         Folder to open the file from.
     ext : str, optional default: '.h5'
         The extension to check and use for the file.
+    mode : {'r', 'r+', 'w', 'w-', 'x', 'a'}
+        Mode to access file. See h5py.File for details.
     **kwargs
         Additional keyword arguments to pass into h5py.File.
 
@@ -396,15 +398,15 @@ def read_h5file(file_name, folder=None, ext='.h5', **kwargs):
     This function is a wrapper for `h5py.File`.
     """
 
-    h5file = h5py.File(check_ext(check_folder(file_name, folder), ext), 'r', **kwargs)
+    h5file = h5py.File(check_ext(check_folder(file_name, folder), ext), mode, **kwargs)
 
     return h5file
 
 
 @contextmanager
 @check_dependency(h5py, 'h5py')
-def open_h5file(file_name, folder=None, ext='.h5', **kwargs):
-    """Context manager to open a hdf5 file.
+def open_h5file(file_name, folder=None, mode='r', ext='.h5', **kwargs):
+    """Context manager to open a HDF5 file.
 
     Parameters
     ----------
@@ -427,7 +429,7 @@ def open_h5file(file_name, folder=None, ext='.h5', **kwargs):
     This function is a wrapper for `h5py.File`, creating a context manager.
     """
 
-    h5file = read_h5file(file_name, folder, ext, **kwargs)
+    h5file = access_h5file(file_name, folder, ext, **kwargs)
 
     try:
         yield h5file
@@ -436,13 +438,13 @@ def open_h5file(file_name, folder=None, ext='.h5', **kwargs):
 
 
 @check_dependency(h5py, 'h5py')
-def load_from_h5file(field, file_name, folder=None, ext='.h5', **kwargs):
-    """Load a specified field from a HDF5 file.
+def load_from_h5file(fields, file_name, folder=None, ext='.h5', **kwargs):
+    """Load one or more specified field(s) from a HDF5 file.
 
     Parameters
     ----------
-    field : str
-        Name of the field to load from the HDF5 file.
+    field : str or list of str
+        Name(s) of the field to load from the HDF5 file.
     file_name : str
         File name of the h5file to open.
     folder : str or Path, optional
@@ -454,8 +456,9 @@ def load_from_h5file(field, file_name, folder=None, ext='.h5', **kwargs):
 
     Returns
     -------
-    data
+    data : dict
         Loaded data field from the file.
+        Each key is the field label, each set of values the loaded data.
 
     Notes
     -----
@@ -464,7 +467,11 @@ def load_from_h5file(field, file_name, folder=None, ext='.h5', **kwargs):
     Files with multiple fields should be opened and accessed with `open_h5file`.
     """
 
-    with open_h5file(file_name, folder, ext=ext, **kwargs) as h5file:
-        output = h5file[field][:]
+    fields = [fields] if isinstance(fields, str) else fields
 
-    return output
+    outputs = {}
+    with open_h5file(file_name, folder, ext=ext, **kwargs) as h5file:
+        for field in fields:
+            outputs[field] = h5file[field][:]
+
+    return outputs
