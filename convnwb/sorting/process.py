@@ -5,7 +5,7 @@ import numpy as np
 ###################################################################################################
 ###################################################################################################
 
-def process_groups(groups):
+def get_sorting_kept_labels(groups):
     """Process the combinato groups info - selecting only valid class / group information.
 
     Parameters
@@ -58,7 +58,7 @@ def get_group_labels(class_labels, groups):
     return group_labels
 
 
-def collect_all(spike_data, sort_data):
+def collect_all_sorting(spike_data, sort_data):
     """Collect together all the organized spike sorting information for a channel of data.
 
     Parameters
@@ -91,7 +91,7 @@ def collect_all(spike_data, sort_data):
     """
 
     # Get the set of valid class & group labels, and make a mask
-    valid_classes, valid_groups = process_groups(sort_data['groups'])
+    valid_classes, valid_groups = get_sorting_kept_labels(sort_data['groups'])
     class_mask = np.isin(sort_data['classes'], valid_classes)
 
     # Create a vector reflecting group assignment of each spike
