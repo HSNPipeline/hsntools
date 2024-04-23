@@ -258,7 +258,7 @@ def missing_files(file_list, compare):
 
 
 def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, drop_extensions=False):
-    """Get a list of files from a directory.
+    """Get a list of files from a specified folder.
 
     Parameters
     ----------

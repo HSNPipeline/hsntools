@@ -8,14 +8,14 @@ from convnwb.io import open_h5file, save_to_h5file, load_from_h5file
 ###################################################################################################
 ###################################################################################################
 
-def load_spike_data_file(channel, directory, polarity):
+def load_spike_data_file(channel, folder, polarity):
     """Load a spike detection output file from Combinato - files with the form `data_chan_XX.h5`.
 
     Parameters
     ----------
     channel : int or str
         The channel number / label of the file to load.
-    directory : str or Path
+    folder : str or Path
         The location of the path to load from.
     polarity : {'neg', 'pos'}
         Which polarity of detected spikes to load.
@@ -55,7 +55,7 @@ def load_spike_data_file(channel, directory, polarity):
     """
 
     outputs = {}
-    with open_h5file('data_chan_' + str(channel), directory, ext='.h5') as h5file:
+    with open_h5file('data_chan_' + str(channel), folder, ext='.h5') as h5file:
         outputs['channel'] = channel
         outputs['polarity'] = polarity
         outputs['times'] = h5file[polarity]['times'][:]
@@ -65,14 +65,14 @@ def load_spike_data_file(channel, directory, polarity):
     return outputs
 
 
-def load_sorting_data_file(channel, directory, polarity, user):
+def load_sorting_data_file(channel, folder, polarity, user):
     """Load a combinato sorting output file - files with the file name `sort_cat.h5`.
 
     Parameters
     ----------
     channel : int or str
         The channel number / label of the file to load.
-    directory : str
+    folder : str
         Directory to load `sort_cat` file from.
     polarity : {'neg', 'pos'}
         Which polarity of sorting results to load.
@@ -103,7 +103,7 @@ def load_sorting_data_file(channel, directory, polarity, user):
         'groups', 'groups_orig', 'index', 'matches', 'types', 'types_orig'
     """
 
-    folder = Path(directory) / 'chan_{}'.format(str(channel)) / 'sort_{}_{}'.format(polarity, user)
+    folder = Path(folder) / 'chan_{}'.format(str(channel)) / 'sort_{}_{}'.format(polarity, user)
 
     outputs = {}
     with open_h5file('sort_cat', folder, ext='.h5') as h5file:
@@ -116,29 +116,29 @@ def load_sorting_data_file(channel, directory, polarity, user):
     return outputs
 
 
-def save_units(units, directory):
+def save_units(units, folder):
     """Save out units information.
 
     Parameters
     ----------
     units : list of dict
         List of dictionaries containing information for each unit.
-    directory : str or Path
-        Directory to save files to.
+    folder : str or Path
+        Location to save files out to.
     """
 
     for unit in units:
-        save_to_h5file(unit, 'times_ch{}_u{}'.format(unit['channel'], unit['ind']), directory)
+        save_to_h5file(unit, 'times_ch{}_u{}'.format(unit['channel'], unit['ind']), folder)
 
 
-def load_units(directory):
-    """Load a set of units files from a directory.
+def load_units(folder):
+    """Load a set of units files from a folder.
 
     Parameters
     ----------
-    directory : str or Path
-        Directory to load files from.
-        Will load all files in this directory with 'times' in the name.
+    folder : str or Path
+        Location to load files from.
+        Will load all files in this folder with 'times' in the name.
 
     Returns
     -------
@@ -149,8 +149,8 @@ def load_units(directory):
     fields = ['ind', 'channel', 'polarity', 'times', 'waveforms', 'classes']
 
     units = []
-    unit_files = get_files(directory, select='times')
+    unit_files = get_files(folder, select='times')
     for unit_file in unit_files:
-        units.append(load_from_h5file(fields, unit_file, directory))
+        units.append(load_from_h5file(fields, unit_file, folder))
 
     return units
