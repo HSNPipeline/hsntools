@@ -6,13 +6,13 @@ import numpy as np
 ###################################################################################################
 
 def get_sorting_kept_labels(groups):
-    """Process the combinato groups info - selecting only valid class / group information.
+    """Get the valid clas / group information from the combinato organized groups info array.
 
     Parameters
     ----------
     group : 2d array
         Combinato organized array of class and group information.
-        1st col: class index / label; 2nd col: group assignment.
+        1st column: class index / label; 2nd column: group assignment.
 
     Returns
     -------
@@ -20,6 +20,15 @@ def get_sorting_kept_labels(groups):
         An array of the class assignments that reflect valid (to-be-kept) spikes.
     valid_groups : 1d array
         An array of the group assignments that reflect valid (to-be-kept) spikes.
+
+    Notes
+    -----
+    In Combinato, there are two special cases of groups we want to avoid:
+    - '0': contains unassigned events (failed to be put in a class during clustering)
+    - '-1': classes that are assigned to the artifacts group
+
+    To get information about class labels that contain valid spikes (that we want to
+    keep / extract), this function excludes 0 and -1 group labels.
     """
 
     # Separate columns: class indices and group assignments
@@ -112,7 +121,7 @@ def collect_all_sorting(spike_data, sort_data):
 
 
 def extract_clusters(data):
-    """Extract individual clusters from data reflecting all spikes from a channel.
+    """Extract individual clusters from a channel of data.
 
     Parameters
     ----------

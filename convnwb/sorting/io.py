@@ -25,27 +25,30 @@ def load_data_chan(channel, directory, polarity='neg'):
         Extracted outputs from the data file.
             times: time values for each spike.
             waveforms: individual waveforms for all spikes, shape: [n_spikes, 64].
-            artifacts: indicates if spike events are rejected artifact events (non-zero values)
+            artifacts: indicates if spike events are rejected artifact events (non-zero values).
 
     Notes
     -----
-    This file is an output of the combinato spike detection process, including all detected
-    spike events for a particular channel of data (pre-clustering).
+    This file is an output of the combinato spike detection process. This file includes all
+    detected spike events for a particular channel of data (pre-clustering) from the
+    combinato threshold detection process.
 
-    Has the fields 'neg', 'pos', 'thr', in which:
-    - 'neg' / 'pos': negative and positive polarity, with subfield:
+    The file has the fields 'neg', 'pos', 'thr', in which:
+    - 'neg' / 'pos': reflect negative or positive polarity, each with subfields:
         - 'spikes': extracted waveforms
         - 'times': spike times (time values for the extracted waveforms)
-        - 'artifacts': indicator for artifact events discarded before sorting
+        - 'artifacts': indicator for artifact events that are discarded before clustering
     - 'thr': information about the detection thresholds
 
-    For descriptions of what each artifact means, see here:
+    In the 'artifacts' field, each 0 reflects a non-artifact (these spikes go into clustering).
+    Each non-zero value reflects an artifact, with each number reflecting the artifact category.
+    For descriptions of what each artifact label means, see here:
     https://github.com/jniediek/combinato/blob/main/combinato/artifacts/mask_artifacts.py#L26
 
-    This file contains all the putative spike events that are detected by combinato.
-    Note that because this file includes event that are not sorted due to be being listed
-    as artifacts, there are more spikes here than in the cluster outputs.
-    The number of clustered spikes (with info in `sort_cat`) is # times - # artifacts.
+    For any event listed as an artifact, these events do not enter the clustering process.
+    Because of this, the total number of events in this file is greater than the number
+    of events that included in subsequent clustering files. The number of clustered spikes
+    (with corresponding information in `sort_cat` files) is # spike_times - # artifacts.
     """
 
     outputs = {}
@@ -58,7 +61,7 @@ def load_data_chan(channel, directory, polarity='neg'):
 
 
 def load_sort_cat(directory):
-    """Load a combinato sorting output file.
+    """Load a combinato sorting output file - files with the file name `sort_cat.h5`.
 
     Parameters
     ----------
@@ -68,16 +71,17 @@ def load_sort_cat(directory):
     Returns
     -------
     outputs : dict
-        Extracted outputs from the data file.
-            groups: class & group assignments, shape: [n_groups, 2].
+        Extracted outputs from the data file, including the fields:
+            'groups': class & group assignments, shape: [n_groups, 2].
                 1st col: class index / label; 2nd col: group assignment.
-            index: indices corresponding to the spike times.
-            classes: classes corresponding to the spike times.
+            'index': indices corresponding to the spike times.
+            'classes': classes corresponding to the spike times.
 
     Notes
     -----
     The `index` and `classes` fields are shorter than the number of spike times (& waveforms).
     This is due to spikes that are marked as artifacts prior to the clustering process.
+    The 'index' field maps the index of each spike in the data files to it's label in this file.
 
     Not all keys are loaded from the `sort_cat` file in this function.
 
