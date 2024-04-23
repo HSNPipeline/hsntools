@@ -75,7 +75,7 @@ def load_sorting_data_file(channel, folder, polarity, user):
     ----------
     channel : int or str
         The channel number / label of the file to load.
-    folder : str
+    folder : str or Path
         Directory to load `sort_cat` file from.
     polarity : {'neg', 'pos'}
         Which polarity of sorting results to load.

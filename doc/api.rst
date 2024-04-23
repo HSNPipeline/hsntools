@@ -188,9 +188,17 @@ Processing
 .. autosummary::
    :toctree: generated/
 
-   get_sorting_kept_labels
-   get_group_labels
    collect_all_sorting
+
+Utilities
+~~~~~~~~~
+
+.. currentmodule:: convnwb.sorting.utils
+.. autosummary::
+   :toctree: generated/
+
+   get_group_labels
+   get_sorting_kept_labels
    extract_clusters
 
 Utils
