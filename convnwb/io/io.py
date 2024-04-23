@@ -491,6 +491,9 @@ def load_from_h5file(fields, file_name, folder=None, ext='.h5', **kwargs):
     outputs = {}
     with open_h5file(file_name, folder, mode='r', ext=ext, **kwargs) as h5file:
         for field in fields:
-            outputs[field] = h5file[field][:]
+            if h5file[field].size == 1:
+                outputs[field] = h5file[field][()]
+            else:
+                outputs[field] = h5file[field][:]
 
     return outputs
