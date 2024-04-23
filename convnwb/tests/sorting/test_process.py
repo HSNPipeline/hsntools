@@ -37,12 +37,16 @@ def test_collect_all_sorting():
 
     n_spikes = 12
     spike_data = {
+        'channel' : 0,
+        'polarity' : 'neg',
         'times' : np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
         'waveforms' : np.ones([n_spikes, 64]),
     }
 
     # Based on sort data index, set 2 spikes as bad (3 & 9), so 10 good spikes
     sort_data = {
+        'channel' : 0,
+        'polarity' : 'neg',
         'index' : np.array([0, 1, 2, 4, 5, 6, 7, 8, 10, 11]),
     }
 
@@ -50,8 +54,8 @@ def test_collect_all_sorting():
     sort_data['classes'] = np.array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1])
     sort_data['groups'] =  np.array([[0, 0], [1, -1]])
     out = collect_all_sorting(spike_data, sort_data)
-    for values in out.values():
-        assert values.size == 0
+    for label in ['classes', 'times']:
+        assert out[label].size == 0
 
     # Test with 1 valid cluster
     sort_data['classes'] = np.array([0, 1, 2, 0, 1, 2, 0, 1, 2, 0])
@@ -73,6 +77,8 @@ def test_extract_clusters():
 
     n_spikes = 12
     sdata = {
+        'channel' : 0,
+        'polarity' : 'neg',
         'times' : np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
         'waveforms' : np.ones([n_spikes, 64]),
         'clusters' : np.array([0, 1, 0, 1, 0, 2, 0, 1, 0, 2, 0, 1]),

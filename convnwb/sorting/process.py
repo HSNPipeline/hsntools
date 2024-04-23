@@ -99,6 +99,9 @@ def collect_all_sorting(spike_data, sort_data):
     - spike events sorted into a group, but who's group was listed as an artifact
     """
 
+    assert spike_data['channel'] == sort_data['channel'], "Data file channels do not match."
+    assert spike_data['polarity'] == sort_data['polarity'], "Data file polarity does not match."
+
     # Get the set of valid class & group labels, and make a mask
     valid_classes, valid_groups = get_sorting_kept_labels(sort_data['groups'])
     class_mask = np.isin(sort_data['classes'], valid_classes)
@@ -107,6 +110,10 @@ def collect_all_sorting(spike_data, sort_data):
     group_labels = get_group_labels(sort_data['classes'], sort_data['groups'])
 
     outputs = {
+
+        # collect metadata into output
+        'channel' : spike_data['channel'],
+        'polarity' : spike_data['polarity'],
 
         # spike data collected as the non-artifact spikes, sub-selected for valid classes
         'times' : spike_data['times'][sort_data['index']][class_mask],
@@ -143,6 +150,8 @@ def extract_clusters(data):
 
         cluster_info = {}
         cluster_info['ind'] = cluster_ind
+        cluster_info['channel'] = data['channel']
+        cluster_info['polarity'] = data['polarity']
         cluster_info['times'] = data['times'][mask]
         cluster_info['waveforms'] = data['waveforms'][mask, :]
         cluster_info['classes'] = data['classes'][mask]

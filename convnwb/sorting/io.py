@@ -22,7 +22,9 @@ def load_spike_data_file(channel, directory, polarity):
     Returns
     -------
     outputs : dict
-        Extracted outputs from the data file.
+        Extracted outputs from the data file, including:
+            channel: stores the channel number / label.
+            polarity: stores the polarity spikes were sorted.
             times: time values for each spike.
             waveforms: individual waveforms for all spikes, shape: [n_spikes, 64].
             artifacts: indicates if spike events are rejected artifact events (non-zero values).
@@ -53,6 +55,8 @@ def load_spike_data_file(channel, directory, polarity):
 
     outputs = {}
     with open_h5file('data_chan_' + str(channel), directory, ext='.h5') as h5file:
+        outputs['channel'] = channel
+        outputs['polarity'] = polarity
         outputs['times'] = h5file[polarity]['times'][:]
         outputs['waveforms'] = h5file[polarity]['spikes'][:]
         outputs['artifacts'] = h5file[polarity]['artifacts'][:]
@@ -78,10 +82,12 @@ def load_sorting_data_file(channel, directory, polarity, user):
     -------
     outputs : dict
         Extracted outputs from the data file, including the fields:
-            'groups': class & group assignments, shape: [n_groups, 2].
+            channel: stores the channel number / label.
+            polarity: stores the polarity spikes were sorted.
+            groups: class & group assignments, shape: [n_groups, 2].
                 1st col: class index / label; 2nd col: group assignment.
-            'index': indices corresponding to the spike times.
-            'classes': classes corresponding to the spike times.
+            index: indices corresponding to the spike times.
+            classes: classes corresponding to the spike times.
 
     Notes
     -----
@@ -100,6 +106,8 @@ def load_sorting_data_file(channel, directory, polarity, user):
 
     outputs = {}
     with open_h5file('sort_cat', folder, ext='.h5') as h5file:
+        outputs['channel'] = channel
+        outputs['polarity'] = polarity
         outputs['groups'] = h5file['groups'][:]
         outputs['index'] = h5file['index'][:]
         outputs['classes'] = h5file['classes'][:]
