@@ -2,7 +2,8 @@
 
 from pathlib import Path
 
-from convnwb.io import open_h5file
+from convnwb.io.utils import get_files
+from convnwb.io import open_h5file, save_to_h5file, load_from_h5file
 
 ###################################################################################################
 ###################################################################################################
@@ -113,3 +114,43 @@ def load_sorting_data_file(channel, directory, polarity, user):
         outputs['classes'] = h5file['classes'][:]
 
     return outputs
+
+
+def save_units(units, directory):
+    """Save out units information.
+
+    Parameters
+    ----------
+    units : list of dict
+        List of dictionaries containing information for each unit.
+    directory : str or Path
+        Directory to save files to.
+    """
+
+    for unit in units:
+        save_to_h5file(unit, 'times_ch{}_u{}'.format(unit['channel'], unit['ind']), directory)
+
+
+def load_units(directory):
+    """Load a set of units files from a directory.
+
+    Parameters
+    ----------
+    directory : str or Path
+        Directory to load files from.
+        Will load all files in this directory with 'times' in the name.
+
+    Returns
+    -------
+    units : list of dict
+        List of dictionaries containing the loaded information for each unit.
+    """
+
+    fields = ['ind', 'channel', 'polarity', 'times', 'waveforms', 'classes']
+
+    units = []
+    unit_files = get_files(directory, select='times')
+    for unit_file in unit_files:
+        units.append(load_from_h5file(fields, unit_file, directory))
+
+    return units

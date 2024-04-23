@@ -5,6 +5,8 @@ import shutil
 from datetime import datetime
 from dateutil.tz import tzlocal
 
+import numpy as np
+
 from pynwb import NWBFile
 
 import pytest
@@ -41,6 +43,22 @@ def tnwbfile():
     """Create a test NWBfile."""
 
     yield NWBFile('session_desc', 'session_id', datetime.now(tzlocal()))
+
+@pytest.fixture(scope='session')
+def tunits():
+    """Create a test units dictionary."""
+
+    n_units = 5
+
+    yield {
+        'ind' : 0,
+        'channel' : 0,
+        'polarity' : 'neg',
+        'times' : np.arange(n_units),
+        'waveforms' : np.ones([n_units, 64]),
+        'classes' : np.array([0, 1, 0, 1, 0]),
+        'clusters' : np.array([1, 2, 3, 1, 2]),
+    }
 
 @pytest.fixture(scope='session', autouse=True)
 def th5file():

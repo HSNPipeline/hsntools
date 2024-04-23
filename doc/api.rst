@@ -166,6 +166,8 @@ I/O
 
    load_spike_data_file
    load_sorting_data_file
+   save_units
+   load_units
 
 Processing
 ~~~~~~~~~~
