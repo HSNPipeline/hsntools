@@ -54,8 +54,11 @@ def load_spike_data_file(channel, folder, polarity):
     (with corresponding information in `sort_cat` files) is # spike_times - # artifacts.
     """
 
+    channel = str(channel)
+    channel = 'chan_' + channel if channel[:5] != 'chan_' else channel
+
     outputs = {}
-    with open_h5file('data_chan_' + str(channel), folder, ext='.h5') as h5file:
+    with open_h5file('data_' + channel, folder, ext='.h5') as h5file:
         outputs['channel'] = channel
         outputs['polarity'] = polarity
         outputs['times'] = h5file[polarity]['times'][:]
@@ -103,7 +106,10 @@ def load_sorting_data_file(channel, folder, polarity, user):
         'groups', 'groups_orig', 'index', 'matches', 'types', 'types_orig'
     """
 
-    folder = Path(folder) / 'chan_{}'.format(str(channel)) / 'sort_{}_{}'.format(polarity, user)
+    channel = str(channel)
+    channel = 'chan_' + channel if channel[:5] != 'chan_' else channel
+
+    folder = Path(folder) / channel / 'sort_{}_{}'.format(polarity, user)
 
     outputs = {}
     with open_h5file('sort_cat', folder, ext='.h5') as h5file:
