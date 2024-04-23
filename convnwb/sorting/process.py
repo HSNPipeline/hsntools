@@ -127,7 +127,7 @@ def extract_clusters(data):
     ----------
     data : dict
         Spike sorting information from a channel of data.
-        Should include the keys: `times`, `clusters`, `waveforms`.
+        Should include the keys: `times`, `waveforms`, `clusters`, `classes`.
 
     Returns
     -------

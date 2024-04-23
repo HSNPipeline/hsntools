@@ -35,9 +35,9 @@ def load_data_chan(channel, directory, polarity='neg'):
 
     The file has the fields 'neg', 'pos', 'thr', in which:
     - 'neg' / 'pos': reflect negative or positive polarity, each with subfields:
-        - 'spikes': extracted waveforms
-        - 'times': spike times (time values for the extracted waveforms)
-        - 'artifacts': indicator for artifact events that are discarded before clustering
+        - 'spikes': 2d array of extracted waveforms, as [n_spikes, 64 timepoints]
+        - 'times': 1d array spike times (time values for the extracted waveforms)
+        - 'artifacts': 1d array indicating artifact events that were discarded before clustering
     - 'thr': information about the detection thresholds
 
     In the 'artifacts' field, each 0 reflects a non-artifact (these spikes go into clustering).
