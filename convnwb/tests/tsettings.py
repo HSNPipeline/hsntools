@@ -15,6 +15,7 @@ TEST_FILE_PATH = BASE_TEST_OUTPUTS_PATH / 'test_files'
 TEST_PLOTS_PATH = BASE_TEST_OUTPUTS_PATH / 'test_plots'
 TEST_PROJECT_PATH = BASE_TEST_OUTPUTS_PATH / 'test_project'
 TEST_ERRORS_PATH = BASE_TEST_OUTPUTS_PATH / 'test_errors'
+TEST_SORTING_PATH = BASE_TEST_OUTPUTS_PATH / 'test_sorting'
 
 # Collect test paths together
 TEST_PATHS = {
@@ -22,4 +23,12 @@ TEST_PATHS = {
     'plots' : TEST_PLOTS_PATH,
     'project' : TEST_PROJECT_PATH,
     'errors' : TEST_ERRORS_PATH,
+    'sorting' : TEST_SORTING_PATH,
+}
+
+# Sorting file settings
+TEST_SORT = {
+    'channel' : 'test',
+    'polarity' : 'neg',
+    'user' : 'tes',
 }

@@ -10,7 +10,7 @@ from pynwb import NWBFile
 import pytest
 
 from convnwb.io import open_h5file
-from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS
+from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS, TEST_SORT
 
 ###################################################################################################
 ###################################################################################################
@@ -29,6 +29,12 @@ def check_dir():
     os.mkdir(BASE_TEST_OUTPUTS_PATH)
     for name, TEST_PATH in TEST_PATHS.items():
         os.mkdir(TEST_PATH)
+
+    # Make combinato format file structure for testing sorting files
+    chan_dir = 'chan_{}'.format(TEST_SORT['channel'])
+    sort_dir = 'sort_{}_{}'.format(TEST_SORT['polarity'], TEST_SORT['user'])
+    os.mkdir(TEST_PATHS['sorting'] / chan_dir)
+    os.mkdir(TEST_PATHS['sorting'] / chan_dir / sort_dir)
 
 @pytest.fixture(scope='session')
 def tnwbfile():
@@ -49,7 +55,7 @@ def spike_data_file():
     """Save out a test combinato spike data file."""
 
     n_spikes = 5
-    with open_h5file('data_chan_0.h5', TEST_PATHS['file'], mode='w') as h5file:
+    with open_h5file('data_chan_0.h5', TEST_PATHS['sorting'], mode='w') as h5file:
         dgroup = h5file.create_group('neg')
         dgroup.create_dataset('times', (n_spikes,), dtype='f')
         dgroup.create_dataset('spikes', (n_spikes, 64), dtype='f')
@@ -59,8 +65,12 @@ def spike_data_file():
 def sort_data_file():
     """Save out a test combinato spike sorting file."""
 
+    chan_dir = 'chan_{}'.format(TEST_SORT['channel'])
+    sort_dir = 'sort_{}_{}'.format(TEST_SORT['polarity'], TEST_SORT['user'])
+    full_path = TEST_PATHS['sorting'] / chan_dir / sort_dir
+
     n_spikes = 5
-    with open_h5file('sort_cat.h5', TEST_PATHS['file'], mode='w') as h5file:
+    with open_h5file('sort_cat.h5', full_path, mode='w') as h5file:
         h5file.create_dataset('groups', (2, 4), dtype='i')
         h5file.create_dataset('index', (n_spikes,), dtype='f')
         h5file.create_dataset('classes', (n_spikes,), dtype='i')

@@ -7,7 +7,7 @@ from convnwb.io import open_h5file
 ###################################################################################################
 ###################################################################################################
 
-def load_data_chan(channel, directory, polarity='neg'):
+def load_data_chan(channel, directory, polarity):
     """Load a spike detection output file from Combinato - files with the form `data_chan_XX.h5`.
 
     Parameters
@@ -60,13 +60,19 @@ def load_data_chan(channel, directory, polarity='neg'):
     return outputs
 
 
-def load_sort_cat(directory):
+def load_sort_cat(channel, directory, polarity, user):
     """Load a combinato sorting output file - files with the file name `sort_cat.h5`.
 
     Parameters
     ----------
+    channel : int or str
+        The channel number / label of the file to load.
     directory : str
         Directory to load `sort_cat` file from.
+    polarity : {'neg', 'pos'}
+        Which polarity of sorting results to load.
+    user : str
+        The 3 character user label to load.
 
     Returns
     -------
@@ -90,8 +96,10 @@ def load_sort_cat(directory):
         'groups', 'groups_orig', 'index', 'matches', 'types', 'types_orig'
     """
 
+    folder = Path(directory) / 'chan_{}'.format(str(channel)) / 'sort_{}_{}'.format(polarity, user)
+
     outputs = {}
-    with open_h5file('sort_cat', directory, ext='.h5') as h5file:
+    with open_h5file('sort_cat', folder, ext='.h5') as h5file:
         outputs['groups'] = h5file['groups'][:]
         outputs['index'] = h5file['index'][:]
         outputs['classes'] = h5file['classes'][:]
