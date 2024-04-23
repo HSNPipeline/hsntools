@@ -109,3 +109,8 @@ def test_get_files():
 
     out = get_files('.')
     assert isinstance(out, list)
+
+def test_get_subfolders():
+
+    out = get_subfolders('.')
+    assert isinstance(out, list)

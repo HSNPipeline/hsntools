@@ -303,3 +303,30 @@ def get_files(folder, select=None, ignore=None, drop_hidden=True, sort=True, dro
         files = drop_file_extensions(files)
 
     return files
+
+
+def get_subfolders(folder, select=None, ignore=None):
+    """Get a list of sub-folders from a given folder.
+
+    Parameters
+    ----------
+    folder : str
+        Name of the folder to get the list of sub-folders from.
+
+    Returns
+    -------
+    subfolders : list of str
+        A list of sub-folders from the folder.
+    """
+
+    subfolders = []
+    for entry in os.scandir(folder):
+        if entry.is_dir():
+            subfolders.append(entry.name)
+
+    if select:
+        subfolders = select_files(subfolders, select)
+    if ignore:
+        subfolders = ignore_files(subfolders, ignore)
+
+    return subfolders

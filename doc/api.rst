@@ -52,6 +52,18 @@ General file I/O
    save_to_h5file
    load_from_h5file
 
+Utilities
+~~~~~~~~~
+
+.. currentmodule:: convnwb.io.io
+.. autosummary::
+   :toctree: generated/
+
+   get_files
+   get_subfolders
+   make_session_name
+   make_file_list
+
 Objects
 -------
 
