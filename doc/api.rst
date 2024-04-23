@@ -45,9 +45,11 @@ General file I/O
    save_json
    load_json
    save_jsonlines
+   load_jsonlines
    load_matfile
    load_jsons_to_df
    open_h5file
+   save_to_h5file
    load_from_h5file
 
 Objects
@@ -149,6 +151,33 @@ Update
 
    offset_time
    change_time_units
+
+Sorting
+-------
+
+Spike sorting related functionality.
+
+I/O
+~~~
+
+.. currentmodule:: convnwb.sorting.io
+.. autosummary::
+   :toctree: generated/
+
+   load_spike_data_file
+   load_sorting_data_file
+
+Processing
+~~~~~~~~~~
+
+.. currentmodule:: convnwb.sorting.io
+.. autosummary::
+   :toctree: generated/
+
+   get_sorting_kept_labels
+   get_group_labels
+   collect_all_sorting
+   extract_clusters
 
 Utils
 -----
