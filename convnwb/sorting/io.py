@@ -7,7 +7,7 @@ from convnwb.io import open_h5file
 ###################################################################################################
 ###################################################################################################
 
-def load_data_chan(channel, directory, polarity):
+def load_spike_data_file(channel, directory, polarity):
     """Load a spike detection output file from Combinato - files with the form `data_chan_XX.h5`.
 
     Parameters
@@ -60,7 +60,7 @@ def load_data_chan(channel, directory, polarity):
     return outputs
 
 
-def load_sort_cat(channel, directory, polarity, user):
+def load_sorting_data_file(channel, directory, polarity, user):
     """Load a combinato sorting output file - files with the file name `sort_cat.h5`.
 
     Parameters
