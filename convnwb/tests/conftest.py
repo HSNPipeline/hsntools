@@ -5,11 +5,11 @@ import shutil
 from datetime import datetime
 from dateutil.tz import tzlocal
 
-import h5py
 from pynwb import NWBFile
 
 import pytest
 
+from convnwb.io import open_h5file
 from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS
 
 ###################################################################################################
@@ -40,6 +40,27 @@ def tnwbfile():
 def th5file():
     """Save out a test HDF5 file."""
 
-    with h5py.File(TEST_PATHS['file'] / "test_hdf5.h5", "w") as h5file:
+    with open_h5file('test_hdf5.h5', TEST_PATHS['file'], mode='w') as h5file:
         dset1 = h5file.create_dataset("data", (50,), dtype='i')
         dset2 = h5file.create_dataset("data2", (50,), dtype='f')
+
+@pytest.fixture(scope='session', autouse=True)
+def spike_data_file():
+    """Save out a test combinato spike data file."""
+
+    n_spikes = 5
+    with open_h5file('data_chan_0.h5', TEST_PATHS['file'], mode='w') as h5file:
+        dgroup = h5file.create_group('neg')
+        dgroup.create_dataset('times', (n_spikes,), dtype='f')
+        dgroup.create_dataset('spikes', (n_spikes, 64), dtype='f')
+        dgroup.create_dataset('artifacts', (n_spikes,), dtype='i')
+
+@pytest.fixture(scope='session', autouse=True)
+def sort_data_file():
+    """Save out a test combinato spike sorting file."""
+
+    n_spikes = 5
+    with open_h5file('sort_cat.h5', TEST_PATHS['file'], mode='w') as h5file:
+        h5file.create_dataset('groups', (2, 4), dtype='i')
+        h5file.create_dataset('index', (n_spikes,), dtype='f')
+        h5file.create_dataset('classes', (n_spikes,), dtype='i')
