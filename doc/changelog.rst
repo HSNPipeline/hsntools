@@ -4,7 +4,14 @@ Changelog
 This page contains the changelog for the `convnwb` module and any notes on updating between versions.
 
 This page primarily notes changes for major version updates. For notes on the specific updates
-for minor releases, see the `release page <https://github.com/spiketools/spiketools/releases>`_.
+for minor releases, see the `release page <https://github.com/HSUpipeline/convnwb/releases>`_.
+
+0.4.X
+-----
+
+The `0.4.X` series, starting with `0.4.0` tagged release is an extension of the module
+that most notably includes the addition of the `sorting` sub-module, for managing
+sorting related files and processes.
 
 0.3.X
 -----
