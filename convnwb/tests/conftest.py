@@ -37,6 +37,7 @@ def check_dir():
     sort_dir = 'sort_{}_{}'.format(TEST_SORT['polarity'], TEST_SORT['user'])
     os.mkdir(TEST_PATHS['sorting'] / chan_dir)
     os.mkdir(TEST_PATHS['sorting'] / chan_dir / sort_dir)
+    os.mkdir(TEST_PATHS['sorting'] / 'units')
 
 @pytest.fixture(scope='session')
 def tnwbfile():
@@ -65,19 +66,19 @@ def th5file():
     """Save out a test HDF5 file."""
 
     with open_h5file('test_hdf5.h5', TEST_PATHS['file'], mode='w') as h5file:
-        dset1 = h5file.create_dataset("data", (50,), dtype='i')
-        dset2 = h5file.create_dataset("data2", (50,), dtype='f')
+        dset1 = h5file.create_dataset("data", data=np.ones(10), dtype='i')
+        dset2 = h5file.create_dataset("data2", data=np.ones(10), dtype='f')
 
 @pytest.fixture(scope='session', autouse=True)
 def spike_data_file():
     """Save out a test combinato spike data file."""
 
     n_spikes = 5
-    with open_h5file('data_chan_0.h5', TEST_PATHS['sorting'], mode='w') as h5file:
+    with open_h5file('data_chan_test.h5', TEST_PATHS['sorting'], mode='w') as h5file:
         dgroup = h5file.create_group('neg')
-        dgroup.create_dataset('times', (n_spikes,), dtype='f')
-        dgroup.create_dataset('spikes', (n_spikes, 64), dtype='f')
-        dgroup.create_dataset('artifacts', (n_spikes,), dtype='i')
+        dgroup.create_dataset('times', data=np.ones(n_spikes), dtype='f')
+        dgroup.create_dataset('spikes', data=np.ones([n_spikes, 64]), dtype='f')
+        dgroup.create_dataset('artifacts', data=np.ones(n_spikes), dtype='i')
 
 @pytest.fixture(scope='session', autouse=True)
 def sort_data_file():
@@ -89,6 +90,6 @@ def sort_data_file():
 
     n_spikes = 5
     with open_h5file('sort_cat.h5', full_path, mode='w') as h5file:
-        h5file.create_dataset('groups', (2, 4), dtype='i')
-        h5file.create_dataset('index', (n_spikes,), dtype='f')
-        h5file.create_dataset('classes', (n_spikes,), dtype='i')
+        h5file.create_dataset('groups', data=np.array([[0, 0], [1, -1], [2, 1]]), dtype='i')
+        h5file.create_dataset('index', data=np.array([0, 1, 2, 3, 4]), dtype='i')
+        h5file.create_dataset('classes', data=np.array([0, 1, 2, 0, 1]), dtype='i')
