@@ -12,7 +12,7 @@ from convnwb.sorting.io import *
 
 def test_load_spike_data_file():
 
-    sdata = load_spike_data_file(0, TEST_SORTING_PATH, 'neg')
+    sdata = load_spike_data_file('test', TEST_SORTING_PATH, 'neg')
     for label in ['channel', 'polarity', 'times', 'waveforms', 'artifacts']:
         assert label in sdata
 

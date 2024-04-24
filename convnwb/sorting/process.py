@@ -66,3 +66,32 @@ def collect_all_sorting(spike_data, sort_data):
     }
 
     return outputs
+
+
+def process_combinato_data(channel, input_folder, polarity, user, units_folder):
+    """Helper function to run the process of going from combinato -> extracted units files.
+
+    Parameters
+    ----------
+    channel : int or str
+        The channel number / label of the file to load.
+    input_folder : str or Path
+        The folder location to load the spike data from.
+    polarity : {'neg', 'pos'}
+        Which polarity of detected spikes to load.
+    user : str
+        The 3 character user label to load.
+    output_folder : str or Path
+        The folder destination to save the output units files to.
+    """
+
+    # Load spike & sorting data
+    spike_data = load_spike_data_file(channel, input_folder, polarity)
+    sort_data = load_sorting_data_file(channel, input_folder, polarity, user)
+
+    # Organize and collect extracted data together, and extract unit clusters
+    clusters = collect_all_sorting(spike_data, sort_data)
+    units = extract_clusters(clusters)
+
+    # Save out extracted unit data
+    save_units(units, units_folder)

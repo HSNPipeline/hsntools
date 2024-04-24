@@ -2,6 +2,8 @@
 
 import numpy as np
 
+from convnwb.tests.tsettings import TEST_SORTING_PATH, TEST_SORT
+
 from convnwb.sorting.process import *
 
 ###################################################################################################
@@ -46,3 +48,9 @@ def test_collect_all_sorting():
     assert set(out['clusters']) == {1, 2}
     assert np.array_equal(out['classes'], np.array([2, 3, 2, 3, 2, 3]))
     assert np.array_equal(out['times'], np.array([2, 4, 7, 8, 10, 11]))
+
+def test_process_combinato_data():
+
+    process_combinato_data(TEST_SORT['channel'], TEST_SORTING_PATH,
+                           TEST_SORT['polarity'], TEST_SORT['user'],
+                           TEST_SORTING_PATH / 'units')
