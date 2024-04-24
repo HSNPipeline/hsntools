@@ -189,6 +189,7 @@ Processing
    :toctree: generated/
 
    collect_all_sorting
+   process_combinato_data
 
 Utilities
 ~~~~~~~~~
