@@ -73,8 +73,11 @@ def th5file():
 def spike_data_file():
     """Save out a test combinato spike data file."""
 
+    chan_dir = 'chan_{}'.format(TEST_SORT['channel'])
+    full_path = TEST_PATHS['sorting'] / chan_dir
+
     n_spikes = 5
-    with open_h5file('data_chan_test.h5', TEST_PATHS['sorting'], mode='w') as h5file:
+    with open_h5file('data_chan_test.h5', full_path, mode='w') as h5file:
         dgroup = h5file.create_group('neg')
         dgroup.create_dataset('times', data=np.ones(n_spikes), dtype='f')
         dgroup.create_dataset('spikes', data=np.ones([n_spikes, 64]), dtype='f')

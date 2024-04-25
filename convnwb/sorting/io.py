@@ -58,7 +58,7 @@ def load_spike_data_file(channel, folder, polarity):
     channel = 'chan_' + channel if channel[:5] != 'chan_' else channel
 
     outputs = {}
-    with open_h5file('data_' + channel, folder, ext='.h5') as h5file:
+    with open_h5file('data_' + channel, Path(folder) / channel, ext='.h5') as h5file:
         outputs['channel'] = channel
         outputs['polarity'] = polarity
         outputs['times'] = h5file[polarity]['times'][:]
