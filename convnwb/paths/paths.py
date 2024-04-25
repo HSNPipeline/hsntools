@@ -3,7 +3,7 @@
 from copy import deepcopy
 from pathlib import Path
 
-from convnwb.io.utils import get_files, make_session_name
+from convnwb.io.utils import get_files, get_subfolders, make_session_name
 
 from convnwb.paths.defaults import PROJECT_FOLDERS, SUBJECT_FOLDERS, SESSION_FOLDERS
 
@@ -101,6 +101,12 @@ class Paths():
 
 
     def get_files(self, folder, **kwargs):
-        """Get a list of files available in a specified sub-folder."""
+        """Get a list of files available in a specified folder."""
 
         return get_files(getattr(self, folder), **kwargs)
+
+
+    def get_subfolders(self, folder, **kwargs):
+        """Get a list of sub-folder available in a specified folder."""
+
+        return get_subfolders(getattr(self, folder), **kwargs)

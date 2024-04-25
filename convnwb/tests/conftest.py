@@ -5,12 +5,14 @@ import shutil
 from datetime import datetime
 from dateutil.tz import tzlocal
 
-import h5py
+import numpy as np
+
 from pynwb import NWBFile
 
 import pytest
 
-from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS
+from convnwb.io import open_h5file
+from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS, TEST_SORT
 
 ###################################################################################################
 ###################################################################################################
@@ -30,16 +32,67 @@ def check_dir():
     for name, TEST_PATH in TEST_PATHS.items():
         os.mkdir(TEST_PATH)
 
+    # Make combinato format file structure for testing sorting files
+    chan_dir = 'chan_{}'.format(TEST_SORT['channel'])
+    sort_dir = 'sort_{}_{}'.format(TEST_SORT['polarity'], TEST_SORT['user'])
+    os.mkdir(TEST_PATHS['sorting'] / chan_dir)
+    os.mkdir(TEST_PATHS['sorting'] / chan_dir / sort_dir)
+    os.mkdir(TEST_PATHS['sorting'] / 'units')
+
 @pytest.fixture(scope='session')
 def tnwbfile():
     """Create a test NWBfile."""
 
     yield NWBFile('session_desc', 'session_id', datetime.now(tzlocal()))
 
+@pytest.fixture(scope='session')
+def tunits():
+    """Create a test units dictionary."""
+
+    n_units = 5
+
+    yield {
+        'ind' : 0,
+        'channel' : 0,
+        'polarity' : 'neg',
+        'times' : np.arange(n_units),
+        'waveforms' : np.ones([n_units, 64]),
+        'classes' : np.array([0, 1, 0, 1, 0]),
+        'clusters' : np.array([1, 2, 3, 1, 2]),
+    }
+
 @pytest.fixture(scope='session', autouse=True)
 def th5file():
     """Save out a test HDF5 file."""
 
-    with h5py.File(TEST_PATHS['file'] / "test_hdf5.h5", "w") as h5file:
-        dset1 = h5file.create_dataset("data", (50,), dtype='i')
-        dset2 = h5file.create_dataset("data2", (50,), dtype='f')
+    with open_h5file('test_hdf5.h5', TEST_PATHS['file'], mode='w') as h5file:
+        dset1 = h5file.create_dataset("data", data=np.ones(10), dtype='i')
+        dset2 = h5file.create_dataset("data2", data=np.ones(10), dtype='f')
+
+@pytest.fixture(scope='session', autouse=True)
+def spike_data_file():
+    """Save out a test combinato spike data file."""
+
+    chan_dir = 'chan_{}'.format(TEST_SORT['channel'])
+    full_path = TEST_PATHS['sorting'] / chan_dir
+
+    n_spikes = 5
+    with open_h5file('data_chan_test.h5', full_path, mode='w') as h5file:
+        dgroup = h5file.create_group('neg')
+        dgroup.create_dataset('times', data=np.ones(n_spikes), dtype='f')
+        dgroup.create_dataset('spikes', data=np.ones([n_spikes, 64]), dtype='f')
+        dgroup.create_dataset('artifacts', data=np.ones(n_spikes), dtype='i')
+
+@pytest.fixture(scope='session', autouse=True)
+def sort_data_file():
+    """Save out a test combinato spike sorting file."""
+
+    chan_dir = 'chan_{}'.format(TEST_SORT['channel'])
+    sort_dir = 'sort_{}_{}'.format(TEST_SORT['polarity'], TEST_SORT['user'])
+    full_path = TEST_PATHS['sorting'] / chan_dir / sort_dir
+
+    n_spikes = 5
+    with open_h5file('sort_cat.h5', full_path, mode='w') as h5file:
+        h5file.create_dataset('groups', data=np.array([[0, 0], [1, -1], [2, 1]]), dtype='i')
+        h5file.create_dataset('index', data=np.array([0, 1, 2, 3, 4]), dtype='i')
+        h5file.create_dataset('classes', data=np.array([0, 1, 2, 0, 1]), dtype='i')

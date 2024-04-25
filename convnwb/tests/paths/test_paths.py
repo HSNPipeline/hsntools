@@ -37,7 +37,7 @@ def test_paths():
     for subdir in PROJECT_FOLDERS:
        assert getattr(paths, subdir)
 
-def test_paths_get_files():
+def test_paths_get_files_n_folders():
 
     subject = 'test_subject'
     task = 'test_task'
@@ -53,9 +53,15 @@ def test_paths_get_files():
         for subfolder in subfolders:
             files = paths.get_files(subdir)
             assert isinstance(files, list)
+            subfolders = paths.get_subfolders(subdir)
+            assert isinstance(subfolders, list)
     for subdir in SUBJECT_FOLDERS:
         files = paths.get_files(subdir)
         assert isinstance(files, list)
+        subfolders = paths.get_subfolders(subdir)
+        assert isinstance(subfolders, list)
     for subdir in PROJECT_FOLDERS:
         files = paths.get_files(subdir)
         assert isinstance(files, list)
+        subfolders = paths.get_subfolders(subdir)
+        assert isinstance(subfolders, list)
