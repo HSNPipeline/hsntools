@@ -55,10 +55,11 @@ def load_spike_data_file(channel, folder, polarity):
     """
 
     channel = str(channel)
-    channel = 'chan_' + channel if channel[:5] != 'chan_' else channel
+    channel = channel[5:] if channel[:5] == 'chan_' else channel
+    channel_folder = 'chan_' + channel
 
     outputs = {}
-    with open_h5file('data_' + channel, Path(folder) / channel, ext='.h5') as h5file:
+    with open_h5file('data_' + channel_folder, Path(folder) / channel_folder, ext='.h5') as h5file:
         outputs['channel'] = channel
         outputs['polarity'] = polarity
         outputs['times'] = h5file[polarity]['times'][:]
@@ -107,9 +108,10 @@ def load_sorting_data_file(channel, folder, polarity, user):
     """
 
     channel = str(channel)
-    channel = 'chan_' + channel if channel[:5] != 'chan_' else channel
+    channel = channel[5:] if channel[:5] == 'chan_' else channel
+    channel_folder = 'chan_' + channel
 
-    folder = Path(folder) / channel / 'sort_{}_{}'.format(polarity, user)
+    folder = Path(folder) / channel_folder / 'sort_{}_{}'.format(polarity, user)
 
     outputs = {}
     with open_h5file('sort_cat', folder, ext='.h5') as h5file:
