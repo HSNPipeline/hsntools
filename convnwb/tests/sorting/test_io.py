@@ -30,8 +30,8 @@ def test_save_units(tunits):
 
     units = [tunits, tunits2]
     save_units(units, TEST_FILE_PATH)
-    assert os.path.exists(TEST_FILE_PATH / 'times_ch0_u0.h5')
-    assert os.path.exists(TEST_FILE_PATH / 'times_ch0_u1.h5')
+    assert os.path.exists(TEST_FILE_PATH / 'times_chan_0_u0.h5')
+    assert os.path.exists(TEST_FILE_PATH / 'times_chan_0_u1.h5')
 
 def test_load_units():
 

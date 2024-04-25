@@ -136,7 +136,7 @@ def save_units(units, folder):
     """
 
     for unit in units:
-        save_to_h5file(unit, 'times_ch{}_u{}'.format(unit['channel'], unit['ind']), folder)
+        save_to_h5file(unit, 'times_chan_{}_u{}'.format(unit['channel'], unit['ind']), folder)
 
 
 def load_units(folder):
