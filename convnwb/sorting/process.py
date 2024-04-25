@@ -68,7 +68,7 @@ def collect_all_sorting(spike_data, sort_data):
     return outputs
 
 
-def process_combinato_data(channel, input_folder, polarity, user, units_folder):
+def process_combinato_data(channel, input_folder, polarity, user, units_folder, verbose=True):
     """Helper function to run the process of going from combinato -> extracted units files.
 
     Parameters
@@ -83,7 +83,12 @@ def process_combinato_data(channel, input_folder, polarity, user, units_folder):
         The 3 character user label to load.
     output_folder : str or Path
         The folder destination to save the output units files to.
+    verbose : bool, optional, default: True
+        Whether to print out updates about the extraction.
     """
+
+    if verbose:
+        print('Extracting data for channel: \t{}'.format(channel))
 
     # Load spike & sorting data
     spike_data = load_spike_data_file(channel, input_folder, polarity)
@@ -95,3 +100,6 @@ def process_combinato_data(channel, input_folder, polarity, user, units_folder):
 
     # Save out extracted unit data
     save_units(units, units_folder)
+
+    if verbose:
+        print('\textracted {} clusters'.format(len(units)))
