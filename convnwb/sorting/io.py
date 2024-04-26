@@ -161,4 +161,10 @@ def load_units(folder):
     for unit_file in unit_files:
         units.append(load_from_h5file(fields, unit_file, folder))
 
+    # Check types, and decode any bytes elements to strings
+    for unit in units:
+        for key, values in unit.items():
+            if isinstance(values, bytes):
+                unit[key] = values.decode()
+
     return units
