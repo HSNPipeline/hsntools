@@ -163,6 +163,7 @@ Update
 
    offset_time
    change_time_units
+   change_sampling_rate
 
 Sorting
 -------
