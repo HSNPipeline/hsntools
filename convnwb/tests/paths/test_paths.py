@@ -27,6 +27,12 @@ def test_paths():
     name = paths.session_name
     assert isinstance(name, str)
 
+    # Test paths defined as properties
+    assert paths.recordings
+    assert paths.subject
+    assert paths.experiment
+    assert paths.session
+
     # Test all the sub-folders that should be defined
     for subdir, subfolders in SESSION_FOLDERS.items():
         assert getattr(paths, subdir)
@@ -37,15 +43,22 @@ def test_paths():
     for subdir in PROJECT_FOLDERS:
        assert getattr(paths, subdir)
 
-def test_paths_get_files_n_folders():
+    # Check make and get methods with sub-functions
+    paths_make_checks(paths)
+    paths_get_checks(paths)
 
-    subject = 'test_subject'
-    task = 'test_task'
-    session = 'session_0'
-    recordings_name = 'test_recordings'
+def paths_make_checks(paths):
 
-    paths = Paths(TEST_PROJECT_PATH, subject, task, session,
-                  recordings_name=recordings_name)
+    all_paths = paths._make_all_paths()
+    assert all_paths
+
+    session_folders = paths._make_session_folders()
+    assert session_folders
+
+    all_folders = paths._make_all_folders()
+    assert all_folders
+
+def paths_get_checks(paths):
 
     for subdir, subfolders in SESSION_FOLDERS.items():
         files = paths.get_files(subdir.split('_')[1])
