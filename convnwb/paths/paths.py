@@ -46,9 +46,9 @@ class Paths():
         self._session = session
 
         self._recordings_name = recordings_name
-        self._session_folders = deepcopy(session_folders)
-        self._subject_folders = deepcopy(subject_folders)
         self._project_folders = deepcopy(project_folders)
+        self._subject_folders = deepcopy(subject_folders)
+        self._session_folders = deepcopy(session_folders)
 
         self.project = Path(project_path)
 
@@ -73,31 +73,50 @@ class Paths():
     @property
     def session_name(self):
         """Name of the session this object reflects."""
+
         return make_session_name(self._subject, self._experiment, self._session)
 
 
     @property
     def recordings(self):
         """"Path of the recordings folder."""
+
         return self.project / self._recordings_name
 
 
     @property
     def subject(self):
         """Path of the subject folder."""
+
         return self.recordings / self._subject
 
 
     @property
     def experiment(self):
         """"Path of the experiment folder."""
+
         return self.subject / self._experiment
 
 
     @property
     def session(self):
         """Path of the session folder."""
+
         return self.experiment / self._session
+
+
+    @property
+    def all_paths(self):
+        """List of all path names (all labels that can be used to access a path)."""
+
+        return self._make_all_paths()
+
+
+    @property
+    def all_folders():
+        """List of all folders."""
+
+        return self._make_all_folders()
 
 
     def get_files(self, folder, **kwargs):
@@ -110,3 +129,77 @@ class Paths():
         """Get a list of sub-folder available in a specified folder."""
 
         return get_subfolders(getattr(self, folder), **kwargs)
+
+
+    def print_structure(self):
+        """Print directory structure."""
+
+        for proj_path in self._project_folders:
+            print(proj_path + '/')
+            print('  ' * 1, str(self._subject) + '/')
+            print('  ' * 2, str(self._experiment) + '/')
+            print('  ' * 3, str(self._session) + '/')
+            for subdir, subfolders in self._session_folders.items():
+                print('  ' * 4, subdir + '/')
+                for subfolder in subfolders:
+                    print('  ' * 5, subfolder + '/')
+
+
+    def _make_all_paths(self):
+        """Create a list of all defined path labels.
+
+        Returns
+        -------
+        all_paths : list of str
+            List of all path labels in the path definition.
+        """
+
+        all_paths = []
+
+        for subdir, subfolders in self._session_folders.items():
+            all_paths.append(subdir.split('_')[1])
+            all_paths.extend(subfolders)
+        for subdir in self._subject_folders:
+            all_paths.append(subdir)
+        for subdir in self._project_folders:
+            all_paths.append(subdir)
+
+        return all_paths
+
+
+    def _make_session_folders(self):
+        """Make a list of all session folders.
+
+        Returns
+        -------
+        session_folders : list of str
+            List of all session folders in the path definition.
+        """
+
+        session_folders = []
+        for subdir, subfolders in self._session_folders.items():
+            for subfolder in subfolders:
+                session_folders.append(subdir + '/' + subfolder + '/')
+
+        return session_folders
+
+
+    def _make_all_folders(self):
+        """Make a list of all folders.
+
+        Returns
+        -------
+        all_folders : list of str
+            List of all folders in the path definition.
+        """
+
+        session_folders = self._make_session_folders()
+
+        all_folders = []
+        all_folders.extend([cpath + '/' for cpath in self._project_folders])
+        all_folders.extend(['recordings/{}/'.format(self._subject) + cpath + '/' \
+            for cpath in self._subject_folders])
+        all_folders.extend(['recordings/{}/{}/'.format(self._subject, self._experiment) + cpath \
+            for cpath in session_folders])
+
+        return all_folders
