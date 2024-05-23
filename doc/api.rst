@@ -55,7 +55,7 @@ General file I/O
 Utilities
 ~~~~~~~~~
 
-.. currentmodule:: convnwb.io.io
+.. currentmodule:: convnwb.io.utils
 .. autosummary::
    :toctree: generated/
 
@@ -63,6 +63,15 @@ Utilities
    get_subfolders
    make_session_name
    make_file_list
+
+Checks
+~~~~~~
+
+.. currentmodule:: convnwb.io.check
+.. autosummary::
+   :toctree: generated/
+
+   check_blackrock_file_info
 
 Objects
 -------
