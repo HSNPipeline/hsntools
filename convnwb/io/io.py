@@ -361,7 +361,7 @@ def _load_matfile_scipy(file_path, **kwargs):
 
 
 @check_dependency(mat73, 'mat73')
-def _load_matfile73(file_name, folder=None, **kwargs):
+def _load_matfile73(file_path, folder=None, **kwargs):
     """Load matfile - mat73 version."""
 
     return mat73.loadmat(file_path, **kwargs)
