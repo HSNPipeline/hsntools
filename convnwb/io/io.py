@@ -14,6 +14,7 @@ sio = safe_import('.io', 'scipy')
 pynwb = safe_import('pynwb')
 pd = safe_import('pandas')
 h5py = safe_import('h5py')
+mat73 = safe_import('mat73')
 
 ###################################################################################################
 ###################################################################################################
@@ -313,8 +314,7 @@ def load_jsonlines(file_name, folder=None):
     return all_data
 
 
-@check_dependency(sio, 'scipy')
-def load_matfile(file_name, folder=None, **kwargs):
+def load_matfile(file_name, folder=None, version=None, **kwargs):
     """Load a .mat file.
 
     Parameters
@@ -323,21 +323,49 @@ def load_matfile(file_name, folder=None, **kwargs):
         File name of the file to load.
     folder : str or Path, optional
         Folder to load from.
+    version : {'scipy', 'mat73'}
+        Which matfile load function to use:
+            'scipy' : uses `scipy.io.loadmat`, works for matfiles older than v7.3
+            'mat73' : uses `mat73.loadmat`, works for matfile v7.3 files
+        If not specified, tries both.
     **kwargs
-        Additional keywork arguments to pass into `scipy.io.loadmat`.
+        Additional keywork arguments to pass into to matfile load function.
 
     Returns
     -------
     dict
         Loaded data from the matfile.
-
-    Notes
-    -----
-    This function is a wrapper of `scipy.io.loadmat` and accepts
-    any additional keyword arguments that `loadmat` accepts.
     """
 
-    return sio.loadmat(check_ext(check_folder(file_name, folder), '.mat'), **kwargs)
+    loaders = {
+        'scipy' : _load_matfile_scipy,
+        'mat73' : _load_matfile73,
+    }
+
+    file_path = check_ext(check_folder(file_name, folder), '.mat')
+
+    if version:
+        return loaders[version](file_path, **kwargs)
+    else:
+        try:
+            _load_matfile_scipy(file_path, **kwargs)
+        except NotImplementedError:
+            return _load_matfile73(file_path, **kwargs)
+
+
+@check_dependency(sio, 'scipy')
+def _load_matfile_scipy(file_path, **kwargs):
+    """Load matfile - scipy version."""
+
+    return sio.loadmat(file_path, **kwargs)
+
+
+@check_dependency(mat73, 'mat73')
+def _load_matfile73(file_name, folder=None, **kwargs):
+    """Load matfile - mat73 version."""
+
+    return mat73.loadmat(file_path, **kwargs)
+
 
 ## LOAD COLLECTIONS OF FILES TOGETHER
 
