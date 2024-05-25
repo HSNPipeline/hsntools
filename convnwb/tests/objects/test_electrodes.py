@@ -7,71 +7,75 @@ from convnwb.objects.electrodes import *
 ###################################################################################################
 ###################################################################################################
 
+def test_bundle():
+
+    bundle = Bundle('probe', 'hemisphere', 'lobe', 'region')
+    assert bundle
+
+    bdict = bundle.to_dict()
+    assert isinstance(bdict, dict)
+
 def test_electrodes():
 
-    electrodes = Electrodes()
+    electrodes = Electrodes('subject', 30000)
     assert electrodes
-
-def test_electrodes_set_placeholder():
-
-    electrodes = Electrodes()
-    electrodes.set_placeholder()
-    assert electrodes
-    assert electrodes.n_electrodes_per_bundle == 1
-    assert electrodes.bundles == ['BF electrode']
-    assert electrodes.locations == ['implanted']
 
 def test_electrodes_add_bundle():
 
-    bundle_name = 'name'
-    bundle_location = 'location'
+    electrodes = Electrodes('subject', 30000)
+    electrodes.add_bundle('probe', 'hemisphere', 'lobe', 'region')
+    assert electrodes.n_bundles
+    assert electrodes.bundles
 
-    electrodes = Electrodes()
-    electrodes.add_bundle(bundle_name, bundle_location)
+def test_electrodes_add_bundle_bundle(tbundle):
 
-    assert bundle_name in electrodes.bundles
-    assert bundle_location in electrodes.locations
+    electrodes = Electrodes('subject', 30000)
+    electrodes.add_bundle(tbundle)
+    assert electrodes.bundles[0] == tbundle
 
-def test_electrodes_add_bundle():
+def test_electrodes_add_bundles():
 
-    names = ['n1', 'n2']
-    locations = ['l1', 'l2']
+    bundles = [
+        {'probe' : 'tname1', 'hemisphere' : 'themi1', 'lobe' : 'tlobe1', 'region' : 'tregion1'},
+        {'probe' : 'tname2', 'hemisphere' : 'themi2', 'lobe' : 'tlobe2', 'region' : 'tregion2'},
+    ]
 
-    electrodes = Electrodes()
-    electrodes.add_bundles(names, locations)
+    electrodes = Electrodes('subject', 30000)
+    electrodes.add_bundles(bundles)
+    assert electrodes.bundles
+    assert electrodes.n_bundles == len(bundles)
 
-    for name, location in zip(electrodes.bundles, electrodes.locations):
-        assert name in electrodes.bundles
-        assert location in electrodes.locations
+    # check bundles using iteration across object
+    for ind, bundle in enumerate(electrodes):
+        for bkey in electrodes.bundle_properties:
+            if bkey in bundles[0].keys():
+                assert getattr(electrodes.bundles[ind], bkey) == bundles[ind][bkey]
+            else:
+                assert getattr(electrodes.bundles[ind], bkey) is None
 
-def test_electrodes_n_bundles():
+def test_electrodes_add_bundles_bundle(tbundle):
 
-    electrodes = Electrodes()
-    electrodes.add_bundles(['n1', 'n2'], ['l1', 'l2'])
-    assert electrodes.n_bundles == 2
+    electrodes = Electrodes('subject', 30000)
+    bundles = [tbundle, tbundle]
+    electrodes.add_bundles(bundles)
+    assert electrodes.bundles
+    assert electrodes.n_bundles == len(bundles)
 
-def test_electrodes_iter():
+def test_electrodes_to_dict(telectrodes):
 
-    names = ['n1', 'n2']
-    locations = ['l1', 'l2']
-    electrodes = Electrodes()
-    electrodes.add_bundles(names, locations)
-
-    for ind, (name, loc) in enumerate(electrodes):
-        assert name in names
-        assert loc in locations
-    assert ind == len(names) - 1
-
-def test_electrodes_to_dict():
-
-    electrodes = Electrodes()
-    electrodes.add_bundles(['n1', 'n2'], ['l1', 'l2'])
-    odict = electrodes.to_dict()
+    odict = telectrodes.to_dict(drop_empty=False)
     assert isinstance(odict, dict)
 
-def test_electrodes_to_dataframe():
+    blabels = telectrodes.bundle_properties
+    blabels.remove('channels')
+    for bkey in blabels:
+        assert len(odict[bkey]) == telectrodes.n_bundles * telectrodes.n_electrodes_per_bundle
+    for ind, bundle in enumerate(telectrodes):
+        for bkey in blabels:
+            assert odict[bkey][ind * 8] == getattr(telectrodes.bundles[ind], bkey)
 
-    electrodes = Electrodes()
-    electrodes.add_bundles(['n1', 'n2'], ['l1', 'l2'])
-    df = electrodes.to_dataframe()
+def test_electrodes_to_dataframe(telectrodes):
+
+    df = telectrodes.to_dataframe()
     assert isinstance(df, pd.DataFrame)
+    assert len(df) == telectrodes.n_bundles * telectrodes.n_electrodes_per_bundle
