@@ -65,6 +65,14 @@ def test_electrodes_add_bundles_bundle(tbundle):
     assert electrodes.bundles
     assert electrodes.n_bundles == len(bundles)
 
+def test_electrodes_get(telectrodes):
+
+    probes = telectrodes.get('probe')
+    assert probes == ['tname1', 'tname2']
+
+    regions = telectrodes.get('region')
+    assert regions == ['tregion1', 'tregion2']
+
 def test_electrodes_to_dict(telectrodes):
 
     odict = telectrodes.to_dict(drop_empty=False)

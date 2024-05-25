@@ -94,7 +94,7 @@ class Electrodes():
         ----------
         probe : Bundle or str
             Name of the bundle, if string, or pre-initialized Bundle object.
-        hemishpere : {'left', 'right'}, optional
+        hemisphere : {'left', 'right'}, optional
             The hemisphere the probe is implanted in.
         lobe : {'frontal', 'parietal', 'temporal', 'occipital'}, optional
             Which lobe the probe is in.
@@ -128,6 +128,23 @@ class Electrodes():
                 self.add_bundle(**bundle)
 
 
+    def get(self, field):
+        """Get the values for a specified field from across all bundles.
+
+        Parameters
+        ----------
+        field : {'probe', 'hemisphere', 'lobe', 'region', 'subregion', 'channels'}
+            Which field to get the values for.
+
+        Returns
+        -------
+        list
+            Values for the specified field from across all defined bundles.
+        """
+
+        return [getattr(bundle, field) for bundle in self.bundles]
+
+
     def copy(self):
         """Return a deepcopy of this object."""
 
@@ -135,7 +152,13 @@ class Electrodes():
 
 
     def to_dict(self, drop_empty=True):
-        """Convert object data to a dictionary."""
+        """Convert object data to a dictionary.
+
+        Parameters
+        ----------
+        drop_empty : bool, optional, default: True
+            Whether to drops fields that are all None.
+        """
 
         labels = self.bundle_properties
         labels.remove('channels')
