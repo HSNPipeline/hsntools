@@ -12,6 +12,7 @@ from pynwb import NWBFile
 import pytest
 
 from convnwb.io import open_h5file
+from convnwb.objects.electrodes import Bundle, Electrodes
 from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS, TEST_SORT
 
 ###################################################################################################
@@ -60,6 +61,24 @@ def tunits():
         'classes' : np.array([0, 1, 0, 1, 0]),
         'clusters' : np.array([1, 2, 3, 1, 2]),
     }
+
+@pytest.fixture(scope='session')
+def tbundle():
+    """Create a test bundle object."""
+
+    yield Bundle('tname1', 'themi1', 'tlobe1', 'tregion1')
+
+@pytest.fixture(scope='session')
+def telectrodes():
+    """Create a test electrodes object."""
+
+    electrodes = Electrodes('subject', 30000)
+    electrodes.add_bundles([
+        {'probe' : 'tname1', 'hemisphere' : 'themi1', 'lobe' : 'tlobe1', 'region' : 'tregion1'},
+        {'probe' : 'tname2', 'hemisphere' : 'themi2', 'lobe' : 'tlobe2', 'region' : 'tregion2'},
+    ])
+
+    yield electrodes
 
 @pytest.fixture(scope='session', autouse=True)
 def th5file():
