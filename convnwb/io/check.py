@@ -31,4 +31,4 @@ def check_blackrock_file_info(reader):
             seg_stop = reader.segment_t_stop(bi, si)
             seg_size = reader.get_signal_size(bi, si)
             seg_length = convert_samples_to_time(seg_size, fs)
-            print(str_fmt.format(si, seg_start, seg_stop, seg_size, seg_len))
+            print(str_fmt.format(si, seg_start, seg_stop, seg_size, seg_length))
