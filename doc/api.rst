@@ -183,6 +183,15 @@ Update
    change_time_units
    change_sampling_rate
 
+Utils
+~~~~~
+
+.. currentmodule:: convnwb.timestamps.utils
+.. autosummary::
+   :toctree: generated/
+
+   convert_samples_to_time
+
 Sorting
 -------
 
