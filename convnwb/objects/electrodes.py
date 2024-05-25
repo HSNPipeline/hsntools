@@ -9,31 +9,61 @@ pd = safe_import('pandas')
 ###################################################################################################
 ###################################################################################################
 
+class Bundle():
+    """Object for collecting / managing a bundle definition."""
+
+    def __init__(self, probe, hemisphere=None, lobe=None, region=None,
+                 subregion=None, channels=None):
+        """Initialize Bundle object."""
+
+        self.probe = probe
+        self.hemisphere = hemisphere
+        self.lobe = lobe
+        self.region = region
+        self.subregion = subregion
+        self.channels = channels
+
+    def to_dict(self):
+        """Export object information to a dictionary"""
+
+        return {
+            'probe' : self.probe,
+            'hemisphere' : self.hemisphere,
+            'lobe' : self.lobe,
+            'region' : self.region,
+            'subregion' : self.subregion,
+            'channels' : self.channels,
+        }
+
+
 class Electrodes():
-    """Object for collecting electrode information.
+    """Object for collecting / managing electrode information.
 
     Attributes
     ----------
-    bundles : list of str
+    subject : str
+        Subject label.
+    fs : int
+        Sampling rate.
+    bundles : list of Bundle
         Names of the bundles.
-    locations : list of str
-        Locations of the bundles.
     """
 
     n_electrodes_per_bundle = 8
 
-    def __init__(self):
+    def __init__(self, subject=None, fs=None):
         """Initialize Electrodes object."""
 
+        self.subject = subject
+        self.fs = fs
         self.bundles = []
-        self.locations = []
 
 
     def __iter__(self):
         """Iterate across bundles in the object."""
 
         for ind in range(self.n_bundles):
-            yield self.bundles[ind], self.locations[ind]
+            yield self.bundles[ind]
 
 
     @property
@@ -43,64 +73,58 @@ class Electrodes():
         return len(self.bundles)
 
 
-    def data_keys(self, skip=None):
-        """Get a list of data keys defined in the electrodes object.
+    @property
+    def bundle_properties(self):
+        """Access bundle property labels."""
 
-        Parameters
-        ----------
-        skip : str or list of str
-            Name(s) of any data attributes to skip.
+        if self.bundles:
+            bundle_properties = list(self.bundles[0].to_dict().keys())
+        else:
+            bundle_properties = []
 
-        Returns
-        -------
-        data_keys : list of str
-            List of data attributes available in the object.
-        """
-
-        data_keys = list(vars(self).keys())
-
-        if skip:
-            for skip_item in [skip] if isinstance(skip, str) else skip:
-                data_keys.remove(skip_item)
-
-        return data_keys
+        return bundle_properties
 
 
-    def set_placeholder(self):
-        """Set object information as a placeholder."""
-
-        self.n_electrodes_per_bundle = 1
-        self.add_bundle('BF electrode', 'implanted')
-
-
-    def add_bundle(self, name, location):
+    def add_bundle(self, probe, hemisphere=None, lobe=None, region=None,
+                   subregion=None, channels=None):
         """Add a bundle to the object.
 
         Parameters
         ----------
-        name : str
-            Name of the bundle.
-        location : str
+        probe : Bundle or str
+            Name of the bundle, if string, or pre-initialized Bundle object.
+        hemishpere : {'left', 'right'}, optional
+            The hemisphere the probe is implanted in.
+        lobe : {'frontal', 'parietal', 'temporal', 'occipital'}, optional
+            Which lobe the probe is in.
+        region : str, optional
             Location of the bundle.
+        subregion : str, optional
+            The subregion specifier of the probe.
+        channels : list of int, optional
+            A set of channel indices for the bundle.
         """
 
-        self.bundles.append(name)
-        self.locations.append(location)
+        if isinstance(probe, Bundle):
+            self.bundles.append(probe)
+        else:
+            self.bundles.append(Bundle(probe, hemisphere, lobe, region, subregion, channels))
 
 
-    def add_bundles(self, names, locations):
+    def add_bundles(self, bundles):
         """Add multiple bundles to the object.
 
         Parameters
         ----------
-        names : list of str
+        names : Bundle or list of dict
             Names of the bundles.
-        locations : list of str
-            Locations of the bundles.
         """
 
-        for name, location in zip(names, locations):
-            self.add_bundle(name, location)
+        for bundle in bundles:
+            if isinstance(bundle, Bundle):
+                self.add_bundle(bundle)
+            else:
+                self.add_bundle(**bundle)
 
 
     def copy(self):
@@ -109,12 +133,32 @@ class Electrodes():
         return deepcopy(self)
 
 
-    def to_dict(self):
+    def to_dict(self, drop_empty=True):
         """Convert object data to a dictionary."""
 
-        out_dict = {}
-        for key in self.data_keys():
-            out_dict[key] = getattr(self, key)
+        labels = self.bundle_properties
+        labels.remove('channels')
+
+        out_dict = {label : [] for label in labels}
+        for label in ['label', 'pin', 'channel']:
+            out_dict[label] = []
+
+        for bundle in self.bundles:
+            for ind in range(self.n_electrodes_per_bundle):
+                out_dict['label'].append(bundle.probe + str(ind + 1))
+                out_dict['pin'].append(ind + 1)
+                for label in labels:
+                    out_dict[label].append(getattr(bundle, label))
+                if bundle.channels is not None:
+                    out_dict['channel'].append(bundle.channels[ind])
+                else:
+                    out_dict['channel'].append(None)
+
+        # Drop any entries in the dictionary conversion that are empty or all None
+        if drop_empty:
+            for dlabel in list(out_dict.keys()):
+                if set(out_dict[dlabel]) == {None}:
+                    out_dict.pop(dlabel)
 
         return out_dict
 
