@@ -314,6 +314,27 @@ def load_jsonlines(file_name, folder=None):
     return all_data
 
 
+@check_dependency(pd, 'pandas')
+def load_excel(file_name, folder, sheet=0):
+    """Load an excel (xlsx) file.
+
+    Parameters
+    ----------
+    file_name : str
+        File name of the file to load.
+    folder : str or Path, optional
+        Folder to load from.
+
+    Returns
+    -------
+    pd.DataFrame
+        Loaded data from the excel file.
+    """
+
+    return pd.read_excel(check_ext(check_folder(file_name, folder), '.xlsx'),
+                         engine='openpyxl', sheet_name=sheet)
+
+
 def load_matfile(file_name, folder=None, version=None, **kwargs):
     """Load a .mat file.
 
