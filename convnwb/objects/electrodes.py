@@ -2,6 +2,7 @@
 
 from copy import deepcopy
 
+from convnwb.io.utils import get_files, check_ext, check_folder
 from convnwb.modutils.dependencies import safe_import, check_dependency
 
 pd = safe_import('pandas')
@@ -168,3 +169,20 @@ class Electrodes():
         """Return object data as a dataframe."""
 
         return pd.DataFrame(self.to_dict())
+
+
+    @check_dependency(pd, 'pandas')
+    def to_csv(self, file_name, folder=None, **kwargs):
+        """Save out the electrode information as a CSV file.
+
+        Parameters
+        ----------
+        file_name : str
+            The file name to save.
+        folder : str
+            The folder to save the file to.
+        **kwargs
+            Additional keyword arguments to pass to pd.DataFrame.to_csv().
+        """
+
+        self.to_dataframe().to_csv(check_ext(check_folder(file_name, folder), '.csv'), **kwargs)

@@ -1,6 +1,10 @@
 """Tests for convnwb.objects.electrodes"""
 
+import os
+
 import pandas as pd
+
+from convnwb.tests.tsettings import TEST_FILE_PATH
 
 from convnwb.objects.electrodes import *
 
@@ -79,3 +83,9 @@ def test_electrodes_to_dataframe(telectrodes):
     df = telectrodes.to_dataframe()
     assert isinstance(df, pd.DataFrame)
     assert len(df) == telectrodes.n_bundles * telectrodes.n_electrodes_per_bundle
+
+def test_electrodes_to_csv(telectrodes):
+
+    test_fname = 'test_electrodes_csv'
+    telectrodes.to_csv(test_fname, TEST_FILE_PATH)
+    assert os.path.exists(TEST_FILE_PATH / (test_fname + '.csv'))
