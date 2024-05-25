@@ -73,6 +73,15 @@ Checks
 
    check_blackrock_file_info
 
+Validate Functions
+~~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: convnwb.io.validate
+.. autosummary::
+   :toctree: generated/
+
+   validate_nwb
+
 Objects
 -------
 
@@ -279,12 +288,3 @@ Tool Functions
 
    incrementer
    get_current_date
-
-Validate Functions
-~~~~~~~~~~~~~~~~~~
-
-.. currentmodule:: convnwb.utils.validate
-.. autosummary::
-   :toctree: generated/
-
-   validate_nwb
