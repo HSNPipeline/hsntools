@@ -30,8 +30,8 @@ NWB & Custom file I/O
    save_config
    load_config
    load_configs
-   save_task_object
-   load_task_object
+   save_object
+   load_object
 
 General file I/O
 ~~~~~~~~~~~~~~~~

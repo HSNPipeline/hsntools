@@ -5,7 +5,6 @@ import os
 import numpy as np
 import pandas as pd
 
-from convnwb.tests.tobjects import TestTask
 from convnwb.tests.tsettings import TEST_FILE_PATH
 
 from convnwb.io.io import *
@@ -51,19 +50,33 @@ def test_load_configs():
     configs = load_configs(f_names, TEST_FILE_PATH)
     assert isinstance(configs, dict)
 
-def test_save_task_object():
+def test_save_object(ttask, tbundle, telectrodes):
 
-    task = TestTask()
     f_name = 'task_obj'
-    save_task_object(task, f_name, TEST_FILE_PATH)
-
+    save_object(ttask, f_name, TEST_FILE_PATH)
     assert os.path.exists(TEST_FILE_PATH / (f_name + '.task'))
 
-def test_load_task_object():
+    f_name = 'bundle_obj'
+    save_object(tbundle, f_name, TEST_FILE_PATH)
+    assert os.path.exists(TEST_FILE_PATH / (f_name + '.bundle'))
 
-    f_name = 'task_obj'
-    task = load_task_object(f_name, TEST_FILE_PATH)
+    f_name = 'electrodes_obj'
+    save_object(telectrodes, f_name, TEST_FILE_PATH)
+    assert os.path.exists(TEST_FILE_PATH / (f_name + '.electrodes'))
+
+def test_load_object():
+
+    f_name = 'task_obj.task'
+    task = load_object(f_name, TEST_FILE_PATH)
     assert task
+
+    f_name = 'bundle_obj.bundle'
+    bundle = load_object(f_name, TEST_FILE_PATH)
+    assert bundle
+
+    f_name = 'electrodes_obj.electrodes'
+    electrodes = load_object(f_name, TEST_FILE_PATH)
+    assert electrodes
 
 def test_save_txt():
 

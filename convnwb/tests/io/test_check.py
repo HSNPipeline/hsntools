@@ -5,7 +5,6 @@ import os
 import numpy as np
 import pandas as pd
 
-from convnwb.tests.tobjects import TestTask
 from convnwb.tests.tsettings import TEST_FILE_PATH
 
 from convnwb.io.check import *

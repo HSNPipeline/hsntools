@@ -7,6 +7,7 @@ from contextlib import contextmanager
 
 import yaml
 
+#from convnwb.objects import Task, Bundle, Electrodes
 from convnwb.io.utils import get_files, check_ext, check_folder, make_session_name
 from convnwb.modutils.dependencies import safe_import, check_dependency
 
@@ -142,29 +143,33 @@ def load_configs(files, folder=None):
 
 ### TASK OBJECTS
 
-def save_task_object(task, file_name, folder=None):
-    """Save a task object.
+def save_object(custom_object, file_name, folder=None):
+    """Save a custom object.
 
     Parameters
     ----------
-    task : Task
-        Task object to save out.
+    custom_object : Task or Electrodes
+        Object to save out.
     file_name : str
-        File name to give the saved out task file.
+        File name to give the saved out object.
     folder : str or Path, optional
         Folder to save out to.
 
     Notes
     -----
-    Task objects are saved and loaded as pickle files.
+    Custom objects are saved and loaded as pickle files.
     """
 
-    with open(check_ext(check_folder(file_name, folder), '.task'), 'wb') as fobj:
-        pickle.dump(task, fobj)
+    ext = '.' + str(type(custom_object)).split('.')[-1].strip("'>").lower()
+    if 'task' in ext:
+        ext = '.task'
+
+    with open(check_ext(check_folder(file_name, folder), ext), 'wb') as fobj:
+        pickle.dump(custom_object, fobj)
 
 
-def load_task_object(file_name, folder=None):
-    """Load a task object.
+def load_object(file_name, folder=None):
+    """Load a custom object.
 
     Parameters
     ----------
@@ -175,18 +180,18 @@ def load_task_object(file_name, folder=None):
 
     Returns
     -------
-    task
+    custom_object
         Loaded task object.
 
     Notes
     -----
-    Task objects are saved and loaded as pickle files.
+    Custom objects are saved and loaded as pickle files.
     """
 
-    with open(check_ext(check_folder(file_name, folder), '.task'), 'rb') as load_obj:
-        task = pickle.load(load_obj)
+    with open(check_folder(file_name, folder), 'rb') as load_obj:
+        custom_object = pickle.load(load_obj)
 
-    return task
+    return custom_object
 
 
 ## OTHER FILE I/O
