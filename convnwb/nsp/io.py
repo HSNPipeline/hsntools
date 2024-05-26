@@ -1,6 +1,7 @@
 """NSP related I/O functions."""
 
 from convnwb.io.utils import check_folder
+from convnwb.modutils.dependencies import safe_import, check_dependency
 
 neo = safe_import('neo')
 
