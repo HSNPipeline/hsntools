@@ -12,6 +12,7 @@ from pynwb import NWBFile
 import pytest
 
 from convnwb.io import open_h5file
+from convnwb.objects.task import TaskBase
 from convnwb.objects.electrodes import Bundle, Electrodes
 from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS, TEST_SORT
 
@@ -79,6 +80,12 @@ def telectrodes():
     ])
 
     yield electrodes
+
+@pytest.fixture(scope='session')
+def ttask():
+    """Create a test task object."""
+
+    yield TaskBase()
 
 @pytest.fixture(scope='session', autouse=True)
 def th5file():
