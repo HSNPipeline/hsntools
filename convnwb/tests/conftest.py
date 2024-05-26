@@ -55,7 +55,7 @@ def tunits():
 
     yield {
         'ind' : 0,
-        'channel' : 0,
+        'channel' : 'chan_0',
         'polarity' : 'neg',
         'times' : np.arange(n_units),
         'waveforms' : np.ones([n_units, 64]),
