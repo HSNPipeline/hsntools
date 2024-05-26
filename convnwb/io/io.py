@@ -141,7 +141,7 @@ def load_configs(files, folder=None):
     return configs
 
 
-### TASK OBJECTS
+### CUSTOM OBJECTS
 
 def save_object(custom_object, file_name, folder=None):
     """Save a custom object.
@@ -193,6 +193,11 @@ def load_object(file_name, folder=None):
 
     return custom_object
 
+# alias these functions for backwards compatibility
+save_task_object = save_object
+def load_task_object(file_name, folder=None):
+    return load_object(check_ext(file_name, '.task'), folder)
+load_task_object.__doc__ = load_object
 
 ## OTHER FILE I/O
 
