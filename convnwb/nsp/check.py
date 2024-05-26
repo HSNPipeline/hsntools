@@ -1,4 +1,4 @@
-"""I/O related check functions - check file properties."""
+"""NSP related check functions - check file properties."""
 
 from convnwb.timestamps.utils import convert_samples_to_time
 

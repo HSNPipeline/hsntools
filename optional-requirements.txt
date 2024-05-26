@@ -5,3 +5,4 @@ pandas
 scipy
 h5py
 mat73
+neo

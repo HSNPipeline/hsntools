@@ -7,7 +7,6 @@ from contextlib import contextmanager
 
 import yaml
 
-#from convnwb.objects import Task, Bundle, Electrodes
 from convnwb.io.utils import get_files, check_ext, check_folder, make_session_name
 from convnwb.modutils.dependencies import safe_import, check_dependency
 
@@ -31,7 +30,7 @@ def save_nwbfile(nwbfile, file_name, folder=None):
     file_name : str or dict
         The file name to load.
         If dict, is passed into `make_session_name` to create the file name.
-    folder : str
+    folder : str or Path, optional
         The folder to load the file from.
     """
 
@@ -51,7 +50,7 @@ def load_nwbfile(file_name, folder=None, return_io=False):
     file_name : str or dict
         The file name to load.
         If dict, is passed into `make_session_name` to create the file name.
-    folder : str
+    folder : str or Path, optional
         The folder to load the file from.
     return_io : bool, optional, default: False
         Whether to return the pynwb IO object.
