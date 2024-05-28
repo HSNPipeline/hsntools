@@ -2,6 +2,7 @@
 
 import numpy as np
 
+from convnwb.timestamps.utils import create_timestamps_from_samples
 from convnwb.modutils.dependencies import safe_import, check_dependency
 
 signal = safe_import('.signal', 'scipy')
@@ -47,7 +48,7 @@ def detect_peaks(data, fs, height, distance=None, thresh=None):
         peak_heights = peak_heights[mask]
 
     # Convert peak indices to time stamps (in seconds)
-    timestamps = np.arange(0, len(data) / fs, 1 / fs)
+    timestamps = create_timestamps_from_samples(len(data), fs)
     peak_times = np.array([timestamps[peak] for peak in peak_inds])
 
     return peak_inds, peak_times, peak_heights
