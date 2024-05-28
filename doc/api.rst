@@ -191,6 +191,7 @@ Utils
    :toctree: generated/
 
    convert_samples_to_time
+   create_timestamps_from_samples
 
 Sorting
 -------
