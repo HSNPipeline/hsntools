@@ -56,11 +56,13 @@ class TaskBase():
         # Session information
         self.session = {
             'start_time' : None,
-            'end_time' : None
+            'stop_time' : None,
         }
 
         # Synchronization information
         self.sync = {
+            # Define synchronization approach
+            'approach' : None,
             # Synchronization pulses
             'neural' : [],
             'behavioral' : [],
@@ -94,7 +96,11 @@ class TaskBase():
         self.stimuli = {}
 
         # Trial information
-        self.trial = {}
+        self.trial = {
+            'trial' : [],
+            'start_time' : [],
+            'stop_time' : [],
+        }
 
         # Response information
         self.responses = {}
