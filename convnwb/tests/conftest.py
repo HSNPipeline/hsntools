@@ -87,6 +87,20 @@ def ttask():
 
     yield TaskBase()
 
+@pytest.fixture(scope='session')
+def ttask_full():
+    """Create a test task object."""
+
+    task = TaskBase()
+    task.trial['trial'] = [0, 1, 2]
+    task.trial['start_time'] = [0, 1, 2]
+    task.trial['stop_time'] = [1, 2, 3]
+    task.trial['type'] = ['a', 'b', 'c']
+    task.trial['field1'] = ['a', 'b', 'c']
+    task.trial['field2'] = [1, 2, 3]
+
+    yield task
+
 @pytest.fixture(scope='session', autouse=True)
 def th5file():
     """Save out a test HDF5 file."""

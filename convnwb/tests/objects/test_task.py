@@ -236,21 +236,12 @@ def test_task_update_time_apply_type():
     assert isinstance(task.position['time'], np.ndarray)
     assert np.array_equal(task.position['time'], np.array([15, 25, 35]))
 
-def test_task_to_dict():
+def test_task_to_dict(ttask_full):
 
-    task = TaskBase()
-    task.trial['field1'] = ['a', 'b', 'c']
-    task.trial['field2'] = [1, 2, 3]
-
-    odict = task.to_dict()
+    odict = ttask_full.to_dict()
     assert isinstance(odict, dict)
 
-def test_task_to_dataframe():
+def test_task_to_dataframe(ttask_full):
 
-    task = TaskBase()
-
-    task.trial['field1'] = ['a', 'b', 'c']
-    task.trial['field2'] = [1, 2, 3]
-
-    df = task.to_dataframe('trial')
+    df = ttask_full.to_dataframe('trial')
     assert isinstance(df, pd.DataFrame)
