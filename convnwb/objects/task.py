@@ -98,6 +98,7 @@ class TaskBase():
         # Trial information
         self.trial = {
             'trial' : [],
+            'type' : [],
             'start_time' : [],
             'stop_time' : [],
         }
