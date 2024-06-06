@@ -68,7 +68,8 @@ def collect_all_sorting(spike_data, sort_data):
     return outputs
 
 
-def process_combinato_data(channel, input_folder, polarity, user, units_folder, verbose=True):
+def process_combinato_data(channel, input_folder, polarity, user, units_folder,
+                           continue_on_fail=False, verbose=True):
     """Helper function to run the process of going from combinato -> extracted units files.
 
     Parameters
@@ -83,23 +84,31 @@ def process_combinato_data(channel, input_folder, polarity, user, units_folder, 
         The 3 character user label to load.
     output_folder : str or Path
         The folder destination to save the output units files to.
+    continue_on_fail : bool, optional, default: False
+        Whether to continue when an error is encountered.
     verbose : bool, optional, default: True
         Whether to print out updates about the extraction.
     """
 
-    if verbose:
-        print('Extracting data for channel: \t{}'.format(channel))
+    try:
 
-    # Load spike & sorting data
-    spike_data = load_spike_data_file(channel, input_folder, polarity)
-    sort_data = load_sorting_data_file(channel, input_folder, polarity, user)
+        # Load spike & sorting data
+        spike_data = load_spike_data_file(channel, input_folder, polarity)
+        sort_data = load_sorting_data_file(channel, input_folder, polarity, user)
 
-    # Organize and collect extracted data together, and extract unit clusters
-    clusters = collect_all_sorting(spike_data, sort_data)
-    units = extract_clusters(clusters)
+        # Organize and collect extracted data together, and extract unit clusters
+        clusters = collect_all_sorting(spike_data, sort_data)
+        units = extract_clusters(clusters)
 
-    # Save out extracted unit data
-    save_units(units, units_folder)
+        # Save out extracted unit data
+        save_units(units, units_folder)
 
-    if verbose:
-        print('\textracted {} clusters'.format(len(units)))
+        if verbose:
+            print('Extracted channel \t{} - found {} clusters\t\t'.format(\
+                channel, len(units)))
+
+    except:
+        if not continue_on_fail:
+            raise
+        if verbose:
+            print('Issue extracting channel: {}'.format(channel))
