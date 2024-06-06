@@ -63,7 +63,7 @@ def fit_sync_alignment(sync_behav, sync_neural, score_thresh=0.9999,
     y_pred = model.predict(x_test)
 
     score = r2_score(y_test, y_pred)
-    bad_score_msg = 'This session has bad synchronization between.'
+    bad_score_msg = 'This session has bad synchronization alignment.'
     if score < score_thresh:
         if not ignore_poor_alignment:
             raise ValueError(bad_score_msg)
