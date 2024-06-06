@@ -104,7 +104,7 @@ def process_combinato_data(channel, input_folder, polarity, user, units_folder,
         save_units(units, units_folder)
 
         if verbose:
-            print('Extracted channel \t{} - found {} clusters\t\t'.format(\
+            print('Extracted channel {:20s} - found {:2d} clusters\t\t'.format(\
                 channel, len(units)))
 
     except:
