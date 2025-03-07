@@ -64,15 +64,6 @@ Utilities
    make_session_name
    make_file_list
 
-Checks
-~~~~~~
-
-.. currentmodule:: convnwb.io.check
-.. autosummary::
-   :toctree: generated/
-
-   check_blackrock_file_info
-
 Validate Functions
 ~~~~~~~~~~~~~~~~~~
 
@@ -81,6 +72,29 @@ Validate Functions
    :toctree: generated/
 
    validate_nwb
+
+NSP
+---
+
+Functionality related to NSP (Neural Signal Processors).
+
+I/O
+~~~
+
+.. currentmodule:: convnwb.nsp.io
+.. autosummary::
+   :toctree: generated/
+
+   load_blackrock
+
+Checks
+~~~~~~
+
+.. currentmodule:: convnwb.nsp.check
+.. autosummary::
+   :toctree: generated/
+
+   check_blackrock_file_info
 
 Objects
 -------
@@ -213,7 +227,7 @@ I/O
 Processing
 ~~~~~~~~~~
 
-.. currentmodule:: convnwb.sorting.io
+.. currentmodule:: convnwb.sorting.process
 .. autosummary::
    :toctree: generated/
 
