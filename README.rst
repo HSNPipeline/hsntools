@@ -62,7 +62,7 @@ There are also optional dependencies, that offer extra functionality:
 Installation
 ------------
 
-The current release version is the 0.3.X series.
+The current release version is the 0.4.X series.
 
 Check the
 `changelog <https://hsupipeline.github.io/convnwb/changelog>`_
