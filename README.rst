@@ -65,7 +65,7 @@ Installation
 The current release version is the 0.3.X series.
 
 Check the
-`changelog <https://github.com/HSUPipeline/convnwb/blob/main/CHANGELOG.md>`_
+`changelog <https://hsupipeline.github.io/convnwb/changelog>`_
 for notes on updates and changes across versions.
 
 This module should be installed from Github:
