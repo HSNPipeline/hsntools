@@ -24,10 +24,11 @@ def collect_all_sorting(spike_data, sort_data):
     -------
     outputs : dict
         Each value is an array of all values for valid events in the channel of data, including:
-            `times` : spike times for each event
-            `waveforms` : spike waveform for each event
-            `classes` : class assignment for each event
-            `clusters` : cluster (group) assignment for each event
+
+        * `times` : spike times for each event
+        * `waveforms` : spike waveform for each event
+        * `classes` : class assignment for each event
+        * `clusters` : cluster (group) assignment for each event
 
     Notes
     -----

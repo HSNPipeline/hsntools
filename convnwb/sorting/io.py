@@ -24,11 +24,12 @@ def load_spike_data_file(channel, folder, polarity):
     -------
     outputs : dict
         Extracted outputs from the data file, including:
-            channel: stores the channel number / label.
-            polarity: stores the polarity spikes were sorted.
-            times: time values for each spike.
-            waveforms: individual waveforms for all spikes, shape: [n_spikes, 64].
-            artifacts: indicates if spike events are rejected artifact events (non-zero values).
+
+        * `channel`: stores the channel number / label.
+        * `polarity`: stores the polarity spikes were sorted.
+        * `times`: time values for each spike.
+        * `waveforms`: individual waveforms for all spikes, shape: [n_spikes, 64].
+        * `artifacts`: indicates if spike events are rejected artifact events (non-zero values).
 
     Notes
     -----
@@ -37,11 +38,14 @@ def load_spike_data_file(channel, folder, polarity):
     combinato threshold detection process.
 
     The file has the fields 'neg', 'pos', 'thr', in which:
-    - 'neg' / 'pos': reflect negative or positive polarity, each with subfields:
-        - 'spikes': 2d array of extracted waveforms, as [n_spikes, 64 timepoints]
-        - 'times': 1d array spike times (time values for the extracted waveforms)
-        - 'artifacts': 1d array indicating artifact events that were discarded before clustering
-    - 'thr': information about the detection thresholds
+
+    - `neg` / `pos`: reflect negative or positive polarity, each with subfields:
+
+      * `spikes`: 2d array of extracted waveforms, as [n_spikes, 64 timepoints]
+      * `times`: 1d array spike times (time values for the extracted waveforms)
+      * `artifacts`: 1d array indicating artifact events that were discarded before clustering
+
+    - `thr`: information about the detection thresholds
 
     In the 'artifacts' field, each 0 reflects a non-artifact (these spikes go into clustering).
     Each non-zero value reflects an artifact, with each number reflecting the artifact category.
@@ -87,12 +91,12 @@ def load_sorting_data_file(channel, folder, polarity, user):
     -------
     outputs : dict
         Extracted outputs from the data file, including the fields:
-            channel: stores the channel number / label.
-            polarity: stores the polarity spikes were sorted.
-            groups: class & group assignments, shape: [n_groups, 2].
-                1st col: class index / label; 2nd col: group assignment.
-            index: indices corresponding to the spike times.
-            classes: classes corresponding to the spike times.
+
+        * `channel`: stores the channel number / label.
+        * `polarity`: stores the polarity spikes were sorted.
+        * `groups`: class & group assignments, shape [n_groups, 2]: 1st col: class; 2nd col: group.
+        * `index`: indices corresponding to the spike times.
+        * `classes`: classes corresponding to the spike times.
 
     Notes
     -----
@@ -102,9 +106,8 @@ def load_sorting_data_file(channel, folder, polarity, user):
 
     Not all keys are loaded from the `sort_cat` file in this function.
 
-    The full set of keys in a `sort_cat` includes:
-        'artifacts', 'artifacts_prematch', 'classes', 'distance',
-        'groups', 'groups_orig', 'index', 'matches', 'types', 'types_orig'
+    The full set of keys in a `sort_cat` includes: `artifacts`, `artifacts_prematch`, `classes`,
+    `distance`, `groups`, `groups_orig`, `index`, `matches`, `types`, `types_orig`.
     """
 
     channel = str(channel)
