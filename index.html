@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>convnwb &#8212; convnwb 0.3.0 documentation</title>
+    <title>convnwb &#8212; convnwb 0.4.0-dev documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="#">
           convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -91,7 +91,7 @@
       
   <section id="convnwb">
 <h1>convnwb<a class="headerlink" href="#convnwb" title="Permalink to this heading">¶</a></h1>
-<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="ProjectStatus" src="http://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml"><img alt="BuildStatus" src="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/HSUPipeline/convnwb"><img alt="Coverage" src="https://codecov.io/gh/HSUPipeline/convnwb/branch/main/graph/badge.svg" /></a></p>
+<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="project status" src="http://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml"><img alt="build statue" src="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/HSUPipeline/convnwb"><img alt="coverage" src="https://codecov.io/gh/HSUPipeline/convnwb/branch/main/graph/badge.svg" /></a></p>
 <p><code class="docutils literal notranslate"><span class="pre">convnwb</span></code> is a module of code to help with converting data to the NWB format.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
@@ -100,9 +100,11 @@
 <p>Available sub-modules in <cite>convnwb</cite> include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">io</span></code>: includes save and load functions and utilities for working with files through the conversion process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nsp</span></code>: includes functionality that relating to managing recording files from neural signal processors</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">objects</span></code>: includes objects for storing relevant data, for example electrode or task related information</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">paths</span></code>: includes a <cite>Paths</cite> object and utilities for defining and using a consistent path structure</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plts</span></code>: includes plot functions for examining data through the conversion process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sorting</span></code>: includes functionality relating to managing recording spike sorting</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">timestamps</span></code>: includes utilities for managing timestamps and aligning data streams</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">utils</span></code>: includes general utilities for working with data through the conversion process</p></li>
 </ul>
@@ -125,6 +127,8 @@
 <li><p><a class="reference external" href="https://github.com/pandas-dev/pandas">pandas</a> is needed for utilities that load dataframes</p></li>
 <li><p><a class="reference external" href="https://github.com/scipy/scipy">scipy</a> is needed for some load and timestamp related functions</p></li>
 <li><p><a class="reference external" href="https://github.com/h5py/h5py">h5py</a> is needed for utilities that open HDF5 files</p></li>
+<li><p><a class="reference external" href="https://github.com/NeuralEnsemble/python-neo">neo</a> is needed for loading &amp; interacting with NSP files</p></li>
+<li><p><a class="reference external" href="https://github.com/skjerns/mat7.3">mat73</a> is needed for loading .mat files version &gt;= 7.3</p></li>
 <li><p><a class="reference external" href="https://github.com/pytest-dev/pytest">pytest</a> is needed to run the test suite locally</p></li>
 </ul>
 </section>
@@ -132,7 +136,7 @@
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
 <p>The current release version is the 0.3.X series.</p>
 <p>Check the
-<a class="reference external" href="https://github.com/HSUPipeline/convnwb/blob/main/CHANGELOG.md">changelog</a>
+<a class="reference external" href="https://hsupipeline.github.io/convnwb/changelog">changelog</a>
 for notes on updates and changes across versions.</p>
 <p>This module should be installed from Github:</p>
 <p><strong>Install from a clone</strong></p>
@@ -165,7 +169,7 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
       
     </p>
     <p>
-        &copy; Copyright 2021-2023, Thomas Donoghue.<br/>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>

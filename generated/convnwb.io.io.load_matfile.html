@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>convnwb.io.io.load_matfile &#8212; convnwb 0.3.0 documentation</title>
+    <title>convnwb.io.io.load_matfile &#8212; convnwb 0.4.0-dev documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -93,16 +93,23 @@
 <h1>convnwb.io.io.load_matfile<a class="headerlink" href="#convnwb-io-io-load-matfile" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="convnwb.io.io.load_matfile">
-<span class="sig-prename descclassname"><span class="pre">convnwb.io.io.</span></span><span class="sig-name descname"><span class="pre">load_matfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/convnwb/io/io.html#load_matfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#convnwb.io.io.load_matfile" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">convnwb.io.io.</span></span><span class="sig-name descname"><span class="pre">load_matfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/convnwb/io/io.html#load_matfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#convnwb.io.io.load_matfile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load a .mat file.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>File name of the file to load.</p>
 </dd>
 <dt><strong>folder</strong><span class="classifier">str or Path, optional</span></dt><dd><p>Folder to load from.</p>
 </dd>
-<dt><strong>**kwargs</strong></dt><dd><p>Additional keywork arguments to pass into <cite>scipy.io.loadmat</cite>.</p>
+<dt><strong>version</strong><span class="classifier">{‘scipy’, ‘mat73’}</span></dt><dd><dl class="simple">
+<dt>Which matfile load function to use:</dt><dd><p>‘scipy’ : uses <cite>scipy.io.loadmat</cite>, works for matfiles older than v7.3
+‘mat73’ : uses <cite>mat73.loadmat</cite>, works for matfile v7.3 files</p>
+</dd>
+</dl>
+<p>If not specified, tries both.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Additional keywork arguments to pass into to matfile load function.</p>
 </dd>
 </dl>
 </dd>
@@ -113,9 +120,6 @@
 </dl>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>This function is a wrapper of <cite>scipy.io.loadmat</cite> and accepts
-any additional keyword arguments that <cite>loadmat</cite> accepts.</p>
 </dd></dl>
 
 </section>
@@ -132,7 +136,7 @@ any additional keyword arguments that <cite>loadmat</cite> accepts.</p>
       
     </p>
     <p>
-        &copy; Copyright 2021-2023, Thomas Donoghue.<br/>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>convnwb.sorting.process &#8212; convnwb 0.4.0-dev documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          convnwb</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0-dev</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="https://github.com/HSUPipeline/convnwb">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for convnwb.sorting.process</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Processing functions related to spike sorting / combinato files.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">convnwb.sorting.io</span> <span class="kn">import</span> <span class="n">load_spike_data_file</span><span class="p">,</span> <span class="n">load_sorting_data_file</span><span class="p">,</span> <span class="n">save_units</span>
+<span class="kn">from</span> <span class="nn">convnwb.sorting.utils</span> <span class="kn">import</span> <span class="n">get_sorting_kept_labels</span><span class="p">,</span> <span class="n">get_group_labels</span><span class="p">,</span> <span class="n">extract_clusters</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="collect_all_sorting"><a class="viewcode-back" href="../../../generated/convnwb.sorting.process.collect_all_sorting.html#convnwb.sorting.process.collect_all_sorting">[docs]</a><span class="k">def</span> <span class="nf">collect_all_sorting</span><span class="p">(</span><span class="n">spike_data</span><span class="p">,</span> <span class="n">sort_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collect together all the organized spike sorting information for a channel of data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spike_data : dict</span>
+<span class="sd">        Loaded data from the spike data file.</span>
+<span class="sd">        Should include the keys: `times`, `waveforms`.</span>
+<span class="sd">    sort_data : dict</span>
+<span class="sd">        Loaded sorting data from the spike sorting data file.</span>
+<span class="sd">        Should include the keys: `index`, `classes`, `groups`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    outputs : dict</span>
+<span class="sd">        Each value is an array of all values for valid events in the channel of data, including:</span>
+
+<span class="sd">        * `times` : spike times for each event</span>
+<span class="sd">        * `waveforms` : spike waveform for each event</span>
+<span class="sd">        * `classes` : class assignment for each event</span>
+<span class="sd">        * `clusters` : cluster (group) assignment for each event</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Kept information is for all valid spikes - all clusters considered putative single units.</span>
+
+<span class="sd">    This excludes:</span>
+
+<span class="sd">    - spike events detected but excluded from sorting due to being listed as artifact</span>
+<span class="sd">    - spike events entered into sorting, but that are unassigned to a group</span>
+<span class="sd">    - spike events sorted into a group, but who&#39;s group was listed as an artifact</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">spike_data</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">],</span> <span class="s2">&quot;Data file channels do not match.&quot;</span>
+    <span class="k">assert</span> <span class="n">spike_data</span><span class="p">[</span><span class="s1">&#39;polarity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;polarity&#39;</span><span class="p">],</span> <span class="s2">&quot;Data file polarity does not match.&quot;</span>
+
+    <span class="c1"># Get the set of valid class &amp; group labels, and make a mask</span>
+    <span class="n">valid_classes</span><span class="p">,</span> <span class="n">valid_groups</span> <span class="o">=</span> <span class="n">get_sorting_kept_labels</span><span class="p">(</span><span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;groups&#39;</span><span class="p">])</span>
+    <span class="n">class_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;classes&#39;</span><span class="p">],</span> <span class="n">valid_classes</span><span class="p">)</span>
+
+    <span class="c1"># Create a vector reflecting group assignment of each spike</span>
+    <span class="n">group_labels</span> <span class="o">=</span> <span class="n">get_group_labels</span><span class="p">(</span><span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;classes&#39;</span><span class="p">],</span> <span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;groups&#39;</span><span class="p">])</span>
+
+    <span class="n">outputs</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="c1"># collect metadata into output</span>
+        <span class="s1">&#39;channel&#39;</span> <span class="p">:</span> <span class="n">spike_data</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;polarity&#39;</span> <span class="p">:</span> <span class="n">spike_data</span><span class="p">[</span><span class="s1">&#39;polarity&#39;</span><span class="p">],</span>
+
+        <span class="c1"># spike data collected as the non-artifact spikes, sub-selected for valid classes</span>
+        <span class="s1">&#39;times&#39;</span> <span class="p">:</span> <span class="n">spike_data</span><span class="p">[</span><span class="s1">&#39;times&#39;</span><span class="p">][</span><span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]][</span><span class="n">class_mask</span><span class="p">],</span>
+        <span class="s1">&#39;waveforms&#39;</span> <span class="p">:</span> <span class="n">spike_data</span><span class="p">[</span><span class="s1">&#39;waveforms&#39;</span><span class="p">][</span><span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">][</span><span class="n">class_mask</span><span class="p">],</span> <span class="p">:],</span>
+
+        <span class="c1"># spike sorting information collected as the valid class labels</span>
+        <span class="s1">&#39;classes&#39;</span> <span class="p">:</span> <span class="n">sort_data</span><span class="p">[</span><span class="s1">&#39;classes&#39;</span><span class="p">][</span><span class="n">class_mask</span><span class="p">],</span>
+        <span class="s1">&#39;clusters&#39;</span> <span class="p">:</span> <span class="n">group_labels</span><span class="p">[</span><span class="n">class_mask</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">outputs</span></div>
+
+
+<div class="viewcode-block" id="process_combinato_data"><a class="viewcode-back" href="../../../generated/convnwb.sorting.process.process_combinato_data.html#convnwb.sorting.process.process_combinato_data">[docs]</a><span class="k">def</span> <span class="nf">process_combinato_data</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">input_folder</span><span class="p">,</span> <span class="n">polarity</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">units_folder</span><span class="p">,</span>
+                           <span class="n">continue_on_fail</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to run the process of going from combinato -&gt; extracted units files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    channel : int or str</span>
+<span class="sd">        The channel number / label of the file to load.</span>
+<span class="sd">    input_folder : str or Path</span>
+<span class="sd">        The folder location to load the spike data from.</span>
+<span class="sd">    polarity : {&#39;neg&#39;, &#39;pos&#39;}</span>
+<span class="sd">        Which polarity of detected spikes to load.</span>
+<span class="sd">    user : str</span>
+<span class="sd">        The 3 character user label to load.</span>
+<span class="sd">    output_folder : str or Path</span>
+<span class="sd">        The folder destination to save the output units files to.</span>
+<span class="sd">    continue_on_fail : bool, optional, default: False</span>
+<span class="sd">        Whether to continue when an error is encountered.</span>
+<span class="sd">    verbose : bool, optional, default: True</span>
+<span class="sd">        Whether to print out updates about the extraction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="c1"># Load spike &amp; sorting data</span>
+        <span class="n">spike_data</span> <span class="o">=</span> <span class="n">load_spike_data_file</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">input_folder</span><span class="p">,</span> <span class="n">polarity</span><span class="p">)</span>
+        <span class="n">sort_data</span> <span class="o">=</span> <span class="n">load_sorting_data_file</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">input_folder</span><span class="p">,</span> <span class="n">polarity</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+
+        <span class="c1"># Organize and collect extracted data together, and extract unit clusters</span>
+        <span class="n">clusters</span> <span class="o">=</span> <span class="n">collect_all_sorting</span><span class="p">(</span><span class="n">spike_data</span><span class="p">,</span> <span class="n">sort_data</span><span class="p">)</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="n">extract_clusters</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+
+        <span class="c1"># Save out extracted unit data</span>
+        <span class="n">save_units</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">units_folder</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extracted channel </span><span class="si">{:20s}</span><span class="s1"> - found </span><span class="si">{:2d}</span><span class="s1"> clusters</span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                <span class="n">channel</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">units</span><span class="p">)))</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">continue_on_fail</span><span class="p">:</span>
+            <span class="k">raise</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Issue extracting channel: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="p">))</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

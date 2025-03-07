@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>convnwb.paths.paths.Paths &#8212; convnwb 0.3.0 documentation</title>
+    <title>convnwb.paths.paths.Paths &#8212; convnwb 0.4.0-dev documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -132,34 +132,100 @@ Each set of values is a list of folder names within each sub-directory.</p>
 <td><p>Defines a paths object for a project.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.get_files" title="convnwb.paths.paths.Paths.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder, **kwargs)</p></td>
-<td><p>Get a list of files available in a specified sub-folder.</p></td>
+<td><p>Get a list of files available in a specified folder.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.get_subfolders" title="convnwb.paths.paths.Paths.get_subfolders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_subfolders</span></code></a>(folder, **kwargs)</p></td>
+<td><p>Get a list of sub-folder available in a specified folder.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.print_structure" title="convnwb.paths.paths.Paths.print_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_structure</span></code></a>()</p></td>
+<td><p>Print directory structure.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">experiment</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.all_folders" title="convnwb.paths.paths.Paths.all_folders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_folders</span></code></a></p></td>
+<td><p>List of all folders.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">recordings</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.all_paths" title="convnwb.paths.paths.Paths.all_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_paths</span></code></a></p></td>
+<td><p>List of all path names (all labels that can be used to access a path).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">session</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.experiment" title="convnwb.paths.paths.Paths.experiment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">experiment</span></code></a></p></td>
+<td><p>&quot;Path of the experiment folder.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">session_name</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.recordings" title="convnwb.paths.paths.Paths.recordings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recordings</span></code></a></p></td>
+<td><p>&quot;Path of the recordings folder.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subject</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.session" title="convnwb.paths.paths.Paths.session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">session</span></code></a></p></td>
+<td><p>Path of the session folder.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.session_name" title="convnwb.paths.paths.Paths.session_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">session_name</span></code></a></p></td>
+<td><p>Name of the session this object reflects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#convnwb.paths.paths.Paths.subject" title="convnwb.paths.paths.Paths.subject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subject</span></code></a></p></td>
+<td><p>Path of the subject folder.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py property">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.all_folders">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_folders</span></span><a class="headerlink" href="#convnwb.paths.paths.Paths.all_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all folders.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.all_paths">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_paths</span></span><a class="headerlink" href="#convnwb.paths.paths.Paths.all_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all path names (all labels that can be used to access a path).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.experiment">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">experiment</span></span><a class="headerlink" href="#convnwb.paths.paths.Paths.experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Path of the experiment folder.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="convnwb.paths.paths.Paths.get_files">
 <span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/convnwb/paths/paths.html#Paths.get_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#convnwb.paths.paths.Paths.get_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a list of files available in a specified sub-folder.</p>
+<dd><p>Get a list of files available in a specified folder.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.get_subfolders">
+<span class="sig-name descname"><span class="pre">get_subfolders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/convnwb/paths/paths.html#Paths.get_subfolders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#convnwb.paths.paths.Paths.get_subfolders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of sub-folder available in a specified folder.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.print_structure">
+<span class="sig-name descname"><span class="pre">print_structure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/convnwb/paths/paths.html#Paths.print_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#convnwb.paths.paths.Paths.print_structure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print directory structure.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.recordings">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recordings</span></span><a class="headerlink" href="#convnwb.paths.paths.Paths.recordings" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Path of the recordings folder.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.session">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#convnwb.paths.paths.Paths.session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of the session folder.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.session_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">session_name</span></span><a class="headerlink" href="#convnwb.paths.paths.Paths.session_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the session this object reflects.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="convnwb.paths.paths.Paths.subject">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subject</span></span><a class="headerlink" href="#convnwb.paths.paths.Paths.subject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of the subject folder.</p>
 </dd></dl>
 
 </dd></dl>
@@ -178,7 +244,7 @@ Each set of values is a list of folder names within each sub-directory.</p>
       
     </p>
     <p>
-        &copy; Copyright 2021-2023, Thomas Donoghue.<br/>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>

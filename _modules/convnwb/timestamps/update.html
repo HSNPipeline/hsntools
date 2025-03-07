@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>convnwb.timestamps.update &#8212; convnwb 0.3.0 documentation</title>
+    <title>convnwb.timestamps.update &#8212; convnwb 0.4.0-dev documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -40,7 +40,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -125,6 +125,27 @@
 
     <span class="n">func</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;divide&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">,</span> <span class="s1">&#39;multiply&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">}[</span><span class="n">operation</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="change_sampling_rate"><a class="viewcode-back" href="../../../generated/convnwb.timestamps.update.change_sampling_rate.html#convnwb.timestamps.update.change_sampling_rate">[docs]</a><span class="k">def</span> <span class="nf">change_sampling_rate</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">fs_from</span><span class="p">,</span> <span class="n">fs_to</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Change the effective sampling rate for a set of times values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    times : 1d array</span>
+<span class="sd">        Vector of timestamps to update.</span>
+<span class="sd">    fs_from : int</span>
+<span class="sd">        The original sampling rate of the times values.</span>
+<span class="sd">    fs_to : int</span>
+<span class="sd">        The new sampling rate to reset the times values to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    new_times : 1d array</span>
+<span class="sd">        Vector of updated times values, now reflecting the new sampling rate.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">times</span> <span class="o">*</span> <span class="n">fs_from</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs_to</span></div>
 </pre></div>
 
     </div>
@@ -138,7 +159,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2021-2023, Thomas Donoghue.<br/>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>convnwb.objects.task &#8212; convnwb 0.3.0 documentation</title>
+    <title>convnwb.objects.task &#8212; convnwb 0.4.0-dev documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -40,7 +40,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -129,12 +129,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;experiment&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
             <span class="s1">&#39;subject&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="s1">&#39;session&#39;</span> <span class="p">:</span> <span class="kc">None</span>
+            <span class="s1">&#39;session&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="c1"># Experiment information</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;version&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+            <span class="s1">&#39;version&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;number&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="p">},</span>
             <span class="s1">&#39;language&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">}</span>
 
@@ -144,11 +147,13 @@
         <span class="c1"># Session information</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;start_time&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="s1">&#39;end_time&#39;</span> <span class="p">:</span> <span class="kc">None</span>
+            <span class="s1">&#39;stop_time&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="c1"># Synchronization information</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sync</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1"># Define synchronization approach</span>
+            <span class="s1">&#39;approach&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
             <span class="c1"># Synchronization pulses</span>
             <span class="s1">&#39;neural&#39;</span> <span class="p">:</span> <span class="p">[],</span>
             <span class="s1">&#39;behavioral&#39;</span> <span class="p">:</span> <span class="p">[],</span>
@@ -156,7 +161,7 @@
             <span class="s1">&#39;alignment&#39;</span> <span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;intercept&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;coef&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="s1">&#39;score&#39;</span> <span class="p">:</span> <span class="kc">None</span>
+                <span class="s1">&#39;score&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
@@ -166,7 +171,7 @@
             <span class="s1">&#39;x&#39;</span> <span class="p">:</span> <span class="p">[],</span>
             <span class="s1">&#39;y&#39;</span> <span class="p">:</span> <span class="p">[],</span>
             <span class="s1">&#39;z&#39;</span> <span class="p">:</span> <span class="p">[],</span>
-            <span class="s1">&#39;speed&#39;</span> <span class="p">:</span> <span class="p">[]</span>
+            <span class="s1">&#39;speed&#39;</span> <span class="p">:</span> <span class="p">[],</span>
         <span class="p">}</span>
 
         <span class="c1"># Head direction information</span>
@@ -182,7 +187,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="c1"># Trial information</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trial</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trial</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;trial&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;type&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;start_time&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;stop_time&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
 
         <span class="c1"># Response information</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="p">{}</span></div>
@@ -285,15 +295,49 @@
         <span class="k">return</span> <span class="n">data_keys</span></div>
 
 
+<div class="viewcode-block" id="TaskBase.drop_fields"><a class="viewcode-back" href="../../../generated/convnwb.objects.task.TaskBase.html#convnwb.objects.task.TaskBase.drop_fields">[docs]</a>    <span class="k">def</span> <span class="nf">drop_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop field(s) from the task object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fields : str or list of str</span>
+<span class="sd">            Field(s) to drop.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">fields</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">fields</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+            <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.drop_keys"><a class="viewcode-back" href="../../../generated/convnwb.objects.task.TaskBase.html#convnwb.objects.task.TaskBase.drop_keys">[docs]</a>    <span class="k">def</span> <span class="nf">drop_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop key(s) from a specified field of the task object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field : str</span>
+<span class="sd">            Which field to access and remove keys from.</span>
+<span class="sd">        keys : list of str or dict</span>
+<span class="sd">            Which key(s) of the field to remove.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">keys</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">keys</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="TaskBase.apply_func"><a class="viewcode-back" href="../../../generated/convnwb.objects.task.TaskBase.html#convnwb.objects.task.TaskBase.apply_func">[docs]</a>    <span class="k">def</span> <span class="nf">apply_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a given function across a set of specified fields.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        field : str</span>
-<span class="sd">            Which field to access data to convert from.</span>
+<span class="sd">            Which field to access data to apply function to.</span>
 <span class="sd">        keys : list of str or dict</span>
-<span class="sd">            Which key(s) of the field to convert to array.</span>
+<span class="sd">            Which key(s) of the field to apply function to.</span>
 <span class="sd">            If list, should be a list of keys available in `field`.</span>
 <span class="sd">            If dict, keys should be subfields, each with corresponding labels to typecast.</span>
 <span class="sd">        func : callable</span>
@@ -319,9 +363,9 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        field : str</span>
-<span class="sd">            Which field to access data to convert from.</span>
+<span class="sd">            Which field to access data to convert type.</span>
 <span class="sd">        keys : list of str or dict</span>
-<span class="sd">            Which key(s) of the field to convert to array.</span>
+<span class="sd">            Which key(s) of the field to convert type.</span>
 <span class="sd">            If list, should be a list of keys available in `field`.</span>
 <span class="sd">            If dict, keys should be subfields, each with corresponding labels to typecast.</span>
 <span class="sd">        dtype : type</span>
@@ -337,7 +381,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        field : str</span>
-<span class="sd">            Which field to access data to convert from.</span>
+<span class="sd">            Which field to access data to convert to array.</span>
 <span class="sd">        keys : list of str or dict</span>
 <span class="sd">            Which key(s) of the field to convert to array.</span>
 <span class="sd">            If list, should be a list of keys available in `field`.</span>
@@ -373,13 +417,13 @@
         <span class="k">return</span> <span class="n">trial_info</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.plot_sync_allignment"><a class="viewcode-back" href="../../../generated/convnwb.objects.task.TaskBase.html#convnwb.objects.task.TaskBase.plot_sync_allignment">[docs]</a>    <span class="k">def</span> <span class="nf">plot_sync_allignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_pulses</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plots alignment of the synchronization pulses.</span>
+<div class="viewcode-block" id="TaskBase.plot_sync_allignment"><a class="viewcode-back" href="../../../generated/convnwb.objects.task.TaskBase.html#convnwb.objects.task.TaskBase.plot_sync_allignment">[docs]</a>    <span class="k">def</span> <span class="nf">plot_sync_allignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_pulses</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot alignment of the synchronization pulses.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        n_pulses : int, optional, default: 100</span>
-<span class="sd">            Number of pulses to plot for zoomed plot.</span>
+<span class="sd">        n_pulses : int, optional</span>
+<span class="sd">            Number of pulses to plot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># should be implemented in subclass</span>
@@ -474,7 +518,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2021-2023, Thomas Donoghue.<br/>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>

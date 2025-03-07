@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>convnwb.io.io.save_task_object &#8212; convnwb 0.3.0 documentation</title>
+    <title>convnwb.sorting.io.load_units &#8212; convnwb 0.4.0-dev documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.3.0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.4.0-dev</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -89,26 +89,27 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="convnwb-io-io-save-task-object">
-<h1>convnwb.io.io.save_task_object<a class="headerlink" href="#convnwb-io-io-save-task-object" title="Permalink to this heading">¶</a></h1>
+  <section id="convnwb-sorting-io-load-units">
+<h1>convnwb.sorting.io.load_units<a class="headerlink" href="#convnwb-sorting-io-load-units" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="convnwb.io.io.save_task_object">
-<span class="sig-prename descclassname"><span class="pre">convnwb.io.io.</span></span><span class="sig-name descname"><span class="pre">save_task_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/convnwb/io/io.html#save_task_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#convnwb.io.io.save_task_object" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a task object.</p>
+<dt class="sig sig-object py" id="convnwb.sorting.io.load_units">
+<span class="sig-prename descclassname"><span class="pre">convnwb.sorting.io.</span></span><span class="sig-name descname"><span class="pre">load_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/convnwb/sorting/io.html#load_units"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#convnwb.sorting.io.load_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a set of units files from a folder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>task</strong><span class="classifier">Task</span></dt><dd><p>Task object to save out.</p>
+<dt><strong>folder</strong><span class="classifier">str or Path</span></dt><dd><p>Location to load files from.
+Will load all files in this folder with ‘times’ in the name.</p>
 </dd>
-<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>File name to give the saved out task file.</p>
+</dl>
 </dd>
-<dt><strong>folder</strong><span class="classifier">str or Path, optional</span></dt><dd><p>Folder to save out to.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>units</strong><span class="classifier">list of dict</span></dt><dd><p>List of dictionaries containing the loaded information for each unit.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>Task objects are saved and loaded as pickle files.</p>
 </dd></dl>
 
 </section>
@@ -125,7 +126,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2021-2023, Thomas Donoghue.<br/>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
     </p>
   </div>
