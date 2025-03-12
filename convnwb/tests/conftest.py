@@ -41,6 +41,8 @@ def check_dir():
     os.mkdir(TEST_PATHS['sorting'] / chan_dir / sort_dir)
     os.mkdir(TEST_PATHS['sorting'] / 'units')
 
+## TEST OBJECTS
+
 @pytest.fixture(scope='session')
 def tnwbfile():
     """Create a test NWBfile."""
