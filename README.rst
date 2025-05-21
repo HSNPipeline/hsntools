@@ -40,7 +40,7 @@ For converting data, `convnwb` can be used together with the
 Dependencies
 ------------
 
-``convnwb`` is written in Python, and requires Python >= 3.6 to run.
+``convnwb`` is written in Python, and requires Python >= 3.7 to run.
 
 It has the following required dependencies:
 
