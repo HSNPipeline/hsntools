@@ -21,7 +21,7 @@ setup(
     description = 'Helper code for converting data to NWB.',
     long_description = long_description,
     long_description_content_type = 'text/x-rst',
-    python_requires = '>=3.6',
+    python_requires = '>=3.7',
     packages = find_packages(),
     license = 'MIT License',
     classifiers = [
@@ -34,7 +34,6 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: Unix',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
