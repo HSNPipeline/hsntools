@@ -15,7 +15,7 @@ hsntools
    :target: https://codecov.io/gh/HSUPipeline/convnwb
    :alt: coverage
 
-``hsntools`` (formerly 'convnwb') is a module of code to help with converting data to the NWB format.
+``hsntools`` (formerly 'convnwb') is a module for working with the Human Single-Neuron Pipeline (HSNPipeline).
 
 Overview
 --------
@@ -59,6 +59,18 @@ and generating structured reports.
 Note that `hsntools` is not a module for and does not include functionality for spike sorting or single-neuron analyses.
 See the `HSNPipeline Overview <https://github.com/HSUPipeline/Overview>`_ for information and guidance on these
 processes and related tooling.
+
+Documentation
+-------------
+
+Documentation for the ``hsntools`` module is available
+`here <https://hsupipeline.github.io/convnwb/>`_
+
+Documentation for the HSNPipeline more broadly, which uses ``hsntools`` is available
+`here <https://hsupipeline.github.io/>`_
+
+If you have a question about using ``hsntools`` that doesn't seem to be covered by the documentation, feel free to
+open an `issue <https://https://github.com/HSUPipeline/convnwb/issues>`_ and ask!
 
 Dependencies
 ------------
