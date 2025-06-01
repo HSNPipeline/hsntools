@@ -23,6 +23,10 @@ Overview
 This module contains general, task agnostic, utilities, for converting data to the
 `NWB <https://www.nwb.org/>`_ format.
 
+NOTE: this module is in the process of being renamed to `hsntools`.
+Future versions of the module will be under the new name.
+See the changelog for further details on version information.
+
 Available sub-modules in `convnwb` include:
 
 - ``io``: includes save and load functions and utilities for working with files through the conversion process
