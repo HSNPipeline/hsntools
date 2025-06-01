@@ -1,5 +1,5 @@
-convnwb
-=======
+hsntools
+========
 
 |ProjectStatus| |BuildStatus| |Coverage|
 
@@ -15,36 +15,55 @@ convnwb
    :target: https://codecov.io/gh/HSUPipeline/convnwb
    :alt: coverage
 
-``convnwb`` is a module of code to help with converting data to the NWB format.
+``hsntools`` (formerly 'convnwb') is a module of code to help with converting data to the NWB format.
 
 Overview
 --------
 
-This module contains general, task agnostic, utilities, for converting data to the
-`NWB <https://www.nwb.org/>`_ format.
+This module contains general utilities for working with human single-neuron data and projects.
 
 NOTE: this module is in the process of being renamed to `hsntools`.
 Future versions of the module will be under the new name.
 See the changelog for further details on version information.
 
-Available sub-modules in `convnwb` include:
+``hsntools`` is designed for use in the Human Single-Neuron pipeline, which provides a guide and
+template structure for human single-neuron projects, including working with data files, converting
+data to the `NWB <https://www.nwb.org/>`_ format, and managing projects and analyses.
 
-- ``io``: includes save and load functions and utilities for working with files through the conversion process
+Available sub-modules in `hsntools` include:
+
+- ``io``: includes save and load functions and utilities for working with files raw and converted data files
 - ``nsp``: includes functionality that relating to managing recording files from neural signal processors
 - ``objects``: includes objects for storing relevant data, for example electrode or task related information
 - ``paths``: includes a `Paths` object and utilities for defining and using a consistent path structure
 - ``plts``: includes plot functions for examining data through the conversion process
-- ``sorting``: includes functionality relating to managing recording spike sorting
+- ``sorting``: includes functionality relating to managing spike sorting
 - ``timestamps``: includes utilities for managing timestamps and aligning data streams
 - ``utils``: includes general utilities for working with data through the conversion process
 
-For converting data, `convnwb` can be used together with the
-`ConvertTEMPLATE <https://github.com/HSUPipeline/ConvertTEMPLATE>`_.
+Scope
+-----
+
+The `hsntools` module is a helper module for implementing functionality needed for the
+`Human Single-Neuron Pipeline`. It includes utilities related to managing and organizing relevant files,
+including file I/O, functionality for organizing and aligning multiple data streams and converting
+data to standardized data files, and utilities for assisting with running analyses across such data
+and generating structured reports.
+
+``hsntools`` provides functionality used within the template for the pipeline, including:
+
+- `SortTEMPLATE <https://github.com/HSUPipeline/SortTEMPLATE>`_
+- `ConvertTEMPLATE <https://github.com/HSUPipeline/ConvertTEMPLATE>`_
+- `AnalyzeTEMPLATE <https://github.com/HSUPipeline/AnalyzeTEMPLATE>`_
+
+Note that `hsntools` is not a module for and does not include functionality for spike sorting or single-neuron analyses.
+See the `HSNPipeline Overview <https://github.com/HSUPipeline/Overview>`_ for information and guidance on these
+processes and related tooling.
 
 Dependencies
 ------------
 
-``convnwb`` is written in Python, and requires Python >= 3.7 to run.
+``hsntools`` is written in Python, and requires Python >= 3.7 to run.
 
 It has the following required dependencies:
 
