@@ -6,11 +6,11 @@ import numpy as np
 ###################################################################################################
 
 def convert_samples_to_time(n_samples, fs, output='minutes'):
-    """Convert a number of samples to corresponding time length.
+    """Convert a number of samples to the corresponding length of time.
 
     Parameters
     ----------
-    n_samples : in
+    n_samples : int
         Number of samples.
     fs : int
         Sampling rate.

@@ -11,7 +11,7 @@ pd = safe_import('pandas')
 ###################################################################################################
 
 class Bundle():
-    """Object for collecting / managing a bundle definition."""
+    """Object for collecting & managing an electrode bundle definition."""
 
     def __init__(self, probe, hemisphere=None, lobe=None, region=None,
                  subregion=None, channels=None):
@@ -38,7 +38,7 @@ class Bundle():
 
 
 class Electrodes():
-    """Object for collecting / managing electrode information.
+    """Object for collecting & managing electrode information.
 
     Attributes
     ----------

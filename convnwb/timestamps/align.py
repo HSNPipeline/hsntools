@@ -168,7 +168,7 @@ def match_pulses(sync_behav, sync_neural, n_pulses, start_offset=None):
 
     # Find mode of index offsets - with a special check for scipy version
     version_vals = scipy_version.split('.')
-    # Old version - prior to `keep_dims` being adding in 1.9
+    # Old version - prior to `keep_dims` being added in 1.9
     if int(version_vals[0]) == 1 and int(version_vals[1]) < 9:
         ixis_mode = stats.mode(ixis)[0][0]
     else:
