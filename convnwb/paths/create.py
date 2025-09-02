@@ -31,8 +31,8 @@ def create_project_directory(base_path, project, project_folders=PROJECT_FOLDERS
     base_path : str or Path
         The path to the folder where to put the project.
     project : str or list
-        The project name.
-        If list, should be a list of project names to create different folders for.
+        The project name(s).
+        If list, should be a list of project names, each which will be created.
     project_folders : list, optional
         List of sub-folders to initialize in the project folder.
     verbose : bool, optional, default: True
@@ -66,7 +66,7 @@ def create_subject_directory(project_path, subject, experiments=None,
         The path to the project folder.
     subject : str or list
         The subject code(s).
-        If list, should be a list of subject codes to create different folders for.
+        If list, should be a list of subject codes, each which will be created.
     experiments : str or list, optional
         Experiment name(s) to initialize in the subject(s) folder(s).
     subject_folders : list, optional
@@ -117,6 +117,7 @@ def create_session_directory(project_path, subject, experiment, session,
     session : str or int or list
         The session label(s) to create the folder structure for.
         Can be an integer index, or a string, for example `session_0`.
+        If list, should be a list of str or int to create multiple session folders.
     recordings_name : str, optional
         The name of the subfolder (within `project_path`) to store recordings.
     session_folders : dict, optional
