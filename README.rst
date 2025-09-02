@@ -7,8 +7,8 @@ hsntools
    :target: https://www.repostatus.org/#active
    :alt: project status
 
-.. |BuildStatus| image:: https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml/badge.svg
-   :target: https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml
+.. |BuildStatus| image:: https://github.com/HSUPipeline/hsntools/actions/workflows/build.yml/badge.svg
+   :target: https://github.com/HSUPipeline/hsntools/actions/workflows/build.yml
    :alt: build statue
 
 .. |Coverage| image:: https://codecov.io/gh/HSUPipeline/convnwb/branch/main/graph/badge.svg
@@ -21,10 +21,6 @@ Overview
 --------
 
 This module contains general utilities for working with human single-neuron data and projects.
-
-NOTE: this module is in the process of being renamed to `hsntools`.
-Future versions of the module will be under the new name.
-See the changelog for further details on version information.
 
 ``hsntools`` is designed for use in the Human Single-Neuron pipeline, which provides a guide and
 template structure for human single-neuron projects, including working with data files, converting
@@ -64,13 +60,13 @@ Documentation
 -------------
 
 Documentation for the ``hsntools`` module is available
-`here <https://hsupipeline.github.io/convnwb/>`_
+`here <https://hsupipeline.github.io/hsntools/>`_
 
 Documentation for the HSNPipeline more broadly, which uses ``hsntools`` is available
 `here <https://hsupipeline.github.io/>`_
 
 If you have a question about using ``hsntools`` that doesn't seem to be covered by the documentation, feel free to
-open an `issue <https://https://github.com/HSUPipeline/convnwb/issues>`_ and ask!
+open an `issue <https://https://github.com/HSUPipeline/hsntools/issues>`_ and ask!
 
 Dependencies
 ------------
@@ -100,7 +96,7 @@ Installation
 The current release version is the 0.4.X series.
 
 Check the
-`changelog <https://hsupipeline.github.io/convnwb/changelog>`_
+`changelog <https://hsupipeline.github.io/hsntools/changelog>`_
 for notes on updates and changes across versions.
 
 This module should be installed from Github:
@@ -111,8 +107,8 @@ First clone this repository, then move into the cloned repository, and install:
 
 .. code-block:: shell
 
-    $ git clone https://github.com/HSUPipeline/convnwb
-    $ cd convnwb
+    $ git clone https://github.com/HSUPipeline/hsntools
+    $ cd hsntools
     $ pip install .
 
 Contribute
@@ -121,7 +117,7 @@ Contribute
 This project welcomes and encourages contributions from the community!
 
 To file bug reports and/or ask questions about this project, please use the
-`Github issue tracker <https://github.com/HSUPipeline/convnwb/issues>`_.
+`Github issue tracker <https://github.com/HSUPipeline/hsntools/issues>`_.
 
 When interacting with this project, please follow the
-`code of conduct <https://github.com/HSUPipeline/convnwb/blob/main/CODE_OF_CONDUCT.md>`_.
+`code of conduct <https://github.com/HSUPipeline/hsntools/blob/main/CODE_OF_CONDUCT.md>`_.
