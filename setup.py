@@ -1,10 +1,10 @@
-"""Setup script for convnwb."""
+"""Setup script for hsntools."""
 
 import os
 from setuptools import setup, find_packages
 
 # Get the current version number from inside the module
-with open(os.path.join('convnwb', 'version.py')) as version_file:
+with open(os.path.join('hsntools', 'version.py')) as version_file:
     exec(version_file.read())
 
 # Load the long description from the README
@@ -16,9 +16,9 @@ with open("requirements.txt") as requirements_file:
     install_requires = requirements_file.read().splitlines()
 
 setup(
-    name = 'convnwb',
+    name = 'hsntools',
     version = __version__,
-    description = 'Helper code for converting data to NWB.',
+    description = 'Code for working with the Human Single-Neuron Pipeline',
     long_description = long_description,
     long_description_content_type = 'text/x-rst',
     python_requires = '>=3.7',
@@ -44,11 +44,11 @@ setup(
     ],
     platforms = 'any',
     project_urls = {
-        'Documentation' : 'https://hsupipeline.github.io/convnwb/',
-        'Bug Reports' : 'https://github.com/HSUPipeline/convnwb/issues',
-        'Source' : 'https://github.com/HSUPipeline/convnwb',
+        'Documentation' : 'https://hsupipeline.github.io/hsntools/',
+        'Bug Reports' : 'https://github.com/HSUPipeline/hsntools/issues',
+        'Source' : 'https://github.com/HSUPipeline/hsntools',
     },
-    download_url = 'https://github.com/HSUPipeline/convnwb/releases',
+    download_url = 'https://github.com/HSUPipeline/hsntools/releases',
     keywords = ['neuroscience', 'single units', 'data management', 'neurodata without borders'],
     install_requires = install_requires,
     tests_require = ['pytest'],

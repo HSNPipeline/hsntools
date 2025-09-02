@@ -21,7 +21,7 @@ Functions for file I/O.
 NWB & Custom file I/O
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.io.io
+.. currentmodule:: hsntools.io.io
 .. autosummary::
    :toctree: generated/
 
@@ -36,7 +36,7 @@ NWB & Custom file I/O
 General file I/O
 ~~~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.io.io
+.. currentmodule:: hsntools.io.io
 .. autosummary::
    :toctree: generated/
 
@@ -55,7 +55,7 @@ General file I/O
 Utilities
 ~~~~~~~~~
 
-.. currentmodule:: convnwb.io.utils
+.. currentmodule:: hsntools.io.utils
 .. autosummary::
    :toctree: generated/
 
@@ -67,7 +67,7 @@ Utilities
 Validate Functions
 ~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.io.validate
+.. currentmodule:: hsntools.io.validate
 .. autosummary::
    :toctree: generated/
 
@@ -81,7 +81,7 @@ Functionality related to NSP (Neural Signal Processors).
 I/O
 ~~~
 
-.. currentmodule:: convnwb.nsp.io
+.. currentmodule:: hsntools.nsp.io
 .. autosummary::
    :toctree: generated/
 
@@ -90,7 +90,7 @@ I/O
 Checks
 ~~~~~~
 
-.. currentmodule:: convnwb.nsp.check
+.. currentmodule:: hsntools.nsp.check
 .. autosummary::
    :toctree: generated/
 
@@ -104,7 +104,7 @@ Custom objects.
 Electrodes
 ~~~~~~~~~~
 
-.. currentmodule:: convnwb.objects.electrodes
+.. currentmodule:: hsntools.objects.electrodes
 .. autosummary::
    :toctree: generated/
 
@@ -113,7 +113,7 @@ Electrodes
 TaskBase
 ~~~~~~~~
 
-.. currentmodule:: convnwb.objects.task
+.. currentmodule:: hsntools.objects.task
 .. autosummary::
    :toctree: generated/
 
@@ -127,7 +127,7 @@ Path management.
 Paths Object
 ~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.paths.paths
+.. currentmodule:: hsntools.paths.paths
 .. autosummary::
    :toctree: generated/
 
@@ -136,7 +136,7 @@ Paths Object
 Directory Creators
 ~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.paths.create
+.. currentmodule:: hsntools.paths.create
 .. autosummary::
    :toctree: generated/
 
@@ -153,7 +153,7 @@ Plotting functions and utilities.
 Timestamps
 ~~~~~~~~~~
 
-.. currentmodule:: convnwb.plts.timestamps
+.. currentmodule:: hsntools.plts.timestamps
 .. autosummary::
    :toctree: generated/
 
@@ -168,7 +168,7 @@ Functions and helpers for managing timestamps and temporal alignment.
 Alignment
 ~~~~~~~~~
 
-.. currentmodule:: convnwb.timestamps.align
+.. currentmodule:: hsntools.timestamps.align
 .. autosummary::
    :toctree: generated/
 
@@ -180,7 +180,7 @@ Alignment
 Peaks
 ~~~~~
 
-.. currentmodule:: convnwb.timestamps.peaks
+.. currentmodule:: hsntools.timestamps.peaks
 .. autosummary::
    :toctree: generated/
 
@@ -189,7 +189,7 @@ Peaks
 Update
 ~~~~~~
 
-.. currentmodule:: convnwb.timestamps.update
+.. currentmodule:: hsntools.timestamps.update
 .. autosummary::
    :toctree: generated/
 
@@ -200,7 +200,7 @@ Update
 Utils
 ~~~~~
 
-.. currentmodule:: convnwb.timestamps.utils
+.. currentmodule:: hsntools.timestamps.utils
 .. autosummary::
    :toctree: generated/
 
@@ -215,7 +215,7 @@ Spike sorting related functionality.
 I/O
 ~~~
 
-.. currentmodule:: convnwb.sorting.io
+.. currentmodule:: hsntools.sorting.io
 .. autosummary::
    :toctree: generated/
 
@@ -227,7 +227,7 @@ I/O
 Processing
 ~~~~~~~~~~
 
-.. currentmodule:: convnwb.sorting.process
+.. currentmodule:: hsntools.sorting.process
 .. autosummary::
    :toctree: generated/
 
@@ -237,7 +237,7 @@ Processing
 Utilities
 ~~~~~~~~~
 
-.. currentmodule:: convnwb.sorting.utils
+.. currentmodule:: hsntools.sorting.utils
 .. autosummary::
    :toctree: generated/
 
@@ -253,7 +253,7 @@ Utilities & helper functions.
 Check Functions
 ~~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.utils.checks
+.. currentmodule:: hsntools.utils.checks
 .. autosummary::
    :toctree: generated/
 
@@ -265,7 +265,7 @@ Check Functions
 Convert Functions
 ~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.utils.convert
+.. currentmodule:: hsntools.utils.convert
 .. autosummary::
    :toctree: generated/
 
@@ -278,7 +278,7 @@ Convert Functions
 Extract Functions
 ~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.utils.extract
+.. currentmodule:: hsntools.utils.extract
 .. autosummary::
    :toctree: generated/
 
@@ -288,7 +288,7 @@ Extract Functions
 Log Functions
 ~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.utils.log
+.. currentmodule:: hsntools.utils.log
 .. autosummary::
    :toctree: generated/
 
@@ -297,7 +297,7 @@ Log Functions
 Run Functions
 ~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.utils.run
+.. currentmodule:: hsntools.utils.run
 .. autosummary::
    :toctree: generated/
 
@@ -306,7 +306,7 @@ Run Functions
 Tool Functions
 ~~~~~~~~~~~~~~
 
-.. currentmodule:: convnwb.utils.tools
+.. currentmodule:: hsntools.utils.tools
 .. autosummary::
    :toctree: generated/
 

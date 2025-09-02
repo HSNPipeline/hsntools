@@ -1,13 +1,13 @@
 # Contributing Guidelines
 
-Thank you for your interest in contributing to `convnwb`!
+Thank you for your interest in contributing to `hsntools`!
 
 We welcome any contributions to the project that extend or improve code and/or documentation!
 
 This page includes information for how to get involved and contribute to the project, and guidelines for how to do so.
 
 This project adheres to a
-[code of conduct](https://github.com/HSUpipeline/convnwb/blob/main/CODE_OF_CONDUCT.md)
+[code of conduct](https://github.com/HSUpipeline/hsntools/blob/main/CODE_OF_CONDUCT.md)
 that you are expected to uphold when participating in this project.
 
 On this page, you can find information on:
@@ -21,7 +21,7 @@ On this page, you can find information on:
 ## Reporting a Problem
 
 To report an issue with the code, please submit it to our
-[issue tracker](https://github.com/HSUpipeline/convnwb/issues).
+[issue tracker](https://github.com/HSUpipeline/hsntools/issues).
 
 In doing so, please try to include the following:
 
@@ -38,16 +38,16 @@ We welcome all kinds of contributions to the project, including suggested featur
 If you have a new idea you would like to suggest or contribute, please do the following:
 
 1. Check if the idea is already being discussed on the
-   [issues](https://github.com/HSUpipeline/convnwb/issues) page
+   [issues](https://github.com/HSUpipeline/hsntools/issues) page
 2. Check that your idea is within the [project scope](#project-scope)
-3. Open an [issue](https://github.com/HSUpipeline/convnwb/issues) describing
+3. Open an [issue](https://github.com/HSUpipeline/hsntools/issues) describing
    what you would like to see added / changed, and why
 4. Indicate in the issue if the idea is something you would be willing to help implement
    - if so, project maintainers can give feedback to help make a plan for the contribution
 5. If you want to work on the contribution, follow the [contribution guidelines](#making-a-contribution) to do so
 
 If you are interested in getting involved and helping with the project, a great place to start is to visit the
-[issues](https://github.com/HSUpipeline/convnwb/issues) page
+[issues](https://github.com/HSUpipeline/hsntools/issues) page
 and see if there is anything you would be interested in helping with.
 If so, join the conversation, and project developers can help get you started.
 
@@ -55,7 +55,7 @@ If so, join the conversation, and project developers can help get you started.
 
 All contributions must be within the scope of the module.
 
-`convnwb` is a module for working with the HSUPipeline, including converting data to NWB files. The module includes utilities and helper code for managing data files and related utilities. Note that `convnwb` does not include any analysis code, or pre-processing steps such as spike sorting. Where possible, this module integrates functionality from other available modules, for example using `pynwb` for interacting with NWB files, rather than re-implementing functionality here.
+`hsntools` is a module for working with the HSNPipeline, including converting data to NWB files. The module includes utilities and helper code for managing data files and related utilities. Note that `hsntools` does not include any analysis code, or pre-processing steps such as spike sorting. Where possible, this module integrates functionality from other available modules, for example using `pynwb` for interacting with NWB files, rather than re-implementing functionality here.
 
 ## Making a Contribution
 
@@ -117,6 +117,6 @@ All code contributed to the module should follow these conventions:
         * If a new approach is added, a new tutorial or example may be appropriate
     * To build and check the documentation locally:
         * Install the requirements for the docsite (`pip install -r requirements-docs.txt`)
-        * Move to the `convnwb/doc` directory (`cd doc`)
+        * Move to the `hsntools/doc` directory (`cd doc`)
         * Run `make html` to create a local copy of the documentation website
-        * The documentation can then be opened in a web browser by opening the file `convnwb/doc/_build/html/index.html`
+        * The documentation can then be opened in a web browser by opening the file `hsntools/doc/_build/html/index.html`
