@@ -7,7 +7,7 @@
 # Sphinx settings - can alse be set from the command line
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = convnwb
+SPHINXPROJ    = hsntools
 SOURCEDIR     = .
 BUILDDIR      = _build
 

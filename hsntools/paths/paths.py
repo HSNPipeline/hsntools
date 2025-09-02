@@ -136,13 +136,13 @@ class Paths():
 
         for proj_path in self._project_folders:
             print(proj_path + '/')
-            print('  ' * 1, str(self._subject) + '/')
-            print('  ' * 2, str(self._experiment) + '/')
-            print('  ' * 3, str(self._session) + '/')
-            for subdir, subfolders in self._session_folders.items():
-                print('  ' * 4, subdir + '/')
-                for subfolder in subfolders:
-                    print('  ' * 5, subfolder + '/')
+        print('  ' * 1, str(self._subject) + '/')
+        print('  ' * 2, str(self._experiment) + '/')
+        print('  ' * 3, str(self._session) + '/')
+        for subdir, subfolders in self._session_folders.items():
+            print('  ' * 4, subdir + '/')
+            for subfolder in subfolders:
+                print('  ' * 5, subfolder + '/')
 
 
     def _make_all_paths(self):

@@ -22,10 +22,6 @@ Overview
 
 This module contains general utilities for working with human single-neuron data and projects.
 
-NOTE: this module is in the process of being renamed to `hsntools`.
-Future versions of the module will be under the new name.
-See the changelog for further details on version information.
-
 ``hsntools`` is designed for use in the Human Single-Neuron pipeline, which provides a guide and
 template structure for human single-neuron projects, including working with data files, converting
 data to the `NWB <https://www.nwb.org/>`_ format, and managing projects and analyses.
