@@ -3,28 +3,43 @@ Changelog
 
 This page contains the changelog for the `convnwb` module and any notes on updating between versions.
 
-This page primarily notes changes for major version updates. For notes on the specific updates
-for minor releases, see the `release page <https://github.com/HSUpipeline/convnwb/releases>`_.
+This page primarily notes high-level summaries and overview of changes for major version updates and
+updates included in minor releases.
+For more detailed notes on what is included in specific releases,
+see the `release page <https://github.com/HSUpipeline/convnwb/releases>`_.
+
+0.5.X
+-----
+
+The `0.5.X` series, starting with `0.5.0` tagged release is a minor release update to
+the module.
+
+Key changes include:
+- minor bug fixes and extensions of the file management
 
 0.4.X
 -----
 
-The `0.4.X` series, starting with `0.4.0` tagged release is an extension of the module
-that most notably includes the addition of the `sorting` sub-module, for managing
-sorting related files and processes.
+The `0.4.X` series, starting with `0.4.0` tagged release is a minor release update
+to the module.
+
+Key changes include:
+- the addition of the `sorting` sub-module, for managing sorting related files and processes
 
 0.3.X
 -----
 
-The `0.3.X` series, starting with `0.3.0` tagged release is a minor organizational
-update of the module, with the key change being to re-organize the `run` sub-module
-into the `utils` sub-module.
+The `0.3.X` series, starting with `0.3.0` tagged release is a minor release update to the
+module. It includes minor organizational updates to the module.
+
+Key changes include:
+- re-organizing the `run` sub-module into the `utils` sub-module
 
 0.2.X
 -----
 
-The `0.2.X` series, starting with the `0.2.0` tagged release is an update to the stable
-release version of the module. This updated version has several minor updates with
+The `0.2.X` series, starting with the `0.2.0` tagged release, is a minor release update
+to the module. This updated version has several minor updates with
 previous version, but does not maintain complete consistency with previous versions.
 
 Key changes include:
