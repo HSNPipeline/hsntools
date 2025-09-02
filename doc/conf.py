@@ -5,7 +5,6 @@
 # For a full list of documentation options, see:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-
 # ----------------------------------------------------------------------------
 
 import os
@@ -14,10 +13,8 @@ from os.path import dirname as up
 from datetime import date
 
 import sphinx_bootstrap_theme
-
-# import sphinx_gallery
-# from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
-
+import sphinx_gallery
+from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
 
 # -- Project information -----------------------------------------------------
 
@@ -43,7 +40,7 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
-    #'sphinx_gallery.gen_gallery',
+    'sphinx_gallery.gen_gallery',
     'sphinx_copybutton',
     'numpydoc',
 ]
@@ -96,9 +93,8 @@ html_theme_options = {
     'navbar_sidebarrel': False,
     'navbar_links': [
         ("API", "api"),
-        #("Glossary", "glossary"),
-        #("Tutorials", "auto_tutorials/index"),
-        #("Reference", "reference"),
+        ("Examples", "auto_tutorials/index"),
+        ("Reference", "reference"),
         ("GitHub", "https://github.com/HSUPipeline/convnwb", True),
     ],
 
@@ -119,15 +115,15 @@ html_show_sourcelink = False
 
 # -- Extension configuration -------------------------------------------------
 
-# # Configurations for sphinx gallery
-# sphinx_gallery_conf = {
-#     #'examples_dirs': ['../tutorials'],
-#     #'gallery_dirs': ['auto_tutorials'],
-#     #'subsection_order' : ExplicitOrder([]),
-#     'within_subsection_order': FileNameSortKey,
-#     #'default_thumb_file': 'XX.png',
-#     'backreferences_dir': 'generated',   # Where to drop linking files between examples & API
-#     'doc_module': ('convnwb',),
-#     'reference_url': {'convnwb': None},
-#     'remove_config_comments': True,
-# }
+# Configurations for sphinx gallery
+sphinx_gallery_conf = {
+    'examples_dirs': ['../examples'],
+    'gallery_dirs': ['auto_examples'],
+    #'subsection_order' : ExplicitOrder([]),
+    'within_subsection_order': FileNameSortKey,
+    #'default_thumb_file': 'XX.png',
+    'backreferences_dir': 'generated',   # Where to drop linking files between examples & API
+    'doc_module': ('convnwb',),
+    'reference_url': {'convnwb': None},
+    'remove_config_comments': True,
+}
