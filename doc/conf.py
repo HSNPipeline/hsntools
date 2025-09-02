@@ -19,12 +19,12 @@ from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
 # -- Project information -----------------------------------------------------
 
 # Set project information
-project = 'convnwb'
+project = 'hsntools'
 copyright = '2021-{}, Thomas Donoghue'.format(date.today().year)
 author = 'Thomas Donoghue'
 
 # Get and set the current version number
-from convnwb import __version__
+from hsntools import __version__
 version = __version__
 release = version
 
@@ -95,7 +95,7 @@ html_theme_options = {
         ("API", "api"),
         ("Examples", "auto_tutorials/index"),
         ("Reference", "reference"),
-        ("GitHub", "https://github.com/HSUPipeline/convnwb", True),
+        ("GitHub", "https://github.com/HSUPipeline/hsntools", True),
     ],
 
     # Set the page width to not be restricted to hardset value
@@ -123,7 +123,7 @@ sphinx_gallery_conf = {
     'within_subsection_order': FileNameSortKey,
     #'default_thumb_file': 'XX.png',
     'backreferences_dir': 'generated',   # Where to drop linking files between examples & API
-    'doc_module': ('convnwb',),
-    'reference_url': {'convnwb': None},
+    'doc_module': ('hsntools',),
+    'reference_url': {'hsntools': None},
     'remove_config_comments': True,
 }
