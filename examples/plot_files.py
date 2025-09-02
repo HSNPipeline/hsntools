@@ -34,7 +34,8 @@ from hsntools.paths import (create_project_directory,
 #
 # First, we will define an example project definition and associated directory structure.
 #
-# The directory uses the following organization
+# The directory uses the following organization:
+#
 # - `project`: the overall project title
 # - `subject`: subjects that are part of the project, each with their own subject code
 # - `experiment`: the task or tasks that each subject completes
@@ -55,6 +56,7 @@ exp2_sessions = 'session_0'
 # Now we can initialize folder structures for each element of our project.
 #
 # To do so, we can use the following functions:
+#
 # - :func:`~.create_project_directory` to initialize a project directory structure
 # - :func:`~.create_subject_directory` to initialize a new subject directory structure
 # - :func:`~.create_session_directory` to initialize a new session directory structure
@@ -86,8 +88,9 @@ create_session_directory(project, subject, 'task2', exp2_sessions)
 # subjects, and sessions. If you check your local file system, you will see new folders have
 # been created.
 #
-# Note that in the above we created each layer individually, but this is not required. If you
-# want to add a session for a new session of a new subject (or new experiment) you can use
+# Note that in the above we created each layer individually, but this is not required.
+#
+# If you want to add a session for a new session of a new subject (or new experiment) you can use
 # the `create_session_directory` function directly, and missing layers will be created.
 #
 
