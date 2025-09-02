@@ -1,6 +1,6 @@
 """Neural Signal Processor (NSP) related functionality."""
 
-from hsntools.timestamps.utils import convert_samples_to_time
+from hsntools.timestamps.utils import compute_sample_length
 
 ###################################################################################################
 ###################################################################################################
@@ -30,5 +30,5 @@ def check_blackrock_file_info(reader):
             seg_start = reader.segment_t_start(bi, si)
             seg_stop = reader.segment_t_stop(bi, si)
             seg_size = reader.get_signal_size(bi, si)
-            seg_length = convert_samples_to_time(seg_size, fs)
+            seg_length = compute_sample_length(seg_size, fs)
             print(str_fmt.format(si, seg_start, seg_stop, seg_size, seg_length))

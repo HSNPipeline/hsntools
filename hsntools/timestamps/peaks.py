@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from hsntools.timestamps.utils import create_timestamps_from_samples
+from hsntools.timestamps.utils import convert_samples_to_time
 from hsntools.modutils.dependencies import safe_import, check_dependency
 
 signal = safe_import('.signal', 'scipy')
@@ -48,7 +48,7 @@ def detect_peaks(data, fs, height, distance=None, thresh=None):
         peak_heights = peak_heights[mask]
 
     # Convert peak indices to time stamps (in seconds)
-    timestamps = create_timestamps_from_samples(len(data), fs)
+    timestamps = convert_samples_to_time(len(data), fs)
     peak_times = np.array([timestamps[peak] for peak in peak_inds])
 
     return peak_inds, peak_times, peak_heights
