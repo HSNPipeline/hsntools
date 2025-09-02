@@ -1,7 +1,5 @@
 """Tests for hsntools.utils.convert"""
 
-from datetime import datetime
-
 import numpy as np
 
 from hsntools.utils.convert import *
@@ -37,8 +35,3 @@ def test_convert_to_array():
 
     out2 = convert_to_array(data, float)
     assert 'float' in str(out2.dtype)
-
-def test_convert_time_to_date():
-
-    date = convert_time_to_date(1234567891)
-    assert isinstance(date, datetime)
