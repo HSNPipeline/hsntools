@@ -204,8 +204,8 @@ Utils
 .. autosummary::
    :toctree: generated/
 
+   compute_sample_length
    convert_samples_to_time
-   create_timestamps_from_samples
 
 Sorting
 -------

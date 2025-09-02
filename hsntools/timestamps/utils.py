@@ -5,8 +5,8 @@ import numpy as np
 ###################################################################################################
 ###################################################################################################
 
-def convert_samples_to_time(n_samples, fs, output='minutes'):
-    """Convert a number of samples to the corresponding length of time.
+def compute_sample_length(n_samples, fs, output='minutes'):
+    """Compute the length of time corresponding to a given number of samples.
 
     Parameters
     ----------
@@ -19,8 +19,8 @@ def convert_samples_to_time(n_samples, fs, output='minutes'):
 
     Returns
     -------
-    float
-        Time value, in unit of `output`.
+    length : float
+        Time length for the input number of samples, in unit of `output`.
     """
 
     assert output in ['minutes', 'seconds'], "Output format not understood."
@@ -33,8 +33,8 @@ def convert_samples_to_time(n_samples, fs, output='minutes'):
         return n_seconds
 
 
-def create_timestamps_from_samples(samples, fs, offset=0):
-    """Create a set of timestamps for a set of samples.
+def convert_samples_to_time(samples, fs, offset=0):
+    """Convert a set of samples to a set of corresponding timestamps.
 
     Parameters
     ----------
