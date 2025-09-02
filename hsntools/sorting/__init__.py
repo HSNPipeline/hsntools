@@ -1,1 +1,1 @@
-"""Sorting related utilities for convnwb."""
+"""Sorting related utilities for hsntools."""

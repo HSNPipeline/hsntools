@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from convnwb.modutils.dependencies import safe_import, check_dependency
+from hsntools.modutils.dependencies import safe_import, check_dependency
 
 sklearn = safe_import('sklearn')
 stats = safe_import('.stats', 'scipy')

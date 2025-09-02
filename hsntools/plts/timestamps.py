@@ -1,7 +1,7 @@
 """Visualizations for checking timestamps."""
 
-from convnwb.modutils.dependencies import safe_import, check_dependency
-from convnwb.plts.utils import check_ax, savefig
+from hsntools.modutils.dependencies import safe_import, check_dependency
+from hsntools.plts.utils import check_ax, savefig
 
 plt = safe_import('.pyplot', 'matplotlib')
 

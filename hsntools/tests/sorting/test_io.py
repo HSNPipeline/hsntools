@@ -1,11 +1,11 @@
-"""Tests for convnwb.sorting.io"""
+"""Tests for hsntools.sorting.io"""
 
 import os
 from copy import deepcopy
 
-from convnwb.tests.tsettings import TEST_FILE_PATH, TEST_SORTING_PATH, TEST_SORT
+from hsntools.tests.tsettings import TEST_FILE_PATH, TEST_SORTING_PATH, TEST_SORT
 
-from convnwb.sorting.io import *
+from hsntools.sorting.io import *
 
 ###################################################################################################
 ###################################################################################################

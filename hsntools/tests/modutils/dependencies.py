@@ -1,8 +1,8 @@
-"""Tests for convnwb.modutils.dependencies."""
+"""Tests for hsntools.modutils.dependencies."""
 
 from pytest import raises
 
-from convnwb.modutils.dependencies import *
+from hsntools.modutils.dependencies import *
 
 ###################################################################################################
 ###################################################################################################

@@ -1,12 +1,12 @@
-"""Tests for convnwb.objects.electrodes"""
+"""Tests for hsntools.objects.electrodes"""
 
 import os
 
 import pandas as pd
 
-from convnwb.tests.tsettings import TEST_FILE_PATH
+from hsntools.tests.tsettings import TEST_FILE_PATH
 
-from convnwb.objects.electrodes import *
+from hsntools.objects.electrodes import *
 
 ###################################################################################################
 ###################################################################################################

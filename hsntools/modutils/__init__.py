@@ -1,1 +1,1 @@
-"""Modutils sub-module for convnwb."""
+"""Modutils sub-module for hsntools."""

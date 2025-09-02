@@ -1,12 +1,12 @@
-"""Tests for convnwb.utils.run"""
+"""Tests for hsntools.utils.run"""
 
 import os
 
 from pytest import raises
 
-from convnwb.tests.tsettings import TEST_ERRORS_PATH
+from hsntools.tests.tsettings import TEST_ERRORS_PATH
 
-from convnwb.utils.run import *
+from hsntools.utils.run import *
 
 ###################################################################################################
 ###################################################################################################

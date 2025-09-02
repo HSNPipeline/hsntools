@@ -1,10 +1,10 @@
-"""Tests for convnwb.sorting.process"""
+"""Tests for hsntools.sorting.process"""
 
 import numpy as np
 
-from convnwb.tests.tsettings import TEST_SORTING_PATH, TEST_SORT
+from hsntools.tests.tsettings import TEST_SORTING_PATH, TEST_SORT
 
-from convnwb.sorting.process import *
+from hsntools.sorting.process import *
 
 ###################################################################################################
 ###################################################################################################

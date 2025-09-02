@@ -2,8 +2,8 @@
 
 import numpy as np
 
-from convnwb.timestamps.utils import create_timestamps_from_samples
-from convnwb.modutils.dependencies import safe_import, check_dependency
+from hsntools.timestamps.utils import create_timestamps_from_samples
+from hsntools.modutils.dependencies import safe_import, check_dependency
 
 signal = safe_import('.signal', 'scipy')
 

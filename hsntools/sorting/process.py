@@ -2,8 +2,8 @@
 
 import numpy as np
 
-from convnwb.sorting.io import load_spike_data_file, load_sorting_data_file, save_units
-from convnwb.sorting.utils import get_sorting_kept_labels, get_group_labels, extract_clusters
+from hsntools.sorting.io import load_spike_data_file, load_sorting_data_file, save_units
+from hsntools.sorting.utils import get_sorting_kept_labels, get_group_labels, extract_clusters
 
 ###################################################################################################
 ###################################################################################################

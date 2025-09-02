@@ -2,8 +2,8 @@
 
 import traceback
 
-from convnwb.io import save_txt
-from convnwb.utils.log import print_status
+from hsntools.io import save_txt
+from hsntools.utils.log import print_status
 
 ###################################################################################################
 ###################################################################################################

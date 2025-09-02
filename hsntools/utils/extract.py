@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from convnwb.utils.convert import convert_type
+from hsntools.utils.convert import convert_type
 
 ###################################################################################################
 ###################################################################################################

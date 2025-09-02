@@ -1,10 +1,10 @@
-"""Tests for convnwb.utils.convert"""
+"""Tests for hsntools.utils.convert"""
 
 from datetime import datetime
 
 import numpy as np
 
-from convnwb.utils.convert import *
+from hsntools.utils.convert import *
 
 ###################################################################################################
 ###################################################################################################

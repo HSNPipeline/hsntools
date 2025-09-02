@@ -1,8 +1,8 @@
-"""Tests for convnwb.utils.extract"""
+"""Tests for hsntools.utils.extract"""
 
 import numpy as np
 
-from convnwb.utils.extract import *
+from hsntools.utils.extract import *
 
 ###################################################################################################
 ###################################################################################################

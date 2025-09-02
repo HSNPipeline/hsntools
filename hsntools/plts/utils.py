@@ -3,7 +3,7 @@
 from functools import wraps
 from os.path import join as pjoin
 
-from convnwb.modutils.dependencies import safe_import, check_dependency
+from hsntools.modutils.dependencies import safe_import, check_dependency
 
 plt = safe_import('.pyplot', 'matplotlib')
 

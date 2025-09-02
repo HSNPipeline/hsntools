@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
-from convnwb.io.utils import get_files
-from convnwb.io import open_h5file, save_to_h5file, load_from_h5file
+from hsntools.io.utils import get_files
+from hsntools.io import open_h5file, save_to_h5file, load_from_h5file
 
 ###################################################################################################
 ###################################################################################################

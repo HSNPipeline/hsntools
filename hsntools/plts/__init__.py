@@ -1,1 +1,1 @@
-"""Plots sub-module for convnwb."""
+"""Plots sub-module for hsntools."""

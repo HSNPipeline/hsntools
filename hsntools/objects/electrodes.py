@@ -2,8 +2,8 @@
 
 from copy import deepcopy
 
-from convnwb.io.utils import check_ext, check_folder
-from convnwb.modutils.dependencies import safe_import, check_dependency
+from hsntools.io.utils import check_ext, check_folder
+from hsntools.modutils.dependencies import safe_import, check_dependency
 
 pd = safe_import('pandas')
 

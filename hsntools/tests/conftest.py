@@ -1,4 +1,4 @@
-"""Pytest configuration file for testing convnwb."""
+"""Pytest configuration file for testing hsntools."""
 
 import os
 import shutil
@@ -11,10 +11,10 @@ from pynwb import NWBFile
 
 import pytest
 
-from convnwb.io import open_h5file
-from convnwb.objects.task import TaskBase
-from convnwb.objects.electrodes import Bundle, Electrodes
-from convnwb.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS, TEST_SORT
+from hsntools.io import open_h5file
+from hsntools.objects.task import TaskBase
+from hsntools.objects.electrodes import Bundle, Electrodes
+from hsntools.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS, TEST_SORT
 
 ###################################################################################################
 ###################################################################################################

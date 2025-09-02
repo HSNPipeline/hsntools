@@ -1,10 +1,10 @@
-"""Tests for convnwb.sorting.utils"""
+"""Tests for hsntools.sorting.utils"""
 
 from collections import Counter
 
 import numpy as np
 
-from convnwb.sorting.utils import *
+from hsntools.sorting.utils import *
 
 ###################################################################################################
 ###################################################################################################

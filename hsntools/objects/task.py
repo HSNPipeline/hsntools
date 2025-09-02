@@ -2,11 +2,11 @@
 
 from copy import deepcopy
 
-from convnwb.timestamps.align import predict_times
-from convnwb.timestamps.update import offset_time, change_time_units
-from convnwb.utils.checks import is_empty, is_type
-from convnwb.utils.convert import convert_type, convert_to_array
-from convnwb.modutils.dependencies import safe_import, check_dependency
+from hsntools.timestamps.align import predict_times
+from hsntools.timestamps.update import offset_time, change_time_units
+from hsntools.utils.checks import is_empty, is_type
+from hsntools.utils.convert import convert_type, convert_to_array
+from hsntools.modutils.dependencies import safe_import, check_dependency
 
 pd = safe_import('pandas')
 

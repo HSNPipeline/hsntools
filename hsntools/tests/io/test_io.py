@@ -1,13 +1,13 @@
-"""Tests for convnwb.io.io"""
+"""Tests for hsntools.io.io"""
 
 import os
 
 import numpy as np
 import pandas as pd
 
-from convnwb.tests.tsettings import TEST_FILE_PATH
+from hsntools.tests.tsettings import TEST_FILE_PATH
 
-from convnwb.io.io import *
+from hsntools.io.io import *
 
 ###################################################################################################
 ###################################################################################################

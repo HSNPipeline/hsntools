@@ -1,11 +1,11 @@
-"""Tests for convnwb.plts.timestamps"""
+"""Tests for hsntools.plts.timestamps"""
 
 import numpy as np
 
-from convnwb.tests.tutils import plot_test
-from convnwb.tests.tsettings import TEST_PLOTS_PATH
+from hsntools.tests.tutils import plot_test
+from hsntools.tests.tsettings import TEST_PLOTS_PATH
 
-from convnwb.plts.timestamps import *
+from hsntools.plts.timestamps import *
 
 ###################################################################################################
 ###################################################################################################

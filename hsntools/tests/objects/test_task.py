@@ -1,13 +1,13 @@
-"""Tests for convnwb.objects.task"""
+"""Tests for hsntools.objects.task"""
 
 import numpy as np
 import pandas as pd
 
 from pytest import raises
 
-from convnwb.utils.convert import convert_to_array
+from hsntools.utils.convert import convert_to_array
 
-from convnwb.objects.task import *
+from hsntools.objects.task import *
 
 ###################################################################################################
 ###################################################################################################

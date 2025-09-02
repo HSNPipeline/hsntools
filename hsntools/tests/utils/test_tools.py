@@ -1,8 +1,8 @@
-"""Tests for convnwb.utils.tools"""
+"""Tests for hsntools.utils.tools"""
 
 import inspect
 
-from convnwb.utils.tools import *
+from hsntools.utils.tools import *
 
 ###################################################################################################
 ###################################################################################################

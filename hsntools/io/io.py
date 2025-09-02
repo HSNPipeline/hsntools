@@ -7,8 +7,8 @@ from contextlib import contextmanager
 
 import yaml
 
-from convnwb.io.utils import get_files, check_ext, check_folder, make_session_name
-from convnwb.modutils.dependencies import safe_import, check_dependency
+from hsntools.io.utils import get_files, check_ext, check_folder, make_session_name
+from hsntools.modutils.dependencies import safe_import, check_dependency
 
 sio = safe_import('.io', 'scipy')
 pynwb = safe_import('pynwb')

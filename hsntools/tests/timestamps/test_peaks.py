@@ -1,8 +1,8 @@
-"""Tests for convnwb.timestamps.peaks"""
+"""Tests for hsntools.timestamps.peaks"""
 
 import numpy as np
 
-from convnwb.timestamps.peaks import *
+from hsntools.timestamps.peaks import *
 
 ###################################################################################################
 ###################################################################################################

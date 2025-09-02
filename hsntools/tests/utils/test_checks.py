@@ -1,6 +1,6 @@
-"""Tests for convnwb.utils.checks"""
+"""Tests for hsntools.utils.checks"""
 
-from convnwb.utils.checks import *
+from hsntools.utils.checks import *
 
 ###################################################################################################
 ###################################################################################################

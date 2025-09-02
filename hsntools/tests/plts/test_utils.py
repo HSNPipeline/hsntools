@@ -1,10 +1,10 @@
-"""Tests for convnwb.plts.utils."""
+"""Tests for hsntools.plts.utils."""
 
 import os
 
-from convnwb.tests.tsettings import TEST_PLOTS_PATH
+from hsntools.tests.tsettings import TEST_PLOTS_PATH
 
-from convnwb.plts.utils import *
+from hsntools.plts.utils import *
 
 ###################################################################################################
 ###################################################################################################

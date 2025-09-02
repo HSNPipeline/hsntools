@@ -1,10 +1,10 @@
-"""Tests for convnwb.paths.create"""
+"""Tests for hsntools.paths.create"""
 
 import os
 
-from convnwb.tests.tsettings import TEST_FILE_PATH, TEST_PROJECT_PATH
+from hsntools.tests.tsettings import TEST_FILE_PATH, TEST_PROJECT_PATH
 
-from convnwb.paths.create import *
+from hsntools.paths.create import *
 
 ###################################################################################################
 ###################################################################################################

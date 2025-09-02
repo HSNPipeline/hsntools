@@ -3,9 +3,9 @@
 from copy import deepcopy
 from pathlib import Path
 
-from convnwb.io.utils import get_files, get_subfolders, make_session_name
+from hsntools.io.utils import get_files, get_subfolders, make_session_name
 
-from convnwb.paths.defaults import PROJECT_FOLDERS, SUBJECT_FOLDERS, SESSION_FOLDERS
+from hsntools.paths.defaults import PROJECT_FOLDERS, SUBJECT_FOLDERS, SESSION_FOLDERS
 
 ###################################################################################################
 ###################################################################################################

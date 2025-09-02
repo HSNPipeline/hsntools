@@ -1,6 +1,6 @@
-"""Tests for convnwb.timestamps.utils"""
+"""Tests for hsntools.timestamps.utils"""
 
-from convnwb.timestamps.utils import *
+from hsntools.timestamps.utils import *
 
 ###################################################################################################
 ###################################################################################################

@@ -1,6 +1,6 @@
 """Neural Signal Processor (NSP) related functionality."""
 
-from convnwb.timestamps.utils import convert_samples_to_time
+from hsntools.timestamps.utils import convert_samples_to_time
 
 ###################################################################################################
 ###################################################################################################

@@ -1,8 +1,8 @@
-"""Tests for convnwb.timestamps.align"""
+"""Tests for hsntools.timestamps.align"""
 
 import numpy as np
 
-from convnwb.timestamps.align import *
+from hsntools.timestamps.align import *
 
 ###################################################################################################
 ###################################################################################################

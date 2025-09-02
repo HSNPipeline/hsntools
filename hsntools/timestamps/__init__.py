@@ -1,1 +1,1 @@
-"""Timestamps sub-module for convnwb."""
+"""Timestamps sub-module for hsntools."""
