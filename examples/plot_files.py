@@ -3,7 +3,7 @@ Directories & File Management
 =============================
 
 This example introduces and explores the file management and directory structure functionality
-of `convnwb`.
+of `hsntools`.
 """
 
 ###################################################################################################
@@ -16,10 +16,10 @@ of `convnwb`.
 # sphinx_gallery_thumbnail_number = 1
 
 # Import paths related functionality
-from convnwb.paths import Paths
-from convnwb.paths import (create_project_directory,
-                           create_subject_directory,
-                           create_session_directory)
+from hsntools.paths import Paths
+from hsntools.paths import (create_project_directory,
+                            create_subject_directory,
+                            create_session_directory)
 
 ###################################################################################################
 
