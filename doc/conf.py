@@ -93,7 +93,7 @@ html_theme_options = {
     'navbar_sidebarrel': False,
     'navbar_links': [
         ("API", "api"),
-        ("Examples", "auto_tutorials/index"),
+        ("Examples", "auto_examples/index"),
         ("Reference", "reference"),
         ("GitHub", "https://github.com/HSUPipeline/hsntools", True),
     ],
