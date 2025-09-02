@@ -11,8 +11,8 @@ hsntools
    :target: https://github.com/HSUPipeline/hsntools/actions/workflows/build.yml
    :alt: build statue
 
-.. |Coverage| image:: https://codecov.io/gh/HSUPipeline/convnwb/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/HSUPipeline/convnwb
+.. |Coverage| image:: https://codecov.io/gh/HSUPipeline/hsntools/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/HSUPipeline/hsntools
    :alt: coverage
 
 ``hsntools`` (formerly 'convnwb') is a module for working with the Human Single-Neuron Pipeline (HSNPipeline).
