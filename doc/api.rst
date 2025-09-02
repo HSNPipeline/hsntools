@@ -177,6 +177,16 @@ Alignment
    predict_times_model
    match_pulses
 
+Dates
+~~~~~
+
+.. currentmodule:: hsntools.timestamps.dates
+.. autosummary::
+   :toctree: generated/
+
+   get_current_date
+   convert_time_to_date
+
 Peaks
 ~~~~~
 
@@ -273,7 +283,6 @@ Convert Functions
    convert_strlist_to_bool
    convert_type
    convert_to_array
-   convert_time_to_date
 
 Extract Functions
 ~~~~~~~~~~~~~~~~~
@@ -311,4 +320,3 @@ Tool Functions
    :toctree: generated/
 
    incrementer
-   get_current_date
