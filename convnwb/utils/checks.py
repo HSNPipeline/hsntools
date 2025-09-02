@@ -6,7 +6,7 @@ import numpy as np
 ###################################################################################################
 
 def is_empty(var):
-    """Check if a variable is empty, across possible types.
+    """Check if a variable is empty, across multiple possible types.
 
     Parameters
     ----------

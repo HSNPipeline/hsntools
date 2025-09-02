@@ -1,3 +1,3 @@
-"""convnwb: helper functions for converting data to NWB."""
+"""convnwb: a module for managing human-single neuron projects & analyses."""
 
 from .version import __version__

@@ -113,7 +113,7 @@ class Paths():
 
 
     @property
-    def all_folders():
+    def all_folders(self):
         """List of all folders."""
 
         return self._make_all_folders()

@@ -37,7 +37,7 @@ def change_time_units(times, value, operation='divide'):
 
 
 def change_sampling_rate(times, fs_from, fs_to):
-    """Change the effective sampling rate for a set of times values.
+    """Change the sampling rate for a set of times values.
 
     Parameters
     ----------

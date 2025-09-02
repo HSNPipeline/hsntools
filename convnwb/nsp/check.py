@@ -1,4 +1,4 @@
-"""NSP related check functions - check file properties."""
+"""Neural Signal Processor (NSP) related functionality."""
 
 from convnwb.timestamps.utils import convert_samples_to_time
 
