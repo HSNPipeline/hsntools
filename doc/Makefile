@@ -12,7 +12,7 @@ SOURCEDIR     = .
 BUILDDIR      = _build
 
 # Additional / custom settings
-GITHUBORG     = https://github.com/HSUPipeline
+GITHUBORG     = https://github.com/HSNPipeline
 
 ##########################################################################
 ## Standard sphinx tasks (from sphinx)

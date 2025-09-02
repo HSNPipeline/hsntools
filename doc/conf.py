@@ -95,7 +95,7 @@ html_theme_options = {
         ("API", "api"),
         ("Examples", "auto_examples/index"),
         ("Reference", "reference"),
-        ("GitHub", "https://github.com/HSUPipeline/hsntools", True),
+        ("GitHub", "https://github.com/HSNPipeline/hsntools", True),
     ],
 
     # Set the page width to not be restricted to hardset value

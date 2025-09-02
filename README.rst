@@ -7,12 +7,12 @@ hsntools
    :target: https://www.repostatus.org/#active
    :alt: project status
 
-.. |BuildStatus| image:: https://github.com/HSUPipeline/hsntools/actions/workflows/build.yml/badge.svg
-   :target: https://github.com/HSUPipeline/hsntools/actions/workflows/build.yml
+.. |BuildStatus| image:: https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml/badge.svg
+   :target: https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml
    :alt: build statue
 
-.. |Coverage| image:: https://codecov.io/gh/HSUPipeline/hsntools/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/HSUPipeline/hsntools
+.. |Coverage| image:: https://codecov.io/gh/HSNPipeline/hsntools/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/HSNPipeline/hsntools
    :alt: coverage
 
 ``hsntools`` (formerly 'convnwb') is a module for working with the Human Single-Neuron Pipeline (HSNPipeline).
@@ -48,12 +48,12 @@ and generating structured reports.
 
 ``hsntools`` provides functionality used within the template for the pipeline, including:
 
-- `SortTEMPLATE <https://github.com/HSUPipeline/SortTEMPLATE>`_
-- `ConvertTEMPLATE <https://github.com/HSUPipeline/ConvertTEMPLATE>`_
-- `AnalyzeTEMPLATE <https://github.com/HSUPipeline/AnalyzeTEMPLATE>`_
+- `SortTEMPLATE <https://github.com/HSNPipeline/SortTEMPLATE>`_
+- `ConvertTEMPLATE <https://github.com/HSNPipeline/ConvertTEMPLATE>`_
+- `AnalyzeTEMPLATE <https://github.com/HSNPipeline/AnalyzeTEMPLATE>`_
 
 Note that `hsntools` is not a module for and does not include functionality for spike sorting or single-neuron analyses.
-See the `HSNPipeline Overview <https://github.com/HSUPipeline/Overview>`_ for information and guidance on these
+See the `HSNPipeline Overview <https://github.com/HSNPipeline/Overview>`_ for information and guidance on these
 processes and related tooling.
 
 Documentation
@@ -66,7 +66,7 @@ Documentation for the HSNPipeline more broadly, which uses ``hsntools`` is avail
 `here <https://hsupipeline.github.io/>`_
 
 If you have a question about using ``hsntools`` that doesn't seem to be covered by the documentation, feel free to
-open an `issue <https://https://github.com/HSUPipeline/hsntools/issues>`_ and ask!
+open an `issue <https://https://github.com/HSNPipeline/hsntools/issues>`_ and ask!
 
 Dependencies
 ------------
@@ -107,7 +107,7 @@ First clone this repository, then move into the cloned repository, and install:
 
 .. code-block:: shell
 
-    $ git clone https://github.com/HSUPipeline/hsntools
+    $ git clone https://github.com/HSNPipeline/hsntools
     $ cd hsntools
     $ pip install .
 
@@ -117,7 +117,7 @@ Contribute
 This project welcomes and encourages contributions from the community!
 
 To file bug reports and/or ask questions about this project, please use the
-`Github issue tracker <https://github.com/HSUPipeline/hsntools/issues>`_.
+`Github issue tracker <https://github.com/HSNPipeline/hsntools/issues>`_.
 
 When interacting with this project, please follow the
-`code of conduct <https://github.com/HSUPipeline/hsntools/blob/main/CODE_OF_CONDUCT.md>`_.
+`code of conduct <https://github.com/HSNPipeline/hsntools/blob/main/CODE_OF_CONDUCT.md>`_.

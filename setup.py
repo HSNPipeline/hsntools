@@ -45,10 +45,10 @@ setup(
     platforms = 'any',
     project_urls = {
         'Documentation' : 'https://hsupipeline.github.io/hsntools/',
-        'Bug Reports' : 'https://github.com/HSUPipeline/hsntools/issues',
-        'Source' : 'https://github.com/HSUPipeline/hsntools',
+        'Bug Reports' : 'https://github.com/HSNPipeline/hsntools/issues',
+        'Source' : 'https://github.com/HSNPipeline/hsntools',
     },
-    download_url = 'https://github.com/HSUPipeline/hsntools/releases',
+    download_url = 'https://github.com/HSNPipeline/hsntools/releases',
     keywords = ['neuroscience', 'single units', 'data management', 'neurodata without borders'],
     install_requires = install_requires,
     tests_require = ['pytest'],

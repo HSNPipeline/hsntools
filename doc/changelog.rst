@@ -6,7 +6,7 @@ This page contains the changelog for the `hsntools` module and any notes on upda
 This page primarily notes high-level summaries and overview of changes for major version updates and
 updates included in minor releases.
 For more detailed notes on what is included in specific releases,
-see the `release page <https://github.com/HSUpipeline/hsntools/releases>`_.
+see the `release page <https://github.com/HSNpipeline/hsntools/releases>`_.
 
 `hsntools` (>= version 1.0.0)
 -----------------------------

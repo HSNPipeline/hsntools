@@ -7,7 +7,7 @@ We welcome any contributions to the project that extend or improve code and/or d
 This page includes information for how to get involved and contribute to the project, and guidelines for how to do so.
 
 This project adheres to a
-[code of conduct](https://github.com/HSUpipeline/hsntools/blob/main/CODE_OF_CONDUCT.md)
+[code of conduct](https://github.com/HSNpipeline/hsntools/blob/main/CODE_OF_CONDUCT.md)
 that you are expected to uphold when participating in this project.
 
 On this page, you can find information on:
@@ -21,7 +21,7 @@ On this page, you can find information on:
 ## Reporting a Problem
 
 To report an issue with the code, please submit it to our
-[issue tracker](https://github.com/HSUpipeline/hsntools/issues).
+[issue tracker](https://github.com/HSNpipeline/hsntools/issues).
 
 In doing so, please try to include the following:
 
@@ -38,16 +38,16 @@ We welcome all kinds of contributions to the project, including suggested featur
 If you have a new idea you would like to suggest or contribute, please do the following:
 
 1. Check if the idea is already being discussed on the
-   [issues](https://github.com/HSUpipeline/hsntools/issues) page
+   [issues](https://github.com/HSNPipeline/hsntools/issues) page
 2. Check that your idea is within the [project scope](#project-scope)
-3. Open an [issue](https://github.com/HSUpipeline/hsntools/issues) describing
+3. Open an [issue](https://github.com/HSNPipeline/hsntools/issues) describing
    what you would like to see added / changed, and why
 4. Indicate in the issue if the idea is something you would be willing to help implement
    - if so, project maintainers can give feedback to help make a plan for the contribution
 5. If you want to work on the contribution, follow the [contribution guidelines](#making-a-contribution) to do so
 
 If you are interested in getting involved and helping with the project, a great place to start is to visit the
-[issues](https://github.com/HSUpipeline/hsntools/issues) page
+[issues](https://github.com/HSNPipeline/hsntools/issues) page
 and see if there is anything you would be interested in helping with.
 If so, join the conversation, and project developers can help get you started.
 
