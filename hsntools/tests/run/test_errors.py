@@ -1,4 +1,4 @@
-"""Tests for hsntools.utils.run"""
+"""Tests for hsntools.run.errors"""
 
 import os
 
@@ -6,7 +6,7 @@ from pytest import raises
 
 from hsntools.tests.tsettings import TEST_ERRORS_PATH
 
-from hsntools.utils.run import *
+from hsntools.run.errors import *
 
 ###################################################################################################
 ###################################################################################################
