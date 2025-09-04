@@ -64,7 +64,7 @@ def load_nwbfile(file_name, folder=None, return_io=False):
 
 
 @check_dependency(pynwb, 'pynwb')
-def validate_nwb(file_name, folder=None, raise_error=True, verbose=False):
+def validate_nwbfile(file_name, folder=None, raise_error=True, verbose=False):
     """Validate a NWB file.
 
     Parameters

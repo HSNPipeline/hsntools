@@ -18,15 +18,24 @@ File I/O
 
 Functions for file I/O.
 
-NWB & Custom file I/O
-~~~~~~~~~~~~~~~~~~~~~
+NWB file I/O
+~~~~~~~~~~~~
 
-.. currentmodule:: hsntools.io.io
+.. currentmodule:: hsntools.io.nwb
 .. autosummary::
    :toctree: generated/
 
    save_nwbfile
    load_nwbfile
+   validate_nwbfile
+
+Custom file I/O
+~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.io
+.. autosummary::
+   :toctree: generated/
+
    save_config
    load_config
    load_configs
@@ -63,15 +72,6 @@ Utilities
    get_subfolders
    make_session_name
    make_file_list
-
-Validate Functions
-~~~~~~~~~~~~~~~~~~
-
-.. currentmodule:: hsntools.io.validate
-.. autosummary::
-   :toctree: generated/
-
-   validate_nwb
 
 NSP
 ---
