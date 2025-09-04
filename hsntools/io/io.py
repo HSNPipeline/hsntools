@@ -7,73 +7,16 @@ from contextlib import contextmanager
 
 import yaml
 
-from hsntools.io.utils import get_files, check_ext, check_folder, make_session_name
+from hsntools.io.utils import get_files, check_ext, check_folder
 from hsntools.modutils.dependencies import safe_import, check_dependency
 
 sio = safe_import('.io', 'scipy')
-pynwb = safe_import('pynwb')
 pd = safe_import('pandas')
 h5py = safe_import('h5py')
 mat73 = safe_import('mat73')
 
 ###################################################################################################
 ###################################################################################################
-
-#### NWB FILES
-
-@check_dependency(pynwb, 'pynwb')
-def save_nwbfile(nwbfile, file_name, folder=None):
-    """Save out an NWB file.
-
-    Parameters
-    ----------
-    file_name : str or dict
-        The file name to load.
-        If dict, is passed into `make_session_name` to create the file name.
-    folder : str or Path, optional
-        The folder to load the file from.
-    """
-
-    if isinstance(file_name, dict):
-        file_name = make_session_name(**file_name)
-
-    with pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'w') as io:
-        io.write(nwbfile)
-
-
-@check_dependency(pynwb, 'pynwb')
-def load_nwbfile(file_name, folder=None, return_io=False):
-    """Load an NWB file.
-
-    Parameters
-    ----------
-    file_name : str or dict
-        The file name to load.
-        If dict, is passed into `make_session_name` to create the file name.
-    folder : str or Path, optional
-        The folder to load the file from.
-    return_io : bool, optional, default: False
-        Whether to return the pynwb IO object.
-
-    Returns
-    -------
-    nwbfile : pynwb.file.NWBFile
-        The NWB file object.
-    io : pynwb.NWBHDF5IO
-        The IO object for managing the file status.
-        Only returned if `return_io` is True.
-    """
-
-    if isinstance(file_name, dict):
-        file_name = make_session_name(**file_name)
-
-    io = pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'r')
-    nwbfile = io.read()
-
-    if return_io:
-        return nwbfile, io
-    else:
-        return nwbfile
 
 #### CONFIG FILES
 

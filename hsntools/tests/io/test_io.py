@@ -12,18 +12,6 @@ from hsntools.io.io import *
 ###################################################################################################
 ###################################################################################################
 
-def test_save_nwbfile(tnwbfile):
-
-    test_fname = 'test_nwbfile'
-    save_nwbfile(tnwbfile, test_fname, TEST_FILE_PATH)
-    assert os.path.exists(TEST_FILE_PATH / (test_fname + '.nwb'))
-
-def test_load_nwbfile():
-
-    test_fname = 'test_nwbfile'
-    tnwbfile = load_nwbfile(test_fname, TEST_FILE_PATH)
-    assert tnwbfile
-
 def test_save_config():
 
     cdict1 = {'d1' : 1, 'd2' : 'name', 'd3' : ['a', 'b', 'c']}

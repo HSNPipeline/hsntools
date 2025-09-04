@@ -1,12 +1,67 @@
 """Helper utilities for validating NWB files."""
 
-from hsntools.io.utils import check_ext, check_folder
+from hsntools.io.utils import check_ext, check_folder, make_session_name
 from hsntools.modutils.dependencies import safe_import, check_dependency
 
 pynwb = safe_import('pynwb')
 
 ###################################################################################################
 ###################################################################################################
+
+@check_dependency(pynwb, 'pynwb')
+def save_nwbfile(nwbfile, file_name, folder=None):
+    """Save out an NWB file.
+
+    Parameters
+    ----------
+    file_name : str or dict
+        The file name to load.
+        If dict, is passed into `make_session_name` to create the file name.
+    folder : str or Path, optional
+        The folder to load the file from.
+    """
+
+    if isinstance(file_name, dict):
+        file_name = make_session_name(**file_name)
+
+    with pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'w') as io:
+        io.write(nwbfile)
+
+
+@check_dependency(pynwb, 'pynwb')
+def load_nwbfile(file_name, folder=None, return_io=False):
+    """Load an NWB file.
+
+    Parameters
+    ----------
+    file_name : str or dict
+        The file name to load.
+        If dict, is passed into `make_session_name` to create the file name.
+    folder : str or Path, optional
+        The folder to load the file from.
+    return_io : bool, optional, default: False
+        Whether to return the pynwb IO object.
+
+    Returns
+    -------
+    nwbfile : pynwb.file.NWBFile
+        The NWB file object.
+    io : pynwb.NWBHDF5IO
+        The IO object for managing the file status.
+        Only returned if `return_io` is True.
+    """
+
+    if isinstance(file_name, dict):
+        file_name = make_session_name(**file_name)
+
+    io = pynwb.NWBHDF5IO(check_ext(check_folder(file_name, folder), '.nwb'), 'r')
+    nwbfile = io.read()
+
+    if return_io:
+        return nwbfile, io
+    else:
+        return nwbfile
+
 
 @check_dependency(pynwb, 'pynwb')
 def validate_nwb(file_name, folder=None, raise_error=True, verbose=False):
