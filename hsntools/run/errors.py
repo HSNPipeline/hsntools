@@ -2,7 +2,7 @@
 
 import traceback
 
-from hsntools.io import save_txt
+from hsntools.io.files import save_txt
 from hsntools.run.log import print_status
 
 ###################################################################################################

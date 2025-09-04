@@ -11,7 +11,7 @@ from pynwb import NWBFile
 
 import pytest
 
-from hsntools.io import open_h5file
+from hsntools.io.hdf5 import open_h5file
 from hsntools.objects.task import TaskBase
 from hsntools.objects.electrodes import Bundle, Electrodes
 from hsntools.tests.tsettings import BASE_TEST_OUTPUTS_PATH, TEST_PATHS, TEST_SORT

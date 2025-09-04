@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from hsntools.sorting.io import load_spike_data_file, load_sorting_data_file, save_units
+from hsntools.io.sorting import load_combinato_spike_file, load_combinato_sorting_file, save_units
 from hsntools.sorting.utils import get_sorting_kept_labels, get_group_labels, extract_clusters
 
 ###################################################################################################
@@ -94,8 +94,8 @@ def process_combinato_data(channel, input_folder, polarity, user, units_folder,
     try:
 
         # Load spike & sorting data
-        spike_data = load_spike_data_file(channel, input_folder, polarity)
-        sort_data = load_sorting_data_file(channel, input_folder, polarity, user)
+        spike_data = load_combinato_spike_file(channel, input_folder, polarity)
+        sort_data = load_combinato_sorting_file(channel, input_folder, polarity, user)
 
         # Organize and collect extracted data together, and extract unit clusters
         clusters = collect_all_sorting(spike_data, sort_data)

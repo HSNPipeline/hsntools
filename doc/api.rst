@@ -18,15 +18,35 @@ File I/O
 
 Functions for file I/O.
 
-NWB & Custom file I/O
-~~~~~~~~~~~~~~~~~~~~~
+NWB file I/O
+~~~~~~~~~~~~
 
-.. currentmodule:: hsntools.io.io
+.. currentmodule:: hsntools.io.nwb
 .. autosummary::
    :toctree: generated/
 
    save_nwbfile
    load_nwbfile
+   validate_nwbfile
+
+HDF5 file I/O
+~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.hdf5
+.. autosummary::
+   :toctree: generated/
+
+   open_h5file
+   save_to_h5file
+   load_from_h5file
+
+Custom file I/O
+~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.custom
+.. autosummary::
+   :toctree: generated/
+
    save_config
    load_config
    load_configs
@@ -36,7 +56,7 @@ NWB & Custom file I/O
 General file I/O
 ~~~~~~~~~~~~~~~~
 
-.. currentmodule:: hsntools.io.io
+.. currentmodule:: hsntools.io.files
 .. autosummary::
    :toctree: generated/
 
@@ -47,10 +67,38 @@ General file I/O
    save_jsonlines
    load_jsonlines
    load_matfile
+
+Sorting File I/O
+~~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.sorting
+.. autosummary::
+   :toctree: generated/
+
+   load_combinato_spike_file
+   load_combinato_sorting_file
+   save_units
+   load_units
+
+Load Collections of Files
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.collections
+.. autosummary::
+   :toctree: generated/
+
    load_jsons_to_df
-   open_h5file
-   save_to_h5file
-   load_from_h5file
+
+
+NSP (Neural Signal Processors) IO
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.nsp
+.. autosummary::
+   :toctree: generated/
+
+   load_blackrock
+   check_blackrock_file_info
 
 Utilities
 ~~~~~~~~~
@@ -63,38 +111,6 @@ Utilities
    get_subfolders
    make_session_name
    make_file_list
-
-Validate Functions
-~~~~~~~~~~~~~~~~~~
-
-.. currentmodule:: hsntools.io.validate
-.. autosummary::
-   :toctree: generated/
-
-   validate_nwb
-
-NSP
----
-
-Functionality related to NSP (Neural Signal Processors).
-
-I/O
-~~~
-
-.. currentmodule:: hsntools.nsp.io
-.. autosummary::
-   :toctree: generated/
-
-   load_blackrock
-
-Checks
-~~~~~~
-
-.. currentmodule:: hsntools.nsp.check
-.. autosummary::
-   :toctree: generated/
-
-   check_blackrock_file_info
 
 Objects
 -------
@@ -221,18 +237,6 @@ Sorting
 -------
 
 Spike sorting related functionality.
-
-I/O
-~~~
-
-.. currentmodule:: hsntools.sorting.io
-.. autosummary::
-   :toctree: generated/
-
-   load_spike_data_file
-   load_sorting_data_file
-   save_units
-   load_units
 
 Processing
 ~~~~~~~~~~
