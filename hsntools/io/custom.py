@@ -124,9 +124,3 @@ def load_object(file_name, folder=None):
         custom_object = pickle.load(load_obj)
 
     return custom_object
-
-# alias these functions for backwards compatibility
-save_task_object = save_object
-def load_task_object(file_name, folder=None):
-    return load_object(check_ext(file_name, '.task'), folder)
-load_task_object.__doc__ = load_object
