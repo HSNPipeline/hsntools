@@ -67,7 +67,16 @@ General file I/O
    save_jsonlines
    load_jsonlines
    load_matfile
+
+Load Collections of Files
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.collections
+.. autosummary::
+   :toctree: generated/
+
    load_jsons_to_df
+
 
 NSP (Neural Signal Processors) IO
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

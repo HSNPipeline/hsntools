@@ -110,14 +110,3 @@ def test_load_jsonlines():
     assert data
     assert isinstance(data, dict)
     assert isinstance(data[list(data.keys())[0]], dict)
-
-def test_load_jsons_to_df():
-
-    files = ['test_json', 'test_json']
-    out = load_jsons_to_df(files, TEST_FILE_PATH)
-    assert isinstance(out, pd.DataFrame)
-    assert len(out) == len(files)
-
-    # Test giving a file location
-    out = load_jsons_to_df(TEST_FILE_PATH)
-    assert isinstance(out, pd.DataFrame)
