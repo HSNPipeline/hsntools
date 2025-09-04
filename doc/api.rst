@@ -29,6 +29,17 @@ NWB file I/O
    load_nwbfile
    validate_nwbfile
 
+HDF5 file I/O
+~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.hdf5
+.. autosummary::
+   :toctree: generated/
+
+   open_h5file
+   save_to_h5file
+   load_from_h5file
+
 Custom file I/O
 ~~~~~~~~~~~~~~~
 
@@ -57,9 +68,6 @@ General file I/O
    load_jsonlines
    load_matfile
    load_jsons_to_df
-   open_h5file
-   save_to_h5file
-   load_from_h5file
 
 NSP (Neural Signal Processors) IO
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
