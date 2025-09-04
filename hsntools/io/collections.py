@@ -2,7 +2,7 @@
 
 import pathlib
 
-from hsntools.io.io import load_json
+from hsntools.io.files import load_json
 from hsntools.io.utils import get_files
 from hsntools.modutils.dependencies import safe_import, check_dependency
 

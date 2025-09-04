@@ -1,4 +1,4 @@
-"""Tests for hsntools.io.io"""
+"""Tests for hsntools.io.files"""
 
 import os
 
@@ -7,7 +7,7 @@ import pandas as pd
 
 from hsntools.tests.tsettings import TEST_FILE_PATH
 
-from hsntools.io.io import *
+from hsntools.io.files import *
 
 ###################################################################################################
 ###################################################################################################

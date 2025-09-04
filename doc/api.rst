@@ -56,7 +56,7 @@ Custom file I/O
 General file I/O
 ~~~~~~~~~~~~~~~~
 
-.. currentmodule:: hsntools.io.io
+.. currentmodule:: hsntools.io.files
 .. autosummary::
    :toctree: generated/
 

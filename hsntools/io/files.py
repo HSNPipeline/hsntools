@@ -1,4 +1,4 @@
-"""File I/O."""
+"""File I/O for basic file types."""
 
 import json
 
@@ -11,8 +11,6 @@ mat73 = safe_import('mat73')
 
 ###################################################################################################
 ###################################################################################################
-
-## OTHER FILE I/O
 
 def save_txt(text, file_name, folder=None):
     """Save out text to a txt file.
