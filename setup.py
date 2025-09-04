@@ -44,7 +44,7 @@ setup(
     ],
     platforms = 'any',
     project_urls = {
-        'Documentation' : 'https://hsupipeline.github.io/hsntools/',
+        'Documentation' : 'https://hsnpipeline.github.io/hsntools/',
         'Bug Reports' : 'https://github.com/HSNPipeline/hsntools/issues',
         'Source' : 'https://github.com/HSNPipeline/hsntools',
     },

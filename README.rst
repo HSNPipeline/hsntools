@@ -60,10 +60,10 @@ Documentation
 -------------
 
 Documentation for the ``hsntools`` module is available
-`here <https://hsupipeline.github.io/hsntools/>`_
+`here <https://hsnpipeline.github.io/hsntools/>`_
 
 Documentation for the HSNPipeline more broadly, which uses ``hsntools`` is available
-`here <https://hsupipeline.github.io/>`_
+`here <https://hsnpipeline.github.io/>`_
 
 If you have a question about using ``hsntools`` that doesn't seem to be covered by the documentation, feel free to
 open an `issue <https://https://github.com/HSNPipeline/hsntools/issues>`_ and ask!
@@ -96,7 +96,7 @@ Installation
 The current release version is the 0.4.X series.
 
 Check the
-`changelog <https://hsupipeline.github.io/hsntools/changelog>`_
+`changelog <https://hsnpipeline.github.io/hsntools/changelog>`_
 for notes on updates and changes across versions.
 
 This module should be installed from Github:
