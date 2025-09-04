@@ -61,6 +61,16 @@ General file I/O
    save_to_h5file
    load_from_h5file
 
+NSP (Neural Signal Processors) IO
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.nsp
+.. autosummary::
+   :toctree: generated/
+
+   load_blackrock
+   check_blackrock_file_info
+
 Utilities
 ~~~~~~~~~
 
@@ -72,29 +82,6 @@ Utilities
    get_subfolders
    make_session_name
    make_file_list
-
-NSP
----
-
-Functionality related to NSP (Neural Signal Processors).
-
-I/O
-~~~
-
-.. currentmodule:: hsntools.nsp.io
-.. autosummary::
-   :toctree: generated/
-
-   load_blackrock
-
-Checks
-~~~~~~
-
-.. currentmodule:: hsntools.nsp.check
-.. autosummary::
-   :toctree: generated/
-
-   check_blackrock_file_info
 
 Objects
 -------
