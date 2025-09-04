@@ -43,7 +43,7 @@ HDF5 file I/O
 Custom file I/O
 ~~~~~~~~~~~~~~~
 
-.. currentmodule:: hsntools.io.io
+.. currentmodule:: hsntools.io.custom
 .. autosummary::
    :toctree: generated/
 
