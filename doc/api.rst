@@ -68,6 +68,18 @@ General file I/O
    load_jsonlines
    load_matfile
 
+Sorting File I/O
+~~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.io.sorting
+.. autosummary::
+   :toctree: generated/
+
+   load_combinato_spike_file
+   load_combinato_sorting_file
+   save_units
+   load_units
+
 Load Collections of Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -225,18 +237,6 @@ Sorting
 -------
 
 Spike sorting related functionality.
-
-I/O
-~~~
-
-.. currentmodule:: hsntools.sorting.io
-.. autosummary::
-   :toctree: generated/
-
-   load_spike_data_file
-   load_sorting_data_file
-   save_units
-   load_units
 
 Processing
 ~~~~~~~~~~

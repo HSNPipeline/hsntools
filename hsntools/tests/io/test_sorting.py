@@ -1,25 +1,25 @@
-"""Tests for hsntools.sorting.io"""
+"""Tests for hsntools.io.sorting"""
 
 import os
 from copy import deepcopy
 
 from hsntools.tests.tsettings import TEST_FILE_PATH, TEST_SORTING_PATH, TEST_SORT
 
-from hsntools.sorting.io import *
+from hsntools.io.sorting import *
 
 ###################################################################################################
 ###################################################################################################
 
-def test_load_spike_data_file():
+def test_load_combinato_spike_file():
 
-    sdata = load_spike_data_file('test', TEST_SORTING_PATH, 'neg')
+    sdata = load_combinato_spike_file('test', TEST_SORTING_PATH, 'neg')
     for label in ['channel', 'polarity', 'times', 'waveforms', 'artifacts']:
         assert label in sdata
 
-def test_load_sorting_data_file():
+def test_load_combinato_sorting_file():
 
-    sdata = load_sorting_data_file(TEST_SORT['channel'], TEST_SORTING_PATH,
-                                   TEST_SORT['polarity'], TEST_SORT['user'])
+    sdata = load_combinato_sorting_file(TEST_SORT['channel'], TEST_SORTING_PATH,
+                                        TEST_SORT['polarity'], TEST_SORT['user'])
     for label in ['channel', 'polarity', 'groups', 'index', 'classes']:
         assert label in sdata
 

@@ -8,7 +8,9 @@ from hsntools.io.hdf5 import open_h5file, save_to_h5file, load_from_h5file
 ###################################################################################################
 ###################################################################################################
 
-def load_spike_data_file(channel, folder, polarity):
+## COMBINATO FILES
+
+def load_combinato_spike_file(channel, folder, polarity):
     """Load a spike detection output file from Combinato - files with the form `data_chan_XX.h5`.
 
     Parameters
@@ -73,7 +75,7 @@ def load_spike_data_file(channel, folder, polarity):
     return outputs
 
 
-def load_sorting_data_file(channel, folder, polarity, user):
+def load_combinato_sorting_file(channel, folder, polarity, user):
     """Load a combinato sorting output file - files with the file name `sort_cat.h5`.
 
     Parameters
@@ -126,6 +128,8 @@ def load_sorting_data_file(channel, folder, polarity, user):
 
     return outputs
 
+
+## UNITS FILES
 
 def save_units(units, folder):
     """Save out units information.
