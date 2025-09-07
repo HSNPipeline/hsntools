@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from hsntools.io.utils import get_files
-from hsntools.io.hdf5 import open_h5file, save_to_h5file, load_from_h5file
+from hsntools.io.h5 import open_h5file, save_to_h5file, load_from_h5file
 
 ###################################################################################################
 ###################################################################################################

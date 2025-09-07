@@ -1,4 +1,7 @@
-"""File I/O for HDF5 files, including context managers."""
+"""File I/O for HDF5 files, including context managers.
+
+Functionality in this file requires the `h5py` module: https://github.com/h5py/h5py
+"""
 
 from contextlib import contextmanager
 

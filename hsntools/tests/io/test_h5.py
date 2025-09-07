@@ -1,4 +1,4 @@
-"""Tests for hsntools.io.hdf5"""
+"""Tests for hsntools.io.h5"""
 
 import os
 
@@ -6,7 +6,7 @@ import numpy as np
 
 from hsntools.tests.tsettings import TEST_FILE_PATH
 
-from hsntools.io.hdf5 import *
+from hsntools.io.h5 import *
 
 ###################################################################################################
 ###################################################################################################
