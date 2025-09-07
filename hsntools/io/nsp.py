@@ -1,4 +1,7 @@
-"""Neural Signal Processor (NSP) related I/O functions."""
+"""Neural Signal Processor (NSP) related I/O functions.
+
+Functionality in this file requires the `neo` module: https://github.com/NeuralEnsemble/python-neo
+"""
 
 from hsntools.io.utils import check_folder
 from hsntools.modutils.dependencies import safe_import, check_dependency
