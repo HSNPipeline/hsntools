@@ -32,7 +32,7 @@ NWB file I/O
 HDF5 file I/O
 ~~~~~~~~~~~~~
 
-.. currentmodule:: hsntools.io.hdf5
+.. currentmodule:: hsntools.io.h5
 .. autosummary::
    :toctree: generated/
 

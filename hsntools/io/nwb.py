@@ -1,4 +1,8 @@
-"""Helper utilities for validating NWB files."""
+"""Helper utilities for validating NWB files.
+
+Functionality in this file requires the `pynwb` module:
+https://github.com/NeurodataWithoutBorders/pynwb
+"""
 
 from hsntools.io.utils import check_ext, check_folder, make_session_name
 from hsntools.modutils.dependencies import safe_import, check_dependency
