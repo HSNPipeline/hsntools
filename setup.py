@@ -53,9 +53,11 @@ setup(
     install_requires = install_requires,
     tests_require = ['pytest'],
     extras_require = {
-        'compute' : ['scipy', 'scikit-learn'],
-        'data' : ['pandas', 'h5py', 'pynwb'],
         'plot' : ['matplotlib'],
-        'all' : ['scipy', 'scikit-learn', 'pandas', 'h5py', 'pynwb', 'matplotlib'],
+        'timestamps' : ['scipy', 'scikit-learn'],
+        'nwb' : ['h5py', 'pynwb'],
+        'files' : ['scipy', 'pandas', 'h5py', 'pynwb', 'neo', 'mat73'],
+        'all' : ['matplotlib', 'scipy', 'scikit-learn', 'pandas', 'h5py', 'pynwb', 'neo', 'mat73'],
+        'tests' : ['pytest'],
     }
 )
