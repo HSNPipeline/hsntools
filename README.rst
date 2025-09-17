@@ -1,11 +1,15 @@
 hsntools
 ========
 
-|ProjectStatus| |BuildStatus| |Coverage|
+|ProjectStatus| |Version| |BuildStatus| |Coverage| |License| |PythonVersions|
 
 .. |ProjectStatus| image:: http://www.repostatus.org/badges/latest/active.svg
    :target: https://www.repostatus.org/#active
    :alt: project status
+
+.. |Version| image:: https://img.shields.io/pypi/v/hsntools.svg
+   :target: https://pypi.org/project/hsntools/
+   :alt: version
 
 .. |BuildStatus| image:: https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml/badge.svg
    :target: https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml
@@ -14,6 +18,14 @@ hsntools
 .. |Coverage| image:: https://codecov.io/gh/HSNPipeline/hsntools/branch/main/graph/badge.svg
    :target: https://codecov.io/gh/HSNPipeline/hsntools
    :alt: coverage
+
+.. |License| image:: https://img.shields.io/pypi/l/hsntools.svg
+   :target: https://opensource.org/license/mit
+   :alt: license
+
+.. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/hsntools.svg
+   :target: https://pypi.org/project/hsntools/
+   :alt: python versions
 
 ``hsntools`` (formerly 'convnwb') is a module for working with the Human Single-Neuron Pipeline (HSNPipeline).
 
