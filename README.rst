@@ -93,23 +93,41 @@ There are also optional dependencies, that offer extra functionality:
 Installation
 ------------
 
-The current release version is the 0.4.X series.
+The current release version of `hsntools` is the 1.X.X release series.
 
-Check the
+See the
 `changelog <https://hsnpipeline.github.io/hsntools/changelog>`_
-for notes on updates and changes across versions.
+for notes on major version releases.
 
-This module should be installed from Github:
+**Stable Release Version**
 
-**Install from a clone**
-
-First clone this repository, then move into the cloned repository, and install:
+To install the latest stable release, you can use pip:
 
 .. code-block:: shell
 
-    $ git clone https://github.com/HSNPipeline/hsntools
-    $ cd hsntools
+    $ pip install hsntools
+
+**Development Version**
+
+To get the current development version, first clone this repository:
+
+.. code-block:: shell
+
+    $ git clone https://github.com/hsnpipeline/hsntools
+
+To install this cloned copy, move into the directory you just cloned, and run:
+
+.. code-block:: shell
+
     $ pip install .
+
+**Editable Version**
+
+To install an editable version, download the development version as above, and run:
+
+.. code-block:: shell
+
+    $ pip install -e .
 
 Contribute
 ----------
