@@ -18,14 +18,14 @@ with open("requirements.txt") as requirements_file:
 setup(
     name = 'hsntools',
     version = __version__,
-    description = 'Code for working with the Human Single-Neuron Pipeline',
+    description = 'Code for working with the Human Single-Neuron Pipeline.',
     long_description = long_description,
     long_description_content_type = 'text/x-rst',
     python_requires = '>=3.7',
     packages = find_packages(),
     license = 'MIT License',
     classifiers = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering',
         'License :: OSI Approved :: MIT License',
@@ -57,7 +57,7 @@ setup(
         'timestamps' : ['scipy', 'scikit-learn'],
         'nwb' : ['h5py', 'pynwb'],
         'files' : ['scipy', 'pandas', 'h5py', 'pynwb', 'neo', 'mat73'],
-        'all' : ['matplotlib', 'scipy', 'scikit-learn', 'pandas', 'h5py', 'pynwb', 'neo', 'mat73'],
         'tests' : ['pytest'],
+        'all' : ['matplotlib', 'scipy', 'scikit-learn', 'pandas', 'h5py', 'pynwb', 'neo', 'mat73', 'pytest'],
     }
 )
