@@ -1,11 +1,15 @@
 hsntools
 ========
 
-|ProjectStatus| |BuildStatus| |Coverage|
+|ProjectStatus| |Version| |BuildStatus| |Coverage| |License| |PythonVersions|
 
 .. |ProjectStatus| image:: http://www.repostatus.org/badges/latest/active.svg
    :target: https://www.repostatus.org/#active
    :alt: project status
+
+.. |Version| image:: https://img.shields.io/pypi/v/hsntools.svg
+   :target: https://pypi.org/project/hsntools/
+   :alt: version
 
 .. |BuildStatus| image:: https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml/badge.svg
    :target: https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml
@@ -14,6 +18,14 @@ hsntools
 .. |Coverage| image:: https://codecov.io/gh/HSNPipeline/hsntools/branch/main/graph/badge.svg
    :target: https://codecov.io/gh/HSNPipeline/hsntools
    :alt: coverage
+
+.. |License| image:: https://img.shields.io/pypi/l/hsntools.svg
+   :target: https://opensource.org/license/mit
+   :alt: license
+
+.. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/hsntools.svg
+   :target: https://pypi.org/project/hsntools/
+   :alt: python versions
 
 ``hsntools`` (formerly 'convnwb') is a module for working with the Human Single-Neuron Pipeline (HSNPipeline).
 
@@ -93,23 +105,41 @@ There are also optional dependencies, that offer extra functionality:
 Installation
 ------------
 
-The current release version is the 0.4.X series.
+The current release version of `hsntools` is the 1.X.X release series.
 
-Check the
+See the
 `changelog <https://hsnpipeline.github.io/hsntools/changelog>`_
-for notes on updates and changes across versions.
+for notes on major version releases.
 
-This module should be installed from Github:
+**Stable Release Version**
 
-**Install from a clone**
-
-First clone this repository, then move into the cloned repository, and install:
+To install the latest stable release, you can use pip:
 
 .. code-block:: shell
 
-    $ git clone https://github.com/HSNPipeline/hsntools
-    $ cd hsntools
+    $ pip install hsntools
+
+**Development Version**
+
+To get the current development version, first clone this repository:
+
+.. code-block:: shell
+
+    $ git clone https://github.com/hsnpipeline/hsntools
+
+To install this cloned copy, move into the directory you just cloned, and run:
+
+.. code-block:: shell
+
     $ pip install .
+
+**Editable Version**
+
+To install an editable version, download the development version as above, and run:
+
+.. code-block:: shell
+
+    $ pip install -e .
 
 Contribute
 ----------
