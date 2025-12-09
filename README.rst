@@ -74,8 +74,8 @@ Documentation
 Documentation for the ``hsntools`` module is available
 `here <https://hsnpipeline.github.io/hsntools/>`_
 
-Documentation for the HSNPipeline more broadly, which uses ``hsntools`` is available
-`here <https://hsnpipeline.github.io/>`_
+Documentation for the HSNPipeline more broadly, which uses ``hsntools`` is available on the
+`pipeline website <https://hsnpipeline.github.io/>`_
 
 If you have a question about using ``hsntools`` that doesn't seem to be covered by the documentation, feel free to
 open an `issue <https://https://github.com/HSNPipeline/hsntools/issues>`_ and ask!
