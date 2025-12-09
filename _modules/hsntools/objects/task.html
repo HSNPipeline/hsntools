@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hsntools.objects.task &#8212; hsntools 1.0.0rc0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=7e090ea4"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          hsntools</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0rc0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/HSNPipeline/hsntools">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for hsntools.objects.task</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Base task class.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span> <span class="nn">hsntools.timestamps.align</span> <span class="kn">import</span> <span class="n">predict_times</span>
+<span class="kn">from</span> <span class="nn">hsntools.timestamps.update</span> <span class="kn">import</span> <span class="n">offset_time</span><span class="p">,</span> <span class="n">change_time_units</span>
+<span class="kn">from</span> <span class="nn">hsntools.utils.checks</span> <span class="kn">import</span> <span class="n">is_empty</span><span class="p">,</span> <span class="n">is_type</span>
+<span class="kn">from</span> <span class="nn">hsntools.utils.convert</span> <span class="kn">import</span> <span class="n">convert_type</span><span class="p">,</span> <span class="n">convert_to_array</span>
+<span class="kn">from</span> <span class="nn">hsntools.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
+
+<span class="n">pd</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<span class="n">TIME_UPDATES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;offset&#39;</span> <span class="p">:</span> <span class="n">offset_time</span><span class="p">,</span>
+    <span class="s1">&#39;change_units&#39;</span> <span class="p">:</span> <span class="n">change_time_units</span><span class="p">,</span>
+    <span class="s1">&#39;predict_times&#39;</span> <span class="p">:</span> <span class="n">predict_times</span><span class="p">,</span>
+<span class="p">}</span>
+
+<div class="viewcode-block" id="TaskBase"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase">[docs]</a><span class="k">class</span> <span class="nc">TaskBase</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base object for collecting task information.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TaskBase.__init__"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize TaskBase object.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Define information about the status and info attached to the task object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;time_aligned&#39;</span> <span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;time_reset&#39;</span> <span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;time_offset&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Metadata - subject / session information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;experiment&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;subject&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;session&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Experiment information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;version&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;number&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="s1">&#39;language&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Environment information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">environment</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Session information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;start_time&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;stop_time&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Synchronization information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sync</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1"># Define synchronization approach</span>
+            <span class="s1">&#39;approach&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="c1"># Synchronization pulses</span>
+            <span class="s1">&#39;neural&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;behavioral&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="c1"># Synchronization alignment</span>
+            <span class="s1">&#39;alignment&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;intercept&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;coef&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;score&#39;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Position related information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;time&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;x&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;y&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;z&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;speed&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Head direction information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head_direction</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;time&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;degrees&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Information about timing of task phases</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_times</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Stimulus information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Trial information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trial</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;trial&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;type&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;start_time&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;stop_time&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Response information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_check_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check that a requested field is defined in the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field : str</span>
+<span class="sd">            Which field to check.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            If the requested field is not part of the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_keys</span><span class="p">(),</span> <span class="s1">&#39;Requested field not found.&#39;</span>
+
+
+<div class="viewcode-block" id="TaskBase.add_metadata"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.add_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add metadata information to task object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        subject : str</span>
+<span class="sd">            Subject label.</span>
+<span class="sd">        experiment : str</span>
+<span class="sd">            Name of the experiment.</span>
+<span class="sd">        session : str</span>
+<span class="sd">            Session label.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;experiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">experiment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;session&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">session</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.set_status"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.set_status">[docs]</a>    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set a status marker.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        label : str</span>
+<span class="sd">            The label of which status marker to update.</span>
+<span class="sd">        status : bool</span>
+<span class="sd">            The status to update to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="s1">&#39;Status label not understood.&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">status</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.set_info"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.set_info">[docs]</a>    <span class="k">def</span> <span class="nf">set_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set an info marker.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        label : str</span>
+<span class="sd">            The label of which status marker to update.</span>
+<span class="sd">        info</span>
+<span class="sd">            The info to update.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="s1">&#39;Info label not understood.&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.copy"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a deepcopy of this object.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.data_keys"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.data_keys">[docs]</a>    <span class="k">def</span> <span class="nf">data_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of data keys defined in the task object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        skip : str or list of str</span>
+<span class="sd">            Name(s) of any data attributes to skip.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data_keys : list of str</span>
+<span class="sd">            List of data attributes available in the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="c1"># Drop the &#39;status&#39; attribute, which doesn&#39;t store data</span>
+        <span class="n">data_keys</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">skip_item</span> <span class="ow">in</span> <span class="p">[</span><span class="n">skip</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">skip</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">skip</span><span class="p">:</span>
+                <span class="n">data_keys</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">skip_item</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data_keys</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.drop_fields"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.drop_fields">[docs]</a>    <span class="k">def</span> <span class="nf">drop_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop field(s) from the task object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fields : str or list of str</span>
+<span class="sd">            Field(s) to drop.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">fields</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">fields</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+            <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.drop_keys"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.drop_keys">[docs]</a>    <span class="k">def</span> <span class="nf">drop_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop key(s) from a specified field of the task object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field : str</span>
+<span class="sd">            Which field to access and remove keys from.</span>
+<span class="sd">        keys : list of str or dict</span>
+<span class="sd">            Which key(s) of the field to remove.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">keys</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">keys</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.apply_func"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.apply_func">[docs]</a>    <span class="k">def</span> <span class="nf">apply_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a given function across a set of specified fields.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field : str</span>
+<span class="sd">            Which field to access data to apply function to.</span>
+<span class="sd">        keys : list of str or dict</span>
+<span class="sd">            Which key(s) of the field to apply function to.</span>
+<span class="sd">            If list, should be a list of keys available in `field`.</span>
+<span class="sd">            If dict, keys should be subfields, each with corresponding labels to typecast.</span>
+<span class="sd">        func : callable</span>
+<span class="sd">            Function to apply to the selected fields.</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Keyword arguments to pass into `func`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="n">keys</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">))</span> <span class="k">else</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">okey</span><span class="p">,</span> <span class="n">ikeys</span> <span class="ow">in</span> <span class="n">key</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">for</span> <span class="n">ikey</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ikeys</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ikeys</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">ikeys</span><span class="p">:</span>
+                        <span class="n">data</span><span class="p">[</span><span class="n">okey</span><span class="p">][</span><span class="n">ikey</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">okey</span><span class="p">][</span><span class="n">ikey</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.convert_type"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.convert_type">[docs]</a>    <span class="k">def</span> <span class="nf">convert_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the type of specified data fields.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field : str</span>
+<span class="sd">            Which field to access data to convert type.</span>
+<span class="sd">        keys : list of str or dict</span>
+<span class="sd">            Which key(s) of the field to convert type.</span>
+<span class="sd">            If list, should be a list of keys available in `field`.</span>
+<span class="sd">            If dict, keys should be subfields, each with corresponding labels to typecast.</span>
+<span class="sd">        dtype : type</span>
+<span class="sd">            The data type to cast the variables to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_func</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">convert_type</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.convert_to_array"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.convert_to_array">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert specified data fields to numpy arrays.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field : str</span>
+<span class="sd">            Which field to access data to convert to array.</span>
+<span class="sd">        keys : list of str or dict</span>
+<span class="sd">            Which key(s) of the field to convert to array.</span>
+<span class="sd">            If list, should be a list of keys available in `field`.</span>
+<span class="sd">            If dict, keys should be subfields, each with corresponding labels to typecast.</span>
+<span class="sd">        dtype : type</span>
+<span class="sd">            The data type to give the converted array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_func</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">convert_to_array</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.get_trial"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.get_trial">[docs]</a>    <span class="k">def</span> <span class="nf">get_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the information for a specified trial.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        index : int</span>
+<span class="sd">            The index of the trial to access.</span>
+<span class="sd">        field : str, optional, default: None</span>
+<span class="sd">            Which trial data to access.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">trial_data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;trial&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">field</span><span class="p">:</span>
+            <span class="n">trial_data</span> <span class="o">=</span> <span class="n">trial_data</span><span class="p">[</span><span class="n">field</span><span class="p">]</span>
+
+        <span class="n">trial_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">trial_data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="c1"># Collect trial info, skipping dictionaries, which are subevents</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trial_data</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">trial_info</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">trial_data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">trial_info</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.plot_sync_allignment"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.plot_sync_allignment">[docs]</a>    <span class="k">def</span> <span class="nf">plot_sync_allignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_pulses</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot alignment of the synchronization pulses.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_pulses : int, optional</span>
+<span class="sd">            Number of pulses to plot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># should be implemented in subclass</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.update_time"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.update_time">[docs]</a>    <span class="k">def</span> <span class="nf">update_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apply_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Offset all timestamps within the task object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        update : {&#39;offset&#39;, &#39;change_units&#39;, &#39;predict_times&#39;} or callable</span>
+<span class="sd">            What kind of update to do to the timestamps.</span>
+<span class="sd">        skip : str, optional</span>
+<span class="sd">            Fields set to skip.</span>
+<span class="sd">        apply_type : type, optional</span>
+<span class="sd">            If given, only apply update to specific type.</span>
+<span class="sd">        kwargs</span>
+<span class="sd">            Additional arguments to pass to the update function.</span>
+<span class="sd">        skip : str or list of str, optional</span>
+<span class="sd">            Any data fields to skip during the updating.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Select update function to use</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">available</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">,</span> <span class="s1">&#39;change_units&#39;</span><span class="p">,</span> <span class="s1">&#39;predict_times&#39;</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="n">update</span> <span class="ow">in</span> <span class="n">available</span><span class="p">,</span> \
+                <span class="s2">&quot;Update approach doesn&#39;t match whats available: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">available</span><span class="p">)</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="n">TIME_UPDATES</span><span class="p">[</span><span class="n">update</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="n">update</span>
+
+        <span class="c1"># Update any fields with &#39;time&#39; in their name</span>
+        <span class="c1">#   Note: this update goes down up to two levels of embedded dictionaries</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_keys</span><span class="p">(</span><span class="n">skip</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">subkey</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="s1">&#39;time&#39;</span> <span class="ow">in</span> <span class="n">subkey</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">subkey</span><span class="p">])</span> \
+                            <span class="ow">and</span> <span class="n">is_type</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">subkey</span><span class="p">],</span> <span class="n">apply_type</span><span class="p">):</span>
+                            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">subkey</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">subkey</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s1">&#39;time&#39;</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="ow">and</span> <span class="n">is_type</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">apply_type</span><span class="p">):</span>
+                        <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Update status information about the reset</span>
+        <span class="k">if</span> <span class="n">update</span> <span class="o">==</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="s1">&#39;time_reset&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_info</span><span class="p">(</span><span class="s1">&#39;time_offset&#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">update</span> <span class="o">==</span> <span class="s1">&#39;predict_times&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="s1">&#39;time_aligned&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.to_dict"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert object data to a dictionary.&quot;&quot;&quot;</span>
+
+        <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_keys</span><span class="p">():</span>
+            <span class="n">out_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">out_dict</span></div>
+
+
+<div class="viewcode-block" id="TaskBase.to_dataframe"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.to_dataframe">[docs]</a>    <span class="nd">@check_dependency</span><span class="p">(</span><span class="n">pd</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a specified field as a dataframe.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field : str</span>
+<span class="sd">            Which field to access to return as a dataframe.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            Dataframe representation of the requested field.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">))</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

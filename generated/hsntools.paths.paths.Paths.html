@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>hsntools.paths.paths.Paths &#8212; hsntools 1.0.0rc0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=7e090ea4"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          hsntools</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0rc0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/HSNPipeline/hsntools">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="hsntools-paths-paths-paths">
+<h1>hsntools.paths.paths.Paths<a class="headerlink" href="#hsntools-paths-paths-paths" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsntools.paths.paths.</span></span><span class="sig-name descname"><span class="pre">Paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['docs',</span> <span class="pre">'info',</span> <span class="pre">'nwb',</span> <span class="pre">'recordings']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recordings_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'recordings'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['anatomy',</span> <span class="pre">'electrodes',</span> <span class="pre">'notes']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'01_raw':</span> <span class="pre">['behavior',</span> <span class="pre">'neural'],</span> <span class="pre">'02_processing':</span> <span class="pre">['alignment',</span> <span class="pre">'metadata',</span> <span class="pre">'sorting',</span> <span class="pre">'task'],</span> <span class="pre">'03_extracted':</span> <span class="pre">['spikes',</span> <span class="pre">'lfp']}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/paths/paths.html#Paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.paths.paths.Paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Paths object for a session of single-unit data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['docs',</span> <span class="pre">'info',</span> <span class="pre">'nwb',</span> <span class="pre">'recordings']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recordings_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'recordings'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['anatomy',</span> <span class="pre">'electrodes',</span> <span class="pre">'notes']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'01_raw':</span> <span class="pre">['behavior',</span> <span class="pre">'neural'],</span> <span class="pre">'02_processing':</span> <span class="pre">['alignment',</span> <span class="pre">'metadata',</span> <span class="pre">'sorting',</span> <span class="pre">'task'],</span> <span class="pre">'03_extracted':</span> <span class="pre">['spikes',</span> <span class="pre">'lfp']}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/paths/paths.html#Paths.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.paths.paths.Paths.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a paths object for a project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>project_path</strong><span class="classifier">str or Path</span></dt><dd><p>The path to the project folder.</p>
+</dd>
+<dt><strong>subject</strong><span class="classifier">str, optional</span></dt><dd><p>Subject label.</p>
+</dd>
+<dt><strong>experiment</strong><span class="classifier">str, optional</span></dt><dd><p>Experiment name.</p>
+</dd>
+<dt><strong>session</strong><span class="classifier">str or int, optional</span></dt><dd><p>The session label. Can be an integer index, or a string, for example <cite>session_0</cite>.</p>
+</dd>
+<dt><strong>project_folders</strong><span class="classifier">list, optional</span></dt><dd><p>Defines the sub-folders that are part of the subject folder.</p>
+</dd>
+<dt><strong>recordings_name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the subfolder (within <cite>project_path</cite>) to store recordings.</p>
+</dd>
+<dt><strong>subject_folders</strong><span class="classifier">list, optional</span></dt><dd><p>Defines the sub-folders that are part of the project folder.</p>
+</dd>
+<dt><strong>session_folders</strong><span class="classifier">dict, optional</span></dt><dd><p>Defines the folder names to that are part of the session folder.
+Each key defines a sub-directory within the <cite>session</cite> folder.
+Each set of values is a list of folder names within each sub-directory.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.__init__" title="hsntools.paths.paths.Paths.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(project_path[, subject, ...])</p></td>
+<td><p>Defines a paths object for a project.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.get_files" title="hsntools.paths.paths.Paths.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder, **kwargs)</p></td>
+<td><p>Get a list of files available in a specified folder.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.get_subfolders" title="hsntools.paths.paths.Paths.get_subfolders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_subfolders</span></code></a>(folder, **kwargs)</p></td>
+<td><p>Get a list of sub-folder available in a specified folder.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.print_structure" title="hsntools.paths.paths.Paths.print_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_structure</span></code></a>()</p></td>
+<td><p>Print directory structure.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.all_folders" title="hsntools.paths.paths.Paths.all_folders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_folders</span></code></a></p></td>
+<td><p>List of all folders.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.all_paths" title="hsntools.paths.paths.Paths.all_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_paths</span></code></a></p></td>
+<td><p>List of all path names (all labels that can be used to access a path).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.experiment" title="hsntools.paths.paths.Paths.experiment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">experiment</span></code></a></p></td>
+<td><p>&quot;Path of the experiment folder.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.recordings" title="hsntools.paths.paths.Paths.recordings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recordings</span></code></a></p></td>
+<td><p>&quot;Path of the recordings folder.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.session" title="hsntools.paths.paths.Paths.session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">session</span></code></a></p></td>
+<td><p>Path of the session folder.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.session_name" title="hsntools.paths.paths.Paths.session_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">session_name</span></code></a></p></td>
+<td><p>Name of the session this object reflects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.paths.paths.Paths.subject" title="hsntools.paths.paths.Paths.subject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subject</span></code></a></p></td>
+<td><p>Path of the subject folder.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.all_folders">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_folders</span></span><a class="headerlink" href="#hsntools.paths.paths.Paths.all_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all folders.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.all_paths">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_paths</span></span><a class="headerlink" href="#hsntools.paths.paths.Paths.all_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all path names (all labels that can be used to access a path).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.experiment">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">experiment</span></span><a class="headerlink" href="#hsntools.paths.paths.Paths.experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Path of the experiment folder.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.get_files">
+<span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/paths/paths.html#Paths.get_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.paths.paths.Paths.get_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of files available in a specified folder.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.get_subfolders">
+<span class="sig-name descname"><span class="pre">get_subfolders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/paths/paths.html#Paths.get_subfolders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.paths.paths.Paths.get_subfolders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of sub-folder available in a specified folder.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.print_structure">
+<span class="sig-name descname"><span class="pre">print_structure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/paths/paths.html#Paths.print_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.paths.paths.Paths.print_structure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print directory structure.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.recordings">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recordings</span></span><a class="headerlink" href="#hsntools.paths.paths.Paths.recordings" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Path of the recordings folder.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.session">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#hsntools.paths.paths.Paths.session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of the session folder.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.session_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">session_name</span></span><a class="headerlink" href="#hsntools.paths.paths.Paths.session_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the session this object reflects.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.paths.paths.Paths.subject">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subject</span></span><a class="headerlink" href="#hsntools.paths.paths.Paths.subject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of the subject folder.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

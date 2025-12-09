@@ -3,20 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>convnwb &#8212; convnwb 0.4.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <title>hsntools &#8212; hsntools 1.0.0rc0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=7e090ea4"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
@@ -40,15 +41,17 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
+          hsntools</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0rc0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
                 <li><a href="api.html">API</a></li>
-                <li><a href="https://github.com/HSUPipeline/convnwb">GitHub</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
+                <li><a href="reference.html">Reference</a></li>
+                <li><a href="https://github.com/HSNPipeline/hsntools">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -89,31 +92,57 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="convnwb">
-<h1>convnwb<a class="headerlink" href="#convnwb" title="Permalink to this heading">¶</a></h1>
-<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="project status" src="http://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml"><img alt="build statue" src="https://github.com/HSUPipeline/convnwb/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/HSUPipeline/convnwb"><img alt="coverage" src="https://codecov.io/gh/HSUPipeline/convnwb/branch/main/graph/badge.svg" /></a></p>
-<p><code class="docutils literal notranslate"><span class="pre">convnwb</span></code> is a module of code to help with converting data to the NWB format.</p>
+  <section id="hsntools">
+<h1>hsntools<a class="headerlink" href="#hsntools" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="project status" src="http://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://pypi.org/project/hsntools/"><img alt="version" src="https://img.shields.io/pypi/v/hsntools.svg" /></a> <a class="reference external" href="https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml"><img alt="build statue" src="https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/HSNPipeline/hsntools"><img alt="coverage" src="https://codecov.io/gh/HSNPipeline/hsntools/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/license/mit"><img alt="license" src="https://img.shields.io/pypi/l/hsntools.svg" /></a> <a class="reference external" href="https://pypi.org/project/hsntools/"><img alt="python versions" src="https://img.shields.io/pypi/pyversions/hsntools.svg" /></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">hsntools</span></code> (formerly ‘convnwb’) is a module for working with the Human Single-Neuron Pipeline (HSNPipeline).</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
-<p>This module contains general, task agnostic, utilities, for converting data to the
-<a class="reference external" href="https://www.nwb.org/">NWB</a> format.</p>
-<p>Available sub-modules in <cite>convnwb</cite> include:</p>
+<p>This module contains general utilities for working with human single-neuron data and projects.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hsntools</span></code> is designed for use in the Human Single-Neuron pipeline, which provides a guide and
+template structure for human single-neuron projects, including working with data files, converting
+data to the <a class="reference external" href="https://www.nwb.org/">NWB</a> format, and managing projects and analyses.</p>
+<p>Available sub-modules in <cite>hsntools</cite> include:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">io</span></code>: includes save and load functions and utilities for working with files through the conversion process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">io</span></code>: includes save and load functions and utilities for working with files raw and converted data files</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nsp</span></code>: includes functionality that relating to managing recording files from neural signal processors</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">objects</span></code>: includes objects for storing relevant data, for example electrode or task related information</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">paths</span></code>: includes a <cite>Paths</cite> object and utilities for defining and using a consistent path structure</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plts</span></code>: includes plot functions for examining data through the conversion process</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sorting</span></code>: includes functionality relating to managing recording spike sorting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sorting</span></code>: includes functionality relating to managing spike sorting</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">timestamps</span></code>: includes utilities for managing timestamps and aligning data streams</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">utils</span></code>: includes general utilities for working with data through the conversion process</p></li>
 </ul>
-<p>For converting data, <cite>convnwb</cite> can be used together with the
-<a class="reference external" href="https://github.com/HSUPipeline/ConvertTEMPLATE">ConvertTEMPLATE</a>.</p>
+</section>
+<section id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this heading">¶</a></h2>
+<p>The <cite>hsntools</cite> module is a helper module for implementing functionality needed for the
+<cite>Human Single-Neuron Pipeline</cite>. It includes utilities related to managing and organizing relevant files,
+including file I/O, functionality for organizing and aligning multiple data streams and converting
+data to standardized data files, and utilities for assisting with running analyses across such data
+and generating structured reports.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hsntools</span></code> provides functionality used within the template for the pipeline, including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/HSNPipeline/SortTEMPLATE">SortTEMPLATE</a></p></li>
+<li><p><a class="reference external" href="https://github.com/HSNPipeline/ConvertTEMPLATE">ConvertTEMPLATE</a></p></li>
+<li><p><a class="reference external" href="https://github.com/HSNPipeline/AnalyzeTEMPLATE">AnalyzeTEMPLATE</a></p></li>
+</ul>
+<p>Note that <cite>hsntools</cite> is not a module for and does not include functionality for spike sorting or single-neuron analyses.
+See the <a class="reference external" href="https://github.com/HSNPipeline/Overview">HSNPipeline Overview</a> for information and guidance on these
+processes and related tooling.</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
+<p>Documentation for the <code class="docutils literal notranslate"><span class="pre">hsntools</span></code> module is available
+<a class="reference external" href="https://hsnpipeline.github.io/hsntools/">here</a></p>
+<p>Documentation for the HSNPipeline more broadly, which uses <code class="docutils literal notranslate"><span class="pre">hsntools</span></code> is available on the
+<a class="reference external" href="https://hsnpipeline.github.io/">pipeline website</a></p>
+<p>If you have a question about using <code class="docutils literal notranslate"><span class="pre">hsntools</span></code> that doesn’t seem to be covered by the documentation, feel free to
+open an <a class="reference external" href="https://https://github.com/HSNPipeline/hsntools/issues">issue</a> and ask!</p>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">convnwb</span></code> is written in Python, and requires Python &gt;= 3.6 to run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hsntools</span></code> is written in Python, and requires Python &gt;= 3.7 to run.</p>
 <p>It has the following required dependencies:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/numpy/numpy">numpy</a></p></li>
@@ -134,16 +163,27 @@
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
-<p>The current release version is the 0.3.X series.</p>
-<p>Check the
-<a class="reference external" href="https://hsupipeline.github.io/convnwb/changelog">changelog</a>
-for notes on updates and changes across versions.</p>
-<p>This module should be installed from Github:</p>
-<p><strong>Install from a clone</strong></p>
-<p>First clone this repository, then move into the cloned repository, and install:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/HSUPipeline/convnwb
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>convnwb
-$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+<p>The current release version of <cite>hsntools</cite> is the 1.X.X release series.</p>
+<p>See the
+<a class="reference external" href="https://hsnpipeline.github.io/hsntools/changelog">changelog</a>
+for notes on major version releases.</p>
+<p><strong>Stable Release Version</strong></p>
+<p>To install the latest stable release, you can use pip:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>hsntools
+</pre></div>
+</div>
+<p><strong>Development Version</strong></p>
+<p>To get the current development version, first clone this repository:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/hsnpipeline/hsntools
+</pre></div>
+</div>
+<p>To install this cloned copy, move into the directory you just cloned, and run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+<p><strong>Editable Version</strong></p>
+<p>To install an editable version, download the development version as above, and run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
 </div>
 </section>
@@ -151,9 +191,9 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
 <h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this heading">¶</a></h2>
 <p>This project welcomes and encourages contributions from the community!</p>
 <p>To file bug reports and/or ask questions about this project, please use the
-<a class="reference external" href="https://github.com/HSUPipeline/convnwb/issues">Github issue tracker</a>.</p>
+<a class="reference external" href="https://github.com/HSNPipeline/hsntools/issues">Github issue tracker</a>.</p>
 <p>When interacting with this project, please follow the
-<a class="reference external" href="https://github.com/HSUPipeline/convnwb/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+<a class="reference external" href="https://github.com/HSNPipeline/hsntools/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 </section>
 </section>
 
@@ -170,7 +210,7 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
     </p>
     <p>
         &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

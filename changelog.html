@@ -3,20 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Changelog &#8212; convnwb 0.4.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <title>Changelog &#8212; hsntools 1.0.0rc0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=7e090ea4"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
@@ -40,15 +41,17 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">
-          convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
+          hsntools</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0rc0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
                 <li><a href="api.html">API</a></li>
-                <li><a href="https://github.com/HSUPipeline/convnwb">GitHub</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
+                <li><a href="reference.html">Reference</a></li>
+                <li><a href="https://github.com/HSNPipeline/hsntools">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -91,40 +94,67 @@
       
   <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this heading">¶</a></h1>
-<p>This page contains the changelog for the <cite>convnwb</cite> module and any notes on updating between versions.</p>
-<p>This page primarily notes changes for major version updates. For notes on the specific updates
-for minor releases, see the <a class="reference external" href="https://github.com/HSUpipeline/convnwb/releases">release page</a>.</p>
+<p>This page contains the changelog for the <cite>hsntools</cite> module and any notes on updating between versions.</p>
+<p>This page primarily notes high-level summaries and overview of changes for major version updates and
+updates included in minor releases.
+For more detailed notes on what is included in specific releases,
+see the <a class="reference external" href="https://github.com/HSNpipeline/hsntools/releases">release page</a>.</p>
+<section id="hsntools-version-1-0-0">
+<h2><cite>hsntools</cite> (&gt;= version 1.0.0)<a class="headerlink" href="#hsntools-version-1-0-0" title="Permalink to this heading">¶</a></h2>
+<p>Starting with version 1.0.0, the module was rename to <cite>hsntools</cite>.</p>
 <section id="x">
-<h2>0.4.X<a class="headerlink" href="#x" title="Permalink to this heading">¶</a></h2>
-<p>The <cite>0.4.X</cite> series, starting with <cite>0.4.0</cite> tagged release is an extension of the module
-that most notably includes the addition of the <cite>sorting</cite> sub-module, for managing
-sorting related files and processes.</p>
+<h3>1.0.X<a class="headerlink" href="#x" title="Permalink to this heading">¶</a></h3>
+<p>The <cite>1.0.X</cite> is a major new release, the first with the new  <cite>hsntools</cite> name. This is a breaking change from all prior releases.
+Note that the internal organization of the module is largely the same, though a few functions have moved and/or changed name.</p>
+<p>Key changes:
+- name changes across the module from <cite>convnwb</cite> -&gt; <cite>hsntools</cite>
+- some minor re-organizations of the module</p>
 </section>
+</section>
+<section id="convnwb-version-0-5-0">
+<h2><cite>convnwb</cite> (&lt;= version 0.5.0)<a class="headerlink" href="#convnwb-version-0-5-0" title="Permalink to this heading">¶</a></h2>
+<p>Previously, the module was called <cite>convnwb</cite>, up until version 0.5.X.</p>
 <section id="id1">
-<h2>0.3.X<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
-<p>The <cite>0.3.X</cite> series, starting with <cite>0.3.0</cite> tagged release is a minor organizational
-update of the module, with the key change being to re-organize the <cite>run</cite> sub-module
-into the <cite>utils</cite> sub-module.</p>
+<h3>0.5.X<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>The <cite>0.5.X</cite> series, starting with <cite>0.5.0</cite> tagged release is a minor release update to
+the module.</p>
+<p>Key changes include:
+- minor bug fixes and extensions of the file management</p>
 </section>
 <section id="id2">
-<h2>0.2.X<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
-<p>The <cite>0.2.X</cite> series, starting with the <cite>0.2.0</cite> tagged release is an update to the stable
-release version of the module. This updated version has several minor updates with
+<h3>0.4.X<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>The <cite>0.4.X</cite> series, starting with <cite>0.4.0</cite> tagged release is a minor release update
+to the module.</p>
+<p>Key changes include:
+- the addition of the <cite>sorting</cite> sub-module, for managing sorting related files and processes</p>
+</section>
+<section id="id3">
+<h3>0.3.X<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>The <cite>0.3.X</cite> series, starting with <cite>0.3.0</cite> tagged release is a minor release update to the
+module. It includes minor organizational updates to the module.</p>
+<p>Key changes include:
+- re-organizing the <cite>run</cite> sub-module into the <cite>utils</cite> sub-module</p>
+</section>
+<section id="id4">
+<h3>0.2.X<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>The <cite>0.2.X</cite> series, starting with the <cite>0.2.0</cite> tagged release, is a minor release update
+to the module. This updated version has several minor updates with
 previous version, but does not maintain complete consistency with previous versions.</p>
 <p>Key changes include:
 - adding official support up to Python 3.11
 - updates to the objects, including adding new methods
 - the addition of the <cite>run</cite> sub-module, which includes moving some functions</p>
 </section>
-<section id="id3">
-<h2>0.1.X<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<section id="id5">
+<h3>0.1.X<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
 <p>The <cite>0.1.X</cite> series, starting with the <cite>0.1.0</cite> tagged release is the first stable release
 of the module. This release version is considered a stable release, and should maintain
 compatibility across the <cite>0.1.X</cite> series, with no breaking changes.</p>
 </section>
-<section id="development">
-<h2>Development<a class="headerlink" href="#development" title="Permalink to this heading">¶</a></h2>
-<p>Prior to the 0.1.0 release, there was continuous updates under the development version,
+</section>
+<section id="development-versions">
+<h2>Development Versions<a class="headerlink" href="#development-versions" title="Permalink to this heading">¶</a></h2>
+<p>Prior to the convnwb 0.1.0 release, there was continuous updates under the development version,
 which was listed under <cite>0.1.0-dev</cite> version tag.</p>
 <p>Through this time, the general layout and organization matched what became the <cite>0.1.0</cite> version,
 however, there could be breaking changes at any time, and compatibility which future
@@ -145,7 +175,7 @@ tagged versions is not guaranteed.</p>
     </p>
     <p>
         &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>

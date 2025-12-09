@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hsntools.io.nsp &#8212; hsntools 1.0.0rc0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=7e090ea4"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          hsntools</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0rc0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../api.html">API</a></li>
+                <li><a href="../../../auto_examples/index.html">Examples</a></li>
+                <li><a href="../../../reference.html">Reference</a></li>
+                <li><a href="https://github.com/HSNPipeline/hsntools">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for hsntools.io.nsp</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Neural Signal Processor (NSP) related I/O functions.</span>
+
+<span class="sd">Functionality in this file requires the `neo` module: https://github.com/NeuralEnsemble/python-neo</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">hsntools.io.utils</span> <span class="kn">import</span> <span class="n">check_folder</span>
+<span class="kn">from</span> <span class="nn">hsntools.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
+<span class="kn">from</span> <span class="nn">hsntools.timestamps.utils</span> <span class="kn">import</span> <span class="n">compute_sample_length</span>
+
+<span class="n">neo</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;neo&#39;</span><span class="p">)</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+
+<div class="viewcode-block" id="load_blackrock"><a class="viewcode-back" href="../../../generated/hsntools.io.nsp.load_blackrock.html#hsntools.io.nsp.load_blackrock">[docs]</a><span class="nd">@check_dependency</span><span class="p">(</span><span class="n">neo</span><span class="p">,</span> <span class="s1">&#39;neo&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">load_blackrock</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">nsx_to_load</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">load_nev</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a set of Blackrock files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_name : str</span>
+<span class="sd">        The file name to load.</span>
+<span class="sd">    folder : str or Path</span>
+<span class="sd">        The folder to load the file(s) from.</span>
+<span class="sd">    nsx_to_load : int or list, optional</span>
+<span class="sd">        Which nsx file(s) to load.</span>
+<span class="sd">    load_nev : bool, optional, default: True</span>
+<span class="sd">        Whether to load the nev file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    reader : neo.rawio.blackrockrawio.BlackrockRawIO</span>
+<span class="sd">        Blackrock file reader.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">neo</span><span class="o">.</span><span class="n">rawio</span><span class="o">.</span><span class="n">BlackrockRawIO</span><span class="p">(</span>\
+        <span class="n">check_folder</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">folder</span><span class="p">),</span> <span class="n">nsx_to_load</span><span class="o">=</span><span class="n">nsx_to_load</span><span class="p">,</span> <span class="n">load_nev</span><span class="o">=</span><span class="n">load_nev</span><span class="p">)</span>
+    <span class="n">reader</span><span class="o">.</span><span class="n">parse_header</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">reader</span></div>
+
+
+<div class="viewcode-block" id="check_blackrock_file_info"><a class="viewcode-back" href="../../../generated/hsntools.io.nsp.check_blackrock_file_info.html#hsntools.io.nsp.check_blackrock_file_info">[docs]</a><span class="k">def</span> <span class="nf">check_blackrock_file_info</span><span class="p">(</span><span class="n">reader</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check some basic information and metadata from a set of Blackrock files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reader : neo.rawio.blackrockrawio.BlackrockRawIO</span>
+<span class="sd">        File reader for the Blackrock file(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">str_fmt</span> <span class="o">=</span> <span class="s1">&#39;  seg#</span><span class="si">{}</span><span class="s1">    start: </span><span class="si">{:1.2e}</span><span class="s1">    stop: </span><span class="si">{:1.2e}</span><span class="s1">    size: </span><span class="si">{:10d}</span><span class="s1">    tlen: </span><span class="si">{:4.2f}</span><span class="s1">&#39;</span>
+
+    <span class="n">fs</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_signal_sampling_rate</span><span class="p">()</span>
+    <span class="n">n_chans</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">signal_channels_count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sampling rate: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# channels: </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">n_chans</span><span class="p">)</span>
+
+    <span class="n">n_blocks</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">block_count</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">bi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_blocks</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;block #</span><span class="si">{}</span><span class="s1">:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bi</span><span class="p">))</span>
+        <span class="n">n_segments</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">segment_count</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">si</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_segments</span><span class="p">):</span>
+            <span class="n">seg_start</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">segment_t_start</span><span class="p">(</span><span class="n">bi</span><span class="p">,</span> <span class="n">si</span><span class="p">)</span>
+            <span class="n">seg_stop</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">segment_t_stop</span><span class="p">(</span><span class="n">bi</span><span class="p">,</span> <span class="n">si</span><span class="p">)</span>
+            <span class="n">seg_size</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_signal_size</span><span class="p">(</span><span class="n">bi</span><span class="p">,</span> <span class="n">si</span><span class="p">)</span>
+            <span class="n">seg_length</span> <span class="o">=</span> <span class="n">compute_sample_length</span><span class="p">(</span><span class="n">seg_size</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">str_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">seg_start</span><span class="p">,</span> <span class="n">seg_stop</span><span class="p">,</span> <span class="n">seg_size</span><span class="p">,</span> <span class="n">seg_length</span><span class="p">))</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

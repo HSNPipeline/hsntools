@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>hsntools.objects.electrodes.Electrodes &#8212; hsntools 1.0.0rc0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=7e090ea4"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=a56c686a"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          hsntools</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0rc0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../reference.html">Reference</a></li>
+                <li><a href="https://github.com/HSNPipeline/hsntools">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="hsntools-objects-electrodes-electrodes">
+<h1>hsntools.objects.electrodes.Electrodes<a class="headerlink" href="#hsntools-objects-electrodes-electrodes" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsntools.objects.electrodes.</span></span><span class="sig-name descname"><span class="pre">Electrodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object for collecting &amp; managing electrode information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>subject</strong><span class="classifier">str</span></dt><dd><p>Subject label.</p>
+</dd>
+<dt><strong>fs</strong><span class="classifier">int</span></dt><dd><p>Sampling rate.</p>
+</dd>
+<dt><strong>bundles</strong><span class="classifier">list of Bundle</span></dt><dd><p>Names of the bundles.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize Electrodes object.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.__init__" title="hsntools.objects.electrodes.Electrodes.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([subject, fs])</p></td>
+<td><p>Initialize Electrodes object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.add_bundle" title="hsntools.objects.electrodes.Electrodes.add_bundle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_bundle</span></code></a>(probe[, hemisphere, lobe, ...])</p></td>
+<td><p>Add a bundle to the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.add_bundles" title="hsntools.objects.electrodes.Electrodes.add_bundles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_bundles</span></code></a>(bundles)</p></td>
+<td><p>Add multiple bundles to the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.copy" title="hsntools.objects.electrodes.Electrodes.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
+<td><p>Return a deepcopy of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.get" title="hsntools.objects.electrodes.Electrodes.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>(field)</p></td>
+<td><p>Get the values for a specified field from across all bundles.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.to_csv" title="hsntools.objects.electrodes.Electrodes.to_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_csv</span></code></a>(file_name[, folder])</p></td>
+<td><p>Save out the electrode information as a CSV file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.to_dataframe" title="hsntools.objects.electrodes.Electrodes.to_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dataframe</span></code></a>()</p></td>
+<td><p>Return object data as a dataframe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.to_dict" title="hsntools.objects.electrodes.Electrodes.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>([drop_empty])</p></td>
+<td><p>Convert object data to a dictionary.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.bundle_properties" title="hsntools.objects.electrodes.Electrodes.bundle_properties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bundle_properties</span></code></a></p></td>
+<td><p>Access bundle property labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hsntools.objects.electrodes.Electrodes.n_bundles" title="hsntools.objects.electrodes.Electrodes.n_bundles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_bundles</span></code></a></p></td>
+<td><p>The number of bundles stored in the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_electrodes_per_bundle</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.add_bundle">
+<span class="sig-name descname"><span class="pre">add_bundle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hemisphere</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lobe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subregion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.add_bundle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.add_bundle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a bundle to the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>probe</strong><span class="classifier">Bundle or str</span></dt><dd><p>Name of the bundle, if string, or pre-initialized Bundle object.</p>
+</dd>
+<dt><strong>hemisphere</strong><span class="classifier">{‘left’, ‘right’}, optional</span></dt><dd><p>The hemisphere the probe is implanted in.</p>
+</dd>
+<dt><strong>lobe</strong><span class="classifier">{‘frontal’, ‘parietal’, ‘temporal’, ‘occipital’}, optional</span></dt><dd><p>Which lobe the probe is in.</p>
+</dd>
+<dt><strong>region</strong><span class="classifier">str, optional</span></dt><dd><p>Location of the bundle.</p>
+</dd>
+<dt><strong>subregion</strong><span class="classifier">str, optional</span></dt><dd><p>The subregion specifier of the probe.</p>
+</dd>
+<dt><strong>channels</strong><span class="classifier">list of int, optional</span></dt><dd><p>A set of channel indices for the bundle.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.add_bundles">
+<span class="sig-name descname"><span class="pre">add_bundles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bundles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.add_bundles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.add_bundles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add multiple bundles to the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>names</strong><span class="classifier">Bundle or list of dict</span></dt><dd><p>Names of the bundles.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.bundle_properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bundle_properties</span></span><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.bundle_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access bundle property labels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a deepcopy of this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the values for a specified field from across all bundles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>field</strong><span class="classifier">{‘probe’, ‘hemisphere’, ‘lobe’, ‘region’, ‘subregion’, ‘channels’}</span></dt><dd><p>Which field to get the values for.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list</dt><dd><p>Values for the specified field from across all defined bundles.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.n_bundles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_bundles</span></span><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.n_bundles" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of bundles stored in the object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.to_csv">
+<span class="sig-name descname"><span class="pre">to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.to_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save out the electrode information as a CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file_name</strong><span class="classifier">str</span></dt><dd><p>The file name to save.</p>
+</dd>
+<dt><strong>folder</strong><span class="classifier">str</span></dt><dd><p>The folder to save the file to.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Additional keyword arguments to pass to pd.DataFrame.to_csv().</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.to_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.to_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return object data as a dataframe.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsntools.objects.electrodes.Electrodes.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drop_empty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/electrodes.html#Electrodes.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.electrodes.Electrodes.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert object data to a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>drop_empty</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to drops fields that are all None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

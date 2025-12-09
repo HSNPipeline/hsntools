@@ -3,20 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>API Documentation &#8212; convnwb 0.4.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <title>API Documentation &#8212; hsntools 1.0.0rc0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=7e090ea4"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
@@ -40,15 +41,17 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">
-          convnwb</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.4.0</b></span>
+          hsntools</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0rc0</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
                 <li><a href="#">API</a></li>
-                <li><a href="https://github.com/HSUPipeline/convnwb">GitHub</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
+                <li><a href="reference.html">Reference</a></li>
+                <li><a href="https://github.com/HSNPipeline/hsntools">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -96,18 +99,16 @@
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#file-i-o" id="id6">File I/O</a></p>
+<li><p><a class="reference internal" href="#file-i-o" id="id5">File I/O</a></p>
 <ul>
-<li><p><a class="reference internal" href="#nwb-custom-file-i-o" id="id7">NWB &amp; Custom file I/O</a></p></li>
-<li><p><a class="reference internal" href="#general-file-i-o" id="id8">General file I/O</a></p></li>
-<li><p><a class="reference internal" href="#utilities" id="id9">Utilities</a></p></li>
-<li><p><a class="reference internal" href="#validate-functions" id="id10">Validate Functions</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#nsp" id="id11">NSP</a></p>
-<ul>
-<li><p><a class="reference internal" href="#i-o" id="id12">I/O</a></p></li>
-<li><p><a class="reference internal" href="#checks" id="id13">Checks</a></p></li>
+<li><p><a class="reference internal" href="#nwb-file-i-o" id="id6">NWB file I/O</a></p></li>
+<li><p><a class="reference internal" href="#hdf5-file-i-o" id="id7">HDF5 file I/O</a></p></li>
+<li><p><a class="reference internal" href="#custom-file-i-o" id="id8">Custom file I/O</a></p></li>
+<li><p><a class="reference internal" href="#general-file-i-o" id="id9">General file I/O</a></p></li>
+<li><p><a class="reference internal" href="#sorting-file-i-o" id="id10">Sorting File I/O</a></p></li>
+<li><p><a class="reference internal" href="#load-collections-of-files" id="id11">Load Collections of Files</a></p></li>
+<li><p><a class="reference internal" href="#nsp-neural-signal-processors-io" id="id12">NSP (Neural Signal Processors) IO</a></p></li>
+<li><p><a class="reference internal" href="#utilities" id="id13">Utilities</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#objects" id="id14">Objects</a></p>
@@ -130,150 +131,176 @@
 <li><p><a class="reference internal" href="#id2" id="id22">Timestamps</a></p>
 <ul>
 <li><p><a class="reference internal" href="#alignment" id="id23">Alignment</a></p></li>
-<li><p><a class="reference internal" href="#peaks" id="id24">Peaks</a></p></li>
-<li><p><a class="reference internal" href="#update" id="id25">Update</a></p></li>
-<li><p><a class="reference internal" href="#utils" id="id26">Utils</a></p></li>
+<li><p><a class="reference internal" href="#dates" id="id24">Dates</a></p></li>
+<li><p><a class="reference internal" href="#peaks" id="id25">Peaks</a></p></li>
+<li><p><a class="reference internal" href="#update" id="id26">Update</a></p></li>
+<li><p><a class="reference internal" href="#utils" id="id27">Utils</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#sorting" id="id27">Sorting</a></p>
+<li><p><a class="reference internal" href="#sorting" id="id28">Sorting</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id28">I/O</a></p></li>
 <li><p><a class="reference internal" href="#processing" id="id29">Processing</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id30">Utilities</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id30">Utilities</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id5" id="id31">Utils</a></p>
+<li><p><a class="reference internal" href="#run" id="id31">Run</a></p>
 <ul>
-<li><p><a class="reference internal" href="#check-functions" id="id32">Check Functions</a></p></li>
-<li><p><a class="reference internal" href="#convert-functions" id="id33">Convert Functions</a></p></li>
-<li><p><a class="reference internal" href="#extract-functions" id="id34">Extract Functions</a></p></li>
-<li><p><a class="reference internal" href="#log-functions" id="id35">Log Functions</a></p></li>
-<li><p><a class="reference internal" href="#run-functions" id="id36">Run Functions</a></p></li>
-<li><p><a class="reference internal" href="#tool-functions" id="id37">Tool Functions</a></p></li>
+<li><p><a class="reference internal" href="#log-functions" id="id32">Log Functions</a></p></li>
+<li><p><a class="reference internal" href="#error-management" id="id33">Error Management</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id4" id="id34">Utils</a></p>
+<ul>
+<li><p><a class="reference internal" href="#check-functions" id="id35">Check Functions</a></p></li>
+<li><p><a class="reference internal" href="#convert-functions" id="id36">Convert Functions</a></p></li>
+<li><p><a class="reference internal" href="#extract-functions" id="id37">Extract Functions</a></p></li>
+<li><p><a class="reference internal" href="#tool-functions" id="id38">Tool Functions</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="file-i-o">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">File I/O</a><a class="headerlink" href="#file-i-o" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">File I/O</a><a class="headerlink" href="#file-i-o" title="Permalink to this heading">¶</a></h3>
 <p>Functions for file I/O.</p>
-<section id="nwb-custom-file-i-o">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">NWB &amp; Custom file I/O</a><a class="headerlink" href="#nwb-custom-file-i-o" title="Permalink to this heading">¶</a></h4>
+<section id="nwb-file-i-o">
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">NWB file I/O</a><a class="headerlink" href="#nwb-file-i-o" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.save_nwbfile.html#convnwb.io.io.save_nwbfile" title="convnwb.io.io.save_nwbfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_nwbfile</span></code></a>(nwbfile, file_name[, folder])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.nwb.save_nwbfile.html#hsntools.io.nwb.save_nwbfile" title="hsntools.io.nwb.save_nwbfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_nwbfile</span></code></a>(nwbfile, file_name[, folder])</p></td>
 <td><p>Save out an NWB file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_nwbfile.html#convnwb.io.io.load_nwbfile" title="convnwb.io.io.load_nwbfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_nwbfile</span></code></a>(file_name[, folder, return_io])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.nwb.load_nwbfile.html#hsntools.io.nwb.load_nwbfile" title="hsntools.io.nwb.load_nwbfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_nwbfile</span></code></a>(file_name[, folder, return_io])</p></td>
 <td><p>Load an NWB file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.save_config.html#convnwb.io.io.save_config" title="convnwb.io.io.save_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_config</span></code></a>(cdict, file_name[, folder])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.nwb.validate_nwbfile.html#hsntools.io.nwb.validate_nwbfile" title="hsntools.io.nwb.validate_nwbfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_nwbfile</span></code></a>(file_name[, folder, ...])</p></td>
+<td><p>Validate a NWB file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hdf5-file-i-o">
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">HDF5 file I/O</a><a class="headerlink" href="#hdf5-file-i-o" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.h5.open_h5file.html#hsntools.io.h5.open_h5file" title="hsntools.io.h5.open_h5file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_h5file</span></code></a>(file_name[, folder, mode, ext])</p></td>
+<td><p>Context manager to open a HDF5 file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.h5.save_to_h5file.html#hsntools.io.h5.save_to_h5file" title="hsntools.io.h5.save_to_h5file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_to_h5file</span></code></a>(data, file_name[, folder, ext])</p></td>
+<td><p>Save data to a HDF5 file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.h5.load_from_h5file.html#hsntools.io.h5.load_from_h5file" title="hsntools.io.h5.load_from_h5file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_from_h5file</span></code></a>(fields, file_name[, ...])</p></td>
+<td><p>Load one or more specified field(s) from a HDF5 file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="custom-file-i-o">
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">Custom file I/O</a><a class="headerlink" href="#custom-file-i-o" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.custom.save_config.html#hsntools.io.custom.save_config" title="hsntools.io.custom.save_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_config</span></code></a>(cdict, file_name[, folder])</p></td>
 <td><p>Save out a config file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_config.html#convnwb.io.io.load_config" title="convnwb.io.io.load_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_config</span></code></a>(file_name[, folder])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.custom.load_config.html#hsntools.io.custom.load_config" title="hsntools.io.custom.load_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_config</span></code></a>(file_name[, folder])</p></td>
 <td><p>Load an individual config file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_configs.html#convnwb.io.io.load_configs" title="convnwb.io.io.load_configs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_configs</span></code></a>(files[, folder])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.custom.load_configs.html#hsntools.io.custom.load_configs" title="hsntools.io.custom.load_configs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_configs</span></code></a>(files[, folder])</p></td>
 <td><p>Load all configs together.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.save_object.html#convnwb.io.io.save_object" title="convnwb.io.io.save_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_object</span></code></a>(custom_object, file_name[, folder])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.custom.save_object.html#hsntools.io.custom.save_object" title="hsntools.io.custom.save_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_object</span></code></a>(custom_object, file_name[, folder])</p></td>
 <td><p>Save a custom object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_object.html#convnwb.io.io.load_object" title="convnwb.io.io.load_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_object</span></code></a>(file_name[, folder])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.custom.load_object.html#hsntools.io.custom.load_object" title="hsntools.io.custom.load_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_object</span></code></a>(file_name[, folder])</p></td>
 <td><p>Load a custom object.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="general-file-i-o">
-<h4><a class="toc-backref" href="#id8" role="doc-backlink">General file I/O</a><a class="headerlink" href="#general-file-i-o" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">General file I/O</a><a class="headerlink" href="#general-file-i-o" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.save_txt.html#convnwb.io.io.save_txt" title="convnwb.io.io.save_txt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_txt</span></code></a>(text, file_name[, folder])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.files.save_txt.html#hsntools.io.files.save_txt" title="hsntools.io.files.save_txt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_txt</span></code></a>(text, file_name[, folder])</p></td>
 <td><p>Save out text to a txt file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_txt.html#convnwb.io.io.load_txt" title="convnwb.io.io.load_txt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_txt</span></code></a>(file_name[, folder])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.files.load_txt.html#hsntools.io.files.load_txt" title="hsntools.io.files.load_txt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_txt</span></code></a>(file_name[, folder])</p></td>
 <td><p>Load text from a txt file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.save_json.html#convnwb.io.io.save_json" title="convnwb.io.io.save_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_json</span></code></a>(data, file_name[, folder])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.files.save_json.html#hsntools.io.files.save_json" title="hsntools.io.files.save_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_json</span></code></a>(data, file_name[, folder])</p></td>
 <td><p>Save out a dictionary of data to a JSON file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_json.html#convnwb.io.io.load_json" title="convnwb.io.io.load_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_json</span></code></a>(file_name[, folder])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.files.load_json.html#hsntools.io.files.load_json" title="hsntools.io.files.load_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_json</span></code></a>(file_name[, folder])</p></td>
 <td><p>Load from a JSON file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.save_jsonlines.html#convnwb.io.io.save_jsonlines" title="convnwb.io.io.save_jsonlines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_jsonlines</span></code></a>(data, file_name[, folder])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.files.save_jsonlines.html#hsntools.io.files.save_jsonlines" title="hsntools.io.files.save_jsonlines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_jsonlines</span></code></a>(data, file_name[, folder])</p></td>
 <td><p>Save out data to a JSONlines file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_jsonlines.html#convnwb.io.io.load_jsonlines" title="convnwb.io.io.load_jsonlines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_jsonlines</span></code></a>(file_name[, folder])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.files.load_jsonlines.html#hsntools.io.files.load_jsonlines" title="hsntools.io.files.load_jsonlines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_jsonlines</span></code></a>(file_name[, folder])</p></td>
 <td><p>Load from a JSON lines file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_matfile.html#convnwb.io.io.load_matfile" title="convnwb.io.io.load_matfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_matfile</span></code></a>(file_name[, folder, version])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.files.load_matfile.html#hsntools.io.files.load_matfile" title="hsntools.io.files.load_matfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_matfile</span></code></a>(file_name[, folder, version])</p></td>
 <td><p>Load a .mat file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_jsons_to_df.html#convnwb.io.io.load_jsons_to_df" title="convnwb.io.io.load_jsons_to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_jsons_to_df</span></code></a>(files[, folder])</p></td>
+</tbody>
+</table>
+</section>
+<section id="sorting-file-i-o">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Sorting File I/O</a><a class="headerlink" href="#sorting-file-i-o" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.sorting.load_combinato_spike_file.html#hsntools.io.sorting.load_combinato_spike_file" title="hsntools.io.sorting.load_combinato_spike_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_combinato_spike_file</span></code></a>(channel, folder, ...)</p></td>
+<td><p>Load a spike detection output file from Combinato - files with the form <cite>data_chan_XX.h5</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.sorting.load_combinato_sorting_file.html#hsntools.io.sorting.load_combinato_sorting_file" title="hsntools.io.sorting.load_combinato_sorting_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_combinato_sorting_file</span></code></a>(channel, folder, ...)</p></td>
+<td><p>Load a combinato sorting output file - files with the file name <cite>sort_cat.h5</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.sorting.save_units.html#hsntools.io.sorting.save_units" title="hsntools.io.sorting.save_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_units</span></code></a>(units, folder)</p></td>
+<td><p>Save out units information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.sorting.load_units.html#hsntools.io.sorting.load_units" title="hsntools.io.sorting.load_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_units</span></code></a>(folder)</p></td>
+<td><p>Load a set of units files from a folder.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="load-collections-of-files">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Load Collections of Files</a><a class="headerlink" href="#load-collections-of-files" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.collections.load_jsons_to_df.html#hsntools.io.collections.load_jsons_to_df" title="hsntools.io.collections.load_jsons_to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_jsons_to_df</span></code></a>(files[, folder])</p></td>
 <td><p>Load a collection of JSON files into a dataframe.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.open_h5file.html#convnwb.io.io.open_h5file" title="convnwb.io.io.open_h5file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_h5file</span></code></a>(file_name[, folder, mode, ext])</p></td>
-<td><p>Context manager to open a HDF5 file.</p></td>
+</tbody>
+</table>
+</section>
+<section id="nsp-neural-signal-processors-io">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">NSP (Neural Signal Processors) IO</a><a class="headerlink" href="#nsp-neural-signal-processors-io" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.nsp.load_blackrock.html#hsntools.io.nsp.load_blackrock" title="hsntools.io.nsp.load_blackrock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_blackrock</span></code></a>(file_name, folder[, ...])</p></td>
+<td><p>Load a set of Blackrock files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.io.save_to_h5file.html#convnwb.io.io.save_to_h5file" title="convnwb.io.io.save_to_h5file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_to_h5file</span></code></a>(data, file_name[, folder, ext])</p></td>
-<td><p>Save data to a HDF5 file.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.io.load_from_h5file.html#convnwb.io.io.load_from_h5file" title="convnwb.io.io.load_from_h5file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_from_h5file</span></code></a>(fields, file_name[, ...])</p></td>
-<td><p>Load one or more specified field(s) from a HDF5 file.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.nsp.check_blackrock_file_info.html#hsntools.io.nsp.check_blackrock_file_info" title="hsntools.io.nsp.check_blackrock_file_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_blackrock_file_info</span></code></a>(reader)</p></td>
+<td><p>Check some basic information and metadata from a set of Blackrock files.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="utilities">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">Utilities</a><a class="headerlink" href="#utilities" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">Utilities</a><a class="headerlink" href="#utilities" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.utils.get_files.html#convnwb.io.utils.get_files" title="convnwb.io.utils.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder[, select, ignore, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.utils.get_files.html#hsntools.io.utils.get_files" title="hsntools.io.utils.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder[, select, ignore, ...])</p></td>
 <td><p>Get a list of files from a specified folder.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.utils.get_subfolders.html#convnwb.io.utils.get_subfolders" title="convnwb.io.utils.get_subfolders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_subfolders</span></code></a>(folder[, select, ignore])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.utils.get_subfolders.html#hsntools.io.utils.get_subfolders" title="hsntools.io.utils.get_subfolders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_subfolders</span></code></a>(folder[, select, ignore])</p></td>
 <td><p>Get a list of sub-folders from a given folder.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.utils.make_session_name.html#convnwb.io.utils.make_session_name" title="convnwb.io.utils.make_session_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_session_name</span></code></a>(subject, experiment, session)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.utils.make_session_name.html#hsntools.io.utils.make_session_name" title="hsntools.io.utils.make_session_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_session_name</span></code></a>(subject, experiment, session)</p></td>
 <td><p>Create a standardized session name.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.io.utils.make_file_list.html#convnwb.io.utils.make_file_list" title="convnwb.io.utils.make_file_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_file_list</span></code></a>(experiment, files[, ext])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.io.utils.make_file_list.html#hsntools.io.utils.make_file_list" title="hsntools.io.utils.make_file_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_file_list</span></code></a>(experiment, files[, ext])</p></td>
 <td><p>Make a list of subject files.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="validate-functions">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">Validate Functions</a><a class="headerlink" href="#validate-functions" title="Permalink to this heading">¶</a></h4>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.io.validate.validate_nwb.html#convnwb.io.validate.validate_nwb" title="convnwb.io.validate.validate_nwb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_nwb</span></code></a>(file_name[, folder, ...])</p></td>
-<td><p>Validate a NWB file.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="nsp">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">NSP</a><a class="headerlink" href="#nsp" title="Permalink to this heading">¶</a></h3>
-<p>Functionality related to NSP (Neural Signal Processors).</p>
-<section id="i-o">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">I/O</a><a class="headerlink" href="#i-o" title="Permalink to this heading">¶</a></h4>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.nsp.io.load_blackrock.html#convnwb.nsp.io.load_blackrock" title="convnwb.nsp.io.load_blackrock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_blackrock</span></code></a>(file_name, folder[, ...])</p></td>
-<td><p>Load a set of Blackrock files.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="checks">
-<h4><a class="toc-backref" href="#id13" role="doc-backlink">Checks</a><a class="headerlink" href="#checks" title="Permalink to this heading">¶</a></h4>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.nsp.check.check_blackrock_file_info.html#convnwb.nsp.check.check_blackrock_file_info" title="convnwb.nsp.check.check_blackrock_file_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_blackrock_file_info</span></code></a>(reader)</p></td>
-<td><p>Check some basic information and metadata from a set of Blackrock files.</p></td>
 </tr>
 </tbody>
 </table>
@@ -286,8 +313,8 @@
 <h4><a class="toc-backref" href="#id15" role="doc-backlink">Electrodes</a><a class="headerlink" href="#electrodes" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.objects.electrodes.Electrodes.html#convnwb.objects.electrodes.Electrodes" title="convnwb.objects.electrodes.Electrodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Electrodes</span></code></a>([subject, fs])</p></td>
-<td><p>Object for collecting / managing electrode information.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.objects.electrodes.Electrodes.html#hsntools.objects.electrodes.Electrodes" title="hsntools.objects.electrodes.Electrodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Electrodes</span></code></a>([subject, fs])</p></td>
+<td><p>Object for collecting &amp; managing electrode information.</p></td>
 </tr>
 </tbody>
 </table>
@@ -296,7 +323,7 @@
 <h4><a class="toc-backref" href="#id16" role="doc-backlink">TaskBase</a><a class="headerlink" href="#taskbase" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.objects.task.TaskBase.html#convnwb.objects.task.TaskBase" title="convnwb.objects.task.TaskBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskBase</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase" title="hsntools.objects.task.TaskBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskBase</span></code></a>()</p></td>
 <td><p>Base object for collecting task information.</p></td>
 </tr>
 </tbody>
@@ -310,7 +337,7 @@
 <h4><a class="toc-backref" href="#id18" role="doc-backlink">Paths Object</a><a class="headerlink" href="#paths-object" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.paths.paths.Paths.html#convnwb.paths.paths.Paths" title="convnwb.paths.paths.Paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Paths</span></code></a>(project_path[, subject, experiment, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.paths.paths.Paths.html#hsntools.paths.paths.Paths" title="hsntools.paths.paths.Paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Paths</span></code></a>(project_path[, subject, experiment, ...])</p></td>
 <td><p>Paths object for a session of single-unit data.</p></td>
 </tr>
 </tbody>
@@ -320,17 +347,17 @@
 <h4><a class="toc-backref" href="#id19" role="doc-backlink">Directory Creators</a><a class="headerlink" href="#directory-creators" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.paths.create.make_folder.html#convnwb.paths.create.make_folder" title="convnwb.paths.create.make_folder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_folder</span></code></a>(path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.paths.create.make_folder.html#hsntools.paths.create.make_folder" title="hsntools.paths.create.make_folder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_folder</span></code></a>(path)</p></td>
 <td><p>Make a folder, if it does not already exist.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.paths.create.create_project_directory.html#convnwb.paths.create.create_project_directory" title="convnwb.paths.create.create_project_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_project_directory</span></code></a>(base_path, project)</p></td>
-<td><p>Create the folder structure for a project.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.paths.create.create_project_directory.html#hsntools.paths.create.create_project_directory" title="hsntools.paths.create.create_project_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_project_directory</span></code></a>(base_path, project)</p></td>
+<td><p>Create the folder structure for one or more projects.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.paths.create.create_subject_directory.html#convnwb.paths.create.create_subject_directory" title="convnwb.paths.create.create_subject_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_subject_directory</span></code></a>(project_path, subject)</p></td>
-<td><p>Create the folder structure for a subject.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.paths.create.create_subject_directory.html#hsntools.paths.create.create_subject_directory" title="hsntools.paths.create.create_subject_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_subject_directory</span></code></a>(project_path, subject)</p></td>
+<td><p>Create the folder structure for one or more subjects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.paths.create.create_session_directory.html#convnwb.paths.create.create_session_directory" title="convnwb.paths.create.create_session_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_session_directory</span></code></a>(project_path, ...)</p></td>
-<td><p>Create the folder structure for a session of data.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.paths.create.create_session_directory.html#hsntools.paths.create.create_session_directory" title="hsntools.paths.create.create_session_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_session_directory</span></code></a>(project_path, ...)</p></td>
+<td><p>Create the folder structure for one or more sessions of data.</p></td>
 </tr>
 </tbody>
 </table>
@@ -343,10 +370,10 @@
 <h4><a class="toc-backref" href="#id21" role="doc-backlink">Timestamps</a><a class="headerlink" href="#timestamps" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.plts.timestamps.plot_alignment.html#convnwb.plts.timestamps.plot_alignment" title="convnwb.plts.timestamps.plot_alignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_alignment</span></code></a>(sync1, sync2[, n_pulses, ax])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.plts.timestamps.plot_alignment.html#hsntools.plts.timestamps.plot_alignment" title="hsntools.plts.timestamps.plot_alignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_alignment</span></code></a>(sync1, sync2[, n_pulses, ax])</p></td>
 <td><p>Plot the alignment between synchronization pulses.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.plts.timestamps.plot_peaks.html#convnwb.plts.timestamps.plot_peaks" title="convnwb.plts.timestamps.plot_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_peaks</span></code></a>(data, peak_inds, peak_heights[, ax])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.plts.timestamps.plot_peaks.html#hsntools.plts.timestamps.plot_peaks" title="hsntools.plts.timestamps.plot_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_peaks</span></code></a>(data, peak_inds, peak_heights[, ax])</p></td>
 <td><p>Plot detected peaks on a time series.</p></td>
 </tr>
 </tbody>
@@ -360,199 +387,191 @@
 <h4><a class="toc-backref" href="#id23" role="doc-backlink">Alignment</a><a class="headerlink" href="#alignment" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.timestamps.align.fit_sync_alignment.html#convnwb.timestamps.align.fit_sync_alignment" title="convnwb.timestamps.align.fit_sync_alignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sync_alignment</span></code></a>(sync_behav, sync_neural)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.align.fit_sync_alignment.html#hsntools.timestamps.align.fit_sync_alignment" title="hsntools.timestamps.align.fit_sync_alignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sync_alignment</span></code></a>(sync_behav, sync_neural)</p></td>
 <td><p>Fit a model to align synchronization pulses from different recording systems.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.timestamps.align.predict_times.html#convnwb.timestamps.align.predict_times" title="convnwb.timestamps.align.predict_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_times</span></code></a>(times, intercept, coef)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.timestamps.align.predict_times.html#hsntools.timestamps.align.predict_times" title="hsntools.timestamps.align.predict_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_times</span></code></a>(times, intercept, coef)</p></td>
 <td><p>Predict times alignment from model coefficients.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.timestamps.align.predict_times_model.html#convnwb.timestamps.align.predict_times_model" title="convnwb.timestamps.align.predict_times_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_times_model</span></code></a>(times, model)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.align.predict_times_model.html#hsntools.timestamps.align.predict_times_model" title="hsntools.timestamps.align.predict_times_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_times_model</span></code></a>(times, model)</p></td>
 <td><p>Predict times alignment from a model object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.timestamps.align.match_pulses.html#convnwb.timestamps.align.match_pulses" title="convnwb.timestamps.align.match_pulses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">match_pulses</span></code></a>(sync_behav, sync_neural, n_pulses)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.timestamps.align.match_pulses.html#hsntools.timestamps.align.match_pulses" title="hsntools.timestamps.align.match_pulses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">match_pulses</span></code></a>(sync_behav, sync_neural, n_pulses)</p></td>
 <td><p>Match pulses to each other based on ISIs.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="peaks">
-<h4><a class="toc-backref" href="#id24" role="doc-backlink">Peaks</a><a class="headerlink" href="#peaks" title="Permalink to this heading">¶</a></h4>
+<section id="dates">
+<h4><a class="toc-backref" href="#id24" role="doc-backlink">Dates</a><a class="headerlink" href="#dates" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.timestamps.peaks.detect_peaks.html#convnwb.timestamps.peaks.detect_peaks" title="convnwb.timestamps.peaks.detect_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_peaks</span></code></a>(data, fs, height[, distance, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.dates.get_current_date.html#hsntools.timestamps.dates.get_current_date" title="hsntools.timestamps.dates.get_current_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_date</span></code></a>([tz])</p></td>
+<td><p>Get the current datetime.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.timestamps.dates.convert_time_to_date.html#hsntools.timestamps.dates.convert_time_to_date" title="hsntools.timestamps.dates.convert_time_to_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_time_to_date</span></code></a>(timestamp[, tz])</p></td>
+<td><p>Convert a time value to a datetime date.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="peaks">
+<h4><a class="toc-backref" href="#id25" role="doc-backlink">Peaks</a><a class="headerlink" href="#peaks" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.peaks.detect_peaks.html#hsntools.timestamps.peaks.detect_peaks" title="hsntools.timestamps.peaks.detect_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_peaks</span></code></a>(data, fs, height[, distance, ...])</p></td>
 <td><p>Process peaks from a time series.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="update">
-<h4><a class="toc-backref" href="#id25" role="doc-backlink">Update</a><a class="headerlink" href="#update" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id26" role="doc-backlink">Update</a><a class="headerlink" href="#update" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.timestamps.update.offset_time.html#convnwb.timestamps.update.offset_time" title="convnwb.timestamps.update.offset_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">offset_time</span></code></a>(times, offset)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.update.offset_time.html#hsntools.timestamps.update.offset_time" title="hsntools.timestamps.update.offset_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">offset_time</span></code></a>(times, offset)</p></td>
 <td><p>Apply an offset to timestamps.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.timestamps.update.change_time_units.html#convnwb.timestamps.update.change_time_units" title="convnwb.timestamps.update.change_time_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_time_units</span></code></a>(times, value[, operation])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.timestamps.update.change_time_units.html#hsntools.timestamps.update.change_time_units" title="hsntools.timestamps.update.change_time_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_time_units</span></code></a>(times, value[, operation])</p></td>
 <td><p>Change the units of timestamps.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.timestamps.update.change_sampling_rate.html#convnwb.timestamps.update.change_sampling_rate" title="convnwb.timestamps.update.change_sampling_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_sampling_rate</span></code></a>(times, fs_from, fs_to)</p></td>
-<td><p>Change the effective sampling rate for a set of times values.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.update.change_sampling_rate.html#hsntools.timestamps.update.change_sampling_rate" title="hsntools.timestamps.update.change_sampling_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_sampling_rate</span></code></a>(times, fs_from, fs_to)</p></td>
+<td><p>Change the sampling rate for a set of times values.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="utils">
-<h4><a class="toc-backref" href="#id26" role="doc-backlink">Utils</a><a class="headerlink" href="#utils" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id27" role="doc-backlink">Utils</a><a class="headerlink" href="#utils" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.timestamps.utils.convert_samples_to_time.html#convnwb.timestamps.utils.convert_samples_to_time" title="convnwb.timestamps.utils.convert_samples_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_samples_to_time</span></code></a>(n_samples, fs[, output])</p></td>
-<td><p>Convert a number of samples to corresponding time length.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.utils.compute_sample_length.html#hsntools.timestamps.utils.compute_sample_length" title="hsntools.timestamps.utils.compute_sample_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_sample_length</span></code></a>(n_samples, fs[, output])</p></td>
+<td><p>Compute the length of time corresponding to a given number of samples.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.timestamps.utils.create_timestamps_from_samples.html#convnwb.timestamps.utils.create_timestamps_from_samples" title="convnwb.timestamps.utils.create_timestamps_from_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_timestamps_from_samples</span></code></a>(samples, fs)</p></td>
-<td><p>Create a set of timestamps for a set of samples.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.timestamps.utils.convert_samples_to_time.html#hsntools.timestamps.utils.convert_samples_to_time" title="hsntools.timestamps.utils.convert_samples_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_samples_to_time</span></code></a>(samples, fs[, offset])</p></td>
+<td><p>Convert a set of samples to a set of corresponding timestamps.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
 <section id="sorting">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink">Sorting</a><a class="headerlink" href="#sorting" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Sorting</a><a class="headerlink" href="#sorting" title="Permalink to this heading">¶</a></h3>
 <p>Spike sorting related functionality.</p>
-<section id="id3">
-<h4><a class="toc-backref" href="#id28" role="doc-backlink">I/O</a><a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.sorting.io.load_spike_data_file.html#convnwb.sorting.io.load_spike_data_file" title="convnwb.sorting.io.load_spike_data_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_spike_data_file</span></code></a>(channel, folder, polarity)</p></td>
-<td><p>Load a spike detection output file from Combinato - files with the form <cite>data_chan_XX.h5</cite>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.sorting.io.load_sorting_data_file.html#convnwb.sorting.io.load_sorting_data_file" title="convnwb.sorting.io.load_sorting_data_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_sorting_data_file</span></code></a>(channel, folder, ...)</p></td>
-<td><p>Load a combinato sorting output file - files with the file name <cite>sort_cat.h5</cite>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.sorting.io.save_units.html#convnwb.sorting.io.save_units" title="convnwb.sorting.io.save_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_units</span></code></a>(units, folder)</p></td>
-<td><p>Save out units information.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.sorting.io.load_units.html#convnwb.sorting.io.load_units" title="convnwb.sorting.io.load_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_units</span></code></a>(folder)</p></td>
-<td><p>Load a set of units files from a folder.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="processing">
 <h4><a class="toc-backref" href="#id29" role="doc-backlink">Processing</a><a class="headerlink" href="#processing" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.sorting.process.collect_all_sorting.html#convnwb.sorting.process.collect_all_sorting" title="convnwb.sorting.process.collect_all_sorting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_all_sorting</span></code></a>(spike_data, sort_data)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.sorting.process.collect_all_sorting.html#hsntools.sorting.process.collect_all_sorting" title="hsntools.sorting.process.collect_all_sorting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_all_sorting</span></code></a>(spike_data, sort_data)</p></td>
 <td><p>Collect together all the organized spike sorting information for a channel of data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.sorting.process.process_combinato_data.html#convnwb.sorting.process.process_combinato_data" title="convnwb.sorting.process.process_combinato_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_combinato_data</span></code></a>(channel, ...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.sorting.process.process_combinato_data.html#hsntools.sorting.process.process_combinato_data" title="hsntools.sorting.process.process_combinato_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_combinato_data</span></code></a>(channel, ...[, ...])</p></td>
 <td><p>Helper function to run the process of going from combinato -&gt; extracted units files.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="id4">
-<h4><a class="toc-backref" href="#id30" role="doc-backlink">Utilities</a><a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<section id="id3">
+<h4><a class="toc-backref" href="#id30" role="doc-backlink">Utilities</a><a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.sorting.utils.get_group_labels.html#convnwb.sorting.utils.get_group_labels" title="convnwb.sorting.utils.get_group_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group_labels</span></code></a>(class_labels, groups)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.sorting.utils.get_group_labels.html#hsntools.sorting.utils.get_group_labels" title="hsntools.sorting.utils.get_group_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group_labels</span></code></a>(class_labels, groups)</p></td>
 <td><p>Get the group label for each spike (based on spike class + group mapping).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.sorting.utils.get_sorting_kept_labels.html#convnwb.sorting.utils.get_sorting_kept_labels" title="convnwb.sorting.utils.get_sorting_kept_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sorting_kept_labels</span></code></a>(groups)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.sorting.utils.get_sorting_kept_labels.html#hsntools.sorting.utils.get_sorting_kept_labels" title="hsntools.sorting.utils.get_sorting_kept_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sorting_kept_labels</span></code></a>(groups)</p></td>
 <td><p>Get the valid clas / group information from the combinato organized groups info array.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.sorting.utils.extract_clusters.html#convnwb.sorting.utils.extract_clusters" title="convnwb.sorting.utils.extract_clusters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_clusters</span></code></a>(data)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.sorting.utils.extract_clusters.html#hsntools.sorting.utils.extract_clusters" title="hsntools.sorting.utils.extract_clusters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_clusters</span></code></a>(data)</p></td>
 <td><p>Extract individual clusters from a channel of data.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
-<section id="id5">
-<h3><a class="toc-backref" href="#id31" role="doc-backlink">Utils</a><a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
-<p>Utilities &amp; helper functions.</p>
-<section id="check-functions">
-<h4><a class="toc-backref" href="#id32" role="doc-backlink">Check Functions</a><a class="headerlink" href="#check-functions" title="Permalink to this heading">¶</a></h4>
+<section id="run">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Run</a><a class="headerlink" href="#run" title="Permalink to this heading">¶</a></h3>
+<p>Utilities &amp; helper functionality for running processes.</p>
+<section id="log-functions">
+<h4><a class="toc-backref" href="#id32" role="doc-backlink">Log Functions</a><a class="headerlink" href="#log-functions" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.checks.is_empty.html#convnwb.utils.checks.is_empty" title="convnwb.utils.checks.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_empty</span></code></a>(var)</p></td>
-<td><p>Check if a variable is empty, across possible types.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.run.log.print_status.html#hsntools.run.log.print_status" title="hsntools.run.log.print_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_status</span></code></a>(verbose, message[, level])</p></td>
+<td><p>Print a status update.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.utils.checks.is_type.html#convnwb.utils.checks.is_type" title="convnwb.utils.checks.is_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_type</span></code></a>(var, var_type)</p></td>
+</tbody>
+</table>
+</section>
+<section id="error-management">
+<h4><a class="toc-backref" href="#id33" role="doc-backlink">Error Management</a><a class="headerlink" href="#error-management" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.run.errors.catch_error.html#hsntools.run.errors.catch_error" title="hsntools.run.errors.catch_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">catch_error</span></code></a>(proceed, name, path[, verbose, ...])</p></td>
+<td><p>Catch a raised error, with the option to save an error log and proceed.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id4">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">Utils</a><a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>Utilities &amp; helper functions.</p>
+<section id="check-functions">
+<h4><a class="toc-backref" href="#id35" role="doc-backlink">Check Functions</a><a class="headerlink" href="#check-functions" title="Permalink to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.checks.is_empty.html#hsntools.utils.checks.is_empty" title="hsntools.utils.checks.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_empty</span></code></a>(var)</p></td>
+<td><p>Check if a variable is empty, across multiple possible types.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.utils.checks.is_type.html#hsntools.utils.checks.is_type" title="hsntools.utils.checks.is_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_type</span></code></a>(var, var_type)</p></td>
 <td><p>Check is a variable is of the given type(s).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.checks.check_str_contents.html#convnwb.utils.checks.check_str_contents" title="convnwb.utils.checks.check_str_contents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_str_contents</span></code></a>(str_to_check, contents)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.checks.check_str_contents.html#hsntools.utils.checks.check_str_contents" title="hsntools.utils.checks.check_str_contents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_str_contents</span></code></a>(str_to_check, contents)</p></td>
 <td><p>Check whether a given string has specified contents.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.utils.checks.clean_strings.html#convnwb.utils.checks.clean_strings" title="convnwb.utils.checks.clean_strings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_strings</span></code></a>(lst)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.utils.checks.clean_strings.html#hsntools.utils.checks.clean_strings" title="hsntools.utils.checks.clean_strings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_strings</span></code></a>(lst)</p></td>
 <td><p>Helper function to clean a list of string values for adding to NWB.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="convert-functions">
-<h4><a class="toc-backref" href="#id33" role="doc-backlink">Convert Functions</a><a class="headerlink" href="#convert-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id36" role="doc-backlink">Convert Functions</a><a class="headerlink" href="#convert-functions" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.convert.convert_str_to_bool.html#convnwb.utils.convert.convert_str_to_bool" title="convnwb.utils.convert.convert_str_to_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_str_to_bool</span></code></a>(string)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.convert.convert_str_to_bool.html#hsntools.utils.convert.convert_str_to_bool" title="hsntools.utils.convert.convert_str_to_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_str_to_bool</span></code></a>(string)</p></td>
 <td><p>Convert a string to a boolean.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.utils.convert.convert_strlist_to_bool.html#convnwb.utils.convert.convert_strlist_to_bool" title="convnwb.utils.convert.convert_strlist_to_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_strlist_to_bool</span></code></a>(lst)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.utils.convert.convert_strlist_to_bool.html#hsntools.utils.convert.convert_strlist_to_bool" title="hsntools.utils.convert.convert_strlist_to_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_strlist_to_bool</span></code></a>(lst)</p></td>
 <td><p>Convert a list of strings to a list of boolean.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.convert.convert_type.html#convnwb.utils.convert.convert_type" title="convnwb.utils.convert.convert_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_type</span></code></a>(variable, dtype)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.convert.convert_type.html#hsntools.utils.convert.convert_type" title="hsntools.utils.convert.convert_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_type</span></code></a>(variable, dtype)</p></td>
 <td><p>Convert type of a given variable.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.utils.convert.convert_to_array.html#convnwb.utils.convert.convert_to_array" title="convnwb.utils.convert.convert_to_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to_array</span></code></a>(data, dtype)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.utils.convert.convert_to_array.html#hsntools.utils.convert.convert_to_array" title="hsntools.utils.convert.convert_to_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to_array</span></code></a>(data, dtype)</p></td>
 <td><p>Convert to an array of specified data type.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.convert.convert_time_to_date.html#convnwb.utils.convert.convert_time_to_date" title="convnwb.utils.convert.convert_time_to_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_time_to_date</span></code></a>(timestamp[, tz])</p></td>
-<td><p>Convert a time value to a datetime date.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="extract-functions">
-<h4><a class="toc-backref" href="#id34" role="doc-backlink">Extract Functions</a><a class="headerlink" href="#extract-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id37" role="doc-backlink">Extract Functions</a><a class="headerlink" href="#extract-functions" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.extract.get_event_time.html#convnwb.utils.extract.get_event_time" title="convnwb.utils.extract.get_event_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_event_time</span></code></a>(event_times, start, end)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.extract.get_event_time.html#hsntools.utils.extract.get_event_time" title="hsntools.utils.extract.get_event_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_event_time</span></code></a>(event_times, start, end)</p></td>
 <td><p>Select a (single) event based on time range, returning NaN if not found.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.utils.extract.get_trial_value.html#convnwb.utils.extract.get_trial_value" title="convnwb.utils.extract.get_trial_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_trial_value</span></code></a>(trials, data, trial[, dtype])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hsntools.utils.extract.get_trial_value.html#hsntools.utils.extract.get_trial_value" title="hsntools.utils.extract.get_trial_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_trial_value</span></code></a>(trials, data, trial[, dtype])</p></td>
 <td><p>Extract a value for a specified trial.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="log-functions">
-<h4><a class="toc-backref" href="#id35" role="doc-backlink">Log Functions</a><a class="headerlink" href="#log-functions" title="Permalink to this heading">¶</a></h4>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.log.print_status.html#convnwb.utils.log.print_status" title="convnwb.utils.log.print_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_status</span></code></a>(verbose, message[, level])</p></td>
-<td><p>Print a status update.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="run-functions">
-<h4><a class="toc-backref" href="#id36" role="doc-backlink">Run Functions</a><a class="headerlink" href="#run-functions" title="Permalink to this heading">¶</a></h4>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.run.catch_error.html#convnwb.utils.run.catch_error" title="convnwb.utils.run.catch_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">catch_error</span></code></a>(proceed, name, path[, verbose, ...])</p></td>
-<td><p>Catch a raised error, with the option to save an error log and proceed.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="tool-functions">
-<h4><a class="toc-backref" href="#id37" role="doc-backlink">Tool Functions</a><a class="headerlink" href="#tool-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id38" role="doc-backlink">Tool Functions</a><a class="headerlink" href="#tool-functions" title="Permalink to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/convnwb.utils.tools.incrementer.html#convnwb.utils.tools.incrementer" title="convnwb.utils.tools.incrementer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">incrementer</span></code></a>([start, end])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.tools.incrementer.html#hsntools.utils.tools.incrementer" title="hsntools.utils.tools.incrementer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">incrementer</span></code></a>([start, end])</p></td>
 <td><p>Generator that returns an incrementing index value.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/convnwb.utils.tools.get_current_date.html#convnwb.utils.tools.get_current_date" title="convnwb.utils.tools.get_current_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_date</span></code></a>([tz])</p></td>
-<td><p>Get the current datetime.</p></td>
 </tr>
 </tbody>
 </table>
@@ -574,7 +593,7 @@
     </p>
     <p>
         &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
     </p>
   </div>
 </footer>
