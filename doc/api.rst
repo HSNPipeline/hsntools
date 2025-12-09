@@ -259,6 +259,29 @@ Utilities
    get_sorting_kept_labels
    extract_clusters
 
+Run
+---
+
+Utilities & helper functionality for running processes.
+
+Log Functions
+~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.run.log
+.. autosummary::
+   :toctree: generated/
+
+   print_status
+
+Error Management
+~~~~~~~~~~~~~~~~
+
+.. currentmodule:: hsntools.run.errors
+.. autosummary::
+   :toctree: generated/
+
+   catch_error
+
 Utils
 -----
 
@@ -297,24 +320,6 @@ Extract Functions
 
    get_event_time
    get_trial_value
-
-Log Functions
-~~~~~~~~~~~~~
-
-.. currentmodule:: hsntools.utils.log
-.. autosummary::
-   :toctree: generated/
-
-   print_status
-
-Run Functions
-~~~~~~~~~~~~~
-
-.. currentmodule:: hsntools.utils.run
-.. autosummary::
-   :toctree: generated/
-
-   catch_error
 
 Tool Functions
 ~~~~~~~~~~~~~~
