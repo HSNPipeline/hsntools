@@ -1,7 +1,8 @@
 """File I/O for custom files."""
 
-import yaml
 import pickle
+
+import yaml
 
 from hsntools.io.utils import check_ext, check_folder
 
