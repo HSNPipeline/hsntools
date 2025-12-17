@@ -60,7 +60,7 @@ and generating structured reports.
 
 ``hsntools`` provides functionality used within the template for the pipeline, including:
 
-- `SortTEMPLATE <https://github.com/HSNPipeline/SortTEMPLATE>`_
+- `PrepTEMPLATE <https://github.com/HSNPipeline/PrepTEMPLATE>`_
 - `ConvertTEMPLATE <https://github.com/HSNPipeline/ConvertTEMPLATE>`_
 - `AnalyzeTEMPLATE <https://github.com/HSNPipeline/AnalyzeTEMPLATE>`_
 
