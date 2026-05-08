@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+title: 'hsntools: module for working with the human single-neuron pipeline'
+authors:
+- given-names: 'Thomas'
+  family-names: 'Donoghue'
+  orcid: 'https://orcid.org/0000-0001-5911-0472'
+- given-names: 'Weijia'
+  family-names: 'Zhang'
+  orcid: 'https://orcid.org/0000-0003-2644-9976'
+- given-names: 'Claire Z'
+  family-names: 'Han'
+  orcid: 'https://orcid.org/0000-0001-9710-8381'
+- given-names: 'Sandra'
+  family-names: 'Maesta-Pereira'
+  orcid: 'https://orcid.org/0000-0001-6522-8311'
+- given-names: 'Joshua'
+  family-names: 'Jacobs'
+  orcid: 'https://orcid.org/0000-0003-1807-6882'
+
+repository-code: 'https://github.com/HSNPipeline/hsntools'
+url: 'https://hsnpipeline.github.io/hsntools/'
+license: MIT License
+preferred-citation:
+  type: article
+  authors:
+  - given-names: 'Thomas'
+    family-names: 'Donoghue'
+    orcid: 'https://orcid.org/0000-0001-5911-0472'
+  - given-names: 'Weijia'
+    family-names: 'Zhang'
+    orcid: 'https://orcid.org/0000-0003-2644-9976'
+  - given-names: 'Claire Z'
+    family-names: 'Han'
+    orcid: 'https://orcid.org/0000-0001-9710-8381'
+  - given-names: 'Sandra'
+    family-names: 'Maesta-Pereira'
+    orcid: 'https://orcid.org/0000-0001-6522-8311'
+  - given-names: 'Joshua'
+    family-names: 'Jacobs'
+    orcid: 'https://orcid.org/0000-0003-1807-6882'
+  doi: '10.52294/001c.160356'
+  journal: 'Aperture Neuro'
+  title: 'HSNPipeline: A processing pipeline for human single-neuron studies'
+  issue: 6
+  volume: SI 1
+  year: 2026
