@@ -141,6 +141,16 @@ To install an editable version, download the development version as above, and r
 
     $ pip install -e .
 
+Reference
+---------
+
+If you use this code in your project, please cite::
+
+    Donoghue T, Zhang W, Han CZ, Maesta-Pereira & Jacobs J (2026). HSNPipeline: A processing pipeline 
+    for human single-neuron studies. Aperture Neuro, 6(SI 1) DOI: 10.52294/001c.160356
+
+Direct link: https://doi.org/10.52294/001c.160356
+
 Contribute
 ----------
 
