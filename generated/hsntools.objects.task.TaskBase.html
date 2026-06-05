@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>hsntools.objects.task.TaskBase &#8212; hsntools 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d90b8643"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=a12e3537"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -90,17 +91,52 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">hsntools.objects.task.TaskBase</a><ul>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase"><code class="docutils literal notranslate"><span class="pre">TaskBase</span></code></a><ul>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.__init__"><code class="docutils literal notranslate"><span class="pre">TaskBase.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.add_metadata"><code class="docutils literal notranslate"><span class="pre">TaskBase.add_metadata()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.apply_func"><code class="docutils literal notranslate"><span class="pre">TaskBase.apply_func()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.convert_to_array"><code class="docutils literal notranslate"><span class="pre">TaskBase.convert_to_array()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.convert_type"><code class="docutils literal notranslate"><span class="pre">TaskBase.convert_type()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.copy"><code class="docutils literal notranslate"><span class="pre">TaskBase.copy()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.data_keys"><code class="docutils literal notranslate"><span class="pre">TaskBase.data_keys()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.drop_fields"><code class="docutils literal notranslate"><span class="pre">TaskBase.drop_fields()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.drop_keys"><code class="docutils literal notranslate"><span class="pre">TaskBase.drop_keys()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.get_trial"><code class="docutils literal notranslate"><span class="pre">TaskBase.get_trial()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.plot_sync_allignment"><code class="docutils literal notranslate"><span class="pre">TaskBase.plot_sync_allignment()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.set_info"><code class="docutils literal notranslate"><span class="pre">TaskBase.set_info()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.set_status"><code class="docutils literal notranslate"><span class="pre">TaskBase.set_status()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.to_dataframe"><code class="docutils literal notranslate"><span class="pre">TaskBase.to_dataframe()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.to_dict"><code class="docutils literal notranslate"><span class="pre">TaskBase.to_dict()</span></code></a></li>
+<li><a class="reference internal" href="#hsntools.objects.task.TaskBase.update_time"><code class="docutils literal notranslate"><span class="pre">TaskBase.update_time()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="hsntools-objects-task-taskbase">
-<h1>hsntools.objects.task.TaskBase<a class="headerlink" href="#hsntools-objects-task-taskbase" title="Permalink to this heading">¶</a></h1>
+<h1>hsntools.objects.task.TaskBase<a class="headerlink" href="#hsntools-objects-task-taskbase" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsntools.objects.task.</span></span><span class="sig-name descname"><span class="pre">TaskBase</span></span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsntools.objects.task.</span></span><span class="sig-name descname"><span class="pre">TaskBase</span></span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase" title="Link to this definition">¶</a></dt>
 <dd><p>Base object for collecting task information.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize TaskBase object.</p>
 </dd></dl>
 
@@ -159,7 +195,7 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.add_metadata">
-<span class="sig-name descname"><span class="pre">add_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.add_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.add_metadata" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.add_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.add_metadata" title="Link to this definition">¶</a></dt>
 <dd><p>Add metadata information to task object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -177,7 +213,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.apply_func">
-<span class="sig-name descname"><span class="pre">apply_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.apply_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.apply_func" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">apply_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.apply_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.apply_func" title="Link to this definition">¶</a></dt>
 <dd><p>Apply a given function across a set of specified fields.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -199,7 +235,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.convert_to_array">
-<span class="sig-name descname"><span class="pre">convert_to_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.convert_to_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.convert_to_array" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">convert_to_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.convert_to_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.convert_to_array" title="Link to this definition">¶</a></dt>
 <dd><p>Convert specified data fields to numpy arrays.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -219,7 +255,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.convert_type">
-<span class="sig-name descname"><span class="pre">convert_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.convert_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.convert_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">convert_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.convert_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.convert_type" title="Link to this definition">¶</a></dt>
 <dd><p>Convert the type of specified data fields.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -239,13 +275,13 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.copy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.copy" title="Link to this definition">¶</a></dt>
 <dd><p>Return a deepcopy of this object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.data_keys">
-<span class="sig-name descname"><span class="pre">data_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.data_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.data_keys" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">data_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.data_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.data_keys" title="Link to this definition">¶</a></dt>
 <dd><p>Get a list of data keys defined in the task object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -265,7 +301,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.drop_fields">
-<span class="sig-name descname"><span class="pre">drop_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.drop_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.drop_fields" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">drop_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.drop_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.drop_fields" title="Link to this definition">¶</a></dt>
 <dd><p>Drop field(s) from the task object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -279,7 +315,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.drop_keys">
-<span class="sig-name descname"><span class="pre">drop_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.drop_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.drop_keys" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">drop_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.drop_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.drop_keys" title="Link to this definition">¶</a></dt>
 <dd><p>Drop key(s) from a specified field of the task object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -295,7 +331,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.get_trial">
-<span class="sig-name descname"><span class="pre">get_trial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.get_trial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.get_trial" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_trial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.get_trial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.get_trial" title="Link to this definition">¶</a></dt>
 <dd><p>Get the information for a specified trial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -311,7 +347,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.plot_sync_allignment">
-<span class="sig-name descname"><span class="pre">plot_sync_allignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_pulses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.plot_sync_allignment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.plot_sync_allignment" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_sync_allignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_pulses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.plot_sync_allignment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.plot_sync_allignment" title="Link to this definition">¶</a></dt>
 <dd><p>Plot alignment of the synchronization pulses.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -325,7 +361,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.set_info">
-<span class="sig-name descname"><span class="pre">set_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.set_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.set_info" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.set_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.set_info" title="Link to this definition">¶</a></dt>
 <dd><p>Set an info marker.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -341,7 +377,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.set_status">
-<span class="sig-name descname"><span class="pre">set_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.set_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.set_status" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.set_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.set_status" title="Link to this definition">¶</a></dt>
 <dd><p>Set a status marker.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -357,7 +393,7 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.to_dataframe">
-<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.to_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.to_dataframe" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.to_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.to_dataframe" title="Link to this definition">¶</a></dt>
 <dd><p>Return a specified field as a dataframe.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -377,13 +413,13 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.to_dict">
-<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.to_dict" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.to_dict" title="Link to this definition">¶</a></dt>
 <dd><p>Convert object data to a dictionary.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hsntools.objects.task.TaskBase.update_time">
-<span class="sig-name descname"><span class="pre">update_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.update_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.update_time" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hsntools/objects/task.html#TaskBase.update_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsntools.objects.task.TaskBase.update_time" title="Link to this definition">¶</a></dt>
 <dd><p>Offset all timestamps within the task object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -419,8 +455,8 @@ If dict, keys should be subfields, each with corresponding labels to typecast.</
       
     </p>
     <p>
-        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2021-2026, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

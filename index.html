@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>hsntools &#8212; hsntools 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d90b8643"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/documentation_options.js?v=a12e3537"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -90,14 +91,37 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">hsntools</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#scope">Scope</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#reference">Reference</a></li>
+<li><a class="reference internal" href="#contribute">Contribute</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="hsntools">
-<h1>hsntools<a class="headerlink" href="#hsntools" title="Permalink to this heading">¶</a></h1>
+<h1>hsntools<a class="headerlink" href="#hsntools" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.repostatus.org/#active"><img alt="project status" src="http://www.repostatus.org/badges/latest/active.svg" /></a> <a class="reference external" href="https://pypi.org/project/hsntools/"><img alt="version" src="https://img.shields.io/pypi/v/hsntools.svg" /></a> <a class="reference external" href="https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml"><img alt="build statue" src="https://github.com/HSNPipeline/hsntools/actions/workflows/build.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/HSNPipeline/hsntools"><img alt="coverage" src="https://codecov.io/gh/HSNPipeline/hsntools/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/license/mit"><img alt="license" src="https://img.shields.io/pypi/l/hsntools.svg" /></a> <a class="reference external" href="https://pypi.org/project/hsntools/"><img alt="python versions" src="https://img.shields.io/pypi/pyversions/hsntools.svg" /></a></p>
 <p><code class="docutils literal notranslate"><span class="pre">hsntools</span></code> (formerly ‘convnwb’) is a module for working with the Human Single-Neuron Pipeline (HSNPipeline).</p>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This module contains general utilities for working with human single-neuron data and projects.</p>
 <p><code class="docutils literal notranslate"><span class="pre">hsntools</span></code> is designed for use in the Human Single-Neuron pipeline, which provides a guide and
 template structure for human single-neuron projects, including working with data files, converting
@@ -115,7 +139,7 @@ data to the <a class="reference external" href="https://www.nwb.org/">NWB</a> fo
 </ul>
 </section>
 <section id="scope">
-<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this heading">¶</a></h2>
+<h2>Scope<a class="headerlink" href="#scope" title="Link to this heading">¶</a></h2>
 <p>The <cite>hsntools</cite> module is a helper module for implementing functionality needed for the
 <cite>Human Single-Neuron Pipeline</cite>. It includes utilities related to managing and organizing relevant files,
 including file I/O, functionality for organizing and aligning multiple data streams and converting
@@ -132,7 +156,7 @@ See the <a class="reference external" href="https://github.com/HSNPipeline/Overv
 processes and related tooling.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
 <p>Documentation for the <code class="docutils literal notranslate"><span class="pre">hsntools</span></code> module is available
 <a class="reference external" href="https://hsnpipeline.github.io/hsntools/">here</a></p>
 <p>Documentation for the HSNPipeline more broadly, which uses <code class="docutils literal notranslate"><span class="pre">hsntools</span></code> is available on the
@@ -141,7 +165,7 @@ processes and related tooling.</p>
 open an <a class="reference external" href="https://https://github.com/HSNPipeline/hsntools/issues">issue</a> and ask!</p>
 </section>
 <section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">hsntools</span></code> is written in Python, and requires Python &gt;= 3.7 to run.</p>
 <p>It has the following required dependencies:</p>
 <ul class="simple">
@@ -162,7 +186,7 @@ open an <a class="reference external" href="https://https://github.com/HSNPipeli
 </ul>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>The current release version of <cite>hsntools</cite> is the 1.X.X release series.</p>
 <p>See the
 <a class="reference external" href="https://hsnpipeline.github.io/hsntools/changelog">changelog</a>
@@ -187,8 +211,17 @@ for notes on major version releases.</p>
 </pre></div>
 </div>
 </section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">¶</a></h2>
+<p>If you use this code in your project, please cite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Donoghue</span> <span class="n">T</span><span class="p">,</span> <span class="n">Zhang</span> <span class="n">W</span><span class="p">,</span> <span class="n">Han</span> <span class="n">CZ</span><span class="p">,</span> <span class="n">Maesta</span><span class="o">-</span><span class="n">Pereira</span> <span class="o">&amp;</span> <span class="n">Jacobs</span> <span class="n">J</span> <span class="p">(</span><span class="mi">2026</span><span class="p">)</span><span class="o">.</span> <span class="n">HSNPipeline</span><span class="p">:</span> <span class="n">A</span> <span class="n">processing</span> <span class="n">pipeline</span>
+<span class="k">for</span> <span class="n">human</span> <span class="n">single</span><span class="o">-</span><span class="n">neuron</span> <span class="n">studies</span><span class="o">.</span> <span class="n">Aperture</span> <span class="n">Neuro</span><span class="p">,</span> <span class="mi">6</span><span class="p">(</span><span class="n">SI</span> <span class="mi">1</span><span class="p">)</span> <span class="n">DOI</span><span class="p">:</span> <span class="mf">10.52294</span><span class="o">/</span><span class="mi">001</span><span class="n">c</span><span class="mf">.160356</span>
+</pre></div>
+</div>
+<p>Direct link: <a class="reference external" href="https://doi.org/10.52294/001c.160356">https://doi.org/10.52294/001c.160356</a></p>
+</section>
 <section id="contribute">
-<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this heading">¶</a></h2>
+<h2>Contribute<a class="headerlink" href="#contribute" title="Link to this heading">¶</a></h2>
 <p>This project welcomes and encourages contributions from the community!</p>
 <p>To file bug reports and/or ask questions about this project, please use the
 <a class="reference external" href="https://github.com/HSNPipeline/hsntools/issues">Github issue tracker</a>.</p>
@@ -209,8 +242,8 @@ for notes on major version releases.</p>
       
     </p>
     <p>
-        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2021-2026, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

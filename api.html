@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>API Documentation &#8212; hsntools 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d90b8643"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/documentation_options.js?v=a12e3537"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -90,13 +91,82 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">API Documentation</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a><ul>
+<li><a class="reference internal" href="#file-i-o">File I/O</a><ul>
+<li><a class="reference internal" href="#nwb-file-i-o">NWB file I/O</a></li>
+<li><a class="reference internal" href="#hdf5-file-i-o">HDF5 file I/O</a></li>
+<li><a class="reference internal" href="#custom-file-i-o">Custom file I/O</a></li>
+<li><a class="reference internal" href="#general-file-i-o">General file I/O</a></li>
+<li><a class="reference internal" href="#sorting-file-i-o">Sorting File I/O</a></li>
+<li><a class="reference internal" href="#load-collections-of-files">Load Collections of Files</a></li>
+<li><a class="reference internal" href="#nsp-neural-signal-processors-io">NSP (Neural Signal Processors) IO</a></li>
+<li><a class="reference internal" href="#utilities">Utilities</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#objects">Objects</a><ul>
+<li><a class="reference internal" href="#electrodes">Electrodes</a></li>
+<li><a class="reference internal" href="#taskbase">TaskBase</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#paths">Paths</a><ul>
+<li><a class="reference internal" href="#paths-object">Paths Object</a></li>
+<li><a class="reference internal" href="#directory-creators">Directory Creators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plots">Plots</a><ul>
+<li><a class="reference internal" href="#timestamps">Timestamps</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">Timestamps</a><ul>
+<li><a class="reference internal" href="#alignment">Alignment</a></li>
+<li><a class="reference internal" href="#dates">Dates</a></li>
+<li><a class="reference internal" href="#peaks">Peaks</a></li>
+<li><a class="reference internal" href="#update">Update</a></li>
+<li><a class="reference internal" href="#utils">Utils</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sorting">Sorting</a><ul>
+<li><a class="reference internal" href="#processing">Processing</a></li>
+<li><a class="reference internal" href="#id3">Utilities</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#run">Run</a><ul>
+<li><a class="reference internal" href="#log-functions">Log Functions</a></li>
+<li><a class="reference internal" href="#error-management">Error Management</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">Utils</a><ul>
+<li><a class="reference internal" href="#check-functions">Check Functions</a></li>
+<li><a class="reference internal" href="#convert-functions">Convert Functions</a></li>
+<li><a class="reference internal" href="#extract-functions">Extract Functions</a></li>
+<li><a class="reference internal" href="#tool-functions">Tool Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="api-documentation">
-<span id="id1"></span><h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>API Documentation<a class="headerlink" href="#api-documentation" title="Link to this heading">¶</a></h1>
 <p>API reference for the module.</p>
 <section id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">¶</a></h2>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#file-i-o" id="id5">File I/O</a></p>
@@ -160,10 +230,10 @@
 </ul>
 </nav>
 <section id="file-i-o">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">File I/O</a><a class="headerlink" href="#file-i-o" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">File I/O</a><a class="headerlink" href="#file-i-o" title="Link to this heading">¶</a></h3>
 <p>Functions for file I/O.</p>
 <section id="nwb-file-i-o">
-<h4><a class="toc-backref" href="#id6" role="doc-backlink">NWB file I/O</a><a class="headerlink" href="#nwb-file-i-o" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">NWB file I/O</a><a class="headerlink" href="#nwb-file-i-o" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.nwb.save_nwbfile.html#hsntools.io.nwb.save_nwbfile" title="hsntools.io.nwb.save_nwbfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_nwbfile</span></code></a>(nwbfile, file_name[, folder])</p></td>
@@ -179,7 +249,7 @@
 </table>
 </section>
 <section id="hdf5-file-i-o">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">HDF5 file I/O</a><a class="headerlink" href="#hdf5-file-i-o" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">HDF5 file I/O</a><a class="headerlink" href="#hdf5-file-i-o" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.h5.open_h5file.html#hsntools.io.h5.open_h5file" title="hsntools.io.h5.open_h5file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_h5file</span></code></a>(file_name[, folder, mode, ext])</p></td>
@@ -195,7 +265,7 @@
 </table>
 </section>
 <section id="custom-file-i-o">
-<h4><a class="toc-backref" href="#id8" role="doc-backlink">Custom file I/O</a><a class="headerlink" href="#custom-file-i-o" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">Custom file I/O</a><a class="headerlink" href="#custom-file-i-o" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.custom.save_config.html#hsntools.io.custom.save_config" title="hsntools.io.custom.save_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_config</span></code></a>(cdict, file_name[, folder])</p></td>
@@ -217,7 +287,7 @@
 </table>
 </section>
 <section id="general-file-i-o">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">General file I/O</a><a class="headerlink" href="#general-file-i-o" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">General file I/O</a><a class="headerlink" href="#general-file-i-o" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.files.save_txt.html#hsntools.io.files.save_txt" title="hsntools.io.files.save_txt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_txt</span></code></a>(text, file_name[, folder])</p></td>
@@ -245,7 +315,7 @@
 </table>
 </section>
 <section id="sorting-file-i-o">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">Sorting File I/O</a><a class="headerlink" href="#sorting-file-i-o" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Sorting File I/O</a><a class="headerlink" href="#sorting-file-i-o" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.sorting.load_combinato_spike_file.html#hsntools.io.sorting.load_combinato_spike_file" title="hsntools.io.sorting.load_combinato_spike_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_combinato_spike_file</span></code></a>(channel, folder, ...)</p></td>
@@ -264,7 +334,7 @@
 </table>
 </section>
 <section id="load-collections-of-files">
-<h4><a class="toc-backref" href="#id11" role="doc-backlink">Load Collections of Files</a><a class="headerlink" href="#load-collections-of-files" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Load Collections of Files</a><a class="headerlink" href="#load-collections-of-files" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.collections.load_jsons_to_df.html#hsntools.io.collections.load_jsons_to_df" title="hsntools.io.collections.load_jsons_to_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_jsons_to_df</span></code></a>(files[, folder])</p></td>
@@ -274,7 +344,7 @@
 </table>
 </section>
 <section id="nsp-neural-signal-processors-io">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">NSP (Neural Signal Processors) IO</a><a class="headerlink" href="#nsp-neural-signal-processors-io" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">NSP (Neural Signal Processors) IO</a><a class="headerlink" href="#nsp-neural-signal-processors-io" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.nsp.load_blackrock.html#hsntools.io.nsp.load_blackrock" title="hsntools.io.nsp.load_blackrock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_blackrock</span></code></a>(file_name, folder[, ...])</p></td>
@@ -287,7 +357,7 @@
 </table>
 </section>
 <section id="utilities">
-<h4><a class="toc-backref" href="#id13" role="doc-backlink">Utilities</a><a class="headerlink" href="#utilities" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">Utilities</a><a class="headerlink" href="#utilities" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.io.utils.get_files.html#hsntools.io.utils.get_files" title="hsntools.io.utils.get_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_files</span></code></a>(folder[, select, ignore, ...])</p></td>
@@ -307,10 +377,10 @@
 </section>
 </section>
 <section id="objects">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Objects</a><a class="headerlink" href="#objects" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Objects</a><a class="headerlink" href="#objects" title="Link to this heading">¶</a></h3>
 <p>Custom objects.</p>
 <section id="electrodes">
-<h4><a class="toc-backref" href="#id15" role="doc-backlink">Electrodes</a><a class="headerlink" href="#electrodes" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">Electrodes</a><a class="headerlink" href="#electrodes" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.objects.electrodes.Electrodes.html#hsntools.objects.electrodes.Electrodes" title="hsntools.objects.electrodes.Electrodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Electrodes</span></code></a>([subject, fs])</p></td>
@@ -320,7 +390,7 @@
 </table>
 </section>
 <section id="taskbase">
-<h4><a class="toc-backref" href="#id16" role="doc-backlink">TaskBase</a><a class="headerlink" href="#taskbase" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">TaskBase</a><a class="headerlink" href="#taskbase" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase" title="hsntools.objects.task.TaskBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskBase</span></code></a>()</p></td>
@@ -331,10 +401,10 @@
 </section>
 </section>
 <section id="paths">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Paths</a><a class="headerlink" href="#paths" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Paths</a><a class="headerlink" href="#paths" title="Link to this heading">¶</a></h3>
 <p>Path management.</p>
 <section id="paths-object">
-<h4><a class="toc-backref" href="#id18" role="doc-backlink">Paths Object</a><a class="headerlink" href="#paths-object" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id18" role="doc-backlink">Paths Object</a><a class="headerlink" href="#paths-object" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.paths.paths.Paths.html#hsntools.paths.paths.Paths" title="hsntools.paths.paths.Paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Paths</span></code></a>(project_path[, subject, experiment, ...])</p></td>
@@ -344,7 +414,7 @@
 </table>
 </section>
 <section id="directory-creators">
-<h4><a class="toc-backref" href="#id19" role="doc-backlink">Directory Creators</a><a class="headerlink" href="#directory-creators" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">Directory Creators</a><a class="headerlink" href="#directory-creators" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.paths.create.make_folder.html#hsntools.paths.create.make_folder" title="hsntools.paths.create.make_folder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_folder</span></code></a>(path)</p></td>
@@ -364,10 +434,10 @@
 </section>
 </section>
 <section id="plots">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">Plots</a><a class="headerlink" href="#plots" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Plots</a><a class="headerlink" href="#plots" title="Link to this heading">¶</a></h3>
 <p>Plotting functions and utilities.</p>
 <section id="timestamps">
-<h4><a class="toc-backref" href="#id21" role="doc-backlink">Timestamps</a><a class="headerlink" href="#timestamps" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id21" role="doc-backlink">Timestamps</a><a class="headerlink" href="#timestamps" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.plts.timestamps.plot_alignment.html#hsntools.plts.timestamps.plot_alignment" title="hsntools.plts.timestamps.plot_alignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_alignment</span></code></a>(sync1, sync2[, n_pulses, ax])</p></td>
@@ -381,10 +451,10 @@
 </section>
 </section>
 <section id="id2">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">Timestamps</a><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Timestamps</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>Functions and helpers for managing timestamps and temporal alignment.</p>
 <section id="alignment">
-<h4><a class="toc-backref" href="#id23" role="doc-backlink">Alignment</a><a class="headerlink" href="#alignment" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id23" role="doc-backlink">Alignment</a><a class="headerlink" href="#alignment" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.align.fit_sync_alignment.html#hsntools.timestamps.align.fit_sync_alignment" title="hsntools.timestamps.align.fit_sync_alignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_sync_alignment</span></code></a>(sync_behav, sync_neural)</p></td>
@@ -403,7 +473,7 @@
 </table>
 </section>
 <section id="dates">
-<h4><a class="toc-backref" href="#id24" role="doc-backlink">Dates</a><a class="headerlink" href="#dates" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id24" role="doc-backlink">Dates</a><a class="headerlink" href="#dates" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.dates.get_current_date.html#hsntools.timestamps.dates.get_current_date" title="hsntools.timestamps.dates.get_current_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_date</span></code></a>([tz])</p></td>
@@ -416,7 +486,7 @@
 </table>
 </section>
 <section id="peaks">
-<h4><a class="toc-backref" href="#id25" role="doc-backlink">Peaks</a><a class="headerlink" href="#peaks" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id25" role="doc-backlink">Peaks</a><a class="headerlink" href="#peaks" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.peaks.detect_peaks.html#hsntools.timestamps.peaks.detect_peaks" title="hsntools.timestamps.peaks.detect_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_peaks</span></code></a>(data, fs, height[, distance, ...])</p></td>
@@ -426,7 +496,7 @@
 </table>
 </section>
 <section id="update">
-<h4><a class="toc-backref" href="#id26" role="doc-backlink">Update</a><a class="headerlink" href="#update" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id26" role="doc-backlink">Update</a><a class="headerlink" href="#update" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.update.offset_time.html#hsntools.timestamps.update.offset_time" title="hsntools.timestamps.update.offset_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">offset_time</span></code></a>(times, offset)</p></td>
@@ -442,7 +512,7 @@
 </table>
 </section>
 <section id="utils">
-<h4><a class="toc-backref" href="#id27" role="doc-backlink">Utils</a><a class="headerlink" href="#utils" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id27" role="doc-backlink">Utils</a><a class="headerlink" href="#utils" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.timestamps.utils.compute_sample_length.html#hsntools.timestamps.utils.compute_sample_length" title="hsntools.timestamps.utils.compute_sample_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_sample_length</span></code></a>(n_samples, fs[, output])</p></td>
@@ -456,10 +526,10 @@
 </section>
 </section>
 <section id="sorting">
-<h3><a class="toc-backref" href="#id28" role="doc-backlink">Sorting</a><a class="headerlink" href="#sorting" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Sorting</a><a class="headerlink" href="#sorting" title="Link to this heading">¶</a></h3>
 <p>Spike sorting related functionality.</p>
 <section id="processing">
-<h4><a class="toc-backref" href="#id29" role="doc-backlink">Processing</a><a class="headerlink" href="#processing" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id29" role="doc-backlink">Processing</a><a class="headerlink" href="#processing" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.sorting.process.collect_all_sorting.html#hsntools.sorting.process.collect_all_sorting" title="hsntools.sorting.process.collect_all_sorting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_all_sorting</span></code></a>(spike_data, sort_data)</p></td>
@@ -472,7 +542,7 @@
 </table>
 </section>
 <section id="id3">
-<h4><a class="toc-backref" href="#id30" role="doc-backlink">Utilities</a><a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id30" role="doc-backlink">Utilities</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.sorting.utils.get_group_labels.html#hsntools.sorting.utils.get_group_labels" title="hsntools.sorting.utils.get_group_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group_labels</span></code></a>(class_labels, groups)</p></td>
@@ -489,10 +559,10 @@
 </section>
 </section>
 <section id="run">
-<h3><a class="toc-backref" href="#id31" role="doc-backlink">Run</a><a class="headerlink" href="#run" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Run</a><a class="headerlink" href="#run" title="Link to this heading">¶</a></h3>
 <p>Utilities &amp; helper functionality for running processes.</p>
 <section id="log-functions">
-<h4><a class="toc-backref" href="#id32" role="doc-backlink">Log Functions</a><a class="headerlink" href="#log-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id32" role="doc-backlink">Log Functions</a><a class="headerlink" href="#log-functions" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.run.log.print_status.html#hsntools.run.log.print_status" title="hsntools.run.log.print_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_status</span></code></a>(verbose, message[, level])</p></td>
@@ -502,7 +572,7 @@
 </table>
 </section>
 <section id="error-management">
-<h4><a class="toc-backref" href="#id33" role="doc-backlink">Error Management</a><a class="headerlink" href="#error-management" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id33" role="doc-backlink">Error Management</a><a class="headerlink" href="#error-management" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.run.errors.catch_error.html#hsntools.run.errors.catch_error" title="hsntools.run.errors.catch_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">catch_error</span></code></a>(proceed, name, path[, verbose, ...])</p></td>
@@ -513,10 +583,10 @@
 </section>
 </section>
 <section id="id4">
-<h3><a class="toc-backref" href="#id34" role="doc-backlink">Utils</a><a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">Utils</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>Utilities &amp; helper functions.</p>
 <section id="check-functions">
-<h4><a class="toc-backref" href="#id35" role="doc-backlink">Check Functions</a><a class="headerlink" href="#check-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id35" role="doc-backlink">Check Functions</a><a class="headerlink" href="#check-functions" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.checks.is_empty.html#hsntools.utils.checks.is_empty" title="hsntools.utils.checks.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_empty</span></code></a>(var)</p></td>
@@ -535,7 +605,7 @@
 </table>
 </section>
 <section id="convert-functions">
-<h4><a class="toc-backref" href="#id36" role="doc-backlink">Convert Functions</a><a class="headerlink" href="#convert-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id36" role="doc-backlink">Convert Functions</a><a class="headerlink" href="#convert-functions" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.convert.convert_str_to_bool.html#hsntools.utils.convert.convert_str_to_bool" title="hsntools.utils.convert.convert_str_to_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_str_to_bool</span></code></a>(string)</p></td>
@@ -554,7 +624,7 @@
 </table>
 </section>
 <section id="extract-functions">
-<h4><a class="toc-backref" href="#id37" role="doc-backlink">Extract Functions</a><a class="headerlink" href="#extract-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id37" role="doc-backlink">Extract Functions</a><a class="headerlink" href="#extract-functions" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.extract.get_event_time.html#hsntools.utils.extract.get_event_time" title="hsntools.utils.extract.get_event_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_event_time</span></code></a>(event_times, start, end)</p></td>
@@ -567,7 +637,7 @@
 </table>
 </section>
 <section id="tool-functions">
-<h4><a class="toc-backref" href="#id38" role="doc-backlink">Tool Functions</a><a class="headerlink" href="#tool-functions" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id38" role="doc-backlink">Tool Functions</a><a class="headerlink" href="#tool-functions" title="Link to this heading">¶</a></h4>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hsntools.utils.tools.incrementer.html#hsntools.utils.tools.incrementer" title="hsntools.utils.tools.incrementer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">incrementer</span></code></a>([start, end])</p></td>
@@ -592,8 +662,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2021-2026, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Directories &amp; File Management &#8212; hsntools 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d90b8643"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/documentation_options.js?v=a12e3537"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -90,7 +91,25 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Directories &amp; File Management</a><ul>
+<li><a class="reference internal" href="#creating-standardized-directory-structures">Creating Standardized Directory Structures</a></li>
+<li><a class="reference internal" href="#using-the-hsntools-paths-object">Using the hsntools Paths object</a></li>
+</ul>
+</li>
+</ul>
+
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -98,12 +117,12 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="directories-file-management">
-<span id="sphx-glr-auto-examples-plot-files-py"></span><h1>Directories &amp; File Management<a class="headerlink" href="#directories-file-management" title="Permalink to this heading">¶</a></h1>
+<span id="sphx-glr-auto-examples-plot-files-py"></span><h1>Directories &amp; File Management<a class="headerlink" href="#directories-file-management" title="Link to this heading">¶</a></h1>
 <p>Manage files &amp; directories for human single-neuron projects.</p>
 <p>This example introduces and explores the file management and directory structure functionality
 of <cite>hsntools</cite>.</p>
 <section id="creating-standardized-directory-structures">
-<h2>Creating Standardized Directory Structures<a class="headerlink" href="#creating-standardized-directory-structures" title="Permalink to this heading">¶</a></h2>
+<h2>Creating Standardized Directory Structures<a class="headerlink" href="#creating-standardized-directory-structures" title="Link to this heading">¶</a></h2>
 <p>The HSNPipeline, through <cite>hsntools</cite> defines a standardized directory structure for managing
 files that are part of a Human-Single Neuron project.</p>
 <p>If you use this standardized directory structure, then <cite>hsntools</cite> will be aware of this
@@ -111,8 +130,8 @@ organization and be able to navigate the various files.</p>
 <p>This example explores how to automatically set up the standardized directory and how to
 use the HSNPipeline Paths object to navigate the structure.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import paths related functionality</span>
-<span class="kn">from</span> <span class="nn">hsntools.paths</span> <span class="kn">import</span> <span class="n">Paths</span>
-<span class="kn">from</span> <span class="nn">hsntools.paths</span> <span class="kn">import</span> <span class="p">(</span><span class="n">create_project_directory</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hsntools.paths</span><span class="w"> </span><span class="kn">import</span> <span class="n">Paths</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hsntools.paths</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">create_project_directory</span><span class="p">,</span>
                             <span class="n">create_subject_directory</span><span class="p">,</span>
                             <span class="n">create_session_directory</span><span class="p">)</span>
 </pre></div>
@@ -182,7 +201,7 @@ been created.</p>
 the <cite>create_session_directory</cite> function directly, and missing layers will be created.</p>
 </section>
 <section id="using-the-hsntools-paths-object">
-<h2>Using the hsntools Paths object<a class="headerlink" href="#using-the-hsntools-paths-object" title="Permalink to this heading">¶</a></h2>
+<h2>Using the hsntools Paths object<a class="headerlink" href="#using-the-hsntools-paths-object" title="Link to this heading">¶</a></h2>
 <p>In the above section we initialized directory structures as defined by the standard
 structure defined and used by <cite>hsntools</cite> and the HSNPipeline more broadly.</p>
 <p>To interact with this structure, we can use the <a class="reference internal" href="../generated/hsntools.paths.paths.Paths.html#hsntools.paths.paths.Paths" title="hsntools.paths.paths.Paths"><code class="xref py py-class docutils literal notranslate"><span class="pre">Paths</span></code></a> object.</p>
@@ -248,13 +267,16 @@ directory structure, by checking particular locations and getting individual fil
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;docs/&#39;, &#39;info/&#39;, &#39;nwb/&#39;, &#39;recordings/&#39;, &#39;recordings/subj1/anatomy/&#39;, &#39;recordings/subj1/electrodes/&#39;, &#39;recordings/subj1/notes/&#39;, &#39;recordings/subj1/task1/01_raw/behavior/&#39;, &#39;recordings/subj1/task1/01_raw/neural/&#39;, &#39;recordings/subj1/task1/02_processing/alignment/&#39;, &#39;recordings/subj1/task1/02_processing/metadata/&#39;, &#39;recordings/subj1/task1/02_processing/sorting/&#39;, &#39;recordings/subj1/task1/02_processing/task/&#39;, &#39;recordings/subj1/task1/03_extracted/spikes/&#39;, &#39;recordings/subj1/task1/03_extracted/lfp/&#39;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.011 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.016 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-files-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2f179dc7b73e367c260d37fd7d216f0c/plot_files.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_files.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/9320da72fc7bd803947dae93f078ab98/plot_files.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_files.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/1fac0425d604f8ff9d165b098639b8f9/plot_files.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_files.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -273,8 +295,8 @@ directory structure, by checking particular locations and getting individual fil
       
     </p>
     <p>
-        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2021-2026, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

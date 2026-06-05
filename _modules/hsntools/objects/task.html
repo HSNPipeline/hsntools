@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hsntools.objects.task &#8212; hsntools 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d90b8643"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=a12e3537"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -89,18 +90,29 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for hsntools.objects.task</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Base task class.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 
-<span class="kn">from</span> <span class="nn">hsntools.timestamps.align</span> <span class="kn">import</span> <span class="n">predict_times</span>
-<span class="kn">from</span> <span class="nn">hsntools.timestamps.update</span> <span class="kn">import</span> <span class="n">offset_time</span><span class="p">,</span> <span class="n">change_time_units</span>
-<span class="kn">from</span> <span class="nn">hsntools.utils.checks</span> <span class="kn">import</span> <span class="n">is_empty</span><span class="p">,</span> <span class="n">is_type</span>
-<span class="kn">from</span> <span class="nn">hsntools.utils.convert</span> <span class="kn">import</span> <span class="n">convert_type</span><span class="p">,</span> <span class="n">convert_to_array</span>
-<span class="kn">from</span> <span class="nn">hsntools.modutils.dependencies</span> <span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hsntools.timestamps.align</span><span class="w"> </span><span class="kn">import</span> <span class="n">predict_times</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hsntools.timestamps.update</span><span class="w"> </span><span class="kn">import</span> <span class="n">offset_time</span><span class="p">,</span> <span class="n">change_time_units</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hsntools.utils.checks</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_empty</span><span class="p">,</span> <span class="n">is_type</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hsntools.utils.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_type</span><span class="p">,</span> <span class="n">convert_to_array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hsntools.modutils.dependencies</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_import</span><span class="p">,</span> <span class="n">check_dependency</span>
 
 <span class="n">pd</span> <span class="o">=</span> <span class="n">safe_import</span><span class="p">(</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
 
@@ -113,10 +125,14 @@
     <span class="s1">&#39;predict_times&#39;</span> <span class="p">:</span> <span class="n">predict_times</span><span class="p">,</span>
 <span class="p">}</span>
 
-<div class="viewcode-block" id="TaskBase"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase">[docs]</a><span class="k">class</span> <span class="nc">TaskBase</span><span class="p">():</span>
+<div class="viewcode-block" id="TaskBase">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskBase</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base object for collecting task information.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TaskBase.__init__"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TaskBase.__init__">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize TaskBase object.&quot;&quot;&quot;</span>
 
         <span class="c1"># Define information about the status and info attached to the task object</span>
@@ -201,7 +217,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="p">{}</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_check_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check that a requested field is defined in the object.</span>
 
 <span class="sd">        Parameters</span>
@@ -218,7 +235,9 @@
         <span class="k">assert</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_keys</span><span class="p">(),</span> <span class="s1">&#39;Requested field not found.&#39;</span>
 
 
-<div class="viewcode-block" id="TaskBase.add_metadata"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.add_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+<div class="viewcode-block" id="TaskBase.add_metadata">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.add_metadata">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add metadata information to task object.</span>
 
 <span class="sd">        Parameters</span>
@@ -236,7 +255,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;session&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">session</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.set_status"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.set_status">[docs]</a>    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.set_status">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.set_status">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set a status marker.</span>
 
 <span class="sd">        Parameters</span>
@@ -251,7 +273,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">status</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.set_info"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.set_info">[docs]</a>    <span class="k">def</span> <span class="nf">set_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.set_info">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.set_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set an info marker.</span>
 
 <span class="sd">        Parameters</span>
@@ -266,13 +291,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.copy"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.copy">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.copy">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a deepcopy of this object.&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.data_keys"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.data_keys">[docs]</a>    <span class="k">def</span> <span class="nf">data_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.data_keys">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.data_keys">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">data_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of data keys defined in the task object.</span>
 
 <span class="sd">        Parameters</span>
@@ -298,7 +329,10 @@
         <span class="k">return</span> <span class="n">data_keys</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.drop_fields"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.drop_fields">[docs]</a>    <span class="k">def</span> <span class="nf">drop_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.drop_fields">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.drop_fields">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop field(s) from the task object.</span>
 
 <span class="sd">        Parameters</span>
@@ -313,7 +347,10 @@
             <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.drop_keys"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.drop_keys">[docs]</a>    <span class="k">def</span> <span class="nf">drop_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.drop_keys">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.drop_keys">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop key(s) from a specified field of the task object.</span>
 
 <span class="sd">        Parameters</span>
@@ -332,7 +369,10 @@
             <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.apply_func"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.apply_func">[docs]</a>    <span class="k">def</span> <span class="nf">apply_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.apply_func">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.apply_func">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a given function across a set of specified fields.</span>
 
 <span class="sd">        Parameters</span>
@@ -360,7 +400,10 @@
                         <span class="n">data</span><span class="p">[</span><span class="n">okey</span><span class="p">][</span><span class="n">ikey</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">okey</span><span class="p">][</span><span class="n">ikey</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.convert_type"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.convert_type">[docs]</a>    <span class="k">def</span> <span class="nf">convert_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.convert_type">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.convert_type">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the type of specified data fields.</span>
 
 <span class="sd">        Parameters</span>
@@ -378,7 +421,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">apply_func</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">convert_type</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.convert_to_array"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.convert_to_array">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.convert_to_array">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.convert_to_array">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_to_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert specified data fields to numpy arrays.</span>
 
 <span class="sd">        Parameters</span>
@@ -396,7 +442,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">apply_func</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">convert_to_array</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.get_trial"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.get_trial">[docs]</a>    <span class="k">def</span> <span class="nf">get_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.get_trial">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.get_trial">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the information for a specified trial.</span>
 
 <span class="sd">        Parameters</span>
@@ -420,7 +469,10 @@
         <span class="k">return</span> <span class="n">trial_info</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.plot_sync_allignment"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.plot_sync_allignment">[docs]</a>    <span class="k">def</span> <span class="nf">plot_sync_allignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_pulses</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.plot_sync_allignment">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.plot_sync_allignment">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_sync_allignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_pulses</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot alignment of the synchronization pulses.</span>
 
 <span class="sd">        Parameters</span>
@@ -433,7 +485,10 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.update_time"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.update_time">[docs]</a>    <span class="k">def</span> <span class="nf">update_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apply_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.update_time">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.update_time">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apply_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Offset all timestamps within the task object.</span>
 
 <span class="sd">        Parameters</span>
@@ -481,7 +536,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="s1">&#39;time_aligned&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.to_dict"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.to_dict">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.to_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert object data to a dictionary.&quot;&quot;&quot;</span>
 
         <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -491,8 +549,11 @@
         <span class="k">return</span> <span class="n">out_dict</span></div>
 
 
-<div class="viewcode-block" id="TaskBase.to_dataframe"><a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.to_dataframe">[docs]</a>    <span class="nd">@check_dependency</span><span class="p">(</span><span class="n">pd</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TaskBase.to_dataframe">
+<a class="viewcode-back" href="../../../generated/hsntools.objects.task.TaskBase.html#hsntools.objects.task.TaskBase.to_dataframe">[docs]</a>
+    <span class="nd">@check_dependency</span><span class="p">(</span><span class="n">pd</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a specified field as a dataframe.</span>
 
 <span class="sd">        Parameters</span>
@@ -507,7 +568,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">))</span></div></div>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">))</span></div>
+</div>
+
 </pre></div>
 
     </div>
@@ -521,8 +584,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2021-2026, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>

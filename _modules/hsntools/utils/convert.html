@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hsntools.utils.convert &#8212; hsntools 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=284a2d1d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d90b8643"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/documentation_options.js?v=a12e3537"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -89,17 +90,30 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <h1>Source code for hsntools.utils.convert</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Utility functions for converting data types.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="convert_str_to_bool"><a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_str_to_bool.html#hsntools.utils.convert.convert_str_to_bool">[docs]</a><span class="k">def</span> <span class="nf">convert_str_to_bool</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<div class="viewcode-block" id="convert_str_to_bool">
+<a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_str_to_bool.html#hsntools.utils.convert.convert_str_to_bool">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_str_to_bool</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a string to a boolean.</span>
 
 <span class="sd">    Parameters</span>
@@ -117,7 +131,10 @@
     <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span></div>
 
 
-<div class="viewcode-block" id="convert_strlist_to_bool"><a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_strlist_to_bool.html#hsntools.utils.convert.convert_strlist_to_bool">[docs]</a><span class="k">def</span> <span class="nf">convert_strlist_to_bool</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+
+<div class="viewcode-block" id="convert_strlist_to_bool">
+<a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_strlist_to_bool.html#hsntools.utils.convert.convert_strlist_to_bool">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_strlist_to_bool</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a list of strings to a list of boolean.</span>
 
 <span class="sd">    Parameters</span>
@@ -134,7 +151,10 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">convert_str_to_bool</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="convert_type"><a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_type.html#hsntools.utils.convert.convert_type">[docs]</a><span class="k">def</span> <span class="nf">convert_type</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+
+<div class="viewcode-block" id="convert_type">
+<a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_type.html#hsntools.utils.convert.convert_type">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_type</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert type of a given variable.</span>
 
 <span class="sd">    Parameters</span>
@@ -155,7 +175,10 @@
     <span class="k">return</span> <span class="n">out</span></div>
 
 
-<div class="viewcode-block" id="convert_to_array"><a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_to_array.html#hsntools.utils.convert.convert_to_array">[docs]</a><span class="k">def</span> <span class="nf">convert_to_array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+
+<div class="viewcode-block" id="convert_to_array">
+<a class="viewcode-back" href="../../../generated/hsntools.utils.convert.convert_to_array.html#hsntools.utils.convert.convert_to_array">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_to_array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert to an array of specified data type.</span>
 
 <span class="sd">    Parameters</span>
@@ -174,6 +197,7 @@
     <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">array</span></div>
+
 </pre></div>
 
     </div>
@@ -187,8 +211,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2021-2025, Thomas Donoghue.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br/>
+        &copy; Copyright 2021-2026, Thomas Donoghue.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
     </p>
   </div>
 </footer>
