@@ -62,7 +62,7 @@ def get_group_labels(class_labels, groups):
 
     group_labels = np.zeros(len(class_labels), dtype=int)
     for ind, cval in enumerate(class_labels):
-        group_labels[ind] = groups[:, 1][cval == groups[:, 0]]
+        group_labels[ind] = groups[:, 1][cval == groups[:, 0]][0]
 
     return group_labels
 
