@@ -3,7 +3,6 @@ Reference
 
 This page describes how to reference and report on using this module.
 
-
 Table of Contents
 -----------------
 .. contents::
@@ -15,12 +14,13 @@ Referencing the Module
 
 If you use this code in your project, please cite:
 
-.. code-block::text
+.. topic:: Reference
 
     Donoghue T, Zhang W, Han CZ, Maesta-Pereira, Jacobs J.
     HSNPipeline: A Processing Pipeline for Human-Single Neuron Studies
+    Aperture Neuro, 6(SI 1) DOI: 10.52294/001c.160356
 
-Direct Link: UPCOMING
+Direct Link: https://doi.org/10.52294/001c.160356
 
 Referencing Specific Methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
